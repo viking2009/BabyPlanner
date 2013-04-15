@@ -727,6 +727,7 @@
 				90EB9E2A17078C45008457A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
