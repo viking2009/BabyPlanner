@@ -7,20 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
+		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
+		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
+		90E881C217788D9700682BB3 /* BPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881C117788D9700682BB3 /* BPViewController.m */; };
+		90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881C517788E1800682BB3 /* BPNavigationController.m */; };
+		90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */; };
+		90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E9B5391746D5930000760B /* QuartzCore.framework */; };
 		90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFD17078C45008457A3 /* UIKit.framework */; };
 		90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFF17078C45008457A3 /* Foundation.framework */; };
 		90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9E0117078C45008457A3 /* CoreGraphics.framework */; };
 		90EB9E0A17078C45008457A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E0917078C45008457A3 /* main.m */; };
 		90EB9E3017079021008457A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E2C17079021008457A3 /* InfoPlist.strings */; };
 		90EB9E3117079021008457A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */; };
-		90EB9E3C170790AE008457A3 /* tab_charts.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E34170790AE008457A3 /* tab_charts.png */; };
-		90EB9E3D170790AE008457A3 /* tab_charts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E35170790AE008457A3 /* tab_charts@2x.png */; };
-		90EB9E3E170790AE008457A3 /* tab_pregnancy.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E36170790AE008457A3 /* tab_pregnancy.png */; };
-		90EB9E3F170790AE008457A3 /* tab_pregnancy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E37170790AE008457A3 /* tab_pregnancy@2x.png */; };
-		90EB9E40170790AE008457A3 /* tab_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E38170790AE008457A3 /* tab_settings.png */; };
-		90EB9E41170790AE008457A3 /* tab_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E39170790AE008457A3 /* tab_settings@2x.png */; };
-		90EB9E42170790AE008457A3 /* tab_temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E3A170790AE008457A3 /* tab_temperature.png */; };
-		90EB9E43170790AE008457A3 /* tab_temperature@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E3B170790AE008457A3 /* tab_temperature@2x.png */; };
 		90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E47170790D9008457A3 /* BPAppDelegate.m */; };
 		90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E5217079193008457A3 /* BPMyTemperatureViewController.m */; };
 		90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E56170791C7008457A3 /* BPMyChartsViewController.m */; };
@@ -37,10 +36,7 @@
 		90EB9E8917079AFD008457A3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E8617079AFD008457A3 /* Default@2x.png */; };
 		90EB9E8D17079E15008457A3 /* notes_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E8B17079E15008457A3 /* notes_header.png */; };
 		90EB9E8E17079E15008457A3 /* notes_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E8C17079E15008457A3 /* notes_header@2x.png */; };
-		90EB9E921707A2D3008457A3 /* background_no_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E901707A2D3008457A3 /* background_no_navbar.png */; };
-		90EB9E931707A2D3008457A3 /* background_no_navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E911707A2D3008457A3 /* background_no_navbar@2x.png */; };
 		90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E971707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m */; };
-		90EB9EA31707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9EA21707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.m */; };
 		90EB9EC51707B126008457A3 /* symptom_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EA51707B126008457A3 /* symptom_1.png */; };
 		90EB9EC61707B126008457A3 /* symptom_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EA61707B126008457A3 /* symptom_10.png */; };
 		90EB9EC71707B126008457A3 /* symptom_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EA71707B126008457A3 /* symptom_10@2x.png */; };
@@ -78,6 +74,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
+		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
+		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
+		90E881B91778739B00682BB3 /* BPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUtils.h; sourceTree = "<group>"; };
+		90E881BA1778739B00682BB3 /* BPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUtils.m; sourceTree = "<group>"; };
+		90E881C017788D9700682BB3 /* BPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPViewController.h; sourceTree = "<group>"; };
+		90E881C117788D9700682BB3 /* BPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPViewController.m; sourceTree = "<group>"; };
+		90E881C417788E1800682BB3 /* BPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPNavigationController.h; sourceTree = "<group>"; };
+		90E881C517788E1800682BB3 /* BPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNavigationController.m; sourceTree = "<group>"; };
+		90E881CC1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptomsAndMoodCollectionViewCell.h; sourceTree = "<group>"; };
+		90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptomsAndMoodCollectionViewCell.m; sourceTree = "<group>"; };
+		90E9B5391746D5930000760B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90EB9DFA17078C45008457A3 /* BabyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EB9DFD17078C45008457A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90EB9DFF17078C45008457A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,14 +95,6 @@
 		90EB9E0B17078C45008457A3 /* BabyPlanner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyPlanner-Prefix.pch"; sourceTree = "<group>"; };
 		90EB9E2D17079021008457A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90EB9E2F17079021008457A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		90EB9E34170790AE008457A3 /* tab_charts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_charts.png; sourceTree = "<group>"; };
-		90EB9E35170790AE008457A3 /* tab_charts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_charts@2x.png"; sourceTree = "<group>"; };
-		90EB9E36170790AE008457A3 /* tab_pregnancy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_pregnancy.png; sourceTree = "<group>"; };
-		90EB9E37170790AE008457A3 /* tab_pregnancy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_pregnancy@2x.png"; sourceTree = "<group>"; };
-		90EB9E38170790AE008457A3 /* tab_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_settings.png; sourceTree = "<group>"; };
-		90EB9E39170790AE008457A3 /* tab_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_settings@2x.png"; sourceTree = "<group>"; };
-		90EB9E3A170790AE008457A3 /* tab_temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_temperature.png; sourceTree = "<group>"; };
-		90EB9E3B170790AE008457A3 /* tab_temperature@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_temperature@2x.png"; sourceTree = "<group>"; };
 		90EB9E46170790D9008457A3 /* BPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAppDelegate.h; sourceTree = "<group>"; };
 		90EB9E47170790D9008457A3 /* BPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAppDelegate.m; sourceTree = "<group>"; };
 		90EB9E5117079193008457A3 /* BPMyTemperatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureViewController.h; sourceTree = "<group>"; };
@@ -119,12 +119,8 @@
 		90EB9E8617079AFD008457A3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		90EB9E8B17079E15008457A3 /* notes_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes_header.png; sourceTree = "<group>"; };
 		90EB9E8C17079E15008457A3 /* notes_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notes_header@2x.png"; sourceTree = "<group>"; };
-		90EB9E901707A2D3008457A3 /* background_no_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_no_navbar.png; sourceTree = "<group>"; };
-		90EB9E911707A2D3008457A3 /* background_no_navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_no_navbar@2x.png"; sourceTree = "<group>"; };
 		90EB9E961707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKKeyboardAvoidingScrollViewManager.h; sourceTree = "<group>"; };
 		90EB9E971707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKKeyboardAvoidingScrollViewManager.m; sourceTree = "<group>"; };
-		90EB9EA11707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptomsAndMoodCollectionViewCell.h; sourceTree = "<group>"; };
-		90EB9EA21707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptomsAndMoodCollectionViewCell.m; sourceTree = "<group>"; };
 		90EB9EA51707B126008457A3 /* symptom_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = symptom_1.png; sourceTree = "<group>"; };
 		90EB9EA61707B126008457A3 /* symptom_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = symptom_10.png; sourceTree = "<group>"; };
 		90EB9EA71707B126008457A3 /* symptom_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symptom_10@2x.png"; sourceTree = "<group>"; };
@@ -169,12 +165,74 @@
 				90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */,
 				90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */,
 				90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */,
+				90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90E881B31778730600682BB3 /* BPTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				90E881B41778731F00682BB3 /* BPTabBarController.h */,
+				90E881B51778731F00682BB3 /* BPTabBarController.m */,
+			);
+			path = BPTabBarController;
+			sourceTree = "<group>";
+		};
+		90E881B71778738300682BB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				90E881B81778738300682BB3 /* Utils */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		90E881B81778738300682BB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				90E881B91778739B00682BB3 /* BPUtils.h */,
+				90E881BA1778739B00682BB3 /* BPUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		90E881BC17788D6D00682BB3 /* BPViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90E881C017788D9700682BB3 /* BPViewController.h */,
+				90E881C117788D9700682BB3 /* BPViewController.m */,
+			);
+			path = BPViewController;
+			sourceTree = "<group>";
+		};
+		90E881C317788E0200682BB3 /* BPNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				90E881C417788E1800682BB3 /* BPNavigationController.h */,
+				90E881C517788E1800682BB3 /* BPNavigationController.m */,
+			);
+			path = BPNavigationController;
+			sourceTree = "<group>";
+		};
+		90E881CA1778B20500682BB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90E881CB1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		90E881CB1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				90E881CC1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.h */,
+				90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */,
+			);
+			path = BPSymptomsAndMoodCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		90EB9DF117078C45008457A3 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +256,7 @@
 				90EB9DFD17078C45008457A3 /* UIKit.framework */,
 				90EB9DFF17078C45008457A3 /* Foundation.framework */,
 				90EB9E0117078C45008457A3 /* CoreGraphics.framework */,
+				90E9B5391746D5930000760B /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,6 +285,7 @@
 		90EB9E2B17079021008457A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90E881B1177872C300682BB3 /* BPImages.bundle */,
 				90EB9E2C17079021008457A3 /* InfoPlist.strings */,
 				90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */,
 				90EB9E79170798C0008457A3 /* fonts */,
@@ -238,34 +298,19 @@
 			isa = PBXGroup;
 			children = (
 				90EB9E8317079AFD008457A3 /* app */,
-				90EB9E8F1707A2D3008457A3 /* background */,
 				90EB9E661707961C008457A3 /* navbar */,
-				90EB9E33170790AE008457A3 /* tabbar */,
 				90EB9EA41707B126008457A3 /* symptoms_and_mood */,
 				90EB9E8A17079E15008457A3 /* notes */,
 			);
 			path = images;
 			sourceTree = "<group>";
 		};
-		90EB9E33170790AE008457A3 /* tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9E34170790AE008457A3 /* tab_charts.png */,
-				90EB9E35170790AE008457A3 /* tab_charts@2x.png */,
-				90EB9E36170790AE008457A3 /* tab_pregnancy.png */,
-				90EB9E37170790AE008457A3 /* tab_pregnancy@2x.png */,
-				90EB9E38170790AE008457A3 /* tab_settings.png */,
-				90EB9E39170790AE008457A3 /* tab_settings@2x.png */,
-				90EB9E3A170790AE008457A3 /* tab_temperature.png */,
-				90EB9E3B170790AE008457A3 /* tab_temperature@2x.png */,
-			);
-			path = tabbar;
-			sourceTree = "<group>";
-		};
 		90EB9E44170790D9008457A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				90EB9E45170790D9008457A3 /* AppDelegate */,
+				90E881B71778738300682BB3 /* Model */,
+				90E881CA1778B20500682BB3 /* View */,
 				90EB9E491707910D008457A3 /* Controller */,
 			);
 			path = Classes;
@@ -276,7 +321,6 @@
 			children = (
 				90EB9E46170790D9008457A3 /* BPAppDelegate.h */,
 				90EB9E47170790D9008457A3 /* BPAppDelegate.m */,
-				90EB9E9C1707ACEF008457A3 /* View */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -284,7 +328,10 @@
 		90EB9E491707910D008457A3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				90E881B31778730600682BB3 /* BPTabBarController */,
+				90E881C317788E0200682BB3 /* BPNavigationController */,
 				90EB9E7F1707997D008457A3 /* BPBaseViewController */,
+				90E881BC17788D6D00682BB3 /* BPViewController */,
 				90EB9E5017079193008457A3 /* BPMyTemperatureViewController */,
 				90EB9E54170791C7008457A3 /* BPMyChartsViewController */,
 				90EB9E5E170793B4008457A3 /* BPMyPregnancyViewController */,
@@ -396,15 +443,6 @@
 			path = notes;
 			sourceTree = "<group>";
 		};
-		90EB9E8F1707A2D3008457A3 /* background */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9E901707A2D3008457A3 /* background_no_navbar.png */,
-				90EB9E911707A2D3008457A3 /* background_no_navbar@2x.png */,
-			);
-			path = background;
-			sourceTree = "<group>";
-		};
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,23 +458,6 @@
 				90EB9E971707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m */,
 			);
 			path = EKKeyboardAvoidingScrollView;
-			sourceTree = "<group>";
-		};
-		90EB9E9C1707ACEF008457A3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9EA01707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		90EB9EA01707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9EA11707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.h */,
-				90EB9EA21707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.m */,
-			);
-			path = BPSymptomsAndMoodCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		90EB9EA41707B126008457A3 /* symptoms_and_mood */ = {
@@ -532,14 +553,6 @@
 			files = (
 				90EB9E3017079021008457A3 /* InfoPlist.strings in Resources */,
 				90EB9E3117079021008457A3 /* MainStoryboard.storyboard in Resources */,
-				90EB9E3C170790AE008457A3 /* tab_charts.png in Resources */,
-				90EB9E3D170790AE008457A3 /* tab_charts@2x.png in Resources */,
-				90EB9E3E170790AE008457A3 /* tab_pregnancy.png in Resources */,
-				90EB9E3F170790AE008457A3 /* tab_pregnancy@2x.png in Resources */,
-				90EB9E40170790AE008457A3 /* tab_settings.png in Resources */,
-				90EB9E41170790AE008457A3 /* tab_settings@2x.png in Resources */,
-				90EB9E42170790AE008457A3 /* tab_temperature.png in Resources */,
-				90EB9E43170790AE008457A3 /* tab_temperature@2x.png in Resources */,
 				90EB9E691707961C008457A3 /* nav_background.png in Resources */,
 				90EB9E6A1707961C008457A3 /* nav_background@2x.png in Resources */,
 				90EB9E7B170798C0008457A3 /* Gabriola.ttf in Resources */,
@@ -548,8 +561,6 @@
 				90EB9E8917079AFD008457A3 /* Default@2x.png in Resources */,
 				90EB9E8D17079E15008457A3 /* notes_header.png in Resources */,
 				90EB9E8E17079E15008457A3 /* notes_header@2x.png in Resources */,
-				90EB9E921707A2D3008457A3 /* background_no_navbar.png in Resources */,
-				90EB9E931707A2D3008457A3 /* background_no_navbar@2x.png in Resources */,
 				90EB9EC51707B126008457A3 /* symptom_1.png in Resources */,
 				90EB9EC61707B126008457A3 /* symptom_10.png in Resources */,
 				90EB9EC71707B126008457A3 /* symptom_10@2x.png in Resources */,
@@ -583,6 +594,7 @@
 				90EB9EE31707B126008457A3 /* symptoms_selected.png in Resources */,
 				90EB9EE41707B126008457A3 /* symptoms_selected@2x.png in Resources */,
 				90EB9EE71707BA52008457A3 /* nav_back_button.png in Resources */,
+				90E881B2177872C300682BB3 /* BPImages.bundle in Resources */,
 				90EB9EE81707BA52008457A3 /* nav_back_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,17 +606,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
+				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
 				90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
+				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
+				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
 				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
 				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
+				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
-				90EB9EA31707AD2C008457A3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BPBaseViewController.h"
+#import "BPViewController.h"
 
-@interface BPSettingsViewController : BPBaseViewController <UITableViewDelegate, UITableViewDelegate>
-
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@interface BPSettingsViewController : BPViewController
 
 @end
