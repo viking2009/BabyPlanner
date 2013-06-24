@@ -13,15 +13,22 @@
 #import "BPMyChartsViewController.h"
 #import "BPMyPregnancyViewController.h"
 #import "BPSettingsViewController.h"
+#import "TTSwitch.h"
+#import "BPUtils.h"
 
 @implementation BPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_background"] forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav_back_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 10)]  forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:22/255.f green:165/255.f blue:74/255.f alpha:1.0]];
+    [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track"]];
+    [[TTSwitch appearance] setOverlayImage:[BPUtils imageNamed:@"round-switch-overlay"]];
+    [[TTSwitch appearance] setTrackMaskImage:[BPUtils imageNamed:@"round-switch-mask"]];
+    [[TTSwitch appearance] setThumbImage:[BPUtils imageNamed:@"round-switch-thumb"]];
+    [[TTSwitch appearance] setThumbHighlightImage:[BPUtils imageNamed:@"round-switch-thumb-highlight"]];
+    [[TTSwitch appearance] setThumbMaskImage:[BPUtils imageNamed:@"round-switch-mask"]];
+    [[TTSwitch appearance] setThumbInsetX:-3.0f];
+    [[TTSwitch appearance] setThumbOffsetY:-3.0f];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     

@@ -13,6 +13,8 @@
 
 #define BPLocalizedString(key) NSLocalizedString((key), nil)
 
+#define BPDefaultCellInset 10.f
+
 @interface BPUtils : NSObject
 
 + (UIImage *)imageNamed:(NSString *)name;

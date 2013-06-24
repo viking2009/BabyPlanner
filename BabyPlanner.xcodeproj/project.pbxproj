@@ -13,6 +13,9 @@
 		90E881C217788D9700682BB3 /* BPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881C117788D9700682BB3 /* BPViewController.m */; };
 		90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881C517788E1800682BB3 /* BPNavigationController.m */; };
 		90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */; };
+		90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881D11778BA2600682BB3 /* TTSwitch.m */; };
+		90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881D51778BB1700682BB3 /* BPSwitchCell.m */; };
+		90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881DA1778C1C400682BB3 /* BPSettingsCell.m */; };
 		90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E9B5391746D5930000760B /* QuartzCore.framework */; };
 		90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFD17078C45008457A3 /* UIKit.framework */; };
 		90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFF17078C45008457A3 /* Foundation.framework */; };
@@ -85,6 +88,13 @@
 		90E881C517788E1800682BB3 /* BPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNavigationController.m; sourceTree = "<group>"; };
 		90E881CC1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptomsAndMoodCollectionViewCell.h; sourceTree = "<group>"; };
 		90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptomsAndMoodCollectionViewCell.m; sourceTree = "<group>"; };
+		90E881D01778BA2600682BB3 /* TTSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSwitch.h; sourceTree = "<group>"; };
+		90E881D11778BA2600682BB3 /* TTSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSwitch.m; sourceTree = "<group>"; };
+		90E881D41778BB1700682BB3 /* BPSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSwitchCell.h; sourceTree = "<group>"; };
+		90E881D51778BB1700682BB3 /* BPSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSwitchCell.m; sourceTree = "<group>"; };
+		90E881D71778BF0500682BB3 /* TTSwitchSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSwitchSubclass.h; sourceTree = "<group>"; };
+		90E881D91778C1C400682BB3 /* BPSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsCell.h; sourceTree = "<group>"; };
+		90E881DA1778C1C400682BB3 /* BPSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsCell.m; sourceTree = "<group>"; };
 		90E9B5391746D5930000760B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90EB9DFA17078C45008457A3 /* BabyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EB9DFD17078C45008457A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -219,6 +229,8 @@
 		90E881CA1778B20500682BB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				90E881D31778BAD500682BB3 /* BPSwitchCell */,
+				90E881D81778C1B400682BB3 /* BPSettingsCell */,
 				90E881CB1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell */,
 			);
 			path = View;
@@ -231,6 +243,34 @@
 				90E881CD1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m */,
 			);
 			path = BPSymptomsAndMoodCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		90E881CF1778BA2600682BB3 /* TTSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				90E881D01778BA2600682BB3 /* TTSwitch.h */,
+				90E881D11778BA2600682BB3 /* TTSwitch.m */,
+				90E881D71778BF0500682BB3 /* TTSwitchSubclass.h */,
+			);
+			path = TTSwitch;
+			sourceTree = "<group>";
+		};
+		90E881D31778BAD500682BB3 /* BPSwitchCell */ = {
+			isa = PBXGroup;
+			children = (
+				90E881D41778BB1700682BB3 /* BPSwitchCell.h */,
+				90E881D51778BB1700682BB3 /* BPSwitchCell.m */,
+			);
+			path = BPSwitchCell;
+			sourceTree = "<group>";
+		};
+		90E881D81778C1B400682BB3 /* BPSettingsCell */ = {
+			isa = PBXGroup;
+			children = (
+				90E881D91778C1C400682BB3 /* BPSettingsCell.h */,
+				90E881DA1778C1C400682BB3 /* BPSettingsCell.m */,
+			);
+			path = BPSettingsCell;
 			sourceTree = "<group>";
 		};
 		90EB9DF117078C45008457A3 = {
@@ -446,6 +486,7 @@
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				90E881CF1778BA2600682BB3 /* TTSwitch */,
 				90EB9E951707A66A008457A3 /* EKKeyboardAvoidingScrollView */,
 			);
 			path = Vendor;
@@ -606,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
@@ -615,12 +657,14 @@
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
+				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
 				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
 				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
+				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

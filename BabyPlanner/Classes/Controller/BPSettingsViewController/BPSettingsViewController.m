@@ -8,11 +8,14 @@
 
 #import "BPSettingsViewController.h"
 #import "BPUtils.h"
+#import "BPSwitchCell.h"
+#import "BPSettingsCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
+#define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 
-@interface BPSettingsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BPSettingsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *data;
@@ -56,8 +59,9 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"CellIdentifier"];
-    
+    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
+    [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
+
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Mesurement"), @"subtitle" : @"C"}],
@@ -154,7 +158,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    UICollectionViewCell *cell;
+    if (indexPath.section == 0 && indexPath.item == 0) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsViewCellIdentifier forIndexPath:indexPath];
+    }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
     
@@ -169,6 +178,28 @@
     }
     
     cell.backgroundView = backgroundView;
+    
+    NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
+    if (indexPath.section == 0 && indexPath.item == 0) {
+        BPSwitchCell *switchCell = (BPSwitchCell *)cell;
+        switchCell.titleLabel.text = dataItem[@"title"];
+        switchCell.delegate = self;
+        switchCell.toggleView.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"temp"];
+    } else {
+        BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
+        settingsCell.titleLabel.text = dataItem[@"title"];
+        settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
+        
+        if (indexPath.section == 1 && indexPath.item == 2) {
+            // TODO: alarm 
+            NSUInteger alarmsCount = [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
+            if (alarmsCount) {
+                settingsCell.subtitleLabel.text = BPLocalizedString(@"On");
+            } else {
+                settingsCell.subtitleLabel.text = BPLocalizedString(@"Off");
+            }
+        }
+    }
 
     return cell;
 }
@@ -206,5 +237,13 @@
     return edgeInsets;
 }
 
+#pragma mark - BPSwitchCellDelegate
+
+- (void)switchCellDidToggle:(BPSwitchCell *)cell
+{
+    NSLog(@"%s %i", __PRETTY_FUNCTION__, cell.toggleView.on);
+    [[NSUserDefaults standardUserDefaults] setBool:cell.toggleView.on forKey:@"temp"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 @end
