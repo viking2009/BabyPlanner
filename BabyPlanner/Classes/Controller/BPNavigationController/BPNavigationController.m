@@ -1,27 +1,25 @@
 //
-//  BPMyPregnancyViewController.m
+//  BPNavigationController.m
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 30.03.13.
+//  Created by Mykola Vyshynskyi on 24.06.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPMyPregnancyViewController.h"
-#import "BPUtils.h"
+#import "BPNavigationController.h"
 
-@interface BPMyPregnancyViewController ()
+@interface BPNavigationController ()
 
 @end
 
-@implementation BPMyPregnancyViewController
+@implementation BPNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"My Pregnancy";
-        [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_mypregnancy_selected"]
-                      withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_mypregnancy_unselected"]];
+        self.navigationBarHidden = YES;
+        self.navigationBar.translucent = NO;
     }
     return self;
 }

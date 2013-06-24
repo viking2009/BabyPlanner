@@ -7,6 +7,7 @@
 //
 
 #import "BPMyChartsViewController.h"
+#import "BPUtils.h"
 
 @interface BPMyChartsViewController ()
 
@@ -18,7 +19,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.navigationItem.hidesBackButton = YES;
+        self.title = @"My Charts";
+        [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_mycharts_selected"]
+                      withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_mycharts_unselected"]];
     }
     return self;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "BPMyTemperatureViewController.h"
+#import "BPUtils.h"
 
 @interface BPMyTemperatureViewController ()
 
@@ -18,7 +19,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"My Temperature";
+        [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_selected"]
+                      withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_unselected"]];
     }
     return self;
 }

@@ -7,6 +7,12 @@
 //
 
 #import "BPAppDelegate.h"
+#import "BPTabBarController.h"
+#import "BPNavigationController.h"
+#import "BPMyTemperatureViewController.h"
+#import "BPMyChartsViewController.h"
+#import "BPMyPregnancyViewController.h"
+#import "BPSettingsViewController.h"
 
 @implementation BPAppDelegate
 
@@ -15,7 +21,20 @@
     // Override point for customization after application launch.
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_background"] forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav_back_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 10)]  forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:22/255.f green:165/255.f blue:74/255.f alpha:1.0]];
+//    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:22/255.f green:165/255.f blue:74/255.f alpha:1.0]];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    BPNavigationController *myTemperatureViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyTemperatureViewController new]];
+    BPNavigationController *myChartsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyChartsViewController new]];
+    BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
+    BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
+
+    BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
+    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
+    
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
     
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     

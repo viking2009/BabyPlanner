@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BPBaseViewController.h"
+#import "BPViewController.h"
 
-@interface BPMyChartsViewController : BPBaseViewController
+@interface BPMyChartsViewController : BPViewController
 
 @end

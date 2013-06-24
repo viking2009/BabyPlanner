@@ -7,8 +7,11 @@
 //
 
 #import "BPBaseViewController.h"
+#import "BPUtils.h"
 
 @interface BPBaseViewController ()
+
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @end
 
@@ -18,7 +21,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.wantsFullScreenLayout = YES;
+        self.backgroundImage = [UIImage imageNamed:@"Default-568h"];
     }
     return self;
 }
@@ -28,19 +32,35 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    backgroundView.clipsToBounds = YES;
-    backgroundView.contentMode = UIViewContentModeTop;
-    backgroundView.image = [UIImage imageNamed:@"background_no_navbar"];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
+    self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    self.backgroundImageView.clipsToBounds = YES;
+    self.backgroundImageView.contentMode = UIViewContentModeTop;
+    self.backgroundImageView.image = self.backgroundImage;
+    [self.view addSubview:self.backgroundImageView];
+    [self.view sendSubviewToBack:self.backgroundImageView];
+}
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    if (_backgroundImage != backgroundImage) {
+        _backgroundImage = backgroundImage;
+        self.backgroundImageView.image = backgroundImage;
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    
+    // set nav + tabbar
+    self.tabBarItem.title = BPLocalizedString(self.title);
 }
 
 @end
