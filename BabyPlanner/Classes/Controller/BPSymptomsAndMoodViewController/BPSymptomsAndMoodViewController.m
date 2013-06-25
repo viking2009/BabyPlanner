@@ -62,7 +62,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexPath = %@", indexPath);
+    DLog(@"indexPath = %@", indexPath);
 }
 
 @end

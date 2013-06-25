@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         for (NSString *fontFamily in [UIFont familyNames]) {
-            NSLog(@"%@", [UIFont fontNamesForFamilyName:fontFamily]);
+            DLog(@"%@", [UIFont fontNamesForFamilyName:fontFamily]);
         }
         
         self.tabBar.backgroundImage = [BPUtils imageNamed:@"tabbar_background"];

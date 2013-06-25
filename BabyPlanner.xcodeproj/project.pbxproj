@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA94917799CEE005944D6 /* BPSettingsAlarmViewController.m */; };
+		907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA94D17799D1E005944D6 /* BPSettingsLanguageViewController.m */; };
+		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
+		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
+		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -77,6 +82,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		907BA94817799CEE005944D6 /* BPSettingsAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsAlarmViewController.h; sourceTree = "<group>"; };
+		907BA94917799CEE005944D6 /* BPSettingsAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsAlarmViewController.m; sourceTree = "<group>"; };
+		907BA94C17799D1E005944D6 /* BPSettingsLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsLanguageViewController.h; sourceTree = "<group>"; };
+		907BA94D17799D1E005944D6 /* BPSettingsLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsLanguageViewController.m; sourceTree = "<group>"; };
+		907BA9501779A3A4005944D6 /* DSTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTPickerView.h; sourceTree = "<group>"; };
+		907BA9511779A3A4005944D6 /* DSTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTPickerView.m; sourceTree = "<group>"; };
+		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -172,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */,
 				90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */,
 				90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */,
 				90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */,
@@ -182,6 +197,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		907BA94717799CD1005944D6 /* BPSettingsAlarmViewController */ = {
+			isa = PBXGroup;
+			children = (
+				907BA94817799CEE005944D6 /* BPSettingsAlarmViewController.h */,
+				907BA94917799CEE005944D6 /* BPSettingsAlarmViewController.m */,
+			);
+			path = BPSettingsAlarmViewController;
+			sourceTree = "<group>";
+		};
+		907BA94B17799D1E005944D6 /* BPSettingsLanguageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				907BA94C17799D1E005944D6 /* BPSettingsLanguageViewController.h */,
+				907BA94D17799D1E005944D6 /* BPSettingsLanguageViewController.m */,
+			);
+			path = BPSettingsLanguageViewController;
+			sourceTree = "<group>";
+		};
+		907BA94F1779A3A4005944D6 /* DSTPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				907BA9501779A3A4005944D6 /* DSTPickerView.h */,
+				907BA9511779A3A4005944D6 /* DSTPickerView.m */,
+			);
+			path = DSTPickerView;
+			sourceTree = "<group>";
+		};
+		907BA9551779AC97005944D6 /* NSDate-Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				907BA9561779AC97005944D6 /* NSDate-Utilities.h */,
+				907BA9571779AC97005944D6 /* NSDate-Utilities.m */,
+			);
+			path = "NSDate-Utilities";
+			sourceTree = "<group>";
+		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +344,7 @@
 		90EB9DFC17078C45008457A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				907BA9531779A69E005944D6 /* AudioToolbox.framework */,
 				90EB9DFD17078C45008457A3 /* UIKit.framework */,
 				90EB9DFF17078C45008457A3 /* Foundation.framework */,
 				90EB9E0117078C45008457A3 /* CoreGraphics.framework */,
@@ -376,6 +428,8 @@
 				90EB9E54170791C7008457A3 /* BPMyChartsViewController */,
 				90EB9E5E170793B4008457A3 /* BPMyPregnancyViewController */,
 				90EB9E61170793B4008457A3 /* BPSettingsViewController */,
+				907BA94B17799D1E005944D6 /* BPSettingsLanguageViewController */,
+				907BA94717799CD1005944D6 /* BPSettingsAlarmViewController */,
 				90EB9E751707989D008457A3 /* BPNotesViewController */,
 				90EB9E711707987B008457A3 /* BPSymptomsAndMoodViewController */,
 			);
@@ -486,6 +540,8 @@
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				907BA9551779AC97005944D6 /* NSDate-Utilities */,
+				907BA94F1779A3A4005944D6 /* DSTPickerView */,
 				90E881CF1778BA2600682BB3 /* TTSwitch */,
 				90EB9E951707A66A008457A3 /* EKKeyboardAvoidingScrollView */,
 			);
@@ -655,6 +711,7 @@
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
 				90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
+				907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
@@ -663,8 +720,11 @@
 				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
+				907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
+				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
+				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

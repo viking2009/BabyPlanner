@@ -1,39 +1,42 @@
 //
-//  BPSettingsViewController.m
+//  BPSettingLanguageViewController.m
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 30.03.13.
+//  Created by Mykola Vyshynskyi on 25.06.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPSettingsViewController.h"
+#import "BPSettingsAlarmViewController.h"
+
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPSettingsCell.h"
-#import "BPSettingsLanguageViewController.h"
-#import "BPSettingsAlarmViewController.h"
+#import "DSTPickerView.h"
+#import "NSDate-Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 
-@interface BPSettingsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
+@interface BPSettingsAlarmViewController () <DSTPickerViewDataSource, DSTPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) DSTPickerView *pickerView;
+@property (nonatomic, strong) NSDate *fireDate;
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, assign) BOOL canScheduleAlarm;
+
+- (void)scheduleAlarm:(BOOL)schedule;
 
 @end
 
-@implementation BPSettingsViewController
+@implementation BPSettingsAlarmViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.navigationItem.hidesBackButton = YES;
-        self.title = @"Settings";
-        [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_settings_selected"]
-                      withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_settings_unselected"]];
+        self.title = @"Alarm";
     }
     return self;
 }
@@ -59,32 +62,44 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    [self.view addSubview:self.collectionView];
+   [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
-
-    self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Mesurement"), @"subtitle" : @"C"}],
-                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : @"English"},
-                     @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @"Off"},
-                     @{@"title": BPLocalizedString(@"My Profile"), @"subtitle" : @""}],
-                  ];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
-    [self.collectionView reloadData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.pickerView = [[DSTPickerView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height, self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView.elementDistance = 0.f;
+    self.pickerView.showsSelectionIndicator = YES;
+    self.pickerView.backgroundGradientEndColor = RGB(52, 52, 52);
+    self.pickerView.backgroundGradientStartColor = RGB(226, 226, 226);
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
+    [self.view addSubview:self.pickerView];
+    
+    NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    self.fireDate = [NSDate date];
+    
+    for (UILocalNotification *notification in alarms) {
+        if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
+            self.canScheduleAlarm = YES;
+            self.fireDate = notification.fireDate;
+            break;
+        }
+    }
+    
+    DLog(@"fireDate = %@", self.fireDate);
+    
+    self.fireDate = [self.fireDate dateByAddingMinutes:(self.fireDate.minute % 5 == 0 ? 0 : (5 - self.fireDate.minute % 5))];
+    DLog(@"fireDate = %@", self.fireDate);
+    [self.pickerView selectRow:self.fireDate.hour inComponent:0 animated:NO];
+    DLog(@"fireDate = %@", self.fireDate);
+    [self.pickerView selectRow:self.fireDate.minute/5 inComponent:1 animated:NO];
+    DLog(@"fireDate = %@", self.fireDate);
+        
+    self.data = @[
+                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : @"Marimba"}]
+                  ];
 }
 
 - (void)dealloc
@@ -93,65 +108,68 @@
     self.collectionView.delegate = nil;
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)didReceiveMemoryWarning
 {
-    DLog(@"[self.data count] = %i", [self.data count]);
-    return [self.data count];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - DSTPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(DSTPickerView *)pickerView
 {
-    return [self.data[section] count];
+    return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)pickerView:(DSTPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPSettingsViewCellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPSettingsViewCellIdentifier];
-    }
-    
-    DLog(@"cell = %@", cell);
-    NSDictionary *item = self.data[indexPath.section][indexPath.row];
-    cell.textLabel.text = item[@"title"];
-    cell.detailTextLabel.text = item[@"subtitle"];
-    
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        UISwitch *accessorySwitch = [[UISwitch alloc] init];
-        cell.accessoryView = accessorySwitch;
+    return (component == 0 ? 24 : 12);
+}
+
+#pragma mark - DSTPickerViewDelegate
+
+- (void)pickerView:(DSTPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    DLog(@"%i %i", row, component);
+
+    if (component == 0) {
+        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:row] dateByAddingMinutes:self.fireDate.minute];
     } else {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:self.fireDate.hour] dateByAddingMinutes:5*row];
+    }
+    [self scheduleAlarm:self.canScheduleAlarm];
+    
+    DLog(@"active alarms = %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
+}
+
+- (CGFloat)pickerView:(DSTPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return 120.f;
+}
+
+- (UIView *)pickerView:(DSTPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel *label = (UILabel *)view;
+    if (!label) {
+        label = [[UILabel alloc] init];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
+        label.textAlignment = NSTextAlignmentCenter;
     }
     
-    return cell;
+    NSInteger value = row;
+    if (component == 1) {
+        value *= 5;
+    }
+    
+    label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
+    
+    return label;
 }
 
-#pragma mark - UITableViewViewDelegate
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)pickerView:(DSTPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    cell.backgroundColor = [UIColor colorWithWhite:1 alpha:0.85];
+    return 44.f;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return (section == 0 ? 10.0f : 5.0f);
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return (section == [tableView numberOfSections] - 1 ? 10.0f : 5.0f);
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DLog(@"indexPath = %@", indexPath);
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 
 #pragma mark - UICollectionViewDataSource
 
@@ -193,31 +211,15 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
-        switchCell.toggleView.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"temp"];
+        switchCell.toggleView.on = self.canScheduleAlarm;
     } else {
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
         settingsCell.titleLabel.text = dataItem[@"title"];
         settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
         
-        if (indexPath.section == 1 && indexPath.item == 2) {
-            // TODO: alarm 
-            NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            BOOL alarmFound = NO;
-            for (UILocalNotification *notification in alarms) {
-                if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
-                    alarmFound = YES;
-                    break;
-                }
-            }
-            
-            if (alarmFound) {
-                settingsCell.subtitleLabel.text = BPLocalizedString(@"On");
-            } else {
-                settingsCell.subtitleLabel.text = BPLocalizedString(@"Off");
-            }
-        }
+        
     }
-
+    
     return cell;
 }
 
@@ -226,19 +228,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath = %@", indexPath);
-    if (indexPath.section == 1) {
-        switch (indexPath.item) {
-            case 0:
-                [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
-                break;
-            case 2:
-                [self.navigationController pushViewController:[BPSettingsAlarmViewController new] animated:YES];
-                break;
-                
-            default:
-                break;
-        }
-    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -253,7 +242,7 @@
     } else {
         height = 44.f;
     }
-
+    
     return CGSizeMake(302.f, height);
 }
 
@@ -272,8 +261,33 @@
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
     DLog(@"%s %i", __PRETTY_FUNCTION__, cell.toggleView.on);
-    [[NSUserDefaults standardUserDefaults] setBool:cell.toggleView.on forKey:@"temp"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+ 
+    self.canScheduleAlarm = cell.toggleView.isOn;
+    [self scheduleAlarm:self.canScheduleAlarm];
+}
+
+
+- (void)scheduleAlarm:(BOOL)schedule
+{
+    // cancel all alarms
+    NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *notification in alarms) {
+        if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+    
+    // reschedule if needed
+    if (schedule) {
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.userInfo = @{@"guid" : @(BPAlarmGuid)};
+        
+        notification.fireDate = self.fireDate;
+        notification.repeatInterval = NSCalendarUnitDay;
+        
+        notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
 }
 
 @end

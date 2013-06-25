@@ -15,6 +15,9 @@
 
 #define BPDefaultCellInset 10.f
 
+#define BPAlarmGuid 100
+#define BPPickerViewHeight 216.f
+
 @interface BPUtils : NSObject
 
 + (UIImage *)imageNamed:(NSString *)name;

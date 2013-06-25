@@ -64,9 +64,9 @@
     self.titleLabel.text = BPLocalizedString(self.title);
     [self.view addSubview:self.titleLabel];
     
-    NSLog(@"self.titleLabel = %@", self.titleLabel.font);
+    DLog(@"self.titleLabel = %@", self.titleLabel.font);
     
-    NSLog(@"self.view = %@", self.view);
+    DLog(@"self.view = %@", self.view);
 }
 
 - (void)didReceiveMemoryWarning

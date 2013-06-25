@@ -275,7 +275,7 @@ static const CGFloat kTTSwitchAnimationDuration = 0.25;
     CGFloat locationInRange = self.thumbImageView.frame.origin.x - self.thumbInsetX;
     
     if (range == 0) {
-        NSLog(@"TTSwitch can't get value at thumb position because you are going to have a bad time dividing by zero.");
+        DLog(@"TTSwitch can't get value at thumb position because you are going to have a bad time dividing by zero.");
         return 0.0f;
     }
     
