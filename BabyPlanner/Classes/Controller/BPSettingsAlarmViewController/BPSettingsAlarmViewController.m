@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) DSTPickerView *pickerView;
+@property (nonatomic, strong) UIImageView *alarmView;
 @property (nonatomic, strong) NSDate *fireDate;
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, assign) BOOL canScheduleAlarm;
@@ -67,7 +68,7 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
     
-    self.pickerView = [[DSTPickerView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height, self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[DSTPickerView alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     self.pickerView.elementDistance = 0.f;
     self.pickerView.showsSelectionIndicator = YES;
     self.pickerView.backgroundGradientEndColor = RGB(52, 52, 52);
@@ -75,6 +76,10 @@
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
     [self.view addSubview:self.pickerView];
+    
+    self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm"]];
+    self.alarmView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.alarmView.image.size.width/2), self.pickerView.frame.origin.y - self.alarmView.image.size.height + 5.f, self.alarmView.image.size.width, self.alarmView.image.size.height);
+    [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
     
     NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
     self.fireDate = [NSDate date];
