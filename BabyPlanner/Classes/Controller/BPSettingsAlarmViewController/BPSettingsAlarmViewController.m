@@ -25,7 +25,10 @@
 @property (nonatomic, strong) UIImageView *alarmView;
 @property (nonatomic, strong) NSDate *fireDate;
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSArray *alarmSounds;
+@property (nonatomic, strong) NSString *alarmSound;
 @property (nonatomic, assign) BOOL canScheduleAlarm;
+@property (nonatomic, assign) NSInteger pickerMode;
 
 - (void)scheduleAlarm:(BOOL)schedule;
 
@@ -46,7 +49,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
 	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
@@ -95,16 +98,35 @@
     DLog(@"fireDate = %@", self.fireDate);
     
     self.fireDate = [self.fireDate dateByAddingMinutes:(self.fireDate.minute % 5 == 0 ? 0 : (5 - self.fireDate.minute % 5))];
-    DLog(@"fireDate = %@", self.fireDate);
-    [self.pickerView selectRow:self.fireDate.hour inComponent:0 animated:NO];
-    DLog(@"fireDate = %@", self.fireDate);
-    [self.pickerView selectRow:self.fireDate.minute/5 inComponent:1 animated:NO];
-    DLog(@"fireDate = %@", self.fireDate);
-        
+    
+    self.alarmSound = @"Marimba";
+    self.alarmSounds = @[@"Marimba", @"Test", @"Test 2"];
+    
+    [self loadData];
+    [self updateUI];
+}
+
+- (void)loadData {
+    
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : @"Marimba"}]
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : self.alarmSound}]
                   ];
+}
+
+- (void)updateUI {
+//    [self.collectionView reloadData];
+    [self.pickerView reloadAllComponents];
+    
+    if (self.pickerMode == 0) {
+        DLog(@"fireDate = %@", self.fireDate);
+        [self.pickerView selectRow:self.fireDate.hour inComponent:0 animated:NO];
+        DLog(@"fireDate = %@", self.fireDate);
+        [self.pickerView selectRow:self.fireDate.minute/5 inComponent:1 animated:NO];
+        DLog(@"fireDate = %@", self.fireDate);
+    } else {
+        [self.pickerView selectRow:[self.alarmSounds indexOfObject:self.alarmSound] inComponent:0 animated:NO];
+    }
 }
 
 - (void)dealloc
@@ -123,12 +145,18 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(DSTPickerView *)pickerView
 {
-    return 2;
+    DLog(@"%i", self.pickerMode);    
+    return (self.pickerMode == 0 ? 2 : 1);
 }
 
 - (NSInteger)pickerView:(DSTPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return (component == 0 ? 24 : 12);
+    DLog(@"%i", self.pickerMode);
+
+    if (self.pickerMode == 0)
+        return (component == 0 ? 24 : 12);
+    else
+        return [_alarmSounds count];
 }
 
 #pragma mark - DSTPickerViewDelegate
@@ -137,23 +165,31 @@
 {
     DLog(@"%i %i", row, component);
 
-    if (component == 0) {
-        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:row] dateByAddingMinutes:self.fireDate.minute];
+    if (self.pickerMode == 0) {
+
+        if (component == 0) {
+            self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:row] dateByAddingMinutes:self.fireDate.minute];
+        } else {
+            self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:self.fireDate.hour] dateByAddingMinutes:5*row];
+        }
+        [self scheduleAlarm:self.canScheduleAlarm];
     } else {
-        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:self.fireDate.hour] dateByAddingMinutes:5*row];
+        self.alarmSound = _alarmSounds[row];
+        [self loadData];
+        [self.collectionView reloadData];
     }
-    [self scheduleAlarm:self.canScheduleAlarm];
-    
-    DLog(@"active alarms = %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
 }
 
 - (CGFloat)pickerView:(DSTPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 120.f;
+    DLog(@"%i", self.pickerMode);
+    return (self.pickerMode == 0 ? 140.f : 280.f);
 }
 
 - (UIView *)pickerView:(DSTPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
+    DLog(@"%i", self.pickerMode);
+
     UILabel *label = (UILabel *)view;
     if (!label) {
         label = [[UILabel alloc] init];
@@ -161,12 +197,16 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    NSInteger value = row;
-    if (component == 1) {
-        value *= 5;
+    if (self.pickerMode == 0) {
+        NSInteger value = row;
+        if (component == 1) {
+            value *= 5;
+        }
+        
+        label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
+    } else {
+        label.text = _alarmSounds[row];
     }
-    
-    label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
     
     return label;
 }
@@ -221,8 +261,6 @@
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
         settingsCell.titleLabel.text = dataItem[@"title"];
         settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
-        
-        
     }
     
     return cell;
@@ -233,6 +271,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath = %@", indexPath);
+    self.pickerMode = indexPath.item;
+    [self updateUI];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -288,7 +328,8 @@
         notification.userInfo = @{@"guid" : @(BPAlarmGuid)};
         
         notification.fireDate = self.fireDate;
-        notification.repeatInterval = NSCalendarUnitDay;
+//        notification.repeatInterval = NSCalendarUnitDay;
+        notification.repeatInterval = kCFCalendarUnitDay;
         
         notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];

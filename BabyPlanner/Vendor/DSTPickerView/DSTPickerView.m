@@ -539,7 +539,7 @@ static void cubicInterpolation(void *info, const float *input, float *output) {
             [label setTextColor:[UIColor blackColor]];
             [label setFont:[UIFont systemFontOfSize:13.0]];
             [label setAdjustsFontSizeToFitWidth:YES];
-            [label setTextAlignment:UITextAlignmentCenter];
+            [label setTextAlignment:NSTextAlignmentCenter];
             [label setText:components[idx]];
             [content addSubview:label];
         }
