@@ -11,10 +11,11 @@
 #import "BPSwitchCell.h"
 #import "BPSettingsCell.h"
 #import "BPSettingsLanguageViewController.h"
+#import "BPSettingsThemeViewController.h"
 #import "BPSettingsAlarmViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
+#define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 
 @interface BPSettingsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
@@ -61,7 +62,7 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
+    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
 
     [self loadData];
@@ -127,10 +128,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPSettingsViewCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPSettingsCellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPSettingsViewCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPSettingsCellIdentifier];
     }
     
     DLog(@"cell = %@", cell);
@@ -190,7 +191,7 @@
     if (indexPath.section == 0 && indexPath.item == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
     } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsViewCellIdentifier forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsCellIdentifier forIndexPath:indexPath];
     }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
@@ -249,6 +250,9 @@
         switch (indexPath.item) {
             case 0:
                 [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
+                break;
+            case 1:
+                [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
                 break;
             case 2:
                 [self.navigationController pushViewController:[BPSettingsAlarmViewController new] animated:YES];
