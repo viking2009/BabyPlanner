@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
 	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
@@ -84,13 +84,30 @@
         if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
             self.canScheduleAlarm = YES;
             self.fireDate = notification.fireDate;
-            self.soundName = notification.soundName?:@"";
+            self.soundName = notification.soundName?:@"Marimba";
             break;
         }
     }
     
     DLog(@"fireDate = %@", self.fireDate);
+
     self.pickerView.value = self.fireDate;
+
+    [self loadData];
+    [self updateUI];
+}
+
+- (void)loadData {
+    
+    self.data = @[
+                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : self.soundName}]
+                  ];
+}
+
+- (void)updateUI {
+    [self loadData];
+    [self.collectionView reloadData];
 }
 
 - (void)dealloc
@@ -98,14 +115,6 @@
     self.collectionView.dataSource = nil;
     self.collectionView.delegate = nil;
 }
-
-- (void)loadData {
-    self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : self.soundName}]
-                  ];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -158,8 +167,6 @@
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
         settingsCell.titleLabel.text = dataItem[@"title"];
         settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
-        
-        
     }
     
     return cell;
@@ -170,6 +177,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath = %@", indexPath);
+
     switch (indexPath.item) {
         case 0:
             self.pickerView.valuePickerMode = BPValuePickerModeTime;
@@ -185,7 +193,7 @@
             break;
     }
     
-    [collectionView reloadData];
+    [self updateUI];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -247,8 +255,9 @@
         
         notification.fireDate = self.fireDate;
         notification.soundName = self.soundName;
-        notification.repeatInterval = NSCalendarUnitDay;
-        
+//        notification.repeatInterval = NSCalendarUnitDay;
+        notification.repeatInterval = kCFCalendarUnitDay;
+
         notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
@@ -268,6 +277,7 @@
         case BPValuePickerModeSound:
             self.soundName = self.pickerView.value;
             [self scheduleAlarm:self.canScheduleAlarm];
+            [self updateUI];
             break;
         default:
             break;

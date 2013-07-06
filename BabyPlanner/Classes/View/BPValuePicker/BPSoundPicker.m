@@ -52,7 +52,7 @@
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 120.f;
+    return 300.f;
 }
 
 - (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -70,8 +70,8 @@
         value *= 5;
     }
     
-    label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
-    
+    label.text = _sounds[row];
+
     return label;
 }
 
