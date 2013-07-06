@@ -72,13 +72,14 @@
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     
-    self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm"]];
+    self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm_clock"]];
     self.alarmView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.alarmView.image.size.width/2), self.pickerView.frame.origin.y - self.alarmView.image.size.height + 5.f, self.alarmView.image.size.width, self.alarmView.image.size.height);
     [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
-    
-    NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
+
     self.fireDate = [NSDate date];
-    
+    self.soundName = @"Marimba";
+
+    NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];    
     for (UILocalNotification *notification in alarms) {
         DLog(@"notification: %@", notification);
         if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
