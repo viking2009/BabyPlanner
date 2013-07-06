@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
+		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
+		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
+		905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F31787EDD300C367E3 /* BPTimePicker.m */; };
+		905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F61788033300C367E3 /* BPSoundPicker.m */; };
 		907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA94917799CEE005944D6 /* BPSettingsAlarmViewController.m */; };
 		907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA94D17799D1E005944D6 /* BPSettingsLanguageViewController.m */; };
 		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
@@ -82,6 +87,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
+		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
+		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
+		905D99E61787E95500C367E3 /* BPValuePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPValuePicker.m; sourceTree = "<group>"; };
+		905D99EB1787EB1000C367E3 /* BPValuePickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPValuePickerDelegate.h; sourceTree = "<group>"; };
+		905D99EF1787ECBB00C367E3 /* BPAbstractPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAbstractPicker.h; sourceTree = "<group>"; };
+		905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAbstractPicker.m; sourceTree = "<group>"; };
+		905D99F21787EDD300C367E3 /* BPTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTimePicker.h; sourceTree = "<group>"; };
+		905D99F31787EDD300C367E3 /* BPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTimePicker.m; sourceTree = "<group>"; };
+		905D99F51788033300C367E3 /* BPSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSoundPicker.h; sourceTree = "<group>"; };
+		905D99F61788033300C367E3 /* BPSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSoundPicker.m; sourceTree = "<group>"; };
 		907BA94817799CEE005944D6 /* BPSettingsAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsAlarmViewController.h; sourceTree = "<group>"; };
 		907BA94917799CEE005944D6 /* BPSettingsAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsAlarmViewController.m; sourceTree = "<group>"; };
 		907BA94C17799D1E005944D6 /* BPSettingsLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsLanguageViewController.h; sourceTree = "<group>"; };
@@ -197,6 +213,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		905D99E01787E89B00C367E3 /* BPPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				905D99E11787E8B400C367E3 /* BPPickerView.h */,
+				905D99E21787E8B400C367E3 /* BPPickerView.m */,
+			);
+			path = BPPickerView;
+			sourceTree = "<group>";
+		};
+		905D99E41787E93B00C367E3 /* BPValuePicker */ = {
+			isa = PBXGroup;
+			children = (
+				905D99E51787E95500C367E3 /* BPValuePicker.h */,
+				905D99E61787E95500C367E3 /* BPValuePicker.m */,
+				905D99EB1787EB1000C367E3 /* BPValuePickerDelegate.h */,
+				905D99EF1787ECBB00C367E3 /* BPAbstractPicker.h */,
+				905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */,
+				905D99F21787EDD300C367E3 /* BPTimePicker.h */,
+				905D99F31787EDD300C367E3 /* BPTimePicker.m */,
+				905D99F51788033300C367E3 /* BPSoundPicker.h */,
+				905D99F61788033300C367E3 /* BPSoundPicker.m */,
+			);
+			path = BPValuePicker;
+			sourceTree = "<group>";
+		};
 		907BA94717799CD1005944D6 /* BPSettingsAlarmViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +324,8 @@
 				90E881D31778BAD500682BB3 /* BPSwitchCell */,
 				90E881D81778C1B400682BB3 /* BPSettingsCell */,
 				90E881CB1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell */,
+				905D99E01787E89B00C367E3 /* BPPickerView */,
+				905D99E41787E93B00C367E3 /* BPValuePicker */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -703,12 +746,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
+				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
+				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
 				90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
 				907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */,
@@ -719,7 +765,9 @@
 				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
 				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
+				905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
+				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,

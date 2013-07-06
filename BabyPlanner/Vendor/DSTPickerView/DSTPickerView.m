@@ -7,14 +7,14 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import <AudioToolbox/AudioToolbox.h>
+//#import <AudioToolbox/AudioToolbox.h>
 
 #import "DSTPickerView.h"
 
 #pragma mark - DSTPickerTableViewCell
 
-@interface DSTPickerTableViewCell : UITableViewCell {
-}
+@interface DSTPickerTableViewCell : UITableViewCell
+
 - (DSTPickerTableViewCell *)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 @property (nonatomic, assign) NSInteger row;
@@ -484,7 +484,7 @@ static void cubicInterpolation(void *info, const float *input, float *output) {
     if ([currentItems count] > 0) {
         // play final tock sound
         if ([data[@"row"] integerValue] != [currentItems[[data[@"component"] integerValue]] integerValue]) {
-            AudioServicesPlaySystemSound(1104);
+//            AudioServicesPlaySystemSound(1104);
         }
     }
 }
@@ -727,7 +727,7 @@ static void cubicInterpolation(void *info, const float *input, float *output) {
     [darkenBottom setFrame:CGRectMake(0, roundCorners.bounds.size.height - floorf((self.bounds.size.height - 20) / 4), roundCorners.bounds.size.width, floorf((self.bounds.size.height - 20) / 4))];
 
     [roundCorners bringSubviewToFront:selectionIndicator];
-    [selectionIndicator setFrame:CGRectMake(0, floorf((roundCorners.bounds.size.height - height + 7) / 2.0), roundCorners.bounds.size.width, height + 15)];
+    [selectionIndicator setFrame:CGRectMake(0, floorf((roundCorners.bounds.size.height - height) / 2.0), roundCorners.bounds.size.width, height + 15)];
 }
 
 - (CGFloat)calculateTableViewOffset {
@@ -817,7 +817,7 @@ static void cubicInterpolation(void *info, const float *input, float *output) {
     }
     if (row != [currentItems[idx] integerValue]) {
         currentItems[idx] = @(row);
-        AudioServicesPlaySystemSound(1104);
+//        AudioServicesPlaySystemSound(1104);
     }
 }
 

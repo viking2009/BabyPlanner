@@ -11,19 +11,19 @@
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPSettingsCell.h"
-#import "DSTPickerView.h"
-#import "NSDate-Utilities.h"
+#import "BPValuePicker.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 
-@interface BPSettingsAlarmViewController () <DSTPickerViewDataSource, DSTPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
+@interface BPSettingsAlarmViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) DSTPickerView *pickerView;
+@property (nonatomic, strong) BPValuePicker *pickerView;
 @property (nonatomic, strong) UIImageView *alarmView;
 @property (nonatomic, strong) NSDate *fireDate;
+@property (nonatomic, strong) NSString *soundName;
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, assign) BOOL canScheduleAlarm;
 
@@ -68,13 +68,8 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
     
-    self.pickerView = [[DSTPickerView alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
-    self.pickerView.elementDistance = 0.f;
-    self.pickerView.showsSelectionIndicator = YES;
-    self.pickerView.backgroundGradientEndColor = RGB(52, 52, 52);
-    self.pickerView.backgroundGradientStartColor = RGB(226, 226, 226);
-    self.pickerView.dataSource = self;
-    self.pickerView.delegate = self;
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     
     self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm"]];
@@ -85,26 +80,17 @@
     self.fireDate = [NSDate date];
     
     for (UILocalNotification *notification in alarms) {
+        DLog(@"notification: %@", notification);
         if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
             self.canScheduleAlarm = YES;
             self.fireDate = notification.fireDate;
+            self.soundName = notification.soundName?:@"";
             break;
         }
     }
     
     DLog(@"fireDate = %@", self.fireDate);
-    
-    self.fireDate = [self.fireDate dateByAddingMinutes:(self.fireDate.minute % 5 == 0 ? 0 : (5 - self.fireDate.minute % 5))];
-    DLog(@"fireDate = %@", self.fireDate);
-    [self.pickerView selectRow:self.fireDate.hour inComponent:0 animated:NO];
-    DLog(@"fireDate = %@", self.fireDate);
-    [self.pickerView selectRow:self.fireDate.minute/5 inComponent:1 animated:NO];
-    DLog(@"fireDate = %@", self.fireDate);
-        
-    self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : @"Marimba"}]
-                  ];
+    self.pickerView.value = self.fireDate;
 }
 
 - (void)dealloc
@@ -113,67 +99,18 @@
     self.collectionView.delegate = nil;
 }
 
+- (void)loadData {
+    self.data = @[
+                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : self.soundName}]
+                  ];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - DSTPickerViewDataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(DSTPickerView *)pickerView
-{
-    return 2;
-}
-
-- (NSInteger)pickerView:(DSTPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return (component == 0 ? 24 : 12);
-}
-
-#pragma mark - DSTPickerViewDelegate
-
-- (void)pickerView:(DSTPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    DLog(@"%i %i", row, component);
-
-    if (component == 0) {
-        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:row] dateByAddingMinutes:self.fireDate.minute];
-    } else {
-        self.fireDate = [[[self.fireDate dateAtStartOfDay] dateByAddingHours:self.fireDate.hour] dateByAddingMinutes:5*row];
-    }
-    [self scheduleAlarm:self.canScheduleAlarm];
-    
-    DLog(@"active alarms = %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
-}
-
-- (CGFloat)pickerView:(DSTPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    return 120.f;
-}
-
-- (UIView *)pickerView:(DSTPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    NSInteger value = row;
-    if (component == 1) {
-        value *= 5;
-    }
-    
-    label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
-    
-    return label;
-}
-
-- (CGFloat)pickerView:(DSTPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 44.f;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -233,6 +170,22 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath = %@", indexPath);
+    switch (indexPath.item) {
+        case 0:
+            self.pickerView.valuePickerMode = BPValuePickerModeTime;
+            self.pickerView.value = self.fireDate;
+            break;
+
+        case 1:
+            self.pickerView.valuePickerMode = BPValuePickerModeSound;
+            self.pickerView.value = self.soundName;
+            break;
+
+        default:
+            break;
+    }
+    
+    [collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -274,8 +227,13 @@
 
 - (void)scheduleAlarm:(BOOL)schedule
 {
+    DLog(@"%i", schedule);
+    
     // cancel all alarms
     NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    DLog(@"alarms = %@", alarms);
+    DLog(@"self.fireDate = %@", self.fireDate);
+
     for (UILocalNotification *notification in alarms) {
         if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
@@ -288,10 +246,31 @@
         notification.userInfo = @{@"guid" : @(BPAlarmGuid)};
         
         notification.fireDate = self.fireDate;
+        notification.soundName = self.soundName;
         notification.repeatInterval = NSCalendarUnitDay;
         
         notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+    
+    DLog(@"alarms = %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
+}
+
+- (void)pickerViewValueChanged
+{
+    DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
+
+    switch (self.pickerView.valuePickerMode) {
+        case BPValuePickerModeTime:
+            self.fireDate = self.pickerView.value;
+            [self scheduleAlarm:self.canScheduleAlarm];
+            break;
+        case BPValuePickerModeSound:
+            self.soundName = self.pickerView.value;
+            [self scheduleAlarm:self.canScheduleAlarm];
+            break;
+        default:
+            break;
     }
 }
 
