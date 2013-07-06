@@ -64,21 +64,40 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
 
+    [self loadData];
+}
+
+- (void)loadData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *language = [defaults objectForKey:@"Language"];
+    if (!language) {
+        language = @"English";
+        [defaults setObject:language forKey:@"Language"];
+        [defaults synchronize];
+    }
+    
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Mesurement"), @"subtitle" : @"C"}],
-                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : @"English"},
+                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : language},
                      @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @"Off"},
                      @{@"title": BPLocalizedString(@"My Profile"), @"subtitle" : @""}],
                   ];
 }
 
+- (void)updateUI
+{
+    [self loadData];
+    [self.collectionView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.collectionView reloadData];
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning

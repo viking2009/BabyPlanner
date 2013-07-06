@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -87,6 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
+		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				905D99F31787EDD300C367E3 /* BPTimePicker.m */,
 				905D99F51788033300C367E3 /* BPSoundPicker.h */,
 				905D99F61788033300C367E3 /* BPSoundPicker.m */,
+				9029876217880C3A00067D7A /* BPLanguagePicker.h */,
+				9029876317880C3A00067D7A /* BPLanguagePicker.m */,
 			);
 			path = BPValuePicker;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
 				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
+				9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */,
 				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
 				905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */,

@@ -91,6 +91,7 @@
     
     DLog(@"fireDate = %@", self.fireDate);
 
+    self.pickerView.valuePickerMode = BPValuePickerModeTime;
     self.pickerView.value = self.fireDate;
 
     [self loadData];

@@ -11,6 +11,7 @@
 #import "BPPickerView.h"
 #import "BPTimePicker.h"
 #import "BPSoundPicker.h"
+#import "BPLanguagePicker.h"
 
 @interface BPValuePicker ()
 
@@ -29,8 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        self.valuePickerMode = -1;
-        self.valuePickerMode = BPValuePickerModeTime;
+      _valuePickerMode = -1;
     }
     return self;
 }
@@ -38,16 +38,20 @@
 - (void)dealloc
 {
     DLog();
+    _delegate = nil;
+
     _pickerView.delegate = nil;
     _pickerView.dataSource = nil;
-    
-    _delegate = nil;
 }
 
 - (void)setValuePickerMode:(BPValuePickerMode)valuePickerMode
 {
-//    if (_valuePickerMode != valuePickerMode) {
+    if (_valuePickerMode != valuePickerMode) {
         _valuePickerMode = valuePickerMode;
+
+        _delegate = nil;
+        _pickerView.dataSource = nil;
+        _pickerView.delegate = nil;
         _pickerView = nil;
     
         switch (_valuePickerMode) {
@@ -61,10 +65,15 @@
                 self.delegate.control = self;
                 break;
 
+            case BPValuePickerModeLanguage:
+                self.delegate = [[BPLanguagePicker alloc] init];
+                self.delegate.control = self;
+                break;
+
             default:
                 break;
         }
-//    }
+    }
 }
 
 - (void)setValue:(id)value

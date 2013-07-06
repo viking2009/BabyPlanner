@@ -1,28 +1,27 @@
 //
-//  BPSoundPicker.m
+//  BPLanguagePicker.m
 //  BabyPlanner
 //
 //  Created by Mykola Vyshynskyi on 06.07.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPSoundPicker.h"
+#import "BPLanguagePicker.h"
 
-@interface BPSoundPicker ()
+@interface BPLanguagePicker ()
 
-@property (nonatomic, strong) NSString *soundName;
-@property (nonatomic, strong) NSArray *sounds;
+@property (nonatomic, strong) NSString *selectedLanguage;
+@property (nonatomic, strong) NSArray *languages;
 
 @end
 
-
-@implementation BPSoundPicker
+@implementation BPLanguagePicker
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        self.sounds = @[@"Marimba", @"sound 1", @"sound 2", @"sound 3"];
+        self.languages = @[@"English", @"Русский"];
     }
     
     return self;
@@ -37,7 +36,7 @@
 
 - (NSInteger)pickerView:(BPPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [self.sounds count];
+    return [self.languages count];
 }
 
 #pragma mark - BPPickerViewDelegate
@@ -46,8 +45,8 @@
 {
     DLog(@"%i %i", row, component);
     
-    NSString *soundName = _sounds[row];
-    self.control.value = soundName;
+    NSString *selectedLanguage = _languages[row];
+    self.control.value = selectedLanguage;
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
@@ -65,8 +64,8 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    label.text = _sounds[row];
-
+    label.text = _languages[row];
+    
     return label;
 }
 
@@ -79,16 +78,17 @@
 
 - (id)value
 {
-    return self.soundName;
+    DLog();
+    return self.selectedLanguage;
 }
 
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
-    if (_soundName != value && [pickerView.dataSource isKindOfClass:[self class]]) {
-        _soundName = value;
+    if (_selectedLanguage != value && [pickerView.dataSource isKindOfClass:[self class]]) {
+        _selectedLanguage = value;
         
-        [pickerView selectRow:[self.sounds indexOfObject:_soundName] inComponent:0 animated:animated];
+        [pickerView selectRow:[self.languages indexOfObject:_selectedLanguage] inComponent:0 animated:animated];
     }
 }
 

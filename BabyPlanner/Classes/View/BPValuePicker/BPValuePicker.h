@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSInteger, BPValuePickerMode) {
     BPValuePickerModeTime,
-    BPValuePickerModeSound
+    BPValuePickerModeSound,
+    BPValuePickerModeLanguage,
 };
 
 @interface BPValuePicker : UIControl

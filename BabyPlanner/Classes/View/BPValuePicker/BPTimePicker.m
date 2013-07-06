@@ -48,7 +48,7 @@
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 120.f;
+    return 126.f;
 }
 
 - (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -86,7 +86,7 @@
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
-    if (_date != value) {
+    if (_date != value && [pickerView.dataSource isKindOfClass:[self class]]) {
         _date = value;
 
         self.date = [self.date dateByAddingMinutes:(self.date.minute % 5 == 0 ? 0 : (5 - self.date.minute % 5))];
