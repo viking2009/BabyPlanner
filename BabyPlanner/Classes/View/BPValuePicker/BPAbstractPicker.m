@@ -14,7 +14,8 @@
 
 - (void)dealloc
 {
-    DLog();
+    DLog("%@", [self class]);
+    self.control = nil;
 }
 
 #pragma mark - BPPickerViewDataSource

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) BPValuePicker *pickerView;
 @property (nonatomic, strong) UILabel *selectLabel;
+@property (nonatomic, strong) UIImageView *girlView;
 
 @end
 
@@ -50,9 +51,9 @@
     self.selectLabel.text = BPLocalizedString(@"Please, select the language!");
     [self.view addSubview:self.selectLabel];
     
-    UIImageView *girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_language_girl"]];
-    girlView.frame = CGRectMake(85, 146, girlView.image.size.width, girlView.image.size.height);
-    [self.view addSubview:girlView];
+    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_language_girl"]];
+    self.girlView.frame = CGRectMake(85, 146, self.girlView.image.size.width, self.girlView.image.size.height);
+    [self.view addSubview:self.girlView];
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];

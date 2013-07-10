@@ -19,12 +19,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        for (NSString *fontFamily in [UIFont familyNames]) {
-            DLog(@"%@", [UIFont fontNamesForFamilyName:fontFamily]);
-        }
-        
         self.tabBar.backgroundImage = [BPUtils imageNamed:@"tabbar_background"];
-        self.tabBar.selectionIndicatorImage = [BPUtils imageNamed:@"tabbar_selectionIndicator"];
+        self.tabBar.selectionIndicatorImage = [[BPUtils imageNamed:@"tabbar_selectionIndicator"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 8, 8, 8) resizingMode:UIImageResizingModeStretch];
         [[UITabBarItem appearance] setTitleTextAttributes:@{
                                                             UITextAttributeTextColor: RGB(149, 149, 149),
                                                             UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetZero],

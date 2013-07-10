@@ -13,6 +13,7 @@
 #import "BPSettingsLanguageViewController.h"
 #import "BPSettingsThemeViewController.h"
 #import "BPSettingsAlarmViewController.h"
+#import "BPSettingsProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -256,6 +257,9 @@
                 break;
             case 2:
                 [self.navigationController pushViewController:[BPSettingsAlarmViewController new] animated:YES];
+                break;
+            case 3:
+                [self.navigationController pushViewController:[BPSettingsProfileViewController new] animated:YES];
                 break;
                 
             default:

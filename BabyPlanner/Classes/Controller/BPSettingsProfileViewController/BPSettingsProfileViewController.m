@@ -13,25 +13,34 @@
 #import "BPSelectButton.h"
 #import "BPValuePicker.h"
 
+#define BPProfileControlsSpacing 5.f
+#define BPProfileControlsMargin 15.f
+#define BPProfileLabelWidth 90.f
+#define BPProfileLabelSmallWidth 40.f
+#define BPProfileTextFieldSmallWidth 100.f
+
+
 @interface BPSettingsProfileViewController () <UITextFieldDelegate>
 
-// TODO: refactor: set names
-@property (nonatomic, strong) BPLabel *firstLabel;
-@property (nonatomic, strong) BPLabel *secondLabel;
-@property (nonatomic, strong) BPLabel *thirdLabel;
-@property (nonatomic, strong) BPLabel *fourthLabel;
+@property (nonatomic, strong) BPLabel *nameLabel;
+@property (nonatomic, strong) BPLabel *birthdayLabel;
+@property (nonatomic, strong) BPLabel *weightLabel;
+@property (nonatomic, strong) BPLabel *heightLabel;
+@property (nonatomic, strong) BPLabel *kgLabel;
+@property (nonatomic, strong) BPLabel *cmLabel;
 
-@property (nonatomic, strong) BPTextField *firstTextField;
-@property (nonatomic, strong) BPTextField *secondTextField;
-@property (nonatomic, strong) BPTextField *thirdTextField;
-@property (nonatomic, strong) BPTextField *fourthTextField;
+@property (nonatomic, strong) BPTextField *nameTextField;
+@property (nonatomic, strong) BPTextField *birthdayTextField;
+@property (nonatomic, strong) BPTextField *weightTextField;
+@property (nonatomic, strong) BPTextField *heightTextField;
 
-@property (nonatomic, strong) BPSelectButton *firstButton;
-@property (nonatomic, strong) BPSelectButton *secondButton;
-@property (nonatomic, strong) BPSelectButton *thirdButton;
-@property (nonatomic, strong) BPSelectButton *fourthButton;
+@property (nonatomic, strong) BPSelectButton *lengthOfCycleButton;
+@property (nonatomic, strong) BPSelectButton *lastMenstruationButton;
 
+@property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) BPValuePicker *pickerView;
+@property (nonatomic, strong) UILabel *selectLabel;
+@property (nonatomic, strong) UIImageView *girlView;
 
 @end
 
@@ -42,6 +51,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"My Profile";
     }
     return self;
 }
@@ -50,52 +60,78 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    // TODO: set frames
-    self.firstLabel = [[BPLabel alloc] initWithFrame:CGRectZero];
-    self.secondLabel = [[BPLabel alloc] initWithFrame:CGRectZero];
-    self.thirdLabel = [[BPLabel alloc] initWithFrame:CGRectZero];
-    self.fourthLabel = [[BPLabel alloc] initWithFrame:CGRectZero];
 
-    self.firstTextField = [[BPTextField alloc] initWithFrame:CGRectZero];
-    self.firstTextField.delegate = self;
-    self.secondTextField = [[BPTextField alloc] initWithFrame:CGRectZero];
-    self.secondTextField.delegate = self;
-    self.thirdTextField = [[BPTextField alloc] initWithFrame:CGRectZero];
-    self.thirdTextField.delegate = self;
-    self.fourthTextField = [[BPTextField alloc] initWithFrame:CGRectZero];
-    self.fourthTextField.delegate = self;
+    UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_bubble"]];
+    [self.view addSubview:bubbleView];
+    
+    self.selectLabel = [[UILabel alloc] init];
+    self.selectLabel.backgroundColor = [UIColor clearColor];
+    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:20];
+    self.selectLabel.textColor = RGB(0, 0, 0);
+    self.selectLabel.textAlignment = NSTextAlignmentCenter;
+    self.selectLabel.numberOfLines = 1;
+    [self.view addSubview:self.selectLabel];
 
-    self.firstButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.firstButton.frame = CGRectZero;
-    [self.firstButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_girl"]];
+    self.girlView.frame = CGRectMake(116.f, MAX(246.f, self.view.bounds.size.height - self.girlView.image.size.height - self.tabBarController.tabBar.frame.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
+    [self.view addSubview:self.girlView];
     
-    self.secondButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.secondButton.frame = CGRectZero;
-    [self.secondButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    bubbleView.frame = CGRectMake(0, self.girlView.frame.origin.y + 14.f, bubbleView.image.size.width, bubbleView.image.size.height);
+    self.selectLabel.frame = CGRectOffset(bubbleView.frame, 0, -10.f);
 
-    self.thirdButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.thirdButton.frame = CGRectZero;
-    [self.thirdButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    CGFloat top = MAX(0, self.girlView.frame.origin.y - 246.f) + 64.f + 3.f + BPProfileControlsSpacing;
+    CGFloat left = BPProfileControlsMargin;
+    CGFloat maxWidth = self.view.frame.size.width - 2*BPProfileControlsMargin - BPProfileLabelWidth - BPProfileControlsSpacing;
     
-    self.fourthButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.fourthButton.frame = CGRectZero;
-    [self.fourthButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.nameLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
+    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
+    
+    self.birthdayLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
+    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
 
-    [self.view addSubview:self.firstLabel];
-    [self.view addSubview:self.secondLabel];
-    [self.view addSubview:self.thirdLabel];
-    [self.view addSubview:self.fourthLabel];
+    self.weightLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
+    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
+
+    self.heightLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
+    top += self.heightLabel.frame.size.height + BPProfileControlsMargin;
+
+    left += BPProfileLabelWidth + BPProfileControlsSpacing + BPProfileTextFieldSmallWidth + BPProfileControlsSpacing;
+    self.kgLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.cmLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+
+    left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
+
+    self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
+    self.nameTextField.delegate = self;
+    self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
+    self.birthdayTextField.delegate = self;
+    self.weightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.weightTextField.delegate = self;
+    self.heightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.heightTextField.delegate = self;
+
+    self.lengthOfCycleButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
+    self.lengthOfCycleButton.frame = CGRectMake(BPProfileControlsSpacing, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    [self.lengthOfCycleButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.firstTextField];
-    [self.view addSubview:self.secondTextField];
-    [self.view addSubview:self.thirdTextField];
-    [self.view addSubview:self.fourthTextField];
+    self.lastMenstruationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
+    self.lastMenstruationButton.frame = CGRectMake(self.view.frame.size.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    [self.lastMenstruationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:self.nameLabel];
+    [self.view addSubview:self.birthdayLabel];
+    [self.view addSubview:self.weightLabel];
+    [self.view addSubview:self.heightLabel];
+    [self.view addSubview:self.kgLabel];
+    [self.view addSubview:self.cmLabel];
     
-    [self.view addSubview:self.firstButton];
-    [self.view addSubview:self.secondButton];
-    [self.view addSubview:self.thirdButton];
-    [self.view addSubview:self.fourthButton];
+    [self.view addSubview:self.nameTextField];
+    [self.view addSubview:self.birthdayTextField];
+    [self.view addSubview:self.weightTextField];
+    [self.view addSubview:self.heightTextField];
+    
+    [self.view addSubview:self.lengthOfCycleButton];
+    [self.view addSubview:self.lastMenstruationButton];
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
@@ -112,17 +148,31 @@
 
 - (void)updateUI
 {
-    self.firstLabel.text = BPLocalizedString(@"firstLabel");
-    self.secondLabel.text = BPLocalizedString(@"secondLabel");
-    self.thirdLabel.text = BPLocalizedString(@"thirdLabel");
-    self.fourthLabel.text = BPLocalizedString(@"fourthLabel");
+    self.selectLabel.text = BPLocalizedString(@"Hello!");
+
+    self.nameLabel.text = BPLocalizedString(@"Name");
+    self.birthdayLabel.text = BPLocalizedString(@"Date of birth");
+    self.weightLabel.text = BPLocalizedString(@"Weight");
+    self.heightLabel.text = BPLocalizedString(@"Height");
+    self.kgLabel.text = BPLocalizedString(@"kg");
+    self.cmLabel.text = BPLocalizedString(@"cm");
+   
+    [self.lengthOfCycleButton setTitle:BPLocalizedString(@"Length of my cycle") forState:UIControlStateNormal];
+    [self.lastMenstruationButton setTitle:BPLocalizedString(@"Last menstruation") forState:UIControlStateNormal];
+    
+    // TODO: fill with data
 }
 
 #pragma mark - UITextFieldDelegate
 
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
 //- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder
-//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;          // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
 //- (void)textFieldDidEndEditing:(UITextField *)textField;             // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
 //
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text

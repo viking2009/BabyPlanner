@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define BPTextFieldPadding 8.f
+#define BPTextFieldHeigth 27.f
+
 @interface BPTextField : UITextField
 
 @end
