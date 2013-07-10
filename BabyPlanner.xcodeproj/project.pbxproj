@@ -20,6 +20,10 @@
 		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
+		90BA0668178D4A460045AB24 /* BPSettingsProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0667178D4A460045AB24 /* BPSettingsProfileViewController.m */; };
+		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
+		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
+		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -116,6 +120,14 @@
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		90BA0666178D4A460045AB24 /* BPSettingsProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsProfileViewController.h; sourceTree = "<group>"; };
+		90BA0667178D4A460045AB24 /* BPSettingsProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsProfileViewController.m; sourceTree = "<group>"; };
+		90BA066A178D4AED0045AB24 /* BPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTextField.h; sourceTree = "<group>"; };
+		90BA066B178D4AED0045AB24 /* BPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTextField.m; sourceTree = "<group>"; };
+		90BA066E178D4C6B0045AB24 /* BPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLabel.h; sourceTree = "<group>"; };
+		90BA066F178D4C6B0045AB24 /* BPLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLabel.m; sourceTree = "<group>"; };
+		90BA0672178D4E890045AB24 /* BPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSelectButton.h; sourceTree = "<group>"; };
+		90BA0673178D4E890045AB24 /* BPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSelectButton.m; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -303,6 +315,42 @@
 			path = "NSDate-Utilities";
 			sourceTree = "<group>";
 		};
+		90BA0665178D4A2B0045AB24 /* BPSettingsProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90BA0666178D4A460045AB24 /* BPSettingsProfileViewController.h */,
+				90BA0667178D4A460045AB24 /* BPSettingsProfileViewController.m */,
+			);
+			path = BPSettingsProfileViewController;
+			sourceTree = "<group>";
+		};
+		90BA0669178D4AD80045AB24 /* BPTextField */ = {
+			isa = PBXGroup;
+			children = (
+				90BA066A178D4AED0045AB24 /* BPTextField.h */,
+				90BA066B178D4AED0045AB24 /* BPTextField.m */,
+			);
+			path = BPTextField;
+			sourceTree = "<group>";
+		};
+		90BA066D178D4C5B0045AB24 /* BPLabel */ = {
+			isa = PBXGroup;
+			children = (
+				90BA066E178D4C6B0045AB24 /* BPLabel.h */,
+				90BA066F178D4C6B0045AB24 /* BPLabel.m */,
+			);
+			path = BPLabel;
+			sourceTree = "<group>";
+		};
+		90BA0671178D4E770045AB24 /* BPSelectButton */ = {
+			isa = PBXGroup;
+			children = (
+				90BA0672178D4E890045AB24 /* BPSelectButton.h */,
+				90BA0673178D4E890045AB24 /* BPSelectButton.m */,
+			);
+			path = BPSelectButton;
+			sourceTree = "<group>";
+		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +404,9 @@
 				90E881CB1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell */,
 				905D99E01787E89B00C367E3 /* BPPickerView */,
 				905D99E41787E93B00C367E3 /* BPValuePicker */,
+				90BA0669178D4AD80045AB24 /* BPTextField */,
+				90BA066D178D4C5B0045AB24 /* BPLabel */,
+				90BA0671178D4E770045AB24 /* BPSelectButton */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -504,6 +555,7 @@
 				907BA94B17799D1E005944D6 /* BPSettingsLanguageViewController */,
 				9029876517881BEC00067D7A /* BPSettingsThemeViewController */,
 				907BA94717799CD1005944D6 /* BPSettingsAlarmViewController */,
+				90BA0665178D4A2B0045AB24 /* BPSettingsProfileViewController */,
 				90EB9E751707989D008457A3 /* BPNotesViewController */,
 				90EB9E711707987B008457A3 /* BPSymptomsAndMoodViewController */,
 			);
@@ -780,15 +832,19 @@
 				905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
+				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
+				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
 				9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */,
 				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
 				90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */,
+				90BA0668178D4A460045AB24 /* BPSettingsProfileViewController.m in Sources */,
+				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
 				907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
