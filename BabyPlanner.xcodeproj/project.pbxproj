@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
+		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
@@ -97,6 +98,8 @@
 /* Begin PBXFileReference section */
 		9005C55A1794346B001338BA /* BPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatePicker.h; sourceTree = "<group>"; };
 		9005C55B1794346B001338BA /* BPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatePicker.m; sourceTree = "<group>"; };
+		9005C55D17944415001338BA /* BPPeriodPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPeriodPicker.h; sourceTree = "<group>"; };
+		9005C55E17944415001338BA /* BPPeriodPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPeriodPicker.m; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		9029876617881C0900067D7A /* BPSettingsThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsThemeViewController.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				905D99F61788033300C367E3 /* BPSoundPicker.m */,
 				9029876217880C3A00067D7A /* BPLanguagePicker.h */,
 				9029876317880C3A00067D7A /* BPLanguagePicker.m */,
+				9005C55D17944415001338BA /* BPPeriodPicker.h */,
+				9005C55E17944415001338BA /* BPPeriodPicker.m */,
 			);
 			path = BPValuePicker;
 			sourceTree = "<group>";
@@ -836,6 +841,7 @@
 			files = (
 				905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
+				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,

@@ -13,6 +13,9 @@ typedef NS_ENUM(NSInteger, BPValuePickerMode) {
     BPValuePickerModeTime,
     BPValuePickerModeSound,
     BPValuePickerModeLanguage,
+    BPValuePickerModeMenstruationLength,
+    BPValuePickerModeWeight,
+    BPValuePickerModeHeight
 };
 
 @interface BPValuePicker : UIControl

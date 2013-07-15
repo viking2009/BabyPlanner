@@ -13,6 +13,7 @@
 #import "BPTimePicker.h"
 #import "BPSoundPicker.h"
 #import "BPLanguagePicker.h"
+#import "BPPeriodPicker.h"
 
 @interface BPValuePicker ()
 
@@ -74,6 +75,11 @@
 
             case BPValuePickerModeLanguage:
                 self.delegate = [[BPLanguagePicker alloc] init];
+                self.delegate.control = self;
+                break;
+
+            case BPValuePickerModeMenstruationLength:
+                self.delegate = [[BPPeriodPicker alloc] init];
                 self.delegate.control = self;
                 break;
 
