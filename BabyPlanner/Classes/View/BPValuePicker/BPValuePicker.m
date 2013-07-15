@@ -9,6 +9,7 @@
 #import "BPValuePicker.h"
 #import "BPValuePickerDelegate.h"
 #import "BPPickerView.h"
+#import "BPDatePicker.h"
 #import "BPTimePicker.h"
 #import "BPSoundPicker.h"
 #import "BPLanguagePicker.h"
@@ -52,9 +53,15 @@
         _delegate = nil;
         _pickerView.dataSource = nil;
         _pickerView.delegate = nil;
+        [_pickerView removeFromSuperview];
         _pickerView = nil;
     
         switch (_valuePickerMode) {
+            case BPValuePickerModeDate:
+                self.delegate = [[BPDatePicker alloc] init];
+                self.delegate.control = self;
+                break;
+               
             case BPValuePickerModeTime:
                 self.delegate = [[BPTimePicker alloc] init];
                 self.delegate.control = self;

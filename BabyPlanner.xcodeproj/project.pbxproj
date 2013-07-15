@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
@@ -94,6 +95,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9005C55A1794346B001338BA /* BPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatePicker.h; sourceTree = "<group>"; };
+		9005C55B1794346B001338BA /* BPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatePicker.m; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		9029876617881C0900067D7A /* BPSettingsThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsThemeViewController.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				905D99EB1787EB1000C367E3 /* BPValuePickerDelegate.h */,
 				905D99EF1787ECBB00C367E3 /* BPAbstractPicker.h */,
 				905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */,
+				9005C55A1794346B001338BA /* BPDatePicker.h */,
+				9005C55B1794346B001338BA /* BPDatePicker.m */,
 				905D99F21787EDD300C367E3 /* BPTimePicker.h */,
 				905D99F31787EDD300C367E3 /* BPTimePicker.m */,
 				905D99F51788033300C367E3 /* BPSoundPicker.h */,
@@ -850,6 +855,7 @@
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
+				9005C55C1794346B001338BA /* BPDatePicker.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
 				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
 				9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */,
