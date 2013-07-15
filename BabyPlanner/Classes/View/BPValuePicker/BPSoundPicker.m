@@ -79,14 +79,14 @@
 
 - (id)value
 {
-    return [@"Sounds.bundle" stringByAppendingPathComponent:self.soundName];
+    return self.soundName;
 }
 
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
     if (_soundName != value && [pickerView.dataSource isKindOfClass:[self class]]) {
-        _soundName = [value lastPathComponent];
+        _soundName = value;
                 
         DLog(@"_soundName %@", _soundName);
         

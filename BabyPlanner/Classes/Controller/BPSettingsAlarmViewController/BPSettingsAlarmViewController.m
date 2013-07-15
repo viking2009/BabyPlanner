@@ -77,7 +77,7 @@
     [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
 
     self.fireDate = [NSDate date];
-    self.soundName = [@"Sounds.bundle" stringByAppendingPathComponent:@"Marimba.caf"];
+    self.soundName = @"Marimba.caf";
 
     NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];    
     for (UILocalNotification *notification in alarms) {
@@ -106,7 +106,7 @@
 
 - (void)loadData {
     
-    NSString *soundName = [[self.soundName lastPathComponent] stringByDeletingPathExtension];
+    NSString *soundName = [self.soundName stringByDeletingPathExtension];
     
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
@@ -275,8 +275,7 @@
         
         notification.fireDate = self.fireDate;
         notification.soundName = self.soundName;
-//        notification.repeatInterval = NSCalendarUnitDay;
-        notification.repeatInterval = kCFCalendarUnitDay;
+        notification.repeatInterval = NSDayCalendarUnit;
 
         notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];

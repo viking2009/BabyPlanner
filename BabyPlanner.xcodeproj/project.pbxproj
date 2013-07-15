@@ -13,7 +13,11 @@
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
-		903452EB17945BBE001B397B /* Sounds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 903452EA17945BBE001B397B /* Sounds.bundle */; };
+		903452F2179461AB001B397B /* Crickets.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452ED179461AB001B397B /* Crickets.caf */; };
+		903452F3179461AB001B397B /* Digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EE179461AB001B397B /* Digital.caf */; };
+		903452F4179461AB001B397B /* Marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EF179461AB001B397B /* Marimba.caf */; };
+		903452F5179461AB001B397B /* Old Phone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F0179461AB001B397B /* Old Phone.caf */; };
+		903452F6179461AB001B397B /* Piano Riff.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F1179461AB001B397B /* Piano Riff.caf */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -43,7 +47,6 @@
 		90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9E0117078C45008457A3 /* CoreGraphics.framework */; };
 		90EB9E0A17078C45008457A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E0917078C45008457A3 /* main.m */; };
 		90EB9E3017079021008457A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E2C17079021008457A3 /* InfoPlist.strings */; };
-		90EB9E3117079021008457A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */; };
 		90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E47170790D9008457A3 /* BPAppDelegate.m */; };
 		90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E5217079193008457A3 /* BPMyTemperatureViewController.m */; };
 		90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E56170791C7008457A3 /* BPMyChartsViewController.m */; };
@@ -110,7 +113,11 @@
 		9029876717881C0900067D7A /* BPSettingsThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsThemeViewController.m; sourceTree = "<group>"; };
 		9029876A17881D6600067D7A /* BPThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeCell.h; sourceTree = "<group>"; };
 		9029876B17881D6600067D7A /* BPThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPThemeCell.m; sourceTree = "<group>"; };
-		903452EA17945BBE001B397B /* Sounds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Sounds.bundle; sourceTree = "<group>"; };
+		903452ED179461AB001B397B /* Crickets.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crickets.caf; sourceTree = "<group>"; };
+		903452EE179461AB001B397B /* Digital.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digital.caf; sourceTree = "<group>"; };
+		903452EF179461AB001B397B /* Marimba.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marimba.caf; sourceTree = "<group>"; };
+		903452F0179461AB001B397B /* Old Phone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Old Phone.caf"; sourceTree = "<group>"; };
+		903452F1179461AB001B397B /* Piano Riff.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Piano Riff.caf"; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -166,7 +173,6 @@
 		90EB9E0917078C45008457A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90EB9E0B17078C45008457A3 /* BabyPlanner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BabyPlanner-Prefix.pch"; sourceTree = "<group>"; };
 		90EB9E2D17079021008457A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90EB9E2F17079021008457A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		90EB9E46170790D9008457A3 /* BPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAppDelegate.h; sourceTree = "<group>"; };
 		90EB9E47170790D9008457A3 /* BPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAppDelegate.m; sourceTree = "<group>"; };
 		90EB9E5117079193008457A3 /* BPMyTemperatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureViewController.h; sourceTree = "<group>"; };
@@ -261,6 +267,18 @@
 				9029876B17881D6600067D7A /* BPThemeCell.m */,
 			);
 			path = BPThemeCell;
+			sourceTree = "<group>";
+		};
+		903452EC179461AB001B397B /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				903452ED179461AB001B397B /* Crickets.caf */,
+				903452EE179461AB001B397B /* Digital.caf */,
+				903452EF179461AB001B397B /* Marimba.caf */,
+				903452F0179461AB001B397B /* Old Phone.caf */,
+				903452F1179461AB001B397B /* Piano Riff.caf */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		905D99E01787E89B00C367E3 /* BPPickerView */ = {
@@ -519,11 +537,10 @@
 			isa = PBXGroup;
 			children = (
 				90E881B1177872C300682BB3 /* BPImages.bundle */,
-				903452EA17945BBE001B397B /* Sounds.bundle */,
 				90EB9E2C17079021008457A3 /* InfoPlist.strings */,
-				90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */,
 				90EB9E79170798C0008457A3 /* fonts */,
 				90EB9E32170790AE008457A3 /* images */,
+				903452EC179461AB001B397B /* sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -793,7 +810,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EB9E3017079021008457A3 /* InfoPlist.strings in Resources */,
-				90EB9E3117079021008457A3 /* MainStoryboard.storyboard in Resources */,
 				90EB9E691707961C008457A3 /* nav_background.png in Resources */,
 				90EB9E6A1707961C008457A3 /* nav_background@2x.png in Resources */,
 				90EB9E7B170798C0008457A3 /* Gabriola.ttf in Resources */,
@@ -837,7 +853,11 @@
 				90EB9EE71707BA52008457A3 /* nav_back_button.png in Resources */,
 				90E881B2177872C300682BB3 /* BPImages.bundle in Resources */,
 				90EB9EE81707BA52008457A3 /* nav_back_button@2x.png in Resources */,
-				903452EB17945BBE001B397B /* Sounds.bundle in Resources */,
+				903452F2179461AB001B397B /* Crickets.caf in Resources */,
+				903452F3179461AB001B397B /* Digital.caf in Resources */,
+				903452F4179461AB001B397B /* Marimba.caf in Resources */,
+				903452F5179461AB001B397B /* Old Phone.caf in Resources */,
+				903452F6179461AB001B397B /* Piano Riff.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,14 +917,6 @@
 				90EB9E2D17079021008457A3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90EB9E2F17079021008457A3 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
