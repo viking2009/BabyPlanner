@@ -92,8 +92,10 @@
     
     DLog(@"fireDate = %@", self.fireDate);
 
-    self.pickerView.valuePickerMode = BPValuePickerModeTime;
-    self.pickerView.value = self.fireDate;
+    if (self.canScheduleAlarm) {
+        self.pickerView.valuePickerMode = BPValuePickerModeTime;
+        self.pickerView.value = self.fireDate;
+    }
 
     [self loadData];
     [self updateUI];
@@ -133,7 +135,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_data[section] count];
+    return (self.canScheduleAlarm ? [_data[section] count] : 1);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -182,8 +184,10 @@
 
     switch (indexPath.item) {
         case 0:
-            self.pickerView.valuePickerMode = BPValuePickerModeTime;
-            self.pickerView.value = self.fireDate;
+            if (self.canScheduleAlarm) {
+                self.pickerView.valuePickerMode = BPValuePickerModeTime;
+                self.pickerView.value = self.fireDate;
+            }
             break;
 
         case 1:
@@ -232,6 +236,15 @@
  
     self.canScheduleAlarm = cell.toggleView.isOn;
     [self scheduleAlarm:self.canScheduleAlarm];
+    
+    if (self.canScheduleAlarm) {
+        self.pickerView.valuePickerMode = BPValuePickerModeTime;
+        self.pickerView.value = self.fireDate;
+    } else {
+        self.pickerView.valuePickerMode = -1;
+    }
+    
+    [self.collectionView reloadData];
 }
 
 
