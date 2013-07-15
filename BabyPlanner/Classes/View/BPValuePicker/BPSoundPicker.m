@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        self.sounds = @[@"Marimba", @"sound 1", @"sound 2", @"sound 3"];
+        self.sounds = @[@"Crickets.caf", @"Digital.caf", @"Marimba.caf", @"Old Phone.caf", @"Piano Riff.caf"];
     }
     
     return self;
@@ -65,7 +65,7 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    label.text = _sounds[row];
+    label.text = [_sounds[row] stringByDeletingPathExtension];
 
     return label;
 }
@@ -79,14 +79,16 @@
 
 - (id)value
 {
-    return self.soundName;
+    return [@"Sounds.bundle" stringByAppendingPathComponent:self.soundName];
 }
 
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
     if (_soundName != value && [pickerView.dataSource isKindOfClass:[self class]]) {
-        _soundName = value;
+        _soundName = [value lastPathComponent];
+                
+        DLog(@"_soundName %@", _soundName);
         
         [pickerView selectRow:[self.sounds indexOfObject:_soundName] inComponent:0 animated:animated];
     }

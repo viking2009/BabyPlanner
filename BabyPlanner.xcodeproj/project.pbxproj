@@ -13,6 +13,7 @@
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
+		903452EB17945BBE001B397B /* Sounds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 903452EA17945BBE001B397B /* Sounds.bundle */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -109,6 +110,7 @@
 		9029876717881C0900067D7A /* BPSettingsThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsThemeViewController.m; sourceTree = "<group>"; };
 		9029876A17881D6600067D7A /* BPThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeCell.h; sourceTree = "<group>"; };
 		9029876B17881D6600067D7A /* BPThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPThemeCell.m; sourceTree = "<group>"; };
+		903452EA17945BBE001B397B /* Sounds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Sounds.bundle; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				90E881B1177872C300682BB3 /* BPImages.bundle */,
+				903452EA17945BBE001B397B /* Sounds.bundle */,
 				90EB9E2C17079021008457A3 /* InfoPlist.strings */,
 				90EB9E2E17079021008457A3 /* MainStoryboard.storyboard */,
 				90EB9E79170798C0008457A3 /* fonts */,
@@ -834,6 +837,7 @@
 				90EB9EE71707BA52008457A3 /* nav_back_button.png in Resources */,
 				90E881B2177872C300682BB3 /* BPImages.bundle in Resources */,
 				90EB9EE81707BA52008457A3 /* nav_back_button@2x.png in Resources */,
+				903452EB17945BBE001B397B /* Sounds.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
