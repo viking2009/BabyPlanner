@@ -14,6 +14,7 @@
 #import "BPSoundPicker.h"
 #import "BPLanguagePicker.h"
 #import "BPPeriodPicker.h"
+#import "BPUnitPicker.h"
 
 @interface BPValuePicker ()
 
@@ -83,6 +84,12 @@
                 self.delegate.control = self;
                 break;
 
+            case BPValuePickerModeWeight:
+            case BPValuePickerModeHeight:
+                self.delegate = [[BPUnitPicker alloc] init];
+                self.delegate.control = self;
+                break;
+                
             default:
                 break;
         }

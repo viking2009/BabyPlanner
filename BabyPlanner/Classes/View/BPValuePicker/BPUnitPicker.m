@@ -1,47 +1,48 @@
 //
-//  BPPeriodPicker.m
+//  BPUnitPicker.m
 //  BabyPlanner
 //
 //  Created by Mykola Vyshynskyi on 15.07.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPPeriodPicker.h"
+#import "BPUnitPicker.h"
 
-@interface BPPeriodPicker ()
+@interface BPUnitPicker ()
 
-@property (nonatomic, strong) NSNumber *periodLength;
+@property (nonatomic, strong) NSNumber *currentValue;
 
 @end
 
-@implementation BPPeriodPicker
+@implementation BPUnitPicker
 
 - (NSInteger)numberOfComponentsInPickerView:(BPPickerView *)pickerView
 {
-    return 3;
+    return 5;
 }
 
 - (NSInteger)pickerView:(BPPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 10;
+    return (component == 3 ? 1 : 10);
 }
 
 #pragma mark - BPPickerViewDelegate
 
 - (void)pickerView:(BPPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSInteger length = 0;
+    float length = 0;
     length += 100 * [pickerView selectedRowInComponent:0];
     length += 10 * [pickerView selectedRowInComponent:1];
     length += [pickerView selectedRowInComponent:2];
-    
-//    [self pickerView:pickerView setValue:date animated:NO];
+    length += 0.1 * [pickerView selectedRowInComponent:4];
+
+    //    [self pickerView:pickerView setValue:date animated:NO];
     self.control.value = @(length);
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 84.f;
+    return (component == 3 ? 20.f : 58.f);
 }
 
 - (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -54,7 +55,7 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    label.text = [NSString stringWithFormat:@"%d", row];
+    label.text = (component == 3 ? @"." : [NSString stringWithFormat:@"%d", row]);
     
     return label;
 }
@@ -68,22 +69,23 @@
 
 - (id)value
 {
-    return self.periodLength;
+    return self.currentValue;
 }
 
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
-    if (_periodLength != value && [pickerView.dataSource isKindOfClass:[self class]]) {
-        _periodLength = value;
+    if (_currentValue != value && [pickerView.dataSource isKindOfClass:[self class]]) {
+        _currentValue = value;
         
-        NSInteger length = [self.periodLength integerValue];
+        NSInteger length = [self.currentValue integerValue];
         
         [pickerView selectRow:(length / 100) inComponent:0 animated:animated];
         [pickerView selectRow:((length / 10) % 10) inComponent:1 animated:animated];
         [pickerView selectRow:(length % 10) inComponent:2 animated:animated];
-        
-        DLog(@"_periodLength = %@", _periodLength);
+        [pickerView selectRow:(int)([self.currentValue floatValue] * 10) % 10 inComponent:4 animated:animated];
+
+        DLog(@"_periodLength = %@", _currentValue);
     }
 }
 
