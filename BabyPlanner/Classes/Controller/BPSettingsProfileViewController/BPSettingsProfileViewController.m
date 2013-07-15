@@ -101,15 +101,25 @@
 
     left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *profile = [defaults objectForKey:@"profile"];
+
     self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.nameTextField.delegate = self;
+    self.nameTextField.text = profile[@"name"];
+    
     self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.birthdayTextField.delegate = self;
+    self.birthdayTextField.text = [BPUtils stringFromDate:profile[@"birthday"]];
+    
     self.weightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.weightTextField.delegate = self;
+    self.weightTextField.text = [profile[@"weight"] description];
+    
     self.heightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.heightTextField.delegate = self;
-
+    self.heightTextField.text = [profile[@"height"] description];
+    
     self.lengthOfCycleButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
     self.lengthOfCycleButton.frame = CGRectMake(BPProfileControlsSpacing, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
     [self.lengthOfCycleButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -165,38 +175,113 @@
 
 #pragma mark - UITextFieldDelegate
 
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *profile = [defaults objectForKey:@"profile"];
+    
+    if (textField == self.nameTextField) {
+        [self pickerViewValueChanged]; // save current pickerView value
+        self.pickerView.valuePickerMode = -1;
+        return YES;
+    } else if (textField == self.birthdayTextField) {
+        self.pickerView.valuePickerMode = BPValuePickerModeDate;
+        self.pickerView.value = profile[@"birthday"] ? : [NSDate date];
+    } else if (textField == self.weightTextField) {
+        self.pickerView.valuePickerMode = BPValuePickerModeWeight;
+        self.pickerView.value = profile[@"weight"] ? : @0;
+    } else if (textField == self.heightTextField) {
+        self.pickerView.valuePickerMode = BPValuePickerModeHeight;
+        self.pickerView.value = profile[@"height"] ? : @0;
+    }
+    
+    if ([self.nameTextField isFirstResponder]) {
+        [self.nameTextField resignFirstResponder];
+    }
+
+    return NO;
+}
 //- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    DLog();
+    
+    if (textField == self.nameTextField) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *currentProfile = [defaults objectForKey:@"profile"];
+        NSMutableDictionary *newProfile = (currentProfile ? [currentProfile mutableCopy] : [[NSMutableDictionary alloc] init]);
+        
+        newProfile[@"name"] = textField.text;
+        
+        [defaults setObject:newProfile forKey:@"profile"];
+        [defaults synchronize];
+    }
+}
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
+//
+//- (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button pressed. return NO to ignore (no notifications)
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     
     return YES;
 }
-//- (void)textFieldDidEndEditing:(UITextField *)textField;             // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-//
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
-//
-//- (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button pressed. return NO to ignore (no notifications)
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField;              // called when 'return' key pressed. return NO to ignore.
 
 - (void)pickerViewValueChanged
 {
     DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *currentProfile = [defaults objectForKey:@"profile"];
+    NSMutableDictionary *newProfile = (currentProfile ? [currentProfile mutableCopy] : [[NSMutableDictionary alloc] init]);
     
     switch (self.pickerView.valuePickerMode) {
-        case BPValuePickerModeTime:
+        case BPValuePickerModeDate:
+            newProfile[@"birthday"] = self.pickerView.value;
+            self.birthdayTextField.text = [BPUtils stringFromDate:self.pickerView.value];
             break;
-        case BPValuePickerModeSound:
+        case BPValuePickerModeWeight:
+            newProfile[@"weight"] = self.pickerView.value;
+            self.weightTextField.text = [self.pickerView.value description];
+            break;
+        case BPValuePickerModeHeight:
+            newProfile[@"height"] = self.pickerView.value;
+            self.heightTextField.text = [self.pickerView.value description];
+            break;
+        case BPValuePickerModeMenstruationLength:
+            newProfile[@"lengthOfCycle"] = self.pickerView.value;
+            break;
+        case BPValuePickerModeMenstruationDate:
+            newProfile[@"lastMenstruation"] = self.pickerView.value;
             break;
         default:
             break;
     }
+    
+    [defaults setObject:newProfile forKey:@"profile"];
+    [defaults synchronize];
 }
 
 - (void)selectButtonTapped:(id)sender
 {
     DLog(@"%@", sender);
+    
+    if ([self.nameTextField isFirstResponder]) {
+        [self.nameTextField resignFirstResponder];
+    }
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *profile = [defaults objectForKey:@"profile"];
+    
+    if (sender == self.lengthOfCycleButton) {
+        self.pickerView.valuePickerMode = BPValuePickerModeMenstruationLength;
+        self.pickerView.value = profile[@"lengthOfCycle"] ? : @0;
+    } else if (sender == self.lastMenstruationButton) {
+        self.pickerView.valuePickerMode = BPValuePickerModeMenstruationDate;
+        self.pickerView.value = profile[@"lastMenstruation"] ? : [NSDate date];
+    }
+    
+    
 }
 
 @end

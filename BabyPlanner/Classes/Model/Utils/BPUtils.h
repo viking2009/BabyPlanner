@@ -21,5 +21,6 @@
 @interface BPUtils : NSObject
 
 + (UIImage *)imageNamed:(NSString *)name;
++ (NSString *)stringFromDate:(NSDate *)date;
 
 @end

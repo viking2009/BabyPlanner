@@ -53,13 +53,14 @@
         _valuePickerMode = valuePickerMode;
 
         _delegate = nil;
-        _pickerView.dataSource = nil;
-        _pickerView.delegate = nil;
+//        _pickerView.dataSource = nil;
+//        _pickerView.delegate = nil;
         [_pickerView removeFromSuperview];
         _pickerView = nil;
     
         switch (_valuePickerMode) {
             case BPValuePickerModeDate:
+            case BPValuePickerModeMenstruationDate:
                 self.delegate = [[BPDatePicker alloc] init];
                 self.delegate.control = self;
                 break;

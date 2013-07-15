@@ -1012,10 +1012,12 @@
 		90EB9E2A17078C45008457A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BabyPlanner/BabyPlanner-Prefix.pch";
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39E2D4A5-B4B8-4882-B0A5-5F96EBBBA5AD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

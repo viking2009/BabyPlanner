@@ -90,10 +90,10 @@
     CGFloat width = 0.f;
     switch (component) {
         case 0:
-            width = 52.f;
+            width = 40.f;
             break;
         case 1:
-            width = 126.f;
+            width = 138.f;
             break;
         case 2:
             width = 74.f;

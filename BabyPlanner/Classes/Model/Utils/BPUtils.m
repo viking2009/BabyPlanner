@@ -15,4 +15,15 @@
     return [UIImage imageNamed:[@"BPImages.bundle" stringByAppendingPathComponent:name]];
 }
 
++ (NSString *)stringFromDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"d MMMM yyyy"];
+    }
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 @end
