@@ -77,7 +77,7 @@
     [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
 
     self.fireDate = [NSDate date];
-    self.soundName = @"Marimba";
+    self.soundName = [@"Sounds.bundle" stringByAppendingPathComponent:@"Marimba.caf"];
 
     NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];    
     for (UILocalNotification *notification in alarms) {
@@ -85,12 +85,15 @@
         if ([notification.userInfo[@"guid"] intValue] == BPAlarmGuid) {
             self.canScheduleAlarm = YES;
             self.fireDate = notification.fireDate;
-            self.soundName = notification.soundName?:@"Marimba";
+            if (notification.soundName) {
+                self.soundName = notification.soundName;
+            }
             break;
         }
     }
     
     DLog(@"fireDate = %@", self.fireDate);
+    DLog(@"soundName = %@", self.soundName);
 
     if (self.canScheduleAlarm) {
         self.pickerView.valuePickerMode = BPValuePickerModeTime;
@@ -103,9 +106,11 @@
 
 - (void)loadData {
     
+    NSString *soundName = [[self.soundName lastPathComponent] stringByDeletingPathExtension];
+    
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : self.soundName}]
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : soundName}]
                   ];
 }
 
@@ -289,10 +294,11 @@
             self.fireDate = self.pickerView.value;
             [self scheduleAlarm:self.canScheduleAlarm];
             break;
-        case BPValuePickerModeSound:
+        case BPValuePickerModeSound: {
             self.soundName = self.pickerView.value;
             [self scheduleAlarm:self.canScheduleAlarm];
             [self updateUI];
+        }
             break;
         default:
             break;
