@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[TTSwitch appearance] setMaskInLockPosition:@0];
     [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track"]];
     [[TTSwitch appearance] setOverlayImage:[BPUtils imageNamed:@"round-switch-overlay"]];
     [[TTSwitch appearance] setTrackMaskImage:[BPUtils imageNamed:@"round-switch-mask"]];
