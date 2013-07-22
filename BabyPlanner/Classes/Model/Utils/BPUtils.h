@@ -16,7 +16,7 @@
 #define BPDefaultCellInset 10.f
 
 #define BPAlarmGuid 100
-#define BPPickerViewHeight 216.f
+#define BPPickerViewHeight (216.f + 44.f)
 
 @interface BPUtils : NSObject
 

@@ -12,6 +12,7 @@
 #import "BPSwitchCell.h"
 #import "BPSettingsCell.h"
 #import "BPValuePicker.h"
+#import "BPSettings.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -246,9 +247,11 @@
         self.pickerView.valuePickerMode = BPValuePickerModeTime;
         self.pickerView.value = self.fireDate;
     } else {
-        self.pickerView.valuePickerMode = -1;
+        self.pickerView.valuePickerMode = BPValuePickerModeNone;
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:BPSettingsDidChangeNotification object:nil];
+
     [self.collectionView reloadData];
 }
 
