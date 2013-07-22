@@ -33,7 +33,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-      _valuePickerMode = -1;
+      _valuePickerMode = BPValuePickerModeNone;
     }
     return self;
 }
@@ -60,7 +60,9 @@
     
         switch (_valuePickerMode) {
             case BPValuePickerModeDate:
-            case BPValuePickerModeMenstruationDate:
+            case BPValuePickerModeLastMenstruationDate:
+            case BPValuePickerModeLastOvulationDate:
+            case BPValuePickerModeChildBirthday:
                 self.delegate = [[BPDatePicker alloc] init];
                 self.delegate.control = self;
                 break;

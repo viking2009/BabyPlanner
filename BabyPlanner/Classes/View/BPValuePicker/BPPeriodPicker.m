@@ -18,7 +18,7 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(BPPickerView *)pickerView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)pickerView:(BPPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -31,9 +31,8 @@
 - (void)pickerView:(BPPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSInteger length = 0;
-    length += 100 * [pickerView selectedRowInComponent:0];
-    length += 10 * [pickerView selectedRowInComponent:1];
-    length += [pickerView selectedRowInComponent:2];
+    length += 10 * [pickerView selectedRowInComponent:0];
+    length += [pickerView selectedRowInComponent:1];
     
 //    [self pickerView:pickerView setValue:date animated:NO];
     self.control.value = @(length);
@@ -41,7 +40,7 @@
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 84.f;
+    return 126.f;
 }
 
 - (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -79,9 +78,8 @@
         
         NSInteger length = [self.periodLength integerValue];
         
-        [pickerView selectRow:(length / 100) inComponent:0 animated:animated];
-        [pickerView selectRow:((length / 10) % 10) inComponent:1 animated:animated];
-        [pickerView selectRow:(length % 10) inComponent:2 animated:animated];
+        [pickerView selectRow:((length / 10) % 10) inComponent:0 animated:animated];
+        [pickerView selectRow:(length % 10) inComponent:1 animated:animated];
         
         DLog(@"_periodLength = %@", _periodLength);
     }

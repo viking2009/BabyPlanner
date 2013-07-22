@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, BPValuePickerMode) {
+    BPValuePickerModeNone = -1,
     BPValuePickerModeDate,
     BPValuePickerModeTime,
     BPValuePickerModeSound,
@@ -16,7 +17,9 @@ typedef NS_ENUM(NSInteger, BPValuePickerMode) {
     BPValuePickerModeWeight,
     BPValuePickerModeHeight,
     BPValuePickerModeMenstruationLength,
-    BPValuePickerModeMenstruationDate
+    BPValuePickerModeLastMenstruationDate,
+    BPValuePickerModeLastOvulationDate,
+    BPValuePickerModeChildBirthday
 };
 
 @interface BPValuePicker : UIControl
