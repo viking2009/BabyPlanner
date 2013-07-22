@@ -11,6 +11,8 @@
 #import "BPUtils.h"
 #import "BPValuePicker.h"
 
+#import "BPSettings.h"
+
 @interface BPSettingsLanguageViewController ()
 
 @property (nonatomic, strong) NSArray *data;
@@ -55,17 +57,17 @@
     self.girlView.frame = CGRectMake(85, 146, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     
     self.pickerView.valuePickerMode = BPValuePickerModeLanguage;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *language = [defaults objectForKey:@"Language"];
+    
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    NSString *language = sharedSettings[BPSettingsLanguageKey];
     if (!language) {
         language = @"English";
-        [defaults setObject:language forKey:@"Language"];
-        [defaults synchronize];
+        sharedSettings[BPSettingsLanguageKey] = language;
     }
     
     self.pickerView.value = language;
@@ -85,11 +87,11 @@
 - (void)pickerViewValueChanged
 {
     DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeLanguage:
-            [[NSUserDefaults standardUserDefaults] setObject:self.pickerView.value forKey:@"Language"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            sharedSettings[BPSettingsLanguageKey] = self.pickerView.value;
 //            [self updateUI];
             break;
 

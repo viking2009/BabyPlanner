@@ -17,6 +17,9 @@
 
 + (NSString *)stringFromDate:(NSDate *)date
 {
+    if (!date)
+        return nil;
+    
     static NSDateFormatter *dateFormatter = nil;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];

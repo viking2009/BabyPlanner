@@ -13,4 +13,8 @@
 
 @interface BPSelectButton : UIButton
 
+@property (nonatomic, readonly, strong) UILabel *subtitleLabel;
+
+- (CGRect)subtitleRectForContentRect:(CGRect)contentRect;
+
 @end

@@ -14,6 +14,7 @@
 #import "BPSettingsThemeViewController.h"
 #import "BPSettingsAlarmViewController.h"
 #import "BPSettingsProfileViewController.h"
+#import "BPSettings.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -36,6 +37,8 @@
         self.title = @"Settings";
         [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_settings_selected"]
                       withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_settings_unselected"]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange) name:BPSettingsDidChangeNotification object:nil];
     }
     return self;
 }
@@ -71,12 +74,11 @@
 
 - (void)loadData
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *language = [defaults objectForKey:@"Language"];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    NSString *language = sharedSettings[BPSettingsLanguageKey];
     if (!language) {
         language = @"English";
-        [defaults setObject:language forKey:@"Language"];
-        [defaults synchronize];
+        sharedSettings[BPSettingsLanguageKey] = language;
     }
     
     self.data = @[
@@ -95,10 +97,8 @@
     [self.collectionView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)settingsDidChange
 {
-    [super viewWillAppear:animated];
-    
     [self updateUI];
 }
 
@@ -110,6 +110,8 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     self.collectionView.dataSource = nil;
     self.collectionView.delegate = nil;
 }
@@ -188,6 +190,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
     UICollectionViewCell *cell;
     if (indexPath.section == 0 && indexPath.item == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
@@ -214,7 +218,7 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
-        switchCell.toggleView.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"temp"];
+        switchCell.toggleView.on = [sharedSettings[@"showTemperature"] boolValue];
     } else {
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
         settingsCell.titleLabel.text = dataItem[@"title"];
@@ -299,8 +303,8 @@
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
     DLog(@"%s %i", __PRETTY_FUNCTION__, cell.toggleView.on);
-    [[NSUserDefaults standardUserDefaults] setBool:cell.toggleView.on forKey:@"temp"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    sharedSettings[@"showTemperature"] = @(cell.toggleView.on);
 }
 
 @end

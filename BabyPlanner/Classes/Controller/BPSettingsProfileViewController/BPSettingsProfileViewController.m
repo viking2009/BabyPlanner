@@ -13,12 +13,16 @@
 #import "BPSelectButton.h"
 #import "BPValuePicker.h"
 
+#import "BPSettings.h"
+#import "NSDate-Utilities.h"
+
 #define BPProfileControlsSpacing 5.f
 #define BPProfileControlsMargin 15.f
 #define BPProfileLabelWidth 90.f
 #define BPProfileLabelSmallWidth 40.f
 #define BPProfileTextFieldSmallWidth 100.f
 
+#define BPPregnancyPeriod 280
 
 @interface BPSettingsProfileViewController () <UITextFieldDelegate>
 
@@ -28,14 +32,20 @@
 @property (nonatomic, strong) BPLabel *heightLabel;
 @property (nonatomic, strong) BPLabel *kgLabel;
 @property (nonatomic, strong) BPLabel *cmLabel;
+@property (nonatomic, strong) BPLabel *pregnancyLabel;
 
 @property (nonatomic, strong) BPTextField *nameTextField;
 @property (nonatomic, strong) BPTextField *birthdayTextField;
 @property (nonatomic, strong) BPTextField *weightTextField;
 @property (nonatomic, strong) BPTextField *heightTextField;
 
+@property (nonatomic, strong) UIButton *pregnancyButton;
+
 @property (nonatomic, strong) BPSelectButton *lengthOfCycleButton;
 @property (nonatomic, strong) BPSelectButton *lastMenstruationButton;
+
+@property (nonatomic, strong) BPSelectButton *lastOvulationButton;
+@property (nonatomic, strong) BPSelectButton *childBirthButton;
 
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) BPValuePicker *pickerView;
@@ -52,6 +62,8 @@
     if (self) {
         // Custom initialization
         self.title = @"My Profile";
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange) name:BPSettingsDidChangeNotification object:nil];
     }
     return self;
 }
@@ -73,13 +85,13 @@
     [self.view addSubview:self.selectLabel];
 
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_girl"]];
-    self.girlView.frame = CGRectMake(116.f, MAX(246.f, self.view.bounds.size.height - self.girlView.image.size.height - self.tabBarController.tabBar.frame.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(self.view.bounds.size.width - self.girlView.image.size.width, MAX(260.f, self.view.bounds.size.height - self.girlView.image.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
-    bubbleView.frame = CGRectMake(0, self.girlView.frame.origin.y + 14.f, bubbleView.image.size.width, bubbleView.image.size.height);
+    bubbleView.frame = CGRectMake(25.f, self.girlView.frame.origin.y + 24.f, bubbleView.image.size.width, bubbleView.image.size.height);
     self.selectLabel.frame = CGRectOffset(bubbleView.frame, 0, -10.f);
 
-    CGFloat top = MAX(0, self.girlView.frame.origin.y - 246.f) + 64.f + 3.f + BPProfileControlsSpacing;
+    CGFloat top = MAX(0, self.girlView.frame.origin.y - 320.f) + 64.f + 3.f + BPProfileControlsSpacing;
     CGFloat left = BPProfileControlsMargin;
     CGFloat maxWidth = self.view.frame.size.width - 2*BPProfileControlsMargin - BPProfileLabelWidth - BPProfileControlsSpacing;
     
@@ -93,7 +105,7 @@
     top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
 
     self.heightLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    top += self.heightLabel.frame.size.height + BPProfileControlsMargin;
+    top += self.heightLabel.frame.size.height + BPProfileControlsSpacing;
 
     left += BPProfileLabelWidth + BPProfileControlsSpacing + BPProfileTextFieldSmallWidth + BPProfileControlsSpacing;
     self.kgLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
@@ -101,24 +113,17 @@
 
     left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *profile = [defaults objectForKey:@"profile"];
-
     self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.nameTextField.delegate = self;
-    self.nameTextField.text = profile[@"name"];
     
     self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.birthdayTextField.delegate = self;
-    self.birthdayTextField.text = [BPUtils stringFromDate:profile[@"birthday"]];
     
     self.weightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.weightTextField.delegate = self;
-    self.weightTextField.text = [profile[@"weight"] description];
     
     self.heightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.heightTextField.delegate = self;
-    self.heightTextField.text = [profile[@"height"] description];
     
     self.lengthOfCycleButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
     self.lengthOfCycleButton.frame = CGRectMake(BPProfileControlsSpacing, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
@@ -127,7 +132,32 @@
     self.lastMenstruationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
     self.lastMenstruationButton.frame = CGRectMake(self.view.frame.size.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
     [self.lastMenstruationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    top += self.lastMenstruationButton.frame.size.height + BPProfileControlsSpacing;
+    
+    UIImage *checkBoxNormalImage = [BPUtils imageNamed:@"checkbox_normal"];
+    UIImage *checkBoxSelectedImage = [BPUtils imageNamed:@"checkbox_selected"];
+    
+    self.pregnancyLabel = [[BPLabel alloc] initWithFrame:CGRectMake(BPProfileControlsMargin, top, BPProfileLabelWidth, checkBoxNormalImage.size.height)];
 
+    left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
+    self.pregnancyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.pregnancyButton.frame = CGRectMake(left, top, checkBoxNormalImage.size.width, checkBoxNormalImage.size.height);
+    [self.pregnancyButton setBackgroundImage:checkBoxNormalImage forState:UIControlStateNormal];
+    [self.pregnancyButton setBackgroundImage:checkBoxSelectedImage forState:UIControlStateHighlighted];
+    [self.pregnancyButton setBackgroundImage:checkBoxSelectedImage forState:UIControlStateSelected];
+    self.pregnancyButton.adjustsImageWhenHighlighted = NO;
+    [self.pregnancyButton addTarget:self action:@selector(togglePregnancy:) forControlEvents:UIControlEventTouchUpInside];
+    top += self.pregnancyButton.frame.size.height + BPProfileControlsSpacing;
+    
+    self.lastOvulationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
+    self.lastOvulationButton.frame = CGRectMake(BPProfileControlsSpacing, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    [self.lastOvulationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.childBirthButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
+    self.childBirthButton.frame = CGRectMake(self.view.frame.size.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    [self.childBirthButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    top += self.childBirthButton.frame.size.height + BPProfileControlsSpacing;
+    
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.birthdayLabel];
     [self.view addSubview:self.weightLabel];
@@ -143,9 +173,15 @@
     [self.view addSubview:self.lengthOfCycleButton];
     [self.view addSubview:self.lastMenstruationButton];
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(280.f, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    [self.view addSubview:self.pregnancyLabel];
+    [self.view addSubview:self.pregnancyButton];
+    
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
+    
+    [self.view addSubview:self.lastOvulationButton];
+    [self.view addSubview:self.childBirthButton];
     
     [self updateUI];
 }
@@ -154,6 +190,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)updateUI
@@ -166,32 +207,63 @@
     self.heightLabel.text = BPLocalizedString(@"Height");
     self.kgLabel.text = BPLocalizedString(@"kg");
     self.cmLabel.text = BPLocalizedString(@"cm");
+    self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
    
-    [self.lengthOfCycleButton setTitle:BPLocalizedString(@"Length of my cycle") forState:UIControlStateNormal];
-    [self.lastMenstruationButton setTitle:BPLocalizedString(@"Last menstruation") forState:UIControlStateNormal];
+    self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
+    self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");
     
+    self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
+    self.childBirthButton.subtitleLabel.text = BPLocalizedString(@"Childbirth");
+
     // TODO: fill with data
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    self.nameTextField.text = sharedSettings[BPSettingsProfileNameKey];
+    self.birthdayTextField.text = [BPUtils stringFromDate:sharedSettings[BPSettingsProfileBirthdayKey]];
+    self.weightTextField.text = [sharedSettings[BPSettingsProfileWeightKey] description];
+    self.heightTextField.text = [sharedSettings[BPSettingsProfileHeightKey] description];
+    
+    NSString *lengthOfCycleString = ([sharedSettings[BPSettingsProfileLengthOfCycleKey] description] ? : @"");
+    [self.lengthOfCycleButton setTitle:lengthOfCycleString forState:UIControlStateNormal];
+    
+    NSDate *lastMenstruationDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey];
+    [self.lastMenstruationButton setTitle:[BPUtils stringFromDate:lastMenstruationDate] forState:UIControlStateNormal];
+    
+    self.pregnancyButton.selected = [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue];
+    
+    self.lastOvulationButton.hidden = !self.pregnancyButton.selected;
+    self.childBirthButton.hidden = !self.pregnancyButton.selected;
+    
+    NSDate *lastOvulationDate = sharedSettings[BPSettingsProfileLastOvulationDateKey];
+    [self.lastOvulationButton setTitle:[BPUtils stringFromDate:lastOvulationDate] forState:UIControlStateNormal];
+    
+    NSDate *childBirthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
+    [self.childBirthButton setTitle:[BPUtils stringFromDate:childBirthday] forState:UIControlStateNormal];
+}
+
+- (void)settingsDidChange
+{
+    [self updateUI];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *profile = [defaults objectForKey:@"profile"];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     if (textField == self.nameTextField) {
         [self pickerViewValueChanged]; // save current pickerView value
-        self.pickerView.valuePickerMode = -1;
+        self.pickerView.valuePickerMode = BPValuePickerModeNone;
         return YES;
     } else if (textField == self.birthdayTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeDate;
-        self.pickerView.value = profile[@"birthday"] ? : [NSDate date];
+        self.pickerView.value = sharedSettings[BPSettingsProfileBirthdayKey] ? : [NSDate date];
     } else if (textField == self.weightTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeWeight;
-        self.pickerView.value = profile[@"weight"] ? : @0;
+        self.pickerView.value = sharedSettings[BPSettingsProfileWeightKey] ? : @0;
     } else if (textField == self.heightTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeHeight;
-        self.pickerView.value = profile[@"height"] ? : @0;
+        self.pickerView.value = sharedSettings[BPSettingsProfileHeightKey] ? : @0;
     }
     
     if ([self.nameTextField isFirstResponder]) {
@@ -205,17 +277,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     DLog();
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
     
-    if (textField == self.nameTextField) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *currentProfile = [defaults objectForKey:@"profile"];
-        NSMutableDictionary *newProfile = (currentProfile ? [currentProfile mutableCopy] : [[NSMutableDictionary alloc] init]);
-        
-        newProfile[@"name"] = textField.text;
-        
-        [defaults setObject:newProfile forKey:@"profile"];
-        [defaults synchronize];
-    }
+    if (textField == self.nameTextField)
+        sharedSettings[BPSettingsProfileNameKey] = textField.text;
 }
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
@@ -231,35 +296,37 @@
 - (void)pickerViewValueChanged
 {
     DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *currentProfile = [defaults objectForKey:@"profile"];
-    NSMutableDictionary *newProfile = (currentProfile ? [currentProfile mutableCopy] : [[NSMutableDictionary alloc] init]);
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    // TODO: ?change child birthday for last ovulation + pregnant flag?
     
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeDate:
-            newProfile[@"birthday"] = self.pickerView.value;
-            self.birthdayTextField.text = [BPUtils stringFromDate:self.pickerView.value];
+            sharedSettings[BPSettingsProfileBirthdayKey] = self.pickerView.value;
             break;
         case BPValuePickerModeWeight:
-            newProfile[@"weight"] = self.pickerView.value;
-            self.weightTextField.text = [self.pickerView.value description];
+            sharedSettings[BPSettingsProfileWeightKey] = self.pickerView.value;
             break;
         case BPValuePickerModeHeight:
-            newProfile[@"height"] = self.pickerView.value;
-            self.heightTextField.text = [self.pickerView.value description];
+            sharedSettings[BPSettingsProfileHeightKey] = self.pickerView.value;
             break;
         case BPValuePickerModeMenstruationLength:
-            newProfile[@"lengthOfCycle"] = self.pickerView.value;
+            sharedSettings[BPSettingsProfileLengthOfCycleKey] = self.pickerView.value;
             break;
-        case BPValuePickerModeMenstruationDate:
-            newProfile[@"lastMenstruation"] = self.pickerView.value;
+        case BPValuePickerModeLastMenstruationDate:
+            sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.pickerView.value;
+            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
+            break;
+        case BPValuePickerModeLastOvulationDate:
+            sharedSettings[BPSettingsProfileLastOvulationDateKey] = self.pickerView.value;
+//            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
+            break;
+        case BPValuePickerModeChildBirthday:
+            sharedSettings[BPSettingsProfileChildBirthdayKey] = self.pickerView.value;
             break;
         default:
             break;
     }
-    
-    [defaults setObject:newProfile forKey:@"profile"];
-    [defaults synchronize];
 }
 
 - (void)selectButtonTapped:(id)sender
@@ -270,18 +337,42 @@
         [self.nameTextField resignFirstResponder];
     }
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *profile = [defaults objectForKey:@"profile"];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     if (sender == self.lengthOfCycleButton) {
         self.pickerView.valuePickerMode = BPValuePickerModeMenstruationLength;
-        self.pickerView.value = profile[@"lengthOfCycle"] ? : @0;
+        self.pickerView.value = sharedSettings[BPSettingsProfileLengthOfCycleKey] ? : @0;
     } else if (sender == self.lastMenstruationButton) {
-        self.pickerView.valuePickerMode = BPValuePickerModeMenstruationDate;
-        self.pickerView.value = profile[@"lastMenstruation"] ? : [NSDate date];
+        self.pickerView.valuePickerMode = BPValuePickerModeLastMenstruationDate;
+        self.pickerView.value = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
+    } else if (sender == self.lastOvulationButton) {
+        self.pickerView.valuePickerMode = BPValuePickerModeLastOvulationDate;
+        self.pickerView.value = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [NSDate date];
+    } else if (sender == self.childBirthButton) {
+        self.pickerView.valuePickerMode = BPValuePickerModeChildBirthday;
+//        NSDate *lastOvulation = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [NSDate date];
+//        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulation dateByAddingDays:BPPregnancyPeriod];
+        NSDate *lastMenstruation = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
+        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastMenstruation dateByAddingDays:BPPregnancyPeriod];
     }
-    
-    
 }
+
+- (void)togglePregnancy:(id)sender
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
+    if (sender == self.pregnancyButton) {
+        self.pregnancyButton.selected = !self.pregnancyButton.selected;
+        
+        // hide picker
+        if (!self.pregnancyButton.selected && (self.pickerView.valuePickerMode == BPValuePickerModeLastOvulationDate ||
+            self.pickerView.valuePickerMode == BPValuePickerModeChildBirthday)) {
+            self.pickerView.valuePickerMode = BPValuePickerModeNone;
+        }
+        
+        sharedSettings[BPSettingsProfileIsPregnantKey] = @(self.pregnancyButton.selected);
+    }
+}
+
 
 @end

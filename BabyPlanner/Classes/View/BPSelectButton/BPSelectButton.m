@@ -10,8 +10,18 @@
 #import "BPUtils.h"
 
 #define BPSelectButtonImageOffset 8.f
+#define BPSelectButtonContentInset 8.f
+
+@interface BPSelectButton ()
+
+@property (nonatomic, readonly, strong) UIImageView *arrowView;
+
+@end
 
 @implementation BPSelectButton
+
+@synthesize subtitleLabel = _subtitleLabel;
+@synthesize arrowView = _arrowView;
 
 - (void)setup
 {
@@ -19,10 +29,12 @@
     [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     
     [self setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
     
-    [self setImage:[BPUtils imageNamed:@"selectbutton_arrow"] forState:UIControlStateNormal];
+    self.subtitleLabel.textColor = RGB(255, 255, 255);
+    self.subtitleLabel.textAlignment = NSTextAlignmentLeft;
+    self.subtitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:7];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -43,21 +55,63 @@
     return self;
 }
 
+- (CGRect)contentRectForBounds:(CGRect)bounds
+{
+    return CGRectInset(bounds, BPSelectButtonContentInset, 0);
+}
+
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
     contentRect.size.height -= BPSelectButtonImageOffset - 4.f;
     return contentRect;
 }
 
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
+- (CGRect)arrowImageRectForContentRect:(CGRect)contentRect
 {
     contentRect.origin.y = contentRect.size.height - BPSelectButtonImageOffset;
     
-    UIImage *image = [self imageForState:UIControlStateNormal];
-    contentRect.origin.x = floorf(contentRect.size.width/2 - image.size.width/2);
+    UIImage *image = self.arrowView.image;
+    contentRect.origin.x = BPSelectButtonContentInset + floorf(contentRect.size.width/2 - image.size.width/2);
     contentRect.size = image.size;
     
     return contentRect;
+}
+
+- (UILabel *)subtitleLabel
+{
+    if (!_subtitleLabel) {
+        _subtitleLabel = [[UILabel alloc] init];
+        _subtitleLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:_subtitleLabel];
+    }
+    
+    return _subtitleLabel;
+}
+
+- (UIImageView *)arrowView {
+    if (!_arrowView) {
+        _arrowView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"selectbutton_arrow"]];
+        [self addSubview:_arrowView];
+    }
+    
+    return _arrowView;
+}
+
+- (CGRect)subtitleRectForContentRect:(CGRect)contentRect
+{
+    contentRect.origin.y = contentRect.size.height - BPSelectButtonImageOffset;
+    contentRect.size.height = BPSelectButtonImageOffset;
+
+    return contentRect;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect contentRect = [self contentRectForBounds:self.bounds];
+    self.subtitleLabel.frame = [self subtitleRectForContentRect:contentRect];
+    self.arrowView.frame = [self arrowImageRectForContentRect:contentRect];
 }
 
 @end
