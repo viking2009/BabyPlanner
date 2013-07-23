@@ -115,6 +115,39 @@
 
     self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.nameTextField.delegate = self;
+    [self.nameTextField addTarget:self action:@selector(textFieldTextChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BPSettingsToolbarHeight)];
+    [toolBar setBackgroundImage:[BPUtils imageNamed:@"toolbar_background"] forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIImage *blackImage = [BPUtils imageNamed:@"black_button"];
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelButton.frame = CGRectMake(0, 0, blackImage.size.width, blackImage.size.height);
+    [cancelButton setBackgroundImage:blackImage forState:UIControlStateNormal];
+    [cancelButton setTitle:@"X" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+    cancelButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+    cancelButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    [cancelButton addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
+    
+    UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneButton.frame = CGRectMake(0, 0, greenImage.size.width, greenImage.size.height);
+    [doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
+    [doneButton setTitle:@"OK" forState:UIControlStateNormal];
+    [doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+    doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+    doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    [doneButton addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+    
+    toolBar.items = @[cancelItem, flexibleItem, doneItem];
+    self.nameTextField.inputAccessoryView = toolBar;
     
     self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
     self.birthdayTextField.delegate = self;
@@ -266,17 +299,17 @@
         self.pickerView.value = sharedSettings[BPSettingsProfileHeightKey] ? : @0;
     }
     
-    if ([self.nameTextField isFirstResponder]) {
+    if ([self.nameTextField isFirstResponder])
         [self.nameTextField resignFirstResponder];
-    }
 
     return NO;
 }
 //- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder
 //- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
-- (void)textFieldDidEndEditing:(UITextField *)textField
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textFieldTextChanged:(UITextField *)textField
 {
-    DLog();
+    DLog(@"textField.text = %@", textField.text);
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     if (textField == self.nameTextField)
@@ -291,6 +324,16 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+- (void)cancelPressed:(id)sender;
+{
+    [self.nameTextField resignFirstResponder];
+}
+
+- (void)donePressed:(id)sender;
+{
+    [self.nameTextField resignFirstResponder];
 }
 
 - (void)pickerViewValueChanged

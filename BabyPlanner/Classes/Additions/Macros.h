@@ -9,7 +9,8 @@
 #ifndef BabyPlanner_Macros_h
 #define BabyPlanner_Macros_h
 
-#define BPSettingsPickerMinimalOriginY      (300.f - 44.f)
+#define BPSettingsToolbarHeight             44.f
+#define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
 #define BPSettingsLanguageKey               @"language"
 

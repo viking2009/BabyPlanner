@@ -61,6 +61,7 @@
 //        _pickerView.delegate = nil;
         [_pickerView removeFromSuperview];
         _pickerView = nil;
+        _value = nil;
 
         switch (_valuePickerMode) {
             case BPValuePickerModeDate:
@@ -195,7 +196,7 @@
 {
     [super layoutSubviews];
     
-    self.toolBar.frame = CGRectMake(0, 0, self.frame.size.width, 44.f);
+    self.toolBar.frame = CGRectMake(0, 0, self.frame.size.width, BPSettingsToolbarHeight);
     _pickerView.frame = CGRectMake(0, _toolBar.frame.size.height, self.frame.size.width, self.frame.size.height - _toolBar.frame.size.height);
 }
 
