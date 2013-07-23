@@ -88,6 +88,15 @@
     return _subtitleLabel;
 }
 
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    self.subtitleLabel.hidden = ![title length];
+
+    if (![title length])
+        title = self.subtitleLabel.text;
+    
+    [super setTitle:title forState:state];
+}
+
 - (UIImageView *)arrowView {
     if (!_arrowView) {
         _arrowView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"selectbutton_arrow"]];

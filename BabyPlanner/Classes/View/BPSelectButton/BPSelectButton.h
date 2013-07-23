@@ -13,6 +13,7 @@
 
 @interface BPSelectButton : UIButton
 
+// NOTE: set subtitleLabel.text before setTitle:forState
 @property (nonatomic, readonly, strong) UILabel *subtitleLabel;
 
 - (CGRect)subtitleRectForContentRect:(CGRect)contentRect;

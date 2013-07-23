@@ -256,7 +256,7 @@
     self.weightTextField.text = [sharedSettings[BPSettingsProfileWeightKey] description];
     self.heightTextField.text = [sharedSettings[BPSettingsProfileHeightKey] description];
     
-    NSString *lengthOfCycleString = ([sharedSettings[BPSettingsProfileLengthOfCycleKey] description] ? : @"");
+    NSString *lengthOfCycleString = ([sharedSettings[BPSettingsProfileLengthOfCycleKey] description] ? : nil);
     [self.lengthOfCycleButton setTitle:lengthOfCycleString forState:UIControlStateNormal];
     
     NSDate *lastMenstruationDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey];
