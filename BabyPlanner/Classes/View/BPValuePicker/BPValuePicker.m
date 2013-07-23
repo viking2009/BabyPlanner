@@ -147,20 +147,32 @@
         [_toolBar setBackgroundImage:[BPUtils imageNamed:@"toolbar_background"] forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
         
         UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithTitle:BPLocalizedString(@"Done") style:UIBarButtonItemStyleBordered target:self action:@selector(donePressed)];
         
-//        UIImage *greenImage = [[BPUtils imageNamed:@"green_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10.f, 0, 10.f) resizingMode:UIImageResizingModeStretch];
-        UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
-        [doneItem setBackgroundImage:greenImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        NSDictionary *titleTextAttributes = @{UITextAttributeTextColor: RGB(255, 255, 255),
-                                              UITextAttributeTextShadowColor: RGBA(0, 0, 0, 0.5),
-                                              UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                              UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]};
-        
-        [doneItem setBackgroundImage:greenImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [doneItem setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
+        UIImage *blackImage = [BPUtils imageNamed:@"black_button"];
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(0, 0, blackImage.size.width, blackImage.size.height);
+        [cancelButton setBackgroundImage:blackImage forState:UIControlStateNormal];
+        [cancelButton setTitle:@"X" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+        cancelButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+        cancelButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+        cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+        [cancelButton addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
 
-        _toolBar.items = @[flexibleItem, doneItem];
+        UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
+        UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        doneButton.frame = CGRectMake(0, 0, greenImage.size.width, greenImage.size.height);
+        [doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
+        [doneButton setTitle:@"OK" forState:UIControlStateNormal];
+        [doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+        doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+        doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+        doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+        [doneButton addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+
+        _toolBar.items = @[cancelItem, flexibleItem, doneItem];
         
         [self addSubview:_toolBar];
     }
@@ -187,7 +199,14 @@
     _pickerView.frame = CGRectMake(0, _toolBar.frame.size.height, self.frame.size.width, self.frame.size.height - _toolBar.frame.size.height);
 }
 
-- (void)donePressed
+- (void)cancelPressed:(id)sender;
+{
+    self.valuePickerMode = BPValuePickerModeNone;
+    if (self.superview)
+        [self.superview sendSubviewToBack:self];
+}
+
+- (void)donePressed:(id)sender;
 {
     self.valuePickerMode = BPValuePickerModeNone;
     if (self.superview)
