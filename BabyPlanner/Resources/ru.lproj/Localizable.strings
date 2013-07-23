@@ -1,0 +1,63 @@
+/*
+ Localizable.strings
+ BabyPlanner
+ 
+ Created by Mykola Vyshynskyi on 24.07.13.
+ Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
+ */
+
+/* BPViewController */
+"Back" = "Назад";
+
+/* BPMyTemperatureViewController */
+"My Temperature" = "Моя Температура";
+
+/* BPMyChartsViewController */
+"My Charts" = "Мои графики";
+
+/* BPMyChartsViewController */
+"My Pregnancy" = "Моя Беременность";
+
+/* BPSettingsViewController */
+"Settings" = "Настройки";
+
+"Termometer" = "Термометр";
+"Measurement" = "Cистема мер";
+
+"On" = "Вкл";
+"Off" = "Выкл";
+
+/* BPSettingsLanguageViewController */
+"Language" = "Язык";
+"Please, select the language!" = "Пожалуйста, выберите язык!";
+"en" = "English";
+"ru" = "Русский";
+
+/* BPSettingsThemeViewController */
+"Theme" = "Тема";
+
+/* BPSettingsAlarmViewController */
+"Alarm" = "Будильник";
+"Sound" = "Звук";
+"It's time to get up" = "Пора вставать";
+
+/* BPSettingsAlarmViewController */
+"My Profile" = "Мой Профиль";
+
+"Name" = "Имя";
+"Birthday" = "Дeнь рождения";
+"Weight" = "Вес";
+"Height" = "Рост";
+"kg" = "кг";
+"cm" = "см";
+
+"Length of my cycle" = "Длина моего цикла";
+"Last menstruation" = "Последняя менструация";
+
+"Pregnancy" = "Беременность";
+
+"Ovulation" = "Овуляция";
+"Childbirth" = "Роды";
+
+"Hello!" = "Привет!";
+

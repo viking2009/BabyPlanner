@@ -9,6 +9,9 @@
 #import "BPBaseViewController.h"
 #import "BPUtils.h"
 
+#import "BPLanguageManager.h"
+#import "BPSettings.h"
+
 @interface BPBaseViewController ()
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -21,10 +24,19 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        DLog(@"%@", [self class]);
         self.wantsFullScreenLayout = YES;
         self.backgroundImage = [UIImage imageNamed:@"Default-568h"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageDidChanged:) name:BPLanguageDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChanged:) name:BPSettingsDidChangeNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -59,8 +71,24 @@
 {
     [super setTitle:title];
     
+    [self updateUI];
+}
+
+- (void)updateUI
+{
     // set nav + tabbar
     self.tabBarItem.title = BPLocalizedString(self.title);
 }
+
+- (void)languageDidChanged:(NSNotification *)notification
+{
+    [self updateUI];
+}
+
+- (void)settingsDidChanged:(NSNotification *)notification
+{
+    [self updateUI];
+}
+
 
 @end

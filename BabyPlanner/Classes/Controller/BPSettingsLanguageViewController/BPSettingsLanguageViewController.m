@@ -12,6 +12,7 @@
 #import "BPValuePicker.h"
 
 #import "BPSettings.h"
+#import "BPLanguageManager.h"
 
 @interface BPSettingsLanguageViewController ()
 
@@ -50,7 +51,6 @@
     self.selectLabel.shadowColor = RGB(255, 255, 255);
     self.selectLabel.shadowOffset = CGSizeMake(0, -1);
     self.selectLabel.numberOfLines = 2;
-    self.selectLabel.text = BPLocalizedString(@"Please, select the language!");
     [self.view addSubview:self.selectLabel];
     
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_language_girl"]];
@@ -62,15 +62,9 @@
     [self.view addSubview:self.pickerView];
     
     self.pickerView.valuePickerMode = BPValuePickerModeLanguage;
+    self.pickerView.value = [BPLanguageManager sharedManager].currentLanguage;
     
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    NSString *language = sharedSettings[BPSettingsLanguageKey];
-    if (!language) {
-        language = @"English";
-        sharedSettings[BPSettingsLanguageKey] = language;
-    }
-    
-    self.pickerView.value = language;
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,18 +75,18 @@
 
 - (void)updateUI
 {
-    // TODO: post notification about changing
+    [super updateUI];
+    
+    self.selectLabel.text = BPLocalizedString(@"Please, select the language!");
 }
 
 - (void)pickerViewValueChanged
 {
     DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeLanguage:
-            sharedSettings[BPSettingsLanguageKey] = self.pickerView.value;
-//            [self updateUI];
+            [BPLanguageManager sharedManager].currentLanguage = self.pickerView.value;
             break;
 
         default:

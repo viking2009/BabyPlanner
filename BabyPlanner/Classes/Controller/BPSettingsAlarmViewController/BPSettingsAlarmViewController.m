@@ -101,21 +101,26 @@
         self.pickerView.value = self.fireDate;
     }
 
-    [self loadData];
     [self updateUI];
 }
 
-- (void)loadData {
-    
+- (void)loadData
+{
+    DLog();
     NSString *soundName = [self.soundName stringByDeletingPathExtension];
+    DLog(@"soundName = %@", soundName);
     
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : soundName}]
+                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : (soundName ? : @"")}]
                   ];
 }
 
-- (void)updateUI {
+- (void)updateUI
+{
+    [super updateUI];
+    DLog();
+    
     [self loadData];
     [self.collectionView reloadData];
 }
@@ -280,7 +285,7 @@
         notification.soundName = self.soundName;
         notification.repeatInterval = NSDayCalendarUnit;
 
-        notification.alertBody = [NSString stringWithFormat:BPLocalizedString(@"It's time to get up")];
+        notification.alertBody = BPLocalizedString(@"It's time to get up");
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     

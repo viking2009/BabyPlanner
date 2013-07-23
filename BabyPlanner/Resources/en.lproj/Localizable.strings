@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  BabyPlanner
+
+  Created by Mykola Vyshynskyi on 24.07.13.
+  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
+*/
+
+/* BPViewController */
+"Back" = "Back";
+
+/* BPMyTemperatureViewController */
+"My Temperature" = "My Temperature";
+
+/* BPMyChartsViewController */
+"My Charts" = "My Charts";
+
+/* BPMyChartsViewController */
+"My Pregnancy" = "My Pregnancy";
+
+/* BPSettingsViewController */
+"Settings" = "Settings";
+
+"Termometer" = "Termometer";
+"Measurement" = "Measurement";
+
+"On" = "On";
+"Off" = "Off";
+
+/* BPSettingsLanguageViewController */
+"Language" = "Language";
+"Please, select the language!" = "Please, select the language!";
+"en" = "English";
+"ru" = "Русский";
+
+/* BPSettingsThemeViewController */
+"Theme" = "Theme";
+
+/* BPSettingsAlarmViewController */
+"Alarm" = "Alarm";
+"Sound" = "Sound";
+"It's time to get up" = "It's time to get up";
+
+/* BPSettingsAlarmViewController */
+"My Profile" = "My Profile";
+
+"Name" = "Name";
+"Birthday" = "Birthday";
+"Weight" = "Weight";
+"Height" = "Height";
+"kg" = "kg";
+"cm" = "cm";
+
+"Length of my cycle" = "Length of my cycle";
+"Last menstruation" = "Last menstruation";
+
+"Pregnancy" = "Pregnancy";
+
+"Ovulation" = "Ovulation";
+"Childbirth" = "Childbirth";
+
+"Hello!" = "Hello!";
+

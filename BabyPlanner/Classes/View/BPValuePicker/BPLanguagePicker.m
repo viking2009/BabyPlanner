@@ -7,6 +7,7 @@
 //
 
 #import "BPLanguagePicker.h"
+#import "BPUtils.h"
 
 @interface BPLanguagePicker ()
 
@@ -21,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        self.languages = @[@"English", @"Русский"];
+        self.languages = [BPLanguageManager sharedManager].supportedLanguages;
     }
     
     return self;
@@ -64,7 +65,7 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    label.text = _languages[row];
+    label.text = BPLocalizedString(_languages[row]);
     
     return label;
 }

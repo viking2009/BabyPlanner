@@ -7,6 +7,7 @@
 //
 
 #import "BPUtils.h"
+#import "BPLanguageManager.h"
 
 @implementation BPUtils
 
@@ -25,6 +26,8 @@
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"d MMMM yyyy"];
     }
+    
+    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
     
     return [dateFormatter stringFromDate:date];
 }

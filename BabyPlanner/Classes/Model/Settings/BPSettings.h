@@ -12,7 +12,7 @@ extern NSString *const BPSettingsDidChangeNotification;
 
 @interface BPSettings : NSObject
 
-+ (id)sharedSettings;
++ (BPSettings *)sharedSettings;
 
 - (id)objectForKeyedSubscript:(id)key NS_AVAILABLE(10_8, 6_0);
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key NS_AVAILABLE(10_8, 6_0);

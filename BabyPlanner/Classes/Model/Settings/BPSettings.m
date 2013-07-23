@@ -7,12 +7,13 @@
 //
 
 #import "BPSettings.h"
+#import "BPLanguageManager.h"
 
 NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotification";
 
 @implementation BPSettings
 
-+ (id)sharedSettings
++ (BPSettings *)sharedSettings
 {
     static BPSettings *_sharedSettings = nil;
     static dispatch_once_t onceToken;
@@ -44,11 +45,12 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *keyString = [NSString stringWithFormat:@"%@.%@", NSStringFromClass([self class]), [(id)key description]];
         
-        
         [defaults setObject:obj forKey:keyString];
         
-        if ([defaults synchronize])
-            [[NSNotificationCenter defaultCenter] postNotificationName:BPSettingsDidChangeNotification object:nil];
+        if ([defaults synchronize]) {
+            NSString *notificationName = ([(id)key isEqualToString:BPSettingsLanguageKey] ? BPLanguageDidChangeNotification : BPSettingsDidChangeNotification);
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self userInfo:@{key: obj}];
+        }
     }
     
 }

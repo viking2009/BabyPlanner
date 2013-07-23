@@ -14,6 +14,8 @@
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
 		902B71DD179DB14D001810D8 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 902B71DC179DB14D001810D8 /* BPSettings.m */; };
+		902E86CE179F275700186731 /* BPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86CD179F275700186731 /* BPLanguageManager.m */; };
+		902E86D5179F34F300186731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902E86D7179F34F300186731 /* Localizable.strings */; };
 		903452F2179461AB001B397B /* Crickets.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452ED179461AB001B397B /* Crickets.caf */; };
 		903452F3179461AB001B397B /* Digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EE179461AB001B397B /* Digital.caf */; };
 		903452F4179461AB001B397B /* Marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EF179461AB001B397B /* Marimba.caf */; };
@@ -117,6 +119,11 @@
 		902B71DB179DB14D001810D8 /* BPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettings.h; sourceTree = "<group>"; };
 		902B71DC179DB14D001810D8 /* BPSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettings.m; sourceTree = "<group>"; };
 		902B71DF179DB8CC001810D8 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		902E86CC179F275700186731 /* BPLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguageManager.h; sourceTree = "<group>"; };
+		902E86CD179F275700186731 /* BPLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguageManager.m; sourceTree = "<group>"; };
+		902E86D4179F34DB00186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		902E86D6179F34F300186731 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		902E86D8179F34F700186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		903452ED179461AB001B397B /* Crickets.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crickets.caf; sourceTree = "<group>"; };
 		903452EE179461AB001B397B /* Digital.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digital.caf; sourceTree = "<group>"; };
 		903452EF179461AB001B397B /* Marimba.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marimba.caf; sourceTree = "<group>"; };
@@ -278,6 +285,8 @@
 			children = (
 				902B71DB179DB14D001810D8 /* BPSettings.h */,
 				902B71DC179DB14D001810D8 /* BPSettings.m */,
+				902E86CC179F275700186731 /* BPLanguageManager.h */,
+				902E86CD179F275700186731 /* BPLanguageManager.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -560,6 +569,7 @@
 			children = (
 				90E881B1177872C300682BB3 /* BPImages.bundle */,
 				90EB9E2C17079021008457A3 /* InfoPlist.strings */,
+				902E86D7179F34F300186731 /* Localizable.strings */,
 				90EB9E79170798C0008457A3 /* fonts */,
 				90EB9E32170790AE008457A3 /* images */,
 				903452EC179461AB001B397B /* sounds */,
@@ -816,6 +826,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 90EB9DF117078C45008457A3;
 			productRefGroup = 90EB9DFB17078C45008457A3 /* Products */;
@@ -867,6 +878,7 @@
 				90EB9EDC1707B126008457A3 /* symptom_6@2x.png in Resources */,
 				90EB9EDD1707B126008457A3 /* symptom_7.png in Resources */,
 				90EB9EDE1707B126008457A3 /* symptom_7@2x.png in Resources */,
+				902E86D5179F34F300186731 /* Localizable.strings in Resources */,
 				90EB9EDF1707B126008457A3 /* symptom_8.png in Resources */,
 				90EB9EE01707B126008457A3 /* symptom_8@2x.png in Resources */,
 				90EB9EE11707B126008457A3 /* symptom_9.png in Resources */,
@@ -900,6 +912,7 @@
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
+				902E86CE179F275700186731 /* BPLanguageManager.m in Sources */,
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
@@ -935,10 +948,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		902E86D7179F34F300186731 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				902E86D6179F34F300186731 /* en */,
+				902E86D8179F34F700186731 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		90EB9E2C17079021008457A3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				90EB9E2D17079021008457A3 /* en */,
+				902E86D4179F34DB00186731 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

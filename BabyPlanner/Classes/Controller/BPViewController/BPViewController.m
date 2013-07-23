@@ -42,7 +42,6 @@
     if (!self.navigationItem.hidesBackButton) {
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.backButton setBackgroundImage:[BPUtils imageNamed:@"navigationbar_backButton"] forState:UIControlStateNormal];
-        [self.backButton setTitle:BPLocalizedString(@"Back") forState:UIControlStateNormal];
         self.backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8.f, 0, 0);
         self.backButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
         self.backButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
@@ -61,12 +60,9 @@
     self.titleLabel.textColor = RGB(255, 255, 255);
     self.titleLabel.shadowColor = RGBA(0, 0, 0, 0.29);
     self.titleLabel.shadowOffset = CGSizeMake(-1, -1);
-    self.titleLabel.text = BPLocalizedString(self.title);
     [self.view addSubview:self.titleLabel];
     
-    DLog(@"self.titleLabel = %@", self.titleLabel.font);
-    
-    DLog(@"self.view = %@", self.view);
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +74,16 @@
 - (void)goBack
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - BPBaseViewController
+
+- (void)updateUI
+{
+    [super updateUI];
+    
+    [self.backButton setTitle:BPLocalizedString(@"Back") forState:UIControlStateNormal];
+    self.titleLabel.text = BPLocalizedString(self.title);
 }
 
 @end

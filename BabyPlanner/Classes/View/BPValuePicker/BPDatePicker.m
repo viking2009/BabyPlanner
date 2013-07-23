@@ -8,6 +8,7 @@
 
 #import "BPDatePicker.h"
 #import "NSDate-Utilities.h"
+#import "BPLanguageManager.h"
 
 #define BPYearRadius 50
 
@@ -120,6 +121,8 @@
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
     }
+    
+    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
     
     switch (component) {
         case 0:

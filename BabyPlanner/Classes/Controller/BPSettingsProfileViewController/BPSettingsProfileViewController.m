@@ -62,9 +62,8 @@
     if (self) {
         // Custom initialization
         self.title = @"My Profile";
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange) name:BPSettingsDidChangeNotification object:nil];
     }
+    
     return self;
 }
 
@@ -225,26 +224,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)updateUI
 {
+    [super updateUI];
+    
     self.selectLabel.text = BPLocalizedString(@"Hello!");
 
     self.nameLabel.text = BPLocalizedString(@"Name");
-    self.birthdayLabel.text = BPLocalizedString(@"Date of birth");
+    self.birthdayLabel.text = BPLocalizedString(@"Birthday");
     self.weightLabel.text = BPLocalizedString(@"Weight");
     self.heightLabel.text = BPLocalizedString(@"Height");
     self.kgLabel.text = BPLocalizedString(@"kg");
     self.cmLabel.text = BPLocalizedString(@"cm");
-    self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
    
     self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
     self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");
-    
+
+    self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
+
     self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
     self.childBirthButton.subtitleLabel.text = BPLocalizedString(@"Childbirth");
 

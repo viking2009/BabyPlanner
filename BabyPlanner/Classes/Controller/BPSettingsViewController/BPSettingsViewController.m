@@ -15,6 +15,7 @@
 #import "BPSettingsAlarmViewController.h"
 #import "BPSettingsProfileViewController.h"
 #import "BPSettings.h"
+#import "BPLanguageManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -37,8 +38,6 @@
         self.title = @"Settings";
         [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_settings_selected"]
                       withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_settings_unselected"]];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChange) name:BPSettingsDidChangeNotification object:nil];
     }
     return self;
 }
@@ -74,17 +73,13 @@
 
 - (void)loadData
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    NSString *language = sharedSettings[BPSettingsLanguageKey];
-    if (!language) {
-        language = @"English";
-        sharedSettings[BPSettingsLanguageKey] = language;
-    }
-    
+    NSString *language = [BPLanguageManager sharedManager].currentLanguage;
+    DLog(@"language = %@", language);
+
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Mesurement"), @"subtitle" : @"C"}],
-                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : language},
+                     @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @"C"}],
+                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : BPLocalizedString(language)},
                      @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @"Off"},
                      @{@"title": BPLocalizedString(@"My Profile"), @"subtitle" : @""}],
@@ -93,13 +88,10 @@
 
 - (void)updateUI
 {
+    [super updateUI];
+
     [self loadData];
     [self.collectionView reloadData];
-}
-
-- (void)settingsDidChange
-{
-    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,8 +102,6 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     self.collectionView.dataSource = nil;
     self.collectionView.delegate = nil;
 }
