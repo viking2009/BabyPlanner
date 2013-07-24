@@ -9,13 +9,15 @@
 #import "BPSettingsThemeViewController.h"
 #import "BPUtils.h"
 #import "BPThemeCell.h"
+#import "BPThemeManager.h"
+#import "BPSettings.h"
 
 #define BPThemeCellIdentifier @"BPThemeCellIdentifier"
 
 @interface BPSettingsThemeViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSArray *themes;
 
 @end
 
@@ -36,13 +38,13 @@
 	// Do any additional setup after loading the view.
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-	[collectionViewFlowLayout setItemSize:CGSizeMake(BPThemeDefaultImageWidth, BPThemeDefaultImageHeight)];
+	[collectionViewFlowLayout setItemSize:CGSizeMake(BPThemeDefaultImageWidth, BPThemeDefaultImageHeight + BPThemeDefaultTitleHeight)];
 	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
 	//[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320, 50)];
 	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
 	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
 	[collectionViewFlowLayout setMinimumLineSpacing:20];
-	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
+	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 0, 10, 0)];
     
     CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
     
@@ -55,7 +57,7 @@
     
     [self.collectionView registerClass:[BPThemeCell class] forCellWithReuseIdentifier:BPThemeCellIdentifier];
 
-    [self loadData];
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,9 +66,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadData
+- (void)updateUI
 {
-    self.data = @[@{@"name": @"test"}, @{@"name": @"test1"}, @{@"name": @"test2"}, @{@"name": @"test3"}, @{@"name": @"test4"}];
+    [super updateUI];
+
+    self.themes = [BPThemeManager sharedManager].supportedThemes;
+    [self.collectionView reloadData];
+    
+    NSUInteger selectedThemeIndex = [self.themes indexOfObject:[BPThemeManager sharedManager].currentTheme];
+    if (selectedThemeIndex != NSNotFound) {
+        NSIndexPath *selectedPath = [NSIndexPath indexPathForItem:selectedThemeIndex inSection:0];
+        [self.collectionView selectItemAtIndexPath:selectedPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    }
 }
 
 
@@ -79,27 +90,18 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_data count];
+    return [_themes count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BPThemeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPThemeCellIdentifier forIndexPath:indexPath];
 
-    NSDictionary *dataItem = _data[indexPath.item];
-//    NSString *normalImageName = [NSString stringWithFormat:@"theme%i_normal", indexPath.item + 1];
-//    NSString *selectedImageName = [NSString stringWithFormat:@"theme%i_selected", indexPath.item + 1];
-    NSString *normalImageName = @"theme1_normal";
-    NSString *selectedImageName = @"theme1_selected";
-    cell.imageView.image = [BPUtils imageNamed:normalImageName];
-    cell.imageView.highlightedImage = [BPUtils imageNamed:selectedImageName];
-    
-    // TODO: add support for real value
-    if ([dataItem[@"name"] isEqualToString:@"test"]) {
-//        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-//        [cell setSelected:YES];
-    }
-    
+    NSString *theme = _themes[indexPath.item];
+    cell.imageView.image = [[BPThemeManager sharedManager] iconImageForTheme:theme highlighted:NO];
+    cell.imageView.highlightedImage = [[BPThemeManager sharedManager] iconImageForTheme:theme highlighted:YES];
+    cell.titleLabel.text = theme;
+
     return cell;
 }
 
@@ -109,8 +111,8 @@
 {
     DLog(@"indexPath = %@", indexPath);
     
-    // TODO: change UI appearance
-
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    sharedSettings[BPSettingsThemeKey] = _themes[indexPath.item];
 }
 
 //#pragma mark - UICollectionViewDelegateFlowLayout

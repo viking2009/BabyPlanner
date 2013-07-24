@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define BPThemeDefaultImageWidth 144.f
-#define BPThemeDefaultImageHeight 136.f
+#define BPThemeDefaultImageWidth 106.f
+#define BPThemeDefaultImageHeight 112.f
+#define BPThemeDefaultTitleHeight 28.f
 
 @interface BPThemeCell : UICollectionViewCell
 

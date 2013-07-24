@@ -16,6 +16,7 @@
 		902B71DD179DB14D001810D8 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 902B71DC179DB14D001810D8 /* BPSettings.m */; };
 		902E86CE179F275700186731 /* BPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86CD179F275700186731 /* BPLanguageManager.m */; };
 		902E86D5179F34F300186731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902E86D7179F34F300186731 /* Localizable.strings */; };
+		902E86DB179F461900186731 /* BPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86DA179F461900186731 /* BPThemeManager.m */; };
 		903452F2179461AB001B397B /* Crickets.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452ED179461AB001B397B /* Crickets.caf */; };
 		903452F3179461AB001B397B /* Digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EE179461AB001B397B /* Digital.caf */; };
 		903452F4179461AB001B397B /* Marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EF179461AB001B397B /* Marimba.caf */; };
@@ -124,6 +125,8 @@
 		902E86D4179F34DB00186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		902E86D6179F34F300186731 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		902E86D8179F34F700186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		902E86D9179F461900186731 /* BPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeManager.h; sourceTree = "<group>"; };
+		902E86DA179F461900186731 /* BPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPThemeManager.m; sourceTree = "<group>"; };
 		903452ED179461AB001B397B /* Crickets.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crickets.caf; sourceTree = "<group>"; };
 		903452EE179461AB001B397B /* Digital.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digital.caf; sourceTree = "<group>"; };
 		903452EF179461AB001B397B /* Marimba.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marimba.caf; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				902B71DC179DB14D001810D8 /* BPSettings.m */,
 				902E86CC179F275700186731 /* BPLanguageManager.h */,
 				902E86CD179F275700186731 /* BPLanguageManager.m */,
+				902E86D9179F461900186731 /* BPThemeManager.h */,
+				902E86DA179F461900186731 /* BPThemeManager.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -914,6 +919,7 @@
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
 				902E86CE179F275700186731 /* BPLanguageManager.m in Sources */,
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
+				902E86DB179F461900186731 /* BPThemeManager.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,

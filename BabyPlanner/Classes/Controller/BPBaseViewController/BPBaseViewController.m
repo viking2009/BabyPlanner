@@ -11,6 +11,7 @@
 
 #import "BPLanguageManager.h"
 #import "BPSettings.h"
+#import "BPThemeManager.h"
 
 @interface BPBaseViewController ()
 
@@ -26,10 +27,10 @@
     if (self) {
         DLog(@"%@", [self class]);
         self.wantsFullScreenLayout = YES;
-        self.backgroundImage = [UIImage imageNamed:@"Default-568h"];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageDidChanged:) name:BPLanguageDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidChanged:) name:BPSettingsDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(themeDidChanged:) name:BPThemeDidChangeNotification object:nil];
     }
     return self;
 }
@@ -76,8 +77,11 @@
 
 - (void)updateUI
 {
-    // set nav + tabbar
+    // localization
     self.tabBarItem.title = BPLocalizedString(self.title);
+    
+    // theming
+    self.backgroundImage = [BPThemeManager sharedManager].backgroundImage;
 }
 
 - (void)languageDidChanged:(NSNotification *)notification
@@ -90,5 +94,9 @@
     [self updateUI];
 }
 
+- (void)themeDidChanged:(NSNotification *)notification
+{
+    [self updateUI];
+}
 
 @end

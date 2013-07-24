@@ -16,5 +16,6 @@
 
 - (void)languageDidChanged:(NSNotification *)notification;
 - (void)settingsDidChanged:(NSNotification *)notification;
+- (void)themeDidChanged:(NSNotification *)notification;
 
 @end

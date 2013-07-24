@@ -8,6 +8,7 @@
 
 #import "BPSettings.h"
 #import "BPLanguageManager.h"
+#import "BPThemeManager.h"
 
 NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotification";
 
@@ -48,7 +49,12 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
         [defaults setObject:obj forKey:keyString];
         
         if ([defaults synchronize]) {
-            NSString *notificationName = ([(id)key isEqualToString:BPSettingsLanguageKey] ? BPLanguageDidChangeNotification : BPSettingsDidChangeNotification);
+            NSString *notificationName = BPSettingsDidChangeNotification;
+            if ([(id)key isEqualToString:BPSettingsLanguageKey])
+                notificationName = BPLanguageDidChangeNotification;
+            else if ([(id)key isEqualToString:BPSettingsThemeKey])
+                notificationName = BPThemeDidChangeNotification;
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self userInfo:@{key: obj}];
         }
     }

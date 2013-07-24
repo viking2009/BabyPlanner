@@ -16,14 +16,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[UIImageView alloc] init];
-//        self.imageView.contentMode = UIViewContentModeRight;
+        self.imageView.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:self.imageView];
 
-//        self.titleLabel = [[UILabel alloc] init];
-//        self.titleLabel.backgroundColor = [UIColor clearColor];
-//        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-//        self.titleLabel.textColor = RGB(0, 0, 0);
-//        [self.contentView addSubview:self.titleLabel];
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        self.titleLabel.textColor = RGB(0, 0, 0);
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:self.titleLabel];
         
     }
     return self;
@@ -32,12 +33,35 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+
+    CGRect rect = self.contentView.bounds;
     
-//    self.titleLabel.frame = CGRectMake(BPDefaultCellInset, 0,
-//                                       self.contentView.frame.size.width - BPDefaultSwitchWidth - 3*BPDefaultCellInset,
-//                                       self.contentView.frame.size.height);
+    rect.size.height -= BPThemeDefaultTitleHeight;
+    self.imageView.frame = rect;
     
-    self.imageView.frame = self.contentView.bounds;
+    rect.origin.y = rect.size.height;
+    rect.size.height = BPThemeDefaultTitleHeight;
+    self.titleLabel.frame = rect;
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    
+    if (highlighted)
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+    else
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    if (selected)
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+    else
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
 }
 
 @end

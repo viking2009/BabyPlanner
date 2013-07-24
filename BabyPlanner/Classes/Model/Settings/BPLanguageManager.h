@@ -12,11 +12,11 @@ extern NSString *const BPLanguageDidChangeNotification;
 
 @interface BPLanguageManager : NSObject
 
++ (BPLanguageManager *)sharedManager;
+
 @property (nonatomic, strong) NSString* currentLanguage;
 @property (nonatomic, readonly) NSLocale* currentLocale;
 @property (nonatomic, readonly) NSArray* supportedLanguages;
-
-+ (BPLanguageManager *)sharedManager;
 
 - (NSString *)localizedStringForKey:(NSString *)key;
 

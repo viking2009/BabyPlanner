@@ -8,6 +8,7 @@
 
 #import "BPViewController.h"
 #import "BPUtils.h"
+#import "BPThemeManager.h"
 
 @interface BPViewController ()
 
@@ -36,12 +37,10 @@
 	// Do any additional setup after loading the view.
     
     self.navigationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20.f, self.view.bounds.size.width, 47.f)];
-    self.navigationImageView.image = [BPUtils imageNamed:@"navigationbar_background"];
     [self.view addSubview:self.navigationImageView];
     
     if (!self.navigationItem.hidesBackButton) {
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.backButton setBackgroundImage:[BPUtils imageNamed:@"navigationbar_backButton"] forState:UIControlStateNormal];
         self.backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8.f, 0, 0);
         self.backButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
         self.backButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
@@ -82,8 +81,13 @@
 {
     [super updateUI];
     
+    // localization
     [self.backButton setTitle:BPLocalizedString(@"Back") forState:UIControlStateNormal];
     self.titleLabel.text = BPLocalizedString(self.title);
+    
+    // theming
+    self.navigationImageView.image = [[BPThemeManager sharedManager] navigationBarBackgroundImage];
+    [self.backButton setBackgroundImage:[[BPThemeManager sharedManager] navigationBarBackButtonImage] forState:UIControlStateNormal];
 }
 
 @end

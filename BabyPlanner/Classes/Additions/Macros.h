@@ -13,6 +13,7 @@
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
 #define BPSettingsLanguageKey               @"language"
+#define BPSettingsThemeKey                  @"theme"
 
 #define BPSettingsProfileNameKey            @"profile.name"
 #define BPSettingsProfileBirthdayKey        @"profile.birthday"
