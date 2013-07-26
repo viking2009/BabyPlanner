@@ -12,8 +12,10 @@
 #define BPSettingsToolbarHeight             44.f
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
-#define BPSettingsLanguageKey               @"language"
-#define BPSettingsThemeKey                  @"theme"
+#define BPSettingsShowTemperatureKey        @"settings.showTemperature"
+#define BPSettingsMetricKey                 @"settings.metric"
+#define BPSettingsLanguageKey               @"settings.language"
+#define BPSettingsThemeKey                  @"settings.theme"
 
 #define BPSettingsProfileNameKey            @"profile.name"
 #define BPSettingsProfileBirthdayKey        @"profile.birthday"
@@ -23,7 +25,7 @@
 #define BPSettingsProfileLengthOfCycleKey           @"profile.lengthOfCycle"
 #define BPSettingsProfileLastMenstruationDateKey    @"profile.lastMenstruation"
 
-#define BPSettingsProfileIsPregnantKey      @"profile.isPregnant"
+#define BPSettingsProfileIsPregnantKey              @"profile.isPregnant"
 
 #define BPSettingsProfileLastOvulationDateKey       @"profile.lastOvulation"
 #define BPSettingsProfileChildBirthdayKey           @"profile.childBirthday"

@@ -102,6 +102,9 @@
 		90EB9EE41707B126008457A3 /* symptoms_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EC41707B126008457A3 /* symptoms_selected@2x.png */; };
 		90EB9EE71707BA52008457A3 /* nav_back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EE51707BA52008457A3 /* nav_back_button.png */; };
 		90EB9EE81707BA52008457A3 /* nav_back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EE61707BA52008457A3 /* nav_back_button@2x.png */; };
+		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
+		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
+		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,8 +126,8 @@
 		902E86CC179F275700186731 /* BPLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguageManager.h; sourceTree = "<group>"; };
 		902E86CD179F275700186731 /* BPLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguageManager.m; sourceTree = "<group>"; };
 		902E86D4179F34DB00186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		902E86D6179F34F300186731 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		902E86D8179F34F700186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		902E86D6179F34F300186731 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		902E86D8179F34F700186731 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		902E86D9179F461900186731 /* BPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeManager.h; sourceTree = "<group>"; };
 		902E86DA179F461900186731 /* BPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPThemeManager.m; sourceTree = "<group>"; };
 		903452ED179461AB001B397B /* Crickets.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crickets.caf; sourceTree = "<group>"; };
@@ -247,6 +250,12 @@
 		90EB9EC41707B126008457A3 /* symptoms_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symptoms_selected@2x.png"; sourceTree = "<group>"; };
 		90EB9EE51707BA52008457A3 /* nav_back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_back_button.png; sourceTree = "<group>"; };
 		90EB9EE61707BA52008457A3 /* nav_back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back_button@2x.png"; sourceTree = "<group>"; };
+		90F3562617A20B7C00E0261B /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
+		90F3562717A20B7C00E0261B /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
+		90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
+		90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
+		90F3562D17A20BF400E0261B /* BPSegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSegmentCell.h; sourceTree = "<group>"; };
+		90F3562E17A20BF400E0261B /* BPSegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSegmentCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +487,7 @@
 				90BA0669178D4AD80045AB24 /* BPTextField */,
 				90BA066D178D4C5B0045AB24 /* BPLabel */,
 				90BA0671178D4E770045AB24 /* BPSelectButton */,
+				90F3562C17A20BD600E0261B /* BPSegmentCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -739,6 +749,7 @@
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				90F3562517A20B7C00E0261B /* SVSegmentedControl */,
 				907BA9551779AC97005944D6 /* NSDate-Utilities */,
 				907BA94F1779A3A4005944D6 /* DSTPickerView */,
 				90E881CF1778BA2600682BB3 /* TTSwitch */,
@@ -793,6 +804,26 @@
 				90EB9EC41707B126008457A3 /* symptoms_selected@2x.png */,
 			);
 			path = symptoms_and_mood;
+			sourceTree = "<group>";
+		};
+		90F3562517A20B7C00E0261B /* SVSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				90F3562617A20B7C00E0261B /* SVSegmentedControl.h */,
+				90F3562717A20B7C00E0261B /* SVSegmentedControl.m */,
+				90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */,
+				90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */,
+			);
+			path = SVSegmentedControl;
+			sourceTree = "<group>";
+		};
+		90F3562C17A20BD600E0261B /* BPSegmentCell */ = {
+			isa = PBXGroup;
+			children = (
+				90F3562D17A20BF400E0261B /* BPSegmentCell.h */,
+				90F3562E17A20BF400E0261B /* BPSegmentCell.m */,
+			);
+			path = BPSegmentCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -913,6 +944,8 @@
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				902B71DD179DB14D001810D8 /* BPSettings.m in Sources */,
+				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
+				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
 				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
@@ -944,6 +977,7 @@
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
+				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,

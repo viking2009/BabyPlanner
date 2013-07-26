@@ -9,6 +9,7 @@
 #import "BPSettingsViewController.h"
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
+#import "BPSegmentCell.h"
 #import "BPSettingsCell.h"
 #import "BPSettingsLanguageViewController.h"
 #import "BPSettingsThemeViewController.h"
@@ -18,8 +19,9 @@
 #import "BPLanguageManager.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
+#define BPSegmentCellIdentifier @"BPSegmentCellIdentifier"
+#define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
 
 @interface BPSettingsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
@@ -65,8 +67,9 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
+    [self.collectionView registerClass:[BPSegmentCell class] forCellWithReuseIdentifier:BPSegmentCellIdentifier];
+    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
 
     [self loadData];
 }
@@ -78,7 +81,7 @@
 
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @"C"}],
+                     @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @""}],
                   @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : BPLocalizedString(language)},
                      @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @"Off"},
@@ -185,6 +188,8 @@
     UICollectionViewCell *cell;
     if (indexPath.section == 0 && indexPath.item == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
+    } else if (indexPath.section == 0 && indexPath.item == 1) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSegmentCellIdentifier forIndexPath:indexPath];
     } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsCellIdentifier forIndexPath:indexPath];
     }
@@ -208,8 +213,17 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
-        switchCell.toggleView.on = [sharedSettings[@"showTemperature"] boolValue];
-    } else {
+        switchCell.toggleView.on = [sharedSettings[BPSettingsShowTemperatureKey] boolValue];
+    } else if (indexPath.section == 0 && indexPath.item == 1) {
+        BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
+        segmentCell.titleLabel.text = dataItem[@"title"];
+        segmentCell.segmentView = [[SVSegmentedControl alloc] initWithSectionTitles:@[BPLocalizedString(@"U.S."), BPLocalizedString(@"Metric")]];
+        [segmentCell.segmentView setSelectedSegmentIndex:[sharedSettings[BPSettingsMetricKey] integerValue] animated:NO];
+        segmentCell.segmentView.changeHandler = ^(NSUInteger newIndex) {
+            BPSettings *sharedSettings = [BPSettings sharedSettings];
+            sharedSettings[BPSettingsMetricKey] = @(newIndex);
+        };
+    } else{
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
         settingsCell.titleLabel.text = dataItem[@"title"];
         settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
@@ -294,7 +308,7 @@
 {
     DLog(@"%s %i", __PRETTY_FUNCTION__, cell.toggleView.on);
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[@"showTemperature"] = @(cell.toggleView.on);
+    sharedSettings[BPSettingsShowTemperatureKey] = @(cell.toggleView.on);
 }
 
 @end

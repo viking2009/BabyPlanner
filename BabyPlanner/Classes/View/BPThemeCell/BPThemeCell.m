@@ -25,7 +25,6 @@
         self.titleLabel.textColor = RGB(0, 0, 0);
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.titleLabel];
-        
     }
     return self;
 }
