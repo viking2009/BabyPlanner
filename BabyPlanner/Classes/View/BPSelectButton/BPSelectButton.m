@@ -108,7 +108,7 @@
 
 - (CGRect)subtitleRectForContentRect:(CGRect)contentRect
 {
-    contentRect.origin.y = contentRect.size.height - BPSelectButtonImageOffset;
+    contentRect.origin.y = contentRect.size.height - BPSelectButtonImageOffset - 1.f;
     contentRect.size.height = BPSelectButtonImageOffset;
 
     return contentRect;

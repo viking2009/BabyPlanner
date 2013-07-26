@@ -142,9 +142,7 @@
 		i++;
 	}
 	
-    if ([self.thumbRects count]) {
-        self.thumb.frame = [[self.thumbRects objectAtIndex:self.selectedSegmentIndex] CGRectValue];
-    }
+    self.thumb.frame = [[self.thumbRects objectAtIndex:self.selectedSegmentIndex] CGRectValue];
     self.thumb.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.thumb.bounds cornerRadius:2].CGPath;
     self.thumb.font = self.font;
     
@@ -464,9 +462,7 @@
         }
         
         else {
-            if ([self.thumbRects count]) {
-                self.thumb.frame = [[self.thumbRects objectAtIndex:index] CGRectValue];
-            }
+            self.thumb.frame = [[self.thumbRects objectAtIndex:index] CGRectValue];
             [self activate];
         }
     }

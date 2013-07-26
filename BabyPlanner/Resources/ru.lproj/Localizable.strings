@@ -51,13 +51,13 @@
 "kg" = "кг";
 "cm" = "см";
 
-"Length of my cycle" = "Длина моего цикла";
-"Last menstruation" = "Последняя менструация";
+"Length of my cycle" = "Длина цикла";
+"Last menstruation" = "Менструация";
 
 "Pregnancy" = "Беременность";
 
 "Ovulation" = "Овуляция";
-"Childbirth" = "Роды";
+"Childbirth" = "Дата родов";
 
 "Hello!" = "Привет!";
 

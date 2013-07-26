@@ -17,7 +17,7 @@
 #import "NSDate-Utilities.h"
 
 #define BPProfileControlsSpacing 5.f
-#define BPProfileControlsMargin 15.f
+#define BPProfileControlsMargin 10.f
 #define BPProfileLabelWidth 90.f
 #define BPProfileLabelSmallWidth 40.f
 #define BPProfileTextFieldSmallWidth 100.f
@@ -169,9 +169,7 @@
     UIImage *checkBoxNormalImage = [BPUtils imageNamed:@"checkbox_normal"];
     UIImage *checkBoxSelectedImage = [BPUtils imageNamed:@"checkbox_selected"];
     
-    self.pregnancyLabel = [[BPLabel alloc] initWithFrame:CGRectMake(BPProfileControlsMargin, top, BPProfileLabelWidth, checkBoxNormalImage.size.height)];
-
-    left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
+    left = self.heightTextField.frame.origin.x + self.heightTextField.frame.size.width - checkBoxNormalImage.size.width;
     self.pregnancyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.pregnancyButton.frame = CGRectMake(left, top, checkBoxNormalImage.size.width, checkBoxNormalImage.size.height);
     [self.pregnancyButton setBackgroundImage:checkBoxNormalImage forState:UIControlStateNormal];
@@ -179,6 +177,9 @@
     [self.pregnancyButton setBackgroundImage:checkBoxSelectedImage forState:UIControlStateSelected];
     self.pregnancyButton.adjustsImageWhenHighlighted = NO;
     [self.pregnancyButton addTarget:self action:@selector(togglePregnancy:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.pregnancyLabel = [[BPLabel alloc] initWithFrame:CGRectMake(BPProfileControlsMargin, top, self.pregnancyButton.frame.origin.x - BPProfileControlsSpacing - BPProfileControlsMargin, checkBoxNormalImage.size.height)];
+    
     top += self.pregnancyButton.frame.size.height + BPProfileControlsSpacing;
     
     self.lastOvulationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
