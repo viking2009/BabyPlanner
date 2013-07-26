@@ -8,6 +8,7 @@
 
 #import "BPLanguageManager.h"
 #import "BPSettings.h"
+#import "BPUtils.h"
 
 NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotification";
 
@@ -37,12 +38,12 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
     return sharedSettings[BPSettingsLanguageKey];
 }
 
-- (void)setCurrentLanguage:(NSString *)newLanguage
+- (void)setCurrentLanguage:(NSString *)aLanguage
 {
     _currentLocale = nil;
 
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsLanguageKey] = newLanguage;
+    sharedSettings[BPSettingsLanguageKey] = aLanguage;
 }
 
 - (NSLocale *)currentLocale
@@ -57,6 +58,26 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 - (NSArray *)supportedLanguages
 {
     return @[@"en", @"ru"];
+}
+
+- (NSUInteger)currentMetric
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    if (!sharedSettings[BPSettingsMetricKey])
+        sharedSettings[BPSettingsMetricKey] = @([self.supportedLanguages indexOfObject:self.currentLanguage]);
+    
+    return [sharedSettings[BPSettingsMetricKey] unsignedIntegerValue];
+}
+
+- (void)setCurrentMetric:(NSUInteger)aMetric
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    sharedSettings[BPSettingsMetricKey] = @(aMetric);
+}
+
+- (NSArray *)supportedMetrics
+{
+    return @[BPLocalizedString(@"U.S."), BPLocalizedString(@"Metric")];
 }
 
 - (NSString *)localizedStringForKey:(NSString *)key

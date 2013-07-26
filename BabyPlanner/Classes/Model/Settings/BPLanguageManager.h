@@ -17,6 +17,8 @@ extern NSString *const BPLanguageDidChangeNotification;
 @property (nonatomic, strong) NSString* currentLanguage;
 @property (nonatomic, readonly) NSLocale* currentLocale;
 @property (nonatomic, readonly) NSArray* supportedLanguages;
+@property (nonatomic, assign) NSUInteger currentMetric;
+@property (nonatomic, readonly) NSArray* supportedMetrics;
 
 - (NSString *)localizedStringForKey:(NSString *)key;
 

@@ -10,6 +10,9 @@
 #import "BPLanguageManager.h"
 #import "BPThemeManager.h"
 
+#define BPMultiplierKg2Lb 2.20462262
+#define BPMultiplierCm2Ft 0.032808399
+
 NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotification";
 
 @implementation BPSettings
@@ -33,7 +36,19 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
         return nil;
     
     NSString *keyString = [NSString stringWithFormat:@"%@.%@", NSStringFromClass([self class]), [key description]];
-    return [[NSUserDefaults standardUserDefaults] objectForKey:keyString];
+    id result = [[NSUserDefaults standardUserDefaults] objectForKey:keyString];
+
+    if ([key isEqualToString:BPSettingsProfileWeightKey]) {
+        float weight = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierKg2Lb : 1);
+        result = @((int)(weight * 10)/10.f);
+    } else if ([key isEqualToString:BPSettingsProfileHeightKey]) {
+        float height = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierCm2Ft : 1);
+        result = @((int)(height * 10)/10.f);
+    }
+    
+    DLog(@"result = %@", result)
+    
+    return result;
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id<NSCopying>)key
@@ -45,6 +60,14 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     if (![obj isEqual:oldObj]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *keyString = [NSString stringWithFormat:@"%@.%@", NSStringFromClass([self class]), [(id)key description]];
+        
+        if ([(id)key isEqualToString:BPSettingsProfileWeightKey]) {
+            float weight = [obj floatValue] / ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierKg2Lb : 1);
+            obj = @(weight);
+        } else if ([(id)key isEqualToString:BPSettingsProfileHeightKey]) {
+            float height = [obj floatValue] / ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierCm2Ft : 1);
+            obj = @(height);
+        }
         
         [defaults setObject:obj forKey:keyString];
         

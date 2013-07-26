@@ -235,8 +235,8 @@
     self.birthdayLabel.text = BPLocalizedString(@"Birthday");
     self.weightLabel.text = BPLocalizedString(@"Weight");
     self.heightLabel.text = BPLocalizedString(@"Height");
-    self.kgLabel.text = BPLocalizedString(@"kg");
-    self.cmLabel.text = BPLocalizedString(@"cm");
+    self.kgLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"lb") : BPLocalizedString(@"kg"));
+    self.cmLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"ft") : BPLocalizedString(@"cm"));
    
     self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
     self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");

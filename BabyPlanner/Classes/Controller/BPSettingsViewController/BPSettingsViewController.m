@@ -77,8 +77,8 @@
 - (void)loadData
 {
     NSString *language = [BPLanguageManager sharedManager].currentLanguage;
-    DLog(@"language = %@", language);
-
+    DLog(@"language: %@", language);
+    
     self.data = @[
                   @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @""}],
@@ -217,11 +217,10 @@
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
         segmentCell.titleLabel.text = dataItem[@"title"];
-        segmentCell.segmentView = [[SVSegmentedControl alloc] initWithSectionTitles:@[BPLocalizedString(@"U.S."), BPLocalizedString(@"Metric")]];
-        [segmentCell.segmentView setSelectedSegmentIndex:[sharedSettings[BPSettingsMetricKey] integerValue] animated:NO];
+        segmentCell.segmentView = [[SVSegmentedControl alloc] initWithSectionTitles:[[BPLanguageManager sharedManager] supportedMetrics]];
+        [segmentCell.segmentView setSelectedSegmentIndex:[[BPLanguageManager sharedManager] currentMetric] animated:NO];
         segmentCell.segmentView.changeHandler = ^(NSUInteger newIndex) {
-            BPSettings *sharedSettings = [BPSettings sharedSettings];
-            sharedSettings[BPSettingsMetricKey] = @(newIndex);
+            [BPLanguageManager sharedManager].currentMetric = newIndex;
         };
     } else{
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
@@ -254,7 +253,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"indexPath = %@", indexPath);
     if (indexPath.section == 1) {
         switch (indexPath.item) {
             case 0:
@@ -306,7 +304,6 @@
 
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
-    DLog(@"%s %i", __PRETTY_FUNCTION__, cell.toggleView.on);
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     sharedSettings[BPSettingsShowTemperatureKey] = @(cell.toggleView.on);
 }

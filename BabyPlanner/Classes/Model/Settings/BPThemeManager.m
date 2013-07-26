@@ -41,10 +41,10 @@ NSString *const BPThemeDidChangeNotification = @"BPThemeDidChangeNotification";
     return sharedSettings[BPSettingsThemeKey];
 }
 
-- (void)setCurrentTheme:(NSString *)newTheme
+- (void)setCurrentTheme:(NSString *)aTheme
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsThemeKey] = newTheme;
+    sharedSettings[BPSettingsThemeKey] = aTheme;
 }
 
 - (NSArray *)supportedThemes

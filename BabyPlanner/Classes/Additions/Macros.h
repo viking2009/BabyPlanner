@@ -12,10 +12,10 @@
 #define BPSettingsToolbarHeight             44.f
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
-#define BPSettingsShowTemperatureKey        @"settings.showTemperature"
-#define BPSettingsMetricKey                 @"settings.metric"
-#define BPSettingsLanguageKey               @"settings.language"
-#define BPSettingsThemeKey                  @"settings.theme"
+#define BPSettingsShowTemperatureKey        @"showTemperature"
+#define BPSettingsMetricKey                 @"metric"
+#define BPSettingsLanguageKey               @"language"
+#define BPSettingsThemeKey                  @"theme"
 
 #define BPSettingsProfileNameKey            @"profile.name"
 #define BPSettingsProfileBirthdayKey        @"profile.birthday"
