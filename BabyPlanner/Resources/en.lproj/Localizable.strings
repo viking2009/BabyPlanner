@@ -11,6 +11,11 @@
 
 /* BPMyTemperatureViewController */
 "My Temperature" = "My Temperature";
+"Temperature" = "Temperature";
+"Menstruation" = "Menstruation";
+"Sexual intercourse" = "Sexual intercourse";
+"Symptoms and mood" = "Symptoms and mood";
+"Notations" = "Notations";
 
 /* BPMyChartsViewController */
 "My Charts" = "My Charts";
