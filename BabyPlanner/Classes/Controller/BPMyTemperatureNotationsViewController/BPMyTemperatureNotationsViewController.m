@@ -36,8 +36,8 @@
     
     self.notesView = [[UITextView alloc] initWithFrame:notesViewRect];
     self.notesView.backgroundColor = [UIColor clearColor];
-//    self.notesView.contentInset = UIEdgeInsetsMake(40, 0, 20, 0);
-//    self.notesView.scrollIndicatorInsets = UIEdgeInsetsMake(40, 0, 20, 0);
+    self.notesView.contentInset = UIEdgeInsetsMake(40, 0, 20, 0);
+    self.notesView.scrollIndicatorInsets = self.notesView.contentInset;
     self.notesView.font = [UIFont fontWithName:@"Gabriola" size:23];
     self.notesView.textAlignment = NSTextAlignmentCenter;
 //    self.notesView.delegate = self;
@@ -45,7 +45,7 @@
     
     UIImageView *notesHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notes_header"]];
     notesHeader.frame = CGRectMake(self.notesView.frame.origin.x, self.notesView.frame.origin.y, notesHeader.image.size.width, notesHeader.image.size.height);
-    [self.view addSubview:notesHeader];
+    [self.view insertSubview:notesHeader atIndex:1];
     
     [[EKKeyboardAvoidingScrollViewManager sharedInstance] registerScrollViewForKeyboardAvoiding:self.notesView];
 }

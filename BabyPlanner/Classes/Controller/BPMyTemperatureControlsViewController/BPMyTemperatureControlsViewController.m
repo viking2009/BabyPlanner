@@ -45,6 +45,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor clearColor];
+    
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
 	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
@@ -100,6 +102,13 @@
 {
     self.collectionView.dataSource = nil;
     self.collectionView.delegate = nil;
+}
+
+#pragma mark - BPBaseViewController
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    
 }
 
 #pragma mark - UITableViewDataSource
