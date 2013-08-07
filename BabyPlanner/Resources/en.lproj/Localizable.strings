@@ -17,6 +17,10 @@
 "Symptoms and mood" = "Symptoms and mood";
 "Notations" = "Notations";
 
+/* BPMyTemperatureControlsViewController */
+"My controls" = "My controls";
+"Please, enter your data!" = "Please, enter your data!";
+
 /* BPMyChartsViewController */
 "My Charts" = "My Charts";
 

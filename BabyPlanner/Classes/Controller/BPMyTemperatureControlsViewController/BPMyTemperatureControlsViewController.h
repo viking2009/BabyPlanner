@@ -10,4 +10,6 @@
 
 @interface BPMyTemperatureControlsViewController : BPBaseViewController
 
+@property (nonatomic, copy) void (^handler)(void);
+
 @end

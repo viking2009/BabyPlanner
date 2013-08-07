@@ -25,7 +25,13 @@
 @interface BPMyTemperatureControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UIButton *myControlsButton;
+@property (nonatomic, strong) UILabel *selectLabel;
+@property (nonatomic, strong) UIImageView *girlView;
+
 @property (nonatomic, strong) NSArray *data;
+
+- (void)myControlsButtonTapped;
 
 @end
 
@@ -46,6 +52,32 @@
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor clearColor];
+    
+    self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_controls_button_background"];
+    [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
+    self.myControlsButton.frame = CGRectMake(0, 0, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
+    self.myControlsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.myControlsButton];
+    
+    UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_bubble"]];
+    bubbleView.frame = CGRectMake(78, 74, bubbleView.image.size.width, bubbleView.image.size.height);
+    [self.view addSubview:bubbleView];
+    
+    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectOffset(bubbleView.frame, 0, -10.f)];
+    self.selectLabel.backgroundColor = [UIColor clearColor];
+    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    self.selectLabel.textColor = RGB(76, 86, 108);
+    self.selectLabel.textAlignment = NSTextAlignmentCenter;
+//    self.selectLabel.shadowColor = RGB(255, 255, 255);
+//    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
+    self.selectLabel.numberOfLines = 2;
+    [self.view addSubview:self.selectLabel];
+    
+    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_girl"]];
+    self.girlView.frame = CGRectMake(0, 36, self.girlView.image.size.width, self.girlView.image.size.height);
+    [self.view addSubview:self.girlView];
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
@@ -69,6 +101,8 @@
     [self.collectionView registerClass:[BPSegmentCell class] forCellWithReuseIdentifier:BPSegmentCellIdentifier];
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
     
+    [self updateUI];
+
     [self loadData];
 }
 
@@ -87,6 +121,9 @@
 - (void)updateUI
 {
     [super updateUI];
+    
+    self.selectLabel.text = BPLocalizedString(@"Please, enter your data!");
+    [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];
     
     [self loadData];
     [self.collectionView reloadData];
@@ -175,16 +212,12 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    id showTemperature = sharedSettings[BPSettingsShowTemperatureKey];
-    return (showTemperature && [showTemperature boolValue] ? 2 : 1);
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    id showTemperature = sharedSettings[BPSettingsShowTemperatureKey];
-    return (showTemperature && [showTemperature boolValue] && section == 0 ? 1 : [_data count]);
+    return (section == 0 ? 1 : [_data count]);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -230,8 +263,12 @@
 //        };
 //    } else{
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        settingsCell.titleLabel.text = BPLocalizedString(@"Temperature");
+    } else {
         settingsCell.titleLabel.text = dataItem[@"title"];
-//    }
+    }
     
     return cell;
 }
@@ -285,6 +322,10 @@
         edgeInsets.bottom = 0;
     }
     
+    if (section == 0) {
+        edgeInsets.top = 120.f;
+    }
+    
     return edgeInsets;
 }
 
@@ -295,4 +336,14 @@
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     sharedSettings[BPSettingsShowTemperatureKey] = @(cell.toggleView.on);
 }
+
+#pragma mark - Private
+
+- (void)myControlsButtonTapped
+{
+    if (self.handler)
+        self.handler();
+}
+
+
 @end
