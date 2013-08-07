@@ -9,6 +9,9 @@
 #ifndef BabyPlanner_Macros_h
 #define BabyPlanner_Macros_h
 
+#define BPBugSenseApiKey                    @"4d8df9f5"
+#define USE_CFBUNDLEVERSION                 1
+
 #define BPSettingsToolbarHeight             44.f
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 

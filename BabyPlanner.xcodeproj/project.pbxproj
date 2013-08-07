@@ -102,6 +102,9 @@
 		90EB9EE41707B126008457A3 /* symptoms_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EC41707B126008457A3 /* symptoms_selected@2x.png */; };
 		90EB9EE71707BA52008457A3 /* nav_back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EE51707BA52008457A3 /* nav_back_button.png */; };
 		90EB9EE81707BA52008457A3 /* nav_back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9EE61707BA52008457A3 /* nav_back_button@2x.png */; };
+		90EC01AA17B1EA46009A4692 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */; };
+		90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */; };
+		90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01B017B1EFF7009A4692 /* libz.dylib */; };
 		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
 		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
 		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
@@ -250,6 +253,9 @@
 		90EB9EC41707B126008457A3 /* symptoms_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symptoms_selected@2x.png"; sourceTree = "<group>"; };
 		90EB9EE51707BA52008457A3 /* nav_back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_back_button.png; sourceTree = "<group>"; };
 		90EB9EE61707BA52008457A3 /* nav_back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back_button@2x.png"; sourceTree = "<group>"; };
+		90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
+		90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		90EC01B017B1EFF7009A4692 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		90F3562617A20B7C00E0261B /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		90F3562717A20B7C00E0261B /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -263,11 +269,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */,
 				907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */,
 				90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */,
+				90EC01AA17B1EA46009A4692 /* BugSense-iOS.framework in Frameworks */,
 				90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */,
 				90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */,
 				90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */,
+				90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +563,8 @@
 				90EB9DFF17078C45008457A3 /* Foundation.framework */,
 				90EB9E0117078C45008457A3 /* CoreGraphics.framework */,
 				90E9B5391746D5930000760B /* QuartzCore.framework */,
+				90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */,
+				90EC01B017B1EFF7009A4692 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -754,6 +765,7 @@
 				907BA94F1779A3A4005944D6 /* DSTPickerView */,
 				90E881CF1778BA2600682BB3 /* TTSwitch */,
 				90EB9E951707A66A008457A3 /* EKKeyboardAvoidingScrollView */,
+				90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -1037,9 +1049,14 @@
 		905F03601788265F00D5E86D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/BabyPlanner/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BabyPlanner/BabyPlanner-Prefix.pch";
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1104,9 +1121,14 @@
 		90EB9E2917078C45008457A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/BabyPlanner/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BabyPlanner/BabyPlanner-Prefix.pch";
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1116,9 +1138,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/BabyPlanner/Vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BabyPlanner/BabyPlanner-Prefix.pch";
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39E2D4A5-B4B8-4882-B0A5-5F96EBBBA5AD";
 				WRAPPER_EXTENSION = app;

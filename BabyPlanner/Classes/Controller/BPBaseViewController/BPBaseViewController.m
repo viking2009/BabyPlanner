@@ -54,18 +54,20 @@
     [self.view sendSubviewToBack:self.backgroundImageView];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    DLog();
+}
+
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
     if (_backgroundImage != backgroundImage) {
         _backgroundImage = backgroundImage;
         self.backgroundImageView.image = backgroundImage;
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setTitle:(NSString *)title

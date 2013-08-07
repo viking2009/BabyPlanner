@@ -15,12 +15,25 @@
 #import "BPSettingsViewController.h"
 #import "TTSwitch.h"
 #import "BPUtils.h"
+#import <BugSense-iOS/BugSenseController.h>
 
 @implementation BPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSString *programVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    
+#if USE_CFBUNDLEVERSION
+    programVersion = [programVersion stringByAppendingFormat:@" (%@)", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+#endif
+    
+    NSString* device = [NSString stringWithFormat:@"%@ / %@ (%@)", programVersion, [BPUtils deviceModelName], [[UIDevice currentDevice] systemVersion]];
+    DLog(@"device = %@", device);
+    
+    [BugSenseController sharedControllerWithBugSenseAPIKey:BPBugSenseApiKey
+                                            userDictionary:@{ @"device" : device }];
+    
     [[TTSwitch appearance] setMaskInLockPosition:@0];
     [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track"]];
     [[TTSwitch appearance] setOverlayImage:[BPUtils imageNamed:@"round-switch-overlay"]];

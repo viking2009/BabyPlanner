@@ -24,4 +24,10 @@
 + (UIImage *)imageNamed:(NSString *)name;
 + (NSString *)stringFromDate:(NSDate *)date;
 
+/**
+ * @return device full model name in human readable strings
+ */
++ (NSString*)deviceModelName;
+
+
 @end
