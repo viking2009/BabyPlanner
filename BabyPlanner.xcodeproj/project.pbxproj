@@ -105,6 +105,8 @@
 		90EC01AA17B1EA46009A4692 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */; };
 		90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */; };
 		90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01B017B1EFF7009A4692 /* libz.dylib */; };
+		90EC01B617B1F8C7009A4692 /* BPMyTemperatureMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EC01B517B1F8C7009A4692 /* BPMyTemperatureMainViewController.m */; };
+		90EC01B917B1F8DE009A4692 /* BPMyTemperatureControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EC01B817B1F8DE009A4692 /* BPMyTemperatureControlsViewController.m */; };
 		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
 		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
 		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
@@ -256,6 +258,10 @@
 		90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		90EC01B017B1EFF7009A4692 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		90EC01B417B1F8C7009A4692 /* BPMyTemperatureMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureMainViewController.h; sourceTree = "<group>"; };
+		90EC01B517B1F8C7009A4692 /* BPMyTemperatureMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureMainViewController.m; sourceTree = "<group>"; };
+		90EC01B717B1F8DE009A4692 /* BPMyTemperatureControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureControlsViewController.h; sourceTree = "<group>"; };
+		90EC01B817B1F8DE009A4692 /* BPMyTemperatureControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureControlsViewController.m; sourceTree = "<group>"; };
 		90F3562617A20B7C00E0261B /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		90F3562717A20B7C00E0261B /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -643,6 +649,8 @@
 				90EB9E7F1707997D008457A3 /* BPBaseViewController */,
 				90E881BC17788D6D00682BB3 /* BPViewController */,
 				90EB9E5017079193008457A3 /* BPMyTemperatureViewController */,
+				90EC01B317B1F8A9009A4692 /* BPMyTemperatureMainViewController */,
+				90EC01B217B1F8A9009A4692 /* BPMyTemperatureControlsViewController */,
 				90EB9E54170791C7008457A3 /* BPMyChartsViewController */,
 				90EB9E5E170793B4008457A3 /* BPMyPregnancyViewController */,
 				90EB9E61170793B4008457A3 /* BPSettingsViewController */,
@@ -818,6 +826,24 @@
 			path = symptoms_and_mood;
 			sourceTree = "<group>";
 		};
+		90EC01B217B1F8A9009A4692 /* BPMyTemperatureControlsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90EC01B717B1F8DE009A4692 /* BPMyTemperatureControlsViewController.h */,
+				90EC01B817B1F8DE009A4692 /* BPMyTemperatureControlsViewController.m */,
+			);
+			path = BPMyTemperatureControlsViewController;
+			sourceTree = "<group>";
+		};
+		90EC01B317B1F8A9009A4692 /* BPMyTemperatureMainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90EC01B417B1F8C7009A4692 /* BPMyTemperatureMainViewController.h */,
+				90EC01B517B1F8C7009A4692 /* BPMyTemperatureMainViewController.m */,
+			);
+			path = BPMyTemperatureMainViewController;
+			sourceTree = "<group>";
+		};
 		90F3562517A20B7C00E0261B /* SVSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,6 +989,7 @@
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
 				902E86CE179F275700186731 /* BPLanguageManager.m in Sources */,
+				90EC01B917B1F8DE009A4692 /* BPMyTemperatureControlsViewController.m in Sources */,
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
 				902E86DB179F461900186731 /* BPThemeManager.m in Sources */,
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
@@ -991,6 +1018,7 @@
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
+				90EC01B617B1F8C7009A4692 /* BPMyTemperatureMainViewController.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
