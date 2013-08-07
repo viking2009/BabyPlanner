@@ -74,8 +74,15 @@
 - (BPMyTemperatureMainViewController *)mainController
 {
     DLog();
-    if (!_mainController)
+    if (!_mainController) {
         _mainController = [[BPMyTemperatureMainViewController alloc] init];
+        
+        
+        __weak __typeof(&*self) weakSelf = self;
+        _mainController.handler = ^{
+            [weakSelf.pageController setViewControllers:@[weakSelf.controlsController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        };
+    }
     
     return _mainController;
 }

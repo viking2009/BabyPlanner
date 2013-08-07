@@ -52,7 +52,8 @@
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor clearColor];
-    
+    self.view.clipsToBounds = YES;
+
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_controls_button_background"];
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
@@ -281,10 +282,10 @@
     if (indexPath.section == 1) {
         switch (indexPath.item) {
             case 0:
-                [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
+//                [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
                 break;
             case 1:
-                [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
+//                [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
                 break;
             case 2:
                 [self.navigationController pushViewController:[BPMyTemperatureSymptomsAndMoodViewController new] animated:YES];
