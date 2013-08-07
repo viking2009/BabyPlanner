@@ -10,6 +10,8 @@
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
+		9020BE3C17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9020BE3B17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m */; };
+		9020BE4017B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9020BE3F17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
@@ -58,8 +60,6 @@
 		90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E63170793B4008457A3 /* BPSettingsViewController.m */; };
 		90EB9E691707961C008457A3 /* nav_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E671707961C008457A3 /* nav_background.png */; };
 		90EB9E6A1707961C008457A3 /* nav_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E681707961C008457A3 /* nav_background@2x.png */; };
-		90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E731707987B008457A3 /* BPSymptomsAndMoodViewController.m */; };
-		90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E771707989D008457A3 /* BPNotesViewController.m */; };
 		90EB9E7B170798C0008457A3 /* Gabriola.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E7A170798C0008457A3 /* Gabriola.ttf */; };
 		90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB9E811707997E008457A3 /* BPBaseViewController.m */; };
 		90EB9E8717079AFD008457A3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90EB9E8417079AFD008457A3 /* Default-568h@2x.png */; };
@@ -119,6 +119,10 @@
 		9005C55E17944415001338BA /* BPPeriodPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPeriodPicker.m; sourceTree = "<group>"; };
 		9005C56017944882001338BA /* BPUnitPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUnitPicker.h; sourceTree = "<group>"; };
 		9005C56117944882001338BA /* BPUnitPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUnitPicker.m; sourceTree = "<group>"; };
+		9020BE3A17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureNotationsViewController.h; sourceTree = "<group>"; };
+		9020BE3B17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureNotationsViewController.m; sourceTree = "<group>"; };
+		9020BE3E17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureSymptomsAndMoodViewController.h; sourceTree = "<group>"; };
+		9020BE3F17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureSymptomsAndMoodViewController.m; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		9029876617881C0900067D7A /* BPSettingsThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsThemeViewController.h; sourceTree = "<group>"; };
@@ -207,10 +211,6 @@
 		90EB9E63170793B4008457A3 /* BPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsViewController.m; sourceTree = "<group>"; };
 		90EB9E671707961C008457A3 /* nav_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_background.png; sourceTree = "<group>"; };
 		90EB9E681707961C008457A3 /* nav_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_background@2x.png"; sourceTree = "<group>"; };
-		90EB9E721707987B008457A3 /* BPSymptomsAndMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptomsAndMoodViewController.h; sourceTree = "<group>"; };
-		90EB9E731707987B008457A3 /* BPSymptomsAndMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptomsAndMoodViewController.m; sourceTree = "<group>"; };
-		90EB9E761707989D008457A3 /* BPNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPNotesViewController.h; sourceTree = "<group>"; };
-		90EB9E771707989D008457A3 /* BPNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNotesViewController.m; sourceTree = "<group>"; };
 		90EB9E7A170798C0008457A3 /* Gabriola.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gabriola.ttf; sourceTree = "<group>"; };
 		90EB9E801707997E008457A3 /* BPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBaseViewController.h; sourceTree = "<group>"; };
 		90EB9E811707997E008457A3 /* BPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBaseViewController.m; sourceTree = "<group>"; };
@@ -289,6 +289,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9020BE3917B20CF300A70B44 /* BPMyTemperatureNotationsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9020BE3A17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.h */,
+				9020BE3B17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m */,
+			);
+			path = BPMyTemperatureNotationsViewController;
+			sourceTree = "<group>";
+		};
+		9020BE3D17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9020BE3E17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.h */,
+				9020BE3F17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m */,
+			);
+			path = BPMyTemperatureSymptomsAndMoodViewController;
+			sourceTree = "<group>";
+		};
 		9029876517881BEC00067D7A /* BPSettingsThemeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +669,8 @@
 				90EB9E5017079193008457A3 /* BPMyTemperatureViewController */,
 				90EC01B317B1F8A9009A4692 /* BPMyTemperatureMainViewController */,
 				90EC01B217B1F8A9009A4692 /* BPMyTemperatureControlsViewController */,
+				9020BE3D17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController */,
+				9020BE3917B20CF300A70B44 /* BPMyTemperatureNotationsViewController */,
 				90EB9E54170791C7008457A3 /* BPMyChartsViewController */,
 				90EB9E5E170793B4008457A3 /* BPMyPregnancyViewController */,
 				90EB9E61170793B4008457A3 /* BPSettingsViewController */,
@@ -658,8 +678,6 @@
 				9029876517881BEC00067D7A /* BPSettingsThemeViewController */,
 				907BA94717799CD1005944D6 /* BPSettingsAlarmViewController */,
 				90BA0665178D4A2B0045AB24 /* BPSettingsProfileViewController */,
-				90EB9E751707989D008457A3 /* BPNotesViewController */,
-				90EB9E711707987B008457A3 /* BPSymptomsAndMoodViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -709,24 +727,6 @@
 				90EB9EE61707BA52008457A3 /* nav_back_button@2x.png */,
 			);
 			path = navbar;
-			sourceTree = "<group>";
-		};
-		90EB9E711707987B008457A3 /* BPSymptomsAndMoodViewController */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9E721707987B008457A3 /* BPSymptomsAndMoodViewController.h */,
-				90EB9E731707987B008457A3 /* BPSymptomsAndMoodViewController.m */,
-			);
-			path = BPSymptomsAndMoodViewController;
-			sourceTree = "<group>";
-		};
-		90EB9E751707989D008457A3 /* BPNotesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				90EB9E761707989D008457A3 /* BPNotesViewController.h */,
-				90EB9E771707989D008457A3 /* BPNotesViewController.m */,
-			);
-			path = BPNotesViewController;
 			sourceTree = "<group>";
 		};
 		90EB9E79170798C0008457A3 /* fonts */ = {
@@ -978,10 +978,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */,
+				9020BE3C17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				902B71DD179DB14D001810D8 /* BPSettings.m in Sources */,
+				9020BE4017B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
 				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
 				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
@@ -1007,9 +1009,7 @@
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
 				9005C55C1794346B001338BA /* BPDatePicker.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
-				90EB9E741707987B008457A3 /* BPSymptomsAndMoodViewController.m in Sources */,
 				9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */,
-				90EB9E781707989D008457A3 /* BPNotesViewController.m in Sources */,
 				90EB9E821707997E008457A3 /* BPBaseViewController.m in Sources */,
 				905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,

@@ -13,8 +13,8 @@
 #import "BPSettingsCell.h"
 #import "BPSettingsLanguageViewController.h"
 #import "BPSettingsThemeViewController.h"
-#import "BPSymptomsAndMoodViewController.h"
-#import "BPNotesViewController.h"
+#import "BPMyTemperatureSymptomsAndMoodViewController.h"
+#import "BPMyTemperatureNotationsViewController.h"
 #import "BPSettings.h"
 #import "BPLanguageManager.h"
 
@@ -241,10 +241,10 @@
                 [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
                 break;
             case 2:
-                [self.navigationController pushViewController:[BPSymptomsAndMoodViewController new] animated:YES];
+                [self.navigationController pushViewController:[BPMyTemperatureSymptomsAndMoodViewController new] animated:YES];
                 break;
             case 3:
-                [self.navigationController pushViewController:[BPNotesViewController new] animated:YES];
+                [self.navigationController pushViewController:[BPMyTemperatureNotationsViewController new] animated:YES];
                 break;
                 
             default:
