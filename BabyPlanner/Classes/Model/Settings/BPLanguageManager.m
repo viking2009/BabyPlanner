@@ -49,7 +49,7 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 - (NSLocale *)currentLocale
 {
     if (!_currentLocale)
-        _currentLocale = [NSLocale localeWithLocaleIdentifier:self.currentLanguage];
+        _currentLocale = [[NSLocale alloc] initWithLocaleIdentifier:self.currentLanguage];
     
     return _currentLocale;
 }
