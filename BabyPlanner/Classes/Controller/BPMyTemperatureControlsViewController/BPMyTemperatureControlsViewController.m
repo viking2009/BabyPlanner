@@ -52,7 +52,7 @@
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor clearColor];
-    self.view.clipsToBounds = YES;
+//    self.view.clipsToBounds = YES;
 
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_controls_button_background"];

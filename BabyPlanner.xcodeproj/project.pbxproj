@@ -48,6 +48,7 @@
 		90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881D51778BB1700682BB3 /* BPSwitchCell.m */; };
 		90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881DA1778C1C400682BB3 /* BPSettingsCell.m */; };
 		90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E9B5391746D5930000760B /* QuartzCore.framework */; };
+		90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EAD01C17B34BC40022BD34 /* BPCircleLayout.m */; };
 		90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFD17078C45008457A3 /* UIKit.framework */; };
 		90EB9E0017078C45008457A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9DFF17078C45008457A3 /* Foundation.framework */; };
 		90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EB9E0117078C45008457A3 /* CoreGraphics.framework */; };
@@ -191,6 +192,8 @@
 		90E881D91778C1C400682BB3 /* BPSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsCell.h; sourceTree = "<group>"; };
 		90E881DA1778C1C400682BB3 /* BPSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsCell.m; sourceTree = "<group>"; };
 		90E9B5391746D5930000760B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		90EAD01B17B34BC40022BD34 /* BPCircleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCircleLayout.h; sourceTree = "<group>"; };
+		90EAD01C17B34BC40022BD34 /* BPCircleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCircleLayout.m; sourceTree = "<group>"; };
 		90EB9DFA17078C45008457A3 /* BabyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EB9DFD17078C45008457A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90EB9DFF17078C45008457A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -521,6 +524,7 @@
 				90BA066D178D4C5B0045AB24 /* BPLabel */,
 				90BA0671178D4E770045AB24 /* BPSelectButton */,
 				90F3562C17A20BD600E0261B /* BPSegmentCell */,
+				90EAD01A17B34BA10022BD34 /* BPCircleLayout */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -560,6 +564,15 @@
 				90E881DA1778C1C400682BB3 /* BPSettingsCell.m */,
 			);
 			path = BPSettingsCell;
+			sourceTree = "<group>";
+		};
+		90EAD01A17B34BA10022BD34 /* BPCircleLayout */ = {
+			isa = PBXGroup;
+			children = (
+				90EAD01B17B34BC40022BD34 /* BPCircleLayout.h */,
+				90EAD01C17B34BC40022BD34 /* BPCircleLayout.m */,
+			);
+			path = BPCircleLayout;
 			sourceTree = "<group>";
 		};
 		90EB9DF117078C45008457A3 = {
@@ -1022,6 +1035,7 @@
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
+				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
