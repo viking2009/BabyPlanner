@@ -66,7 +66,7 @@
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_edit"];
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
-    self.myControlsButton.frame = CGRectMake(self.view.bounds.size.width - 61.f, self.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height - myControlsButtonBackgroundImage.size.height - 5.f, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
+    self.myControlsButton.frame = CGRectMake(self.view.bounds.size.width - 61.f, self.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height - myControlsButtonBackgroundImage.size.height - 8.f, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
     [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.myControlsButton];
     

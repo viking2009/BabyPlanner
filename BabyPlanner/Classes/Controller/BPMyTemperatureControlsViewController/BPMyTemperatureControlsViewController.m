@@ -27,13 +27,14 @@
 @interface BPMyTemperatureControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UIButton *myControlsButton;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIButton *doneButton;
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
 
 @property (nonatomic, strong) NSArray *data;
 
-- (void)myControlsButtonTapped;
+- (void)doneButtonTapped;
 
 @end
 
@@ -53,15 +54,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_controls_button_background"];
-    [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
-    self.myControlsButton.frame = CGRectMake(0, 0, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
-    self.myControlsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
-    self.myControlsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    self.myControlsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10.f, 0, 10.f);
-    [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.myControlsButton];
+    UIImageView *topView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_button_background"]];
+    topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
+    [self.view addSubview:topView];
+    
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.bounds.size.width - 2*68.f, 34.f)];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.textColor = RGB(255, 255, 255);
+    [self.view addSubview:self.titleLabel];
+    
+    UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
+    self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
+    self.doneButton.frame = CGRectMake(self.view.bounds.size.width - 10.f - greenImage.size.width, 24.f, greenImage.size.width, greenImage.size.height);
+    [self.doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+    self.doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+    self.doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+   [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.doneButton];
     
     UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_bubble"]];
     bubbleView.frame = CGRectMake(78, 74, bubbleView.image.size.width, bubbleView.image.size.height);
@@ -70,7 +83,7 @@
     self.selectLabel = [[UILabel alloc] initWithFrame:CGRectOffset(bubbleView.frame, 0, -10.f)];
     self.selectLabel.backgroundColor = [UIColor clearColor];
     self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-    self.selectLabel.textColor = RGB(76, 86, 108);
+    self.selectLabel.textColor = RGB(0, 0, 0);
     self.selectLabel.textAlignment = NSTextAlignmentCenter;
 //    self.selectLabel.shadowColor = RGB(255, 255, 255);
 //    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
@@ -132,8 +145,9 @@
 {
     [super updateUI];
     
+    self.titleLabel.text = BPLocalizedString(@"My controls");
     self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
-    [self.myControlsButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
+    [self.doneButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
     
     [self loadData];
     [self.collectionView reloadData];
@@ -346,7 +360,7 @@
 
 #pragma mark - Private
 
-- (void)myControlsButtonTapped
+- (void)doneButtonTapped
 {
     if (self.handler)
         self.handler();
