@@ -38,8 +38,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = RGB(30, 188, 165);
     self.view.clipsToBounds = YES;
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 28.f)];
+    topView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    topView.backgroundColor = RGB(13, 134, 116);
+    [self.view addSubview:topView];
     
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_background"];
@@ -141,7 +146,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
     
     cell.contentView.backgroundColor = [UIColor redColor];
-    cell.contentView.layer.cornerRadius = 10.f;
+    cell.contentView.layer.cornerRadius = 6.f;
     cell.contentView.layer.borderWidth = 1.f;
     cell.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
     

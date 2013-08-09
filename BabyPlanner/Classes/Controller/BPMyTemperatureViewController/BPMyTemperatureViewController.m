@@ -44,6 +44,11 @@
     self.pageController.dataSource = self;
     self.pageController.view.frame = self.view.bounds;
     
+    // Feature #34 My Temperature: Controller for My Temperature slide effect (disable scrolling)
+    for (UIScrollView *view in self.pageController.view.subviews)
+        if ([view isKindOfClass:[UIScrollView class]])
+            view.scrollEnabled = NO;
+    
     [self.pageController setViewControllers:@[self.mainController] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 
     [self addChildViewController:self.pageController];
@@ -77,7 +82,6 @@
     if (!_mainController) {
         _mainController = [[BPMyTemperatureMainViewController alloc] init];
         
-        
         __weak __typeof(&*self) weakSelf = self;
         _mainController.handler = ^{
             [weakSelf.pageController setViewControllers:@[weakSelf.controlsController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -107,13 +111,15 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     DLog(@"%@", viewController);
-    return (viewController == self.controlsController ? self.mainController : nil);
+//    return (viewController == self.controlsController ? self.mainController : nil);
+    return nil;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     DLog(@"%@", viewController);
-    return (viewController == self.mainController ? self.controlsController : nil);
+//    return (viewController == self.mainController ? self.controlsController : nil);
+    return nil;
 }
 
 @end
