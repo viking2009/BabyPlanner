@@ -57,7 +57,7 @@
         
         self.temperatureLabel = [[UILabel alloc] init];
         self.temperatureLabel.backgroundColor = [UIColor clearColor];
-        self.temperatureLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:27];
+        self.temperatureLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:50];
         self.temperatureLabel.textColor = RGB(255, 255, 255);
         self.temperatureLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.temperatureLabel];
@@ -208,7 +208,14 @@
 
 - (void)refreshTemperature
 {
-    self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", [self.temperature floatValue], [BPLanguageManager sharedManager].currentMetric ? @"C" :@"F"];
+    DLog(@"self.temperature = %@", self.temperature);
+    
+    NSString *temperatureSign = [BPLanguageManager sharedManager].currentMetric ? @"C" :@"F";
+    float temperature = [self.temperature floatValue];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        temperature = temperature * 9/5 + 32.f;
+    
+    self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", temperature, temperatureSign];
 }
 
 - (void)updateUI

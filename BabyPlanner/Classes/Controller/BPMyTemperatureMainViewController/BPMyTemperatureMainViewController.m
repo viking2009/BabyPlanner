@@ -135,7 +135,7 @@
     self.indicatorsView.sexualIntercourse = @YES;
     self.indicatorsView.ovulation = @NO;
     
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:16 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:17 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)updateUI
@@ -184,7 +184,7 @@
     
     if (indexPath.item < 12)
         imageName = @"point_1";
-    else if (indexPath.item < 17)
+    else if (indexPath.item < 18)
         imageName = @"point_2";
     else if (indexPath.item < 28)
         imageName = @"point_3";
