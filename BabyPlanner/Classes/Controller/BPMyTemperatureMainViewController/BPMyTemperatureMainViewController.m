@@ -150,7 +150,6 @@
     
 //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
     self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
-
     
     [self loadData];
     [self.collectionView reloadData];

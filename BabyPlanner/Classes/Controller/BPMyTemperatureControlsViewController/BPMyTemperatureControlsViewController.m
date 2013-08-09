@@ -53,9 +53,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor clearColor];
-//    self.view.clipsToBounds = YES;
-
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_controls_button_background"];
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
@@ -152,13 +149,6 @@
     self.collectionView.delegate = nil;
 }
 
-#pragma mark - BPBaseViewController
-
-- (void)setBackgroundImage:(UIImage *)backgroundImage
-{
-    
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -223,12 +213,12 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return (section == 0 ? 1 : [_data count]);
+    return (section != 1 ? 1 : [_data count]);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
