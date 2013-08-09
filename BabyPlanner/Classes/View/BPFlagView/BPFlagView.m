@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UILabel *monthLabel;
 
+- (void)refreshDate;
+
 @end
 
 @implementation BPFlagView
@@ -86,6 +88,11 @@
     
     [dateFormatter setDateFormat:@"MMM"];
     self.monthLabel.text = [dateFormatter stringFromDate:self.date];
+}
+
+- (void)updateUI
+{
+    [self refreshDate];
 }
 
 @end

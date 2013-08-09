@@ -12,6 +12,7 @@
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
 #import "BPFlagView.h"
+#import "BPDateIndicatorsView.h"
 #import "NSDate-Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -21,6 +22,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) BPFlagView *flagView;
+@property (nonatomic, strong) BPDateIndicatorsView *indicatorsView;
 @property (nonatomic, strong) UIButton *myControlsButton;
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
@@ -89,7 +91,7 @@
     [self.view addSubview:self.girlView];
     
     BPCircleLayout *collectionViewCircleLayout = [[BPCircleLayout alloc] init];
-    collectionViewCircleLayout.radius = 120.f;
+    collectionViewCircleLayout.radius = 124.f;
     collectionViewCircleLayout.cellsPerCircle = 28;
     collectionViewCircleLayout.itemSize = CGSizeMake(BPCircleCellImageSize, BPCircleCellImageSize);
     collectionViewCircleLayout.distance = 18.f;
@@ -101,15 +103,16 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[BPCircleCell class] forCellWithReuseIdentifier:BPCircleCellIdentifier];
     
+    self.indicatorsView = [[BPDateIndicatorsView alloc] initWithFrame:collectionViewRect];
+    [self.view addSubview:self.indicatorsView];
+    [self.view addSubview:self.collectionView];
+
     [self updateUI];
     
     [self loadData];
-    
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:16 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,13 +124,26 @@
 - (void)loadData
 {
     DLog();
+    
+    // demo
+    self.indicatorsView.day = 18;
+    self.indicatorsView.pregnant = @NO;
+    self.indicatorsView.menstruation = @NO;
+    self.indicatorsView.temperature = @36.65;
+    self.indicatorsView.boy = @YES;
+    self.indicatorsView.girl = @NO;
+    self.indicatorsView.sexualIntercourse = @YES;
+    self.indicatorsView.ovulation = @NO;
+    
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:16 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)updateUI
 {
     [super updateUI];
     
-    [self.flagView refreshDate];
+    [self.flagView updateUI];
+    [self.indicatorsView updateUI];
     
     self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
     [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];

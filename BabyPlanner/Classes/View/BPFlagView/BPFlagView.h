@@ -13,6 +13,6 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) NSDate *date;
 
-- (void)refreshDate;
+- (void)updateUI;
 
 @end

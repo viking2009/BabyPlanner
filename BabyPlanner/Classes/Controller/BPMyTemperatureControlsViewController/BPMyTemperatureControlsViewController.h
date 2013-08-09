@@ -11,5 +11,6 @@
 @interface BPMyTemperatureControlsViewController : BPBaseViewController
 
 @property (nonatomic, copy) void (^handler)(void);
+@property (nonatomic, strong) NSDate *date;
 
 @end

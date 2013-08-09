@@ -121,6 +121,7 @@
     NSString *language = [BPLanguageManager sharedManager].currentLanguage;
     DLog(@"language: %@", language);
     
+    // TODO: set data for self.date;
     self.data = @[ @{@"title": BPLocalizedString(@"Menstruation")},
                    @{@"title": BPLocalizedString(@"Sexual intercourse")},
                    @{@"title": BPLocalizedString(@"Symptoms and mood")},

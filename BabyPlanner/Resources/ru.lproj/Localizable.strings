@@ -17,6 +17,9 @@
 "Symptoms and mood" = "Симптомы и настроение";
 "Notations" = "Заметки";
 
+/* BPMyTemperatureMainViewController */
+"Day %u" = "Day %u";
+
 /* BPMyTemperatureControlsViewController */
 "My controls" = "?Мои настройки?";
 "Please, enter your data!" = "Пожалуйста, введите Ваши данные!";

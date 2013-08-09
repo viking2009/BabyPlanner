@@ -41,6 +41,7 @@
 		90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9417B4D88600308A2A /* UIImage+Additions.m */; };
 		90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9817B4ED1B00308A2A /* BPCircleCell.m */; };
 		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
+		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -182,6 +183,8 @@
 		90C85C9817B4ED1B00308A2A /* BPCircleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCircleCell.m; sourceTree = "<group>"; };
 		90C85C9B17B4F42200308A2A /* BPFlagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPFlagView.h; sourceTree = "<group>"; };
 		90C85C9C17B4F42200308A2A /* BPFlagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPFlagView.m; sourceTree = "<group>"; };
+		90C85C9F17B4FC7100308A2A /* BPDateIndicatorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateIndicatorsView.h; sourceTree = "<group>"; };
+		90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateIndicatorsView.m; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -503,6 +506,15 @@
 			path = BPFlagView;
 			sourceTree = "<group>";
 		};
+		90C85C9E17B4FC5700308A2A /* BPDateIndicatorsView */ = {
+			isa = PBXGroup;
+			children = (
+				90C85C9F17B4FC7100308A2A /* BPDateIndicatorsView.h */,
+				90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */,
+			);
+			path = BPDateIndicatorsView;
+			sourceTree = "<group>";
+		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +576,7 @@
 				90EAD01A17B34BA10022BD34 /* BPCircleLayout */,
 				90C85C9617B4ECEF00308A2A /* BPCircleCell */,
 				90C85C9A17B4F40C00308A2A /* BPFlagView */,
+				90C85C9E17B4FC5700308A2A /* BPDateIndicatorsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1057,6 +1070,7 @@
 				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
 				907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */,
+				90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,

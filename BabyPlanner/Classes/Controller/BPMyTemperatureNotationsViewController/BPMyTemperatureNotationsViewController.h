@@ -11,4 +11,6 @@
 
 @interface BPMyTemperatureNotationsViewController : BPViewController
 
+@property (nonatomic, strong) NSDate *date;
+
 @end
