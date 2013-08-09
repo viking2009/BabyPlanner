@@ -58,6 +58,8 @@
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
     self.myControlsButton.frame = CGRectMake(0, 0, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
     self.myControlsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    self.myControlsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    self.myControlsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10.f, 0, 10.f);
     [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.myControlsButton];
     
@@ -130,8 +132,8 @@
 {
     [super updateUI];
     
-    self.selectLabel.text = BPLocalizedString(@"Please, enter your data!");
-    [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];
+    self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
+    [self.myControlsButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
     
     [self loadData];
     [self.collectionView reloadData];

@@ -11,12 +11,12 @@
 #import "BPUtils.h"
 
 #define BPDateIndicatorsViewDayTop              50.f
-#define BPDateIndicatorsViewFirstLine           60.f
+#define BPDateIndicatorsViewFirstLine           110.f
 #define BPDateIndicatorsViewFirstLinePadding    25.f
 #define BPDateIndicatorsViewTemperatureTop      100.f
 #define BPDateIndicatorsViewSecondLine          160.f
 #define BPDateIndicatorsViewSecondLinePadding   40.f
-#define BPDateIndicatorsViewPadding             10.f
+#define BPDateIndicatorsViewPadding             20.f
 
 @interface BPDateIndicatorsView()
 
@@ -89,8 +89,8 @@
     self.dayLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.dayLabel.font.lineHeight));
     
     top = BPDateIndicatorsViewFirstLine;
-    self.pregnantView.frame = CGRectMake(centerX - BPDateIndicatorsViewFirstLinePadding - self.pregnantView.image.size.width, top, self.pregnantView.image.size.width, self.pregnantView.image.size.height);
-    self.menstruationView.frame = CGRectMake(centerX + BPDateIndicatorsViewFirstLinePadding, top, self.menstruationView.image.size.width, self.menstruationView.image.size.height);
+    self.pregnantView.frame = CGRectMake(centerX - BPDateIndicatorsViewFirstLinePadding - self.pregnantView.image.size.width, top - self.pregnantView.image.size.height, self.pregnantView.image.size.width, self.pregnantView.image.size.height);
+    self.menstruationView.frame = CGRectMake(centerX + BPDateIndicatorsViewFirstLinePadding, top - self.menstruationView.image.size.height, self.menstruationView.image.size.width, self.menstruationView.image.size.height);
     
     top = BPDateIndicatorsViewTemperatureTop;
     self.temperatureLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.temperatureLabel.font.lineHeight));

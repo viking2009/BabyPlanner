@@ -59,13 +59,14 @@
     self.flagView.date = [NSDate date];
     [self.view addSubview:self.flagView];
     
+    UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
+    bottomView.frame = CGRectMake(0.f, self.view.bounds.size.height - 55.f - self.tabBarController.tabBar.frame.size.height, bottomView.image.size.width, bottomView.image.size.height);
+    [self.view addSubview:bottomView];
+    
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_background"];
+    UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_edit"];
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
-    self.myControlsButton.frame = CGRectMake(0, self.view.bounds.size.height - 55.f - self.tabBarController.tabBar.frame.size.height, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
-    self.myControlsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
-    self.myControlsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    self.myControlsButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10.f, 0, 10.f);
+    self.myControlsButton.frame = CGRectMake(self.view.bounds.size.width - 61.f, self.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height - myControlsButtonBackgroundImage.size.height - 5.f, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
     [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.myControlsButton];
     
@@ -146,7 +147,6 @@
     [self.indicatorsView updateUI];
     
     self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
-    [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];
     
 //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
     self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];

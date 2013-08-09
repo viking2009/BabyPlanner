@@ -18,11 +18,12 @@
 "Notations" = "Заметки";
 
 /* BPMyTemperatureMainViewController */
-"Day %u" = "Day %u";
+"Day %u" = "День %u";
 
 /* BPMyTemperatureControlsViewController */
 "My controls" = "?Мои настройки?";
-"Please, enter your data!" = "Пожалуйста, введите Ваши данные!";
+"Done" = "Готово";
+"Please, enter\nyour data!" = "Введите Ваши\nданные!";
 
 /* BPMyChartsViewController */
 "My Charts" = "Мои графики";

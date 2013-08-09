@@ -22,7 +22,8 @@
 
 /* BPMyTemperatureControlsViewController */
 "My controls" = "My controls";
-"Please, enter your data!" = "Please, enter your data!";
+"Done" = "Done";
+"Please, enter\nyour data!" = "Please, enter\nyour data!";
 
 /* BPMyChartsViewController */
 "My Charts" = "My Charts";
