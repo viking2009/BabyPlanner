@@ -10,6 +10,7 @@
 #import "BPUtils.h"
 #import "BPThemeManager.h"
 #import "BPCircleLayout.h"
+#import "BPCircleCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPCircleCellIdentifier @"BPCircleCellIdentifier"
@@ -78,10 +79,10 @@
     [self.view addSubview:self.girlView];
     
     BPCircleLayout *collectionViewCircleLayout = [[BPCircleLayout alloc] init];
-    collectionViewCircleLayout.radius = 128.f;
+    collectionViewCircleLayout.radius = 120.f;
     collectionViewCircleLayout.cellsPerCircle = 28;
-    collectionViewCircleLayout.itemSize = CGSizeMake(12.f, 12.f);
-    collectionViewCircleLayout.distance = 17.f;
+    collectionViewCircleLayout.itemSize = CGSizeMake(BPCircleCellImageSize, BPCircleCellImageSize);
+    collectionViewCircleLayout.distance = 18.f;
     
     CGRect collectionViewRect = CGRectMake(0, MAX(32.f, self.girlView.frame.origin.y - self.view.bounds.size.width) - 10.f, self.view.bounds.size.width, self.view.bounds.size.width);
     
@@ -92,11 +93,13 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:BPCircleCellIdentifier];
+    [self.collectionView registerClass:[BPCircleCell class] forCellWithReuseIdentifier:BPCircleCellIdentifier];
     
     [self updateUI];
     
     [self loadData];
+    
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:16 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,12 +150,24 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
+    BPCircleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
     
-    cell.contentView.backgroundColor = [UIColor redColor];
-    cell.contentView.layer.cornerRadius = 6.f;
-    cell.contentView.layer.borderWidth = 1.f;
-    cell.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
+    NSString *imageName = @"point_4";
+    
+    if (indexPath.item < 12)
+        imageName = @"point_1";
+    else if (indexPath.item < 17)
+        imageName = @"point_2";
+    else if (indexPath.item < 28)
+        imageName = @"point_3";
+    else
+        imageName = @"point_4";
+    
+    if (indexPath.item == 13)
+        imageName = @"point_5";
+    
+    cell.imageView.image = [BPUtils imageNamed:imageName];
+    cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
     
     return cell;
 }

@@ -29,7 +29,7 @@
     _center = CGPointMake(size.width / 2.0, size.height / 2.0);
     _radius = MIN(_radius, MIN(size.width, size.height) - MAX(_itemSize.width, _itemSize.height) - 20.f);
     DLog(@"radius: %f", _radius);
-    _distance = MAX(_distance, 16.f);
+    _distance = MAX(_distance, 18.f);
     _cellsPerCircle = MAX(28, _cellsPerCircle);
 }
 
@@ -46,8 +46,8 @@
     CGFloat radius = _radius + _distance * (indexPath.item / self.cellsPerCircle);
     NSInteger position = indexPath.item % self.cellsPerCircle;
     
-    attributes.center = CGPointMake(_center.x + radius * cosf(2 * position * M_PI / self.cellsPerCircle),
-                                    _center.y + radius * sinf(2 * position * M_PI / self.cellsPerCircle));
+    attributes.center = CGPointMake(_center.x + radius * cosf(-M_PI_2 + 2 * position * M_PI / self.cellsPerCircle),
+                                    _center.y + radius * sinf(-M_PI_2 + 2 * position * M_PI / self.cellsPerCircle));
     return attributes;
 }
 
