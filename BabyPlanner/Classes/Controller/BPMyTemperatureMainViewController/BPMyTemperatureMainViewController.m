@@ -11,6 +11,8 @@
 #import "BPThemeManager.h"
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
+#import "BPFlagView.h"
+#import "NSDate-Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPCircleCellIdentifier @"BPCircleCellIdentifier"
@@ -18,6 +20,7 @@
 @interface BPMyTemperatureMainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) BPFlagView *flagView;
 @property (nonatomic, strong) UIButton *myControlsButton;
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
@@ -42,10 +45,17 @@
     
     self.view.clipsToBounds = YES;
     
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 28.f)];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 8.f)];
     topView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     topView.backgroundColor = RGB(13, 134, 116);
     [self.view addSubview:topView];
+    
+    UIImage *flagImage = [BPUtils imageNamed:@"mytemperature_main_flag"];
+    self.flagView = [[BPFlagView alloc] initWithFrame: CGRectMake(6.f, 20.f, flagImage.size.width, flagImage.size.height)];
+    self.flagView.imageView.image = flagImage;
+    // TODO: add property for controller
+    self.flagView.date = [NSDate date];
+    [self.view addSubview:self.flagView];
     
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_background"];
@@ -116,6 +126,8 @@
 - (void)updateUI
 {
     [super updateUI];
+    
+    [self.flagView refreshDate];
     
     self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
     [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];

@@ -40,6 +40,7 @@
 		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
 		90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9417B4D88600308A2A /* UIImage+Additions.m */; };
 		90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9817B4ED1B00308A2A /* BPCircleCell.m */; };
+		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -179,6 +180,8 @@
 		90C85C9417B4D88600308A2A /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		90C85C9717B4ED1B00308A2A /* BPCircleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCircleCell.h; sourceTree = "<group>"; };
 		90C85C9817B4ED1B00308A2A /* BPCircleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCircleCell.m; sourceTree = "<group>"; };
+		90C85C9B17B4F42200308A2A /* BPFlagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPFlagView.h; sourceTree = "<group>"; };
+		90C85C9C17B4F42200308A2A /* BPFlagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPFlagView.m; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -491,6 +494,15 @@
 			path = BPCircleCell;
 			sourceTree = "<group>";
 		};
+		90C85C9A17B4F40C00308A2A /* BPFlagView */ = {
+			isa = PBXGroup;
+			children = (
+				90C85C9B17B4F42200308A2A /* BPFlagView.h */,
+				90C85C9C17B4F42200308A2A /* BPFlagView.m */,
+			);
+			path = BPFlagView;
+			sourceTree = "<group>";
+		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +563,7 @@
 				90F3562C17A20BD600E0261B /* BPSegmentCell */,
 				90EAD01A17B34BA10022BD34 /* BPCircleLayout */,
 				90C85C9617B4ECEF00308A2A /* BPCircleCell */,
+				90C85C9A17B4F40C00308A2A /* BPFlagView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1063,6 +1076,7 @@
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
+				90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */,
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
