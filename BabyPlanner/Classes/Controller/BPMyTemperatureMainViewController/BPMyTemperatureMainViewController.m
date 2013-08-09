@@ -8,6 +8,7 @@
 
 #import "BPMyTemperatureMainViewController.h"
 #import "BPUtils.h"
+#import "BPThemeManager.h"
 #import "BPCircleLayout.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -38,7 +39,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.backgroundColor = RGB(30, 188, 165);
     self.view.clipsToBounds = YES;
     
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 28.f)];
@@ -116,6 +116,10 @@
     
     self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
     [self.myControlsButton setTitle:BPLocalizedString(@"My controls") forState:UIControlStateNormal];
+    
+//    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
+    self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
+
     
     [self loadData];
     [self.collectionView reloadData];

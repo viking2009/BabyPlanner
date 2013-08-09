@@ -17,6 +17,8 @@
 #import "BPSettingsProfileViewController.h"
 #import "BPSettings.h"
 #import "BPLanguageManager.h"
+#import "BPThemeManager.h"
+#import "UIImage+Additions.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
@@ -72,6 +74,13 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
 
     [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.collectionView deselectItemAtIndexPath:[[self.collectionView indexPathsForSelectedItems] lastObject] animated:YES];
 }
 
 - (void)loadData
@@ -195,7 +204,7 @@
     }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
-    
+
     if ([collectionView numberOfItemsInSection:indexPath.section] == 1) {
         backgroundView.image = [BPUtils imageNamed:@"cell_background_single"];
     } else if (indexPath.item == 0) {
@@ -206,6 +215,14 @@
         backgroundView.image = [BPUtils imageNamed:@"cell_background_middle"];
     }
     
+    if (indexPath.section == 1) {
+        UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
+        selectedBackgroundView.image = [backgroundView.image tintedImageWithColor:[BPThemeManager sharedManager].currentThemeColor style:UIImageTintedStyleKeepingAlpha];
+        cell.selectedBackgroundView = selectedBackgroundView;
+    } else {
+        cell.selectedBackgroundView = nil;
+    }
+
     cell.backgroundView = backgroundView;
     
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];

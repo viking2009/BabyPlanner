@@ -8,6 +8,7 @@
 
 #import "BPSettingsCell.h"
 #import "BPUtils.h"
+#import "UIImage+Additions.h"
 
 @interface BPSettingsCell()
 
@@ -25,16 +26,19 @@
         self.titleLabel.backgroundColor = [UIColor clearColor];
         self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
         self.titleLabel.textColor = RGB(0, 0, 0);
+        self.titleLabel.highlightedTextColor = RGB(255, 255, 255);
         [self.contentView addSubview:self.titleLabel];
         
         self.subtitleLabel = [[UILabel alloc] init];
         self.subtitleLabel.backgroundColor = [UIColor clearColor];
         self.subtitleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
         self.subtitleLabel.textColor = RGB(56, 84, 135);
+        self.subtitleLabel.highlightedTextColor = RGB(255, 255, 255);
         self.subtitleLabel.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:self.subtitleLabel];
         
         self.accessoryView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"cell_disclosureIndicator"]];
+        self.accessoryView.highlightedImage = [self.accessoryView.image tintedImageWithColor:RGB(255, 255, 255) style:UIImageTintedStyleKeepingAlpha];
         [self.contentView addSubview:self.accessoryView];
     }
     return self;

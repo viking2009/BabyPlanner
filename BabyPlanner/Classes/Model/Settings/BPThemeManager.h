@@ -21,6 +21,9 @@ extern NSString *const BPThemeDidChangeNotification;
 @property (nonatomic, readonly) UIImage *navigationBarBackgroundImage;
 @property (nonatomic, readonly) UIImage *navigationBarBackButtonImage;
 
+@property (nonatomic, readonly) UIColor *currentThemeColor;
+
+- (UIColor *)themeColorForTheme:(NSString *)theme;
 - (UIImage *)iconImageForTheme:(NSString *)theme highlighted:(BOOL)highlighted;
 
 @end

@@ -17,6 +17,8 @@
 #import "BPMyTemperatureNotationsViewController.h"
 #import "BPSettings.h"
 #import "BPLanguageManager.h"
+#import "BPThemeManager.h"
+#import "UIImage+Additions.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPSegmentCellIdentifier @"BPSegmentCellIdentifier"
@@ -105,6 +107,13 @@
     [self updateUI];
 
     [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.collectionView deselectItemAtIndexPath:[[self.collectionView indexPathsForSelectedItems] lastObject] animated:YES];
 }
 
 - (void)loadData
@@ -235,6 +244,7 @@
 //    }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
+    UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
     
     if ([collectionView numberOfItemsInSection:indexPath.section] == 1) {
         backgroundView.image = [BPUtils imageNamed:@"cell_background_single"];
@@ -246,7 +256,10 @@
         backgroundView.image = [BPUtils imageNamed:@"cell_background_middle"];
     }
     
+    selectedBackgroundView.image = [backgroundView.image tintedImageWithColor:[BPThemeManager sharedManager].currentThemeColor style:UIImageTintedStyleKeepingAlpha];
+    
     cell.backgroundView = backgroundView;
+    cell.selectedBackgroundView = selectedBackgroundView;
     
     NSDictionary *dataItem = _data[indexPath.item];
 //    if (indexPath.section == 0 && indexPath.item == 0) {

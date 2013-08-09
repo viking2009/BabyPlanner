@@ -81,6 +81,20 @@ NSString *const BPThemeDidChangeNotification = @"BPThemeDidChangeNotification";
     return [self themedImageNamed:@"navigationbar_backButton"];
 }
 
+- (UIColor *)themeColorForTheme:(NSString *)theme {
+    if ([theme isEqualToString:@"Pink"])
+        return RGB(244, 217, 233);
+    else if ([theme isEqualToString:@"Blue"])
+        return RGB(160, 220, 236);
+    else
+        return RGB(30, 188, 165);
+}
+
+- (UIColor *)currentThemeColor
+{
+    return [self themeColorForTheme:self.currentTheme];
+}
+
 - (UIImage *)iconImageForTheme:(NSString *)theme highlighted:(BOOL)highlighted
 {
     NSString *imageName = [NSString stringWithFormat:@"Icon-%@", (highlighted ? @"selected" : @"normal")];

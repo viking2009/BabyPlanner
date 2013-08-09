@@ -38,6 +38,7 @@
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
 		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
 		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
+		90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9417B4D88600308A2A /* UIImage+Additions.m */; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -173,6 +174,8 @@
 		90BA066F178D4C6B0045AB24 /* BPLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLabel.m; sourceTree = "<group>"; };
 		90BA0672178D4E890045AB24 /* BPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSelectButton.h; sourceTree = "<group>"; };
 		90BA0673178D4E890045AB24 /* BPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSelectButton.m; sourceTree = "<group>"; };
+		90C85C9317B4D88600308A2A /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		90C85C9417B4D88600308A2A /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -345,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				902B71DF179DB8CC001810D8 /* Macros.h */,
+				90C85C9217B4D88600308A2A /* UIImage-Additions */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -464,6 +468,15 @@
 				90BA0673178D4E890045AB24 /* BPSelectButton.m */,
 			);
 			path = BPSelectButton;
+			sourceTree = "<group>";
+		};
+		90C85C9217B4D88600308A2A /* UIImage-Additions */ = {
+			isa = PBXGroup;
+			children = (
+				90C85C9317B4D88600308A2A /* UIImage+Additions.h */,
+				90C85C9417B4D88600308A2A /* UIImage+Additions.m */,
+			);
+			path = "UIImage-Additions";
 			sourceTree = "<group>";
 		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
@@ -1028,6 +1041,7 @@
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */,
+				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
