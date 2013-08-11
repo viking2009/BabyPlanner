@@ -274,7 +274,7 @@
     }
     
     selectedBackgroundView.image = [backgroundView.image tintedImageWithColor:[BPThemeManager sharedManager].currentThemeColor style:UIImageTintedStyleKeepingAlpha];
-    
+
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
     
@@ -296,6 +296,7 @@
         } else {
             settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
         }
+        settingsCell.accessoryView.highlightedImage = [settingsCell.accessoryView.image tintedImageWithColor:RGB(255, 255, 255) style:UIImageTintedStyleKeepingAlpha];
     }
 
     return cell;
@@ -324,6 +325,8 @@
             default:
                 break;
         }
+    } else {
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
 }
 

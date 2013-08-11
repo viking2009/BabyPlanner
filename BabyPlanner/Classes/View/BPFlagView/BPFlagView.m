@@ -54,7 +54,7 @@
     
     self.imageView.frame = bounds;
     
-    CGFloat top = 2.f;
+    CGFloat top = 3.f;
     self.dayLabel.frame = CGRectMake(0, top, bounds.size.width, 22.f);
     top += self.dayLabel.frame.size.height;
     
