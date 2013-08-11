@@ -35,7 +35,7 @@
                                             userDictionary:@{ @"device" : device }];
     
     [[TTSwitch appearance] setMaskInLockPosition:@0];
-    [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track"]];
+    [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track-no-text"]];
     [[TTSwitch appearance] setOverlayImage:[BPUtils imageNamed:@"round-switch-overlay"]];
     [[TTSwitch appearance] setTrackMaskImage:[BPUtils imageNamed:@"round-switch-mask"]];
     [[TTSwitch appearance] setThumbImage:[BPUtils imageNamed:@"round-switch-thumb"]];

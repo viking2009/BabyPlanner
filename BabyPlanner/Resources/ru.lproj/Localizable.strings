@@ -23,7 +23,9 @@
 /* BPMyTemperatureControlsViewController */
 "My controls" = "?Мои настройки?";
 "Done" = "Готово";
-"Please, enter\nyour data!" = "Введите Ваши\nданные!";
+"Please, enter\nyour data!" = "Введите\nВаши данные!";
+"Yes" = "Да";
+"No" = "Нет";
 
 /* BPMyChartsViewController */
 "My Charts" = "Мои графики";
@@ -39,6 +41,8 @@
 
 "On" = "Вкл";
 "Off" = "Выкл";
+"ON" = "I";
+"OFF" = "O";
 
 /* BPSettingsLanguageViewController */
 "Language" = "Язык";

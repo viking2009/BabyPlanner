@@ -24,6 +24,8 @@
 "My controls" = "My controls";
 "Done" = "Done";
 "Please, enter\nyour data!" = "Please, enter\nyour data!";
+"Yes" = "Yes";
+"No" = "No";
 
 /* BPMyChartsViewController */
 "My Charts" = "My Charts";
@@ -39,6 +41,8 @@
 
 "On" = "On";
 "Off" = "Off";
+"ON" = "ON";
+"OFF" = "OFF";
 
 /* BPSettingsLanguageViewController */
 "Language" = "Language";

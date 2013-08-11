@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TTSwitch.h"
+#import "DCRoundSwitch.h"
 
 @class BPSwitchCell;
 
@@ -19,8 +20,10 @@
 
 @interface BPSwitchCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) TTSwitch *toggleView;
+//@property (nonatomic, strong) TTSwitch *toggleView;
+@property (nonatomic, strong) DCRoundSwitch *toggleView;
 @property (nonatomic, weak) id delegate;
 
 @end

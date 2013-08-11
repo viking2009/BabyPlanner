@@ -231,6 +231,8 @@
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
         switchCell.toggleView.on = [sharedSettings[BPSettingsShowTemperatureKey] boolValue];
+        switchCell.toggleView.onText = BPLocalizedString(@"ON");
+        switchCell.toggleView.offText = BPLocalizedString(@"OFF");
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
         segmentCell.titleLabel.text = dataItem[@"title"];

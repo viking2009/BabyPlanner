@@ -42,6 +42,11 @@
 		90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9817B4ED1B00308A2A /* BPCircleCell.m */; };
 		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
 		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
+		90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755417B7E1190045C30E /* BPCollectionViewCell.m */; };
+		90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755817B7EF880045C30E /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755C17B7EF880045C30E /* DCRoundSwitchOutlineLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90E6756217B7EF880045C30E /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755E17B7EF880045C30E /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90E881B2177872C300682BB3 /* BPImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E881B1177872C300682BB3 /* BPImages.bundle */; };
 		90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881B51778731F00682BB3 /* BPTabBarController.m */; };
 		90E881BB1778739B00682BB3 /* BPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E881BA1778739B00682BB3 /* BPUtils.m */; };
@@ -185,6 +190,16 @@
 		90C85C9C17B4F42200308A2A /* BPFlagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPFlagView.m; sourceTree = "<group>"; };
 		90C85C9F17B4FC7100308A2A /* BPDateIndicatorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateIndicatorsView.h; sourceTree = "<group>"; };
 		90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateIndicatorsView.m; sourceTree = "<group>"; };
+		90E6755317B7E1190045C30E /* BPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewCell.h; sourceTree = "<group>"; };
+		90E6755417B7E1190045C30E /* BPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewCell.m; sourceTree = "<group>"; };
+		90E6755717B7EF880045C30E /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
+		90E6755817B7EF880045C30E /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
+		90E6755917B7EF880045C30E /* DCRoundSwitchKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchKnobLayer.h; sourceTree = "<group>"; };
+		90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchKnobLayer.m; sourceTree = "<group>"; };
+		90E6755B17B7EF880045C30E /* DCRoundSwitchOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchOutlineLayer.h; sourceTree = "<group>"; };
+		90E6755C17B7EF880045C30E /* DCRoundSwitchOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchOutlineLayer.m; sourceTree = "<group>"; };
+		90E6755D17B7EF880045C30E /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
+		90E6755E17B7EF880045C30E /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		90E881B1177872C300682BB3 /* BPImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPImages.bundle; sourceTree = "<group>"; };
 		90E881B41778731F00682BB3 /* BPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTabBarController.h; sourceTree = "<group>"; };
 		90E881B51778731F00682BB3 /* BPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTabBarController.m; sourceTree = "<group>"; };
@@ -515,6 +530,30 @@
 			path = BPDateIndicatorsView;
 			sourceTree = "<group>";
 		};
+		90E6755217B7E0FF0045C30E /* BPCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				90E6755317B7E1190045C30E /* BPCollectionViewCell.h */,
+				90E6755417B7E1190045C30E /* BPCollectionViewCell.m */,
+			);
+			path = BPCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		90E6755617B7EF880045C30E /* DCRoundSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				90E6755717B7EF880045C30E /* DCRoundSwitch.h */,
+				90E6755817B7EF880045C30E /* DCRoundSwitch.m */,
+				90E6755917B7EF880045C30E /* DCRoundSwitchKnobLayer.h */,
+				90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */,
+				90E6755B17B7EF880045C30E /* DCRoundSwitchOutlineLayer.h */,
+				90E6755C17B7EF880045C30E /* DCRoundSwitchOutlineLayer.m */,
+				90E6755D17B7EF880045C30E /* DCRoundSwitchToggleLayer.h */,
+				90E6755E17B7EF880045C30E /* DCRoundSwitchToggleLayer.m */,
+			);
+			path = DCRoundSwitch;
+			sourceTree = "<group>";
+		};
 		90E881B31778730600682BB3 /* BPTabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +616,7 @@
 				90C85C9617B4ECEF00308A2A /* BPCircleCell */,
 				90C85C9A17B4F40C00308A2A /* BPFlagView */,
 				90C85C9E17B4FC5700308A2A /* BPDateIndicatorsView */,
+				90E6755217B7E0FF0045C30E /* BPCollectionViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -837,6 +877,7 @@
 				907BA9551779AC97005944D6 /* NSDate-Utilities */,
 				907BA94F1779A3A4005944D6 /* DSTPickerView */,
 				90E881CF1778BA2600682BB3 /* TTSwitch */,
+				90E6755617B7EF880045C30E /* DCRoundSwitch */,
 				90EB9E951707A66A008457A3 /* EKKeyboardAvoidingScrollView */,
 				90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */,
 			);
@@ -1048,9 +1089,11 @@
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				902B71DD179DB14D001810D8 /* BPSettings.m in Sources */,
+				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
 				9020BE4017B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
 				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
+				90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */,
 				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,
 				90E881C217788D9700682BB3 /* BPViewController.m in Sources */,
@@ -1065,11 +1108,13 @@
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
 				9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */,
 				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
+				90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */,
 				90EB9E57170791C7008457A3 /* BPMyChartsViewController.m in Sources */,
 				90BA0668178D4A460045AB24 /* BPSettingsProfileViewController.m in Sources */,
 				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EB9E64170793B4008457A3 /* BPMyPregnancyViewController.m in Sources */,
 				907BA94A17799CEE005944D6 /* BPSettingsAlarmViewController.m in Sources */,
+				90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */,
 				90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
@@ -1087,6 +1132,7 @@
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
 				90EC01B617B1F8C7009A4692 /* BPMyTemperatureMainViewController.m in Sources */,
+				90E6756217B7EF880045C30E /* DCRoundSwitchToggleLayer.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,

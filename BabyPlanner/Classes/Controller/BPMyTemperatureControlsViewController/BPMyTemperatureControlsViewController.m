@@ -9,8 +9,7 @@
 #import "BPMyTemperatureControlsViewController.h"
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
-#import "BPSegmentCell.h"
-#import "BPSettingsCell.h"
+#import "BPCollectionViewCell.h"
 #import "BPSettingsLanguageViewController.h"
 #import "BPSettingsThemeViewController.h"
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
@@ -21,8 +20,7 @@
 #import "UIImage+Additions.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
-#define BPSegmentCellIdentifier @"BPSegmentCellIdentifier"
-#define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
+#define BPConllectionViewCellIdentifier @"BPConllectionViewCellIdentifier"
 
 @interface BPMyTemperatureControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
@@ -113,8 +111,7 @@
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
-    [self.collectionView registerClass:[BPSegmentCell class] forCellWithReuseIdentifier:BPSegmentCellIdentifier];
-    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
+    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPConllectionViewCellIdentifier];
     
     [self updateUI];
 
@@ -134,10 +131,12 @@
     DLog(@"language: %@", language);
     
     // TODO: set data for self.date;
-    self.data = @[ @{@"title": BPLocalizedString(@"Menstruation")},
-                   @{@"title": BPLocalizedString(@"Sexual intercourse")},
-                   @{@"title": BPLocalizedString(@"Symptoms and mood")},
-                   @{@"title": BPLocalizedString(@"Notations")}
+    self.data = @[ @[@{@"title": BPLocalizedString(@"Temperature"), @"image": @"mytemperature_icon_temperature"}],
+                   @[@{@"title": BPLocalizedString(@"Menstruation"), @"image": @"mytemperature_icon_menstruation"},
+                     @{@"title": BPLocalizedString(@"Sexual intercourse"), @"image": @"mytemperature_icon_sexual_intercourse"},
+                     @{@"title": BPLocalizedString(@"Symptoms and mood"), @"image": @"mytemperature_icon_symptoms_and_moods"},
+                     @{@"title": BPLocalizedString(@"Notations"), @"image": @"mytemperature_icon_notations"}],
+                   @[@{@"title": BPLocalizedString(@"Pregnancy"), @"image": @"mytemperature_icon_pregnancy"}]
                   ];
 }
 
@@ -180,10 +179,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPSettingsCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPConllectionViewCellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPSettingsCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPConllectionViewCellIdentifier];
     }
     
     DLog(@"cell = %@", cell);
@@ -229,26 +228,37 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return [_data count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return (section != 1 ? 1 : [_data count]);
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
+    switch (section) {
+        case 0:
+            if (![sharedSettings[BPSettingsShowTemperatureKey] boolValue])
+                return 0;
+            break;
+        case 2:
+            if (![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
+                return 0;
+            break;
+        default:
+            break;
+    }
+    
+    return [_data[section] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-
     UICollectionViewCell *cell;
-//    if (indexPath.section == 0 && indexPath.item == 0) {
-//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
-//    } else if (indexPath.section == 0 && indexPath.item == 1) {
-//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSegmentCellIdentifier forIndexPath:indexPath];
-//    } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsCellIdentifier forIndexPath:indexPath];
-//    }
+    if (indexPath.section == 1 && indexPath.item < 2) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPConllectionViewCellIdentifier forIndexPath:indexPath];
+    }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
     UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
@@ -268,29 +278,26 @@
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
     
-    NSDictionary *dataItem = _data[indexPath.item];
-//    if (indexPath.section == 0 && indexPath.item == 0) {
-//        BPSwitchCell *switchCell = (BPSwitchCell *)cell;
-//        switchCell.titleLabel.text = dataItem[@"title"];
-//        switchCell.delegate = self;
-//        switchCell.toggleView.on = [sharedSettings[BPSettingsShowTemperatureKey] boolValue];
-//    } else if (indexPath.section == 0 && indexPath.item == 1) {
-//        BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
-//        segmentCell.titleLabel.text = dataItem[@"title"];
-//        segmentCell.segmentView = [[SVSegmentedControl alloc] initWithSectionTitles:[[BPLanguageManager sharedManager] supportedMetrics]];
-//        [segmentCell.segmentView setSelectedSegmentIndex:[[BPLanguageManager sharedManager] currentMetric] animated:NO];
-//        segmentCell.segmentView.changeHandler = ^(NSUInteger newIndex) {
-//            [BPLanguageManager sharedManager].currentMetric = newIndex;
-//        };
-//    } else{
-        BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
-    
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        settingsCell.titleLabel.text = BPLocalizedString(@"Temperature");
+    NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
+    if (indexPath.section == 1 && indexPath.item < 2) {
+        BPSwitchCell *switchCell = (BPSwitchCell *)cell;
+        switchCell.imageView.image =  [BPUtils imageNamed:dataItem[@"image"]];
+        switchCell.titleLabel.text = dataItem[@"title"];
+        switchCell.toggleView.onText = BPLocalizedString(@"Yes");
+        switchCell.toggleView.offText = BPLocalizedString(@"No");
+        switchCell.delegate = self;
     } else {
+        BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
+        settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
         settingsCell.titleLabel.text = dataItem[@"title"];
+        
+        if (indexPath.section == 2) {
+            settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_checkmark"];
+        } else {
+            settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
+        }
     }
-    
+
     return cell;
 }
 
@@ -354,8 +361,8 @@
 
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsShowTemperatureKey] = @(cell.toggleView.on);
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
 }
 
 #pragma mark - Private
