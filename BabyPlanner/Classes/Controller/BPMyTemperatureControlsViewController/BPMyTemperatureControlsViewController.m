@@ -10,8 +10,7 @@
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
-#import "BPSettingsLanguageViewController.h"
-#import "BPSettingsThemeViewController.h"
+#import "BPMyTemperatureSelectViewController.h"
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
 #import "BPMyTemperatureNotationsViewController.h"
 #import "BPSettings.h"
@@ -316,14 +315,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog()
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0 && indexPath.row == 0)
+        [self.navigationController pushViewController:[BPMyTemperatureSelectViewController new] animated:YES];
+    else if (indexPath.section == 1) {
         switch (indexPath.item) {
-            case 0:
-//                [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
-                break;
-            case 1:
-//                [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
-                break;
             case 2:
                 [self.navigationController pushViewController:[BPMyTemperatureSymptomsAndMoodViewController new] animated:YES];
                 break;

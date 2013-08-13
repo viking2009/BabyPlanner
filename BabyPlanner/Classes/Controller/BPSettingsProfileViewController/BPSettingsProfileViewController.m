@@ -272,10 +272,10 @@
     [self.childBirthButton setTitle:[BPUtils stringFromDate:childBirthday] forState:UIControlStateNormal];
 }
 
-- (void)settingsDidChange
-{
-    [self updateUI];
-}
+//- (void)settingsDidChange
+//{
+//    [self updateUI];
+//}
 
 #pragma mark - UITextFieldDelegate
 

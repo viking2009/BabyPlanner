@@ -43,6 +43,7 @@
 		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
 		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
+		90E1DB9D17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9C17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m */; };
 		90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755417B7E1190045C30E /* BPCollectionViewCell.m */; };
 		90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755817B7EF880045C30E /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -203,6 +204,8 @@
 		90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateIndicatorsView.m; sourceTree = "<group>"; };
 		90E1DB9717BAA453000460C7 /* BPTemperaturePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTemperaturePicker.h; sourceTree = "<group>"; };
 		90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperaturePicker.m; sourceTree = "<group>"; };
+		90E1DB9B17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureSelectViewController.h; sourceTree = "<group>"; };
+		90E1DB9C17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureSelectViewController.m; sourceTree = "<group>"; };
 		90E6755317B7E1190045C30E /* BPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewCell.h; sourceTree = "<group>"; };
 		90E6755417B7E1190045C30E /* BPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewCell.m; sourceTree = "<group>"; };
 		90E6755717B7EF880045C30E /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
@@ -567,6 +570,15 @@
 			path = BPDateIndicatorsView;
 			sourceTree = "<group>";
 		};
+		90E1DB9A17BAAC72000460C7 /* BPMyTemperatureSelectViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90E1DB9B17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.h */,
+				90E1DB9C17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m */,
+			);
+			path = BPMyTemperatureSelectViewController;
+			sourceTree = "<group>";
+		};
 		90E6755217B7E0FF0045C30E /* BPCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +824,7 @@
 				90EB9E5017079193008457A3 /* BPMyTemperatureViewController */,
 				90EC01B317B1F8A9009A4692 /* BPMyTemperatureMainViewController */,
 				90EC01B217B1F8A9009A4692 /* BPMyTemperatureControlsViewController */,
+				90E1DB9A17BAAC72000460C7 /* BPMyTemperatureSelectViewController */,
 				9020BE3D17B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController */,
 				9020BE3917B20CF300A70B44 /* BPMyTemperatureNotationsViewController */,
 				90EB9E54170791C7008457A3 /* BPMyChartsViewController */,
@@ -1222,6 +1235,7 @@
 				90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */,
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 				90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */,
+				90E1DB9D17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

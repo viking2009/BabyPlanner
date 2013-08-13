@@ -115,10 +115,13 @@
     if (_currentValue != value && [pickerView.dataSource isKindOfClass:[self class]]) {
         _currentValue = value;
         
-        float floatValue = MIN(kBPTemperaturePickerMaxTemperature + 0.99f, MAX([self.currentValue floatValue], kBPTemperaturePickerMinTemperature));
-        _currentValue = @(floatValue);
+        // TODO: fix value: v = @(floorf(v*100)/100);??
         
-        [pickerView selectRow:floatValue - kBPTemperaturePickerMinTemperature inComponent:0 animated:animated];
+//        float floatValue = MIN(kBPTemperaturePickerMaxTemperature + 0.99f, MAX([self.currentValue floatValue], kBPTemperaturePickerMinTemperature));
+//        _currentValue = @(floatValue);
+        NSInteger length = [self.currentValue integerValue];
+        
+        [pickerView selectRow:length - kBPTemperaturePickerMinTemperature inComponent:0 animated:animated];
         [pickerView selectRow:(int)([self.currentValue floatValue] * 10) % 10 inComponent:2 animated:animated];
         [pickerView selectRow:(int)([self.currentValue floatValue] * 100) % 10 inComponent:3 animated:animated];
         

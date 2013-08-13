@@ -107,7 +107,7 @@
                 break;
         }
         
-        _toolBar.hidden = !_pickerView;
+        self.toolBar.hidden = !_pickerView;
         if (self.superview) {
             if (!_pickerView)
                 [self.superview sendSubviewToBack:self];

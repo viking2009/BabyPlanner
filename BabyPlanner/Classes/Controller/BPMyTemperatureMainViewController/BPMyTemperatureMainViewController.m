@@ -220,15 +220,17 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-
-    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+    return YES;
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//
+//    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    
-    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+    return YES;
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    
+//    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
