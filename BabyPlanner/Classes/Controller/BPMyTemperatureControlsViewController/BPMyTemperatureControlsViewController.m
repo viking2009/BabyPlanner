@@ -237,12 +237,11 @@
 
     switch (section) {
         case 0:
-            if (![sharedSettings[BPSettingsShowTemperatureKey] boolValue])
+            if ([sharedSettings[BPSettingsTermometrKey] boolValue])
                 return 0;
             break;
         case 2:
-            if (![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
-                return 0;
+            return 1;
             break;
         default:
             break;
@@ -292,7 +291,8 @@
         settingsCell.titleLabel.text = dataItem[@"title"];
         
         if (indexPath.section == 2) {
-            settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_checkmark"];
+            BPSettings *sharedSettings = [BPSettings sharedSettings];
+            settingsCell.accessoryView.image = ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] ? [BPUtils imageNamed:@"cell_checkmark"] : nil);
         } else {
             settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
         }
@@ -303,6 +303,15 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return !(indexPath.section == 1 && indexPath.item < 2);
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return !(indexPath.section == 1 && indexPath.item < 2);
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -325,6 +334,10 @@
             default:
                 break;
         }
+    } else if (indexPath.section == 2 &indexPath.row == 0) {
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        sharedSettings[BPSettingsProfileIsPregnantKey] = @(![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
+
     } else {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }

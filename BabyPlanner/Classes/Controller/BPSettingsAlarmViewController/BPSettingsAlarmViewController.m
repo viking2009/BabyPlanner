@@ -177,6 +177,8 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
+        switchCell.toggleView.onText = BPLocalizedString(@"ON");
+        switchCell.toggleView.offText = BPLocalizedString(@"OFF");
         switchCell.toggleView.on = self.canScheduleAlarm;
     } else {
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;

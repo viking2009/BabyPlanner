@@ -9,6 +9,7 @@
 #import "BPMyTemperatureMainViewController.h"
 #import "BPUtils.h"
 #import "BPThemeManager.h"
+#import "BPSettings.h"
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
 #import "BPFlagView.h"
@@ -21,7 +22,8 @@
 @interface BPMyTemperatureMainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) BPFlagView *flagView;
+@property (nonatomic, strong) BPFlagView *leftFlagView;
+@property (nonatomic, strong) BPFlagView *rightFlagView;
 @property (nonatomic, strong) BPDateIndicatorsView *indicatorsView;
 @property (nonatomic, strong) UIButton *myControlsButton;
 @property (nonatomic, strong) UILabel *selectLabel;
@@ -52,13 +54,20 @@
     topView.backgroundColor = RGB(13, 134, 116);
     [self.view addSubview:topView];
     
-    UIImage *flagImage = [BPUtils imageNamed:@"mytemperature_main_flag"];
-    self.flagView = [[BPFlagView alloc] initWithFrame: CGRectMake(6.f, 20.f, flagImage.size.width, flagImage.size.height)];
-    self.flagView.imageView.image = flagImage;
+    UIImage *redFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_red"];
+    self.leftFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(6.f, 20.f, redFlagImage.size.width, redFlagImage.size.height)];
+    self.leftFlagView.imageView.image = redFlagImage;
     // TODO: add property for controller
-    self.flagView.date = [NSDate date];
-    [self.view addSubview:self.flagView];
-    
+    self.leftFlagView.date = [NSDate date];
+    [self.view addSubview:self.leftFlagView];
+
+    UIImage *pinkFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_pink"];
+    self.rightFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - pinkFlagImage.size.width -  6.f, 20.f, pinkFlagImage.size.width, pinkFlagImage.size.height)];
+    self.rightFlagView.imageView.image = pinkFlagImage;
+    self.rightFlagView.hidden = YES;
+    // TODO: add property for controller
+    [self.view addSubview:self.rightFlagView];
+
     UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
     bottomView.frame = CGRectMake(0.f, self.view.bounds.size.height - 55.f - self.tabBarController.tabBar.frame.size.height, bottomView.image.size.width, bottomView.image.size.height);
     [self.view addSubview:bottomView];
@@ -143,7 +152,13 @@
 {
     [super updateUI];
     
-    [self.flagView updateUI];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    [self.leftFlagView updateUI];
+    self.rightFlagView.date = sharedSettings[BPSettingsProfileChildBirthdayKey];
+    DLog(@"self.rightFlagView.date: %@", self.rightFlagView.date);
+    self.rightFlagView.hidden = !([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && sharedSettings[BPSettingsProfileChildBirthdayKey]);
+    [self.rightFlagView updateUI];
     [self.indicatorsView updateUI];
     
     self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
@@ -179,6 +194,8 @@
     
     BPCircleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
     
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
     NSString *imageName = @"point_4";
     
     if (indexPath.item < 12)
@@ -201,9 +218,23 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
+    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    return indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog()
+    DLog();
+    self.indicatorsView.ovulation = @(indexPath.item == 13);
 }
 
 #pragma mark - Private

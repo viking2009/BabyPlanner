@@ -59,11 +59,6 @@
     top += self.dayLabel.frame.size.height;
     
     self.monthLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.monthLabel.font.lineHeight));
-    
-    DLog(@"self.dayLabel = %@", self.dayLabel);
-    DLog(@"self.monthLabel = %@", self.monthLabel);
-
-    
 }
 
 - (void)setDate:(NSDate *)date

@@ -215,24 +215,18 @@
         backgroundView.image = [BPUtils imageNamed:@"cell_background_middle"];
     }
     
-    if (indexPath.section == 1) {
-        UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
-        selectedBackgroundView.image = [backgroundView.image tintedImageWithColor:[BPThemeManager sharedManager].currentThemeColor style:UIImageTintedStyleKeepingAlpha];
-        cell.selectedBackgroundView = selectedBackgroundView;
-    } else {
-        cell.selectedBackgroundView = nil;
-    }
-
     cell.backgroundView = backgroundView;
+    
+    UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
+    selectedBackgroundView.image = [backgroundView.image tintedImageWithColor:[BPThemeManager sharedManager].currentThemeColor style:UIImageTintedStyleKeepingAlpha];
+    cell.selectedBackgroundView = selectedBackgroundView;
     
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
     if (indexPath.section == 0 && indexPath.item == 0) {
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
-        switchCell.toggleView.on = [sharedSettings[BPSettingsShowTemperatureKey] boolValue];
-        switchCell.toggleView.onText = BPLocalizedString(@"ON");
-        switchCell.toggleView.offText = BPLocalizedString(@"OFF");
+        switchCell.toggleView.on = [sharedSettings[BPSettingsTermometrKey] boolValue];
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
         segmentCell.titleLabel.text = dataItem[@"title"];
@@ -269,6 +263,15 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section > 0;
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section > 0;
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -324,7 +327,7 @@
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsShowTemperatureKey] = @(cell.toggleView.on);
+    sharedSettings[BPSettingsTermometrKey] = @(cell.toggleView.on);
 }
 
 @end

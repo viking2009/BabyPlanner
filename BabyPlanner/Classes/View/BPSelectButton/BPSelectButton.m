@@ -30,7 +30,7 @@
     
     [self setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
     
     self.subtitleLabel.textColor = RGB(255, 255, 255);
     self.subtitleLabel.textAlignment = NSTextAlignmentLeft;
