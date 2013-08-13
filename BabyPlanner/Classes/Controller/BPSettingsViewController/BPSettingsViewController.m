@@ -89,7 +89,7 @@
     DLog(@"language: %@", language);
     
     self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Termometer"), @"subtitle" : @""},
+                  @[ @{@"title": BPLocalizedString(@"Thermometer"), @"subtitle" : @""},
                      @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @""}],
                   @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : BPLocalizedString(language)},
                      @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
@@ -226,7 +226,7 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
-        switchCell.toggleView.on = [sharedSettings[BPSettingsTermometrKey] boolValue];
+        switchCell.toggleView.on = [sharedSettings[BPSettingsThermometrKey] boolValue];
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
         segmentCell.titleLabel.text = dataItem[@"title"];
@@ -327,7 +327,7 @@
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsTermometrKey] = @(cell.toggleView.on);
+    sharedSettings[BPSettingsThermometrKey] = @(cell.toggleView.on);
 }
 
 @end

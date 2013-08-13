@@ -129,6 +129,7 @@
 		90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82417B9EB9B00686048 /* CoreDataManager.m */; };
 		90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82617B9EB9B00686048 /* NSManagedObject+ActiveRecord.m */; };
 		90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */; };
+		90FCA82E17B9EC1700686048 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCA82D17B9EC1700686048 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -327,6 +328,7 @@
 		90FCA82717B9EB9B00686048 /* NSManagedObject+Mappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mappings.h"; sourceTree = "<group>"; };
 		90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mappings.m"; sourceTree = "<group>"; };
 		90FCA82917B9EB9B00686048 /* ObjectiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveRecord.h; sourceTree = "<group>"; };
+		90FCA82D17B9EC1700686048 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,7 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */,
+				90FCA82E17B9EC1700686048 /* CoreData.framework in Frameworks */,
 				907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */,
 				90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */,
 				90EC01AA17B1EA46009A4692 /* BugSense-iOS.framework in Frameworks */,
@@ -342,6 +344,7 @@
 				90EB9E0217078C45008457A3 /* CoreGraphics.framework in Frameworks */,
 				90E9B53A1746D5930000760B /* QuartzCore.framework in Frameworks */,
 				90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */,
+				90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +719,7 @@
 		90EB9DFC17078C45008457A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90FCA82D17B9EC1700686048 /* CoreData.framework */,
 				907BA9531779A69E005944D6 /* AudioToolbox.framework */,
 				90EB9DFD17078C45008457A3 /* UIKit.framework */,
 				90EB9DFF17078C45008457A3 /* Foundation.framework */,

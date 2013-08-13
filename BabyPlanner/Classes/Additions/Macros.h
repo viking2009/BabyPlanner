@@ -15,7 +15,7 @@
 #define BPSettingsToolbarHeight             44.f
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
-#define BPSettingsTermometrKey              @"termometr"
+#define BPSettingsThermometrKey             @"thermometr"
 #define BPSettingsMetricKey                 @"metric"
 #define BPSettingsLanguageKey               @"language"
 #define BPSettingsThemeKey                  @"theme"

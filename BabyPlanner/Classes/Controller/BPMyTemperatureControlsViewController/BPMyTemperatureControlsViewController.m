@@ -237,7 +237,7 @@
 
     switch (section) {
         case 0:
-            if ([sharedSettings[BPSettingsTermometrKey] boolValue])
+            if ([sharedSettings[BPSettingsThermometrKey] boolValue])
                 return 0;
             break;
         case 2:
