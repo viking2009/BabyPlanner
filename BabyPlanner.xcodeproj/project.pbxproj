@@ -1369,7 +1369,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39E2D4A5-B4B8-4882-B0A5-5F96EBBBA5AD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02613784-89A6-4634-A1AB-4CD8679220B3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
