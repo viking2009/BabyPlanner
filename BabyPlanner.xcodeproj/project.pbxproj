@@ -120,6 +120,15 @@
 		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
 		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
 		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
+		90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81017B9EB8800686048 /* NSArray+ObjectiveSugar.m */; };
+		90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81217B9EB8800686048 /* NSDictionary+ObjectiveSugar.m */; };
+		90FCA81E17B9EB8800686048 /* NSMutableArray+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81417B9EB8800686048 /* NSMutableArray+ObjectiveSugar.m */; };
+		90FCA81F17B9EB8800686048 /* NSNumber+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81617B9EB8800686048 /* NSNumber+ObjectiveSugar.m */; };
+		90FCA82017B9EB8800686048 /* NSSet+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81817B9EB8800686048 /* NSSet+ObjectiveSugar.m */; };
+		90FCA82117B9EB8800686048 /* NSString+ObjectiveSugar.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA81A17B9EB8800686048 /* NSString+ObjectiveSugar.m */; };
+		90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82417B9EB9B00686048 /* CoreDataManager.m */; };
+		90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82617B9EB9B00686048 /* NSManagedObject+ActiveRecord.m */; };
+		90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +307,26 @@
 		90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
 		90F3562D17A20BF400E0261B /* BPSegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSegmentCell.h; sourceTree = "<group>"; };
 		90F3562E17A20BF400E0261B /* BPSegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSegmentCell.m; sourceTree = "<group>"; };
+		90FCA80F17B9EB8800686048 /* NSArray+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81017B9EB8800686048 /* NSArray+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81117B9EB8800686048 /* NSDictionary+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81217B9EB8800686048 /* NSDictionary+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81317B9EB8800686048 /* NSMutableArray+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81417B9EB8800686048 /* NSMutableArray+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81517B9EB8800686048 /* NSNumber+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81617B9EB8800686048 /* NSNumber+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81717B9EB8800686048 /* NSSet+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81817B9EB8800686048 /* NSSet+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81917B9EB8800686048 /* NSString+ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ObjectiveSugar.h"; sourceTree = "<group>"; };
+		90FCA81A17B9EB8800686048 /* NSString+ObjectiveSugar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ObjectiveSugar.m"; sourceTree = "<group>"; };
+		90FCA81B17B9EB8800686048 /* ObjectiveSugar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveSugar.h; sourceTree = "<group>"; };
+		90FCA82317B9EB9B00686048 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		90FCA82417B9EB9B00686048 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		90FCA82517B9EB9B00686048 /* NSManagedObject+ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ActiveRecord.h"; sourceTree = "<group>"; };
+		90FCA82617B9EB9B00686048 /* NSManagedObject+ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ActiveRecord.m"; sourceTree = "<group>"; };
+		90FCA82717B9EB9B00686048 /* NSManagedObject+Mappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mappings.h"; sourceTree = "<group>"; };
+		90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mappings.m"; sourceTree = "<group>"; };
+		90FCA82917B9EB9B00686048 /* ObjectiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveRecord.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -873,6 +902,8 @@
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				90FCA80E17B9EB8800686048 /* ObjectiveSugar */,
+				90FCA82217B9EB9B00686048 /* ObjectiveRecord */,
 				90F3562517A20B7C00E0261B /* SVSegmentedControl */,
 				907BA9551779AC97005944D6 /* NSDate-Utilities */,
 				907BA94F1779A3A4005944D6 /* DSTPickerView */,
@@ -968,6 +999,40 @@
 				90F3562E17A20BF400E0261B /* BPSegmentCell.m */,
 			);
 			path = BPSegmentCell;
+			sourceTree = "<group>";
+		};
+		90FCA80E17B9EB8800686048 /* ObjectiveSugar */ = {
+			isa = PBXGroup;
+			children = (
+				90FCA80F17B9EB8800686048 /* NSArray+ObjectiveSugar.h */,
+				90FCA81017B9EB8800686048 /* NSArray+ObjectiveSugar.m */,
+				90FCA81117B9EB8800686048 /* NSDictionary+ObjectiveSugar.h */,
+				90FCA81217B9EB8800686048 /* NSDictionary+ObjectiveSugar.m */,
+				90FCA81317B9EB8800686048 /* NSMutableArray+ObjectiveSugar.h */,
+				90FCA81417B9EB8800686048 /* NSMutableArray+ObjectiveSugar.m */,
+				90FCA81517B9EB8800686048 /* NSNumber+ObjectiveSugar.h */,
+				90FCA81617B9EB8800686048 /* NSNumber+ObjectiveSugar.m */,
+				90FCA81717B9EB8800686048 /* NSSet+ObjectiveSugar.h */,
+				90FCA81817B9EB8800686048 /* NSSet+ObjectiveSugar.m */,
+				90FCA81917B9EB8800686048 /* NSString+ObjectiveSugar.h */,
+				90FCA81A17B9EB8800686048 /* NSString+ObjectiveSugar.m */,
+				90FCA81B17B9EB8800686048 /* ObjectiveSugar.h */,
+			);
+			path = ObjectiveSugar;
+			sourceTree = "<group>";
+		};
+		90FCA82217B9EB9B00686048 /* ObjectiveRecord */ = {
+			isa = PBXGroup;
+			children = (
+				90FCA82317B9EB9B00686048 /* CoreDataManager.h */,
+				90FCA82417B9EB9B00686048 /* CoreDataManager.m */,
+				90FCA82517B9EB9B00686048 /* NSManagedObject+ActiveRecord.h */,
+				90FCA82617B9EB9B00686048 /* NSManagedObject+ActiveRecord.m */,
+				90FCA82717B9EB9B00686048 /* NSManagedObject+Mappings.h */,
+				90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */,
+				90FCA82917B9EB9B00686048 /* ObjectiveRecord.h */,
+			);
+			path = ObjectiveRecord;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1087,6 +1152,7 @@
 				9020BE3C17B20CF300A70B44 /* BPMyTemperatureNotationsViewController.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
+				90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
 				902B71DD179DB14D001810D8 /* BPSettings.m in Sources */,
 				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
@@ -1106,6 +1172,7 @@
 				90E881B61778731F00682BB3 /* BPTabBarController.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90EB9E5317079193008457A3 /* BPMyTemperatureViewController.m in Sources */,
+				90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */,
 				9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */,
 				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
 				90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */,
@@ -1119,6 +1186,7 @@
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881C617788E1800682BB3 /* BPNavigationController.m in Sources */,
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
+				90FCA81E17B9EB8800686048 /* NSMutableArray+ObjectiveSugar.m in Sources */,
 				9005C55C1794346B001338BA /* BPDatePicker.m in Sources */,
 				90EB9E65170793B4008457A3 /* BPSettingsViewController.m in Sources */,
 				9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */,
@@ -1128,15 +1196,21 @@
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				907BA94E17799D1E005944D6 /* BPSettingsLanguageViewController.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
+				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
+				90FCA82117B9EB8800686048 /* NSString+ObjectiveSugar.m in Sources */,
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
+				90FCA82017B9EB8800686048 /* NSSet+ObjectiveSugar.m in Sources */,
 				90EC01B617B1F8C7009A4692 /* BPMyTemperatureMainViewController.m in Sources */,
 				90E6756217B7EF880045C30E /* DCRoundSwitchToggleLayer.m in Sources */,
+				90FCA81F17B9EB8800686048 /* NSNumber+ObjectiveSugar.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
+				90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
 				90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */,
+				90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */,
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
