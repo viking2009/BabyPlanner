@@ -226,6 +226,8 @@
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.delegate = self;
+        switchCell.toggleView.onText = BPLocalizedString(@"ON");
+        switchCell.toggleView.offText = BPLocalizedString(@"OFF");
         switchCell.toggleView.on = [sharedSettings[BPSettingsThermometrKey] boolValue];
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
