@@ -89,6 +89,7 @@
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGFloat width = 0.f;
+    
     switch (component) {
         case 0:
             width = 40.f;

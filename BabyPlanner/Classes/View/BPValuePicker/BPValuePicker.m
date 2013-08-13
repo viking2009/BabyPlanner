@@ -15,6 +15,7 @@
 #import "BPLanguagePicker.h"
 #import "BPPeriodPicker.h"
 #import "BPUnitPicker.h"
+#import "BPTemperaturePicker.h"
 
 #import "BPUtils.h"
 
@@ -98,6 +99,10 @@
                 self.delegate.control = self;
                 break;
                 
+            case BPValuePickerModeTemperature:
+                self.delegate = [[BPTemperaturePicker alloc] init];
+                self.delegate.control = self;
+                break;
             default:
                 break;
         }
