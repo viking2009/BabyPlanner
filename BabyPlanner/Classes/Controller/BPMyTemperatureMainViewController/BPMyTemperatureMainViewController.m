@@ -202,7 +202,7 @@
         imageName = @"point_1";
     else if (indexPath.item < 18)
         imageName = @"point_2";
-    else if (indexPath.item < 28)
+    else if (indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
         imageName = @"point_3";
     else
         imageName = @"point_4";

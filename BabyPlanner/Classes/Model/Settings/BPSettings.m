@@ -38,7 +38,11 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     NSString *keyString = [NSString stringWithFormat:@"%@.%@", NSStringFromClass([self class]), [key description]];
     id result = [[NSUserDefaults standardUserDefaults] objectForKey:keyString];
 
-    if ([key isEqualToString:BPSettingsProfileWeightKey]) {
+    // TODO: set default settings here
+    if ([key isEqualToString:BPSettingsProfileLengthOfCycleKey]) {
+        if (!result)
+            result = @30;
+    } if ([key isEqualToString:BPSettingsProfileWeightKey]) {
         float weight = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierKg2Lb : 1);
         result = @((int)(weight * 10)/10.f);
     } else if ([key isEqualToString:BPSettingsProfileHeightKey]) {
