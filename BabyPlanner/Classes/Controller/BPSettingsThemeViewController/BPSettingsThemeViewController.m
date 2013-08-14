@@ -10,7 +10,7 @@
 #import "BPUtils.h"
 #import "BPThemeCell.h"
 #import "BPThemeManager.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 
 #define BPThemeCellIdentifier @"BPThemeCellIdentifier"
 

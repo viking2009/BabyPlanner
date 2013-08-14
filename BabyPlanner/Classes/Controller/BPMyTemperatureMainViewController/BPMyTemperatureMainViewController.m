@@ -9,7 +9,7 @@
 #import "BPMyTemperatureMainViewController.h"
 #import "BPUtils.h"
 #import "BPThemeManager.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
 #import "BPFlagView.h"

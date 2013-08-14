@@ -15,7 +15,6 @@
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876817881C0900067D7A /* BPSettingsThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876717881C0900067D7A /* BPSettingsThemeViewController.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
-		902B71DD179DB14D001810D8 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 902B71DC179DB14D001810D8 /* BPSettings.m */; };
 		902E86CE179F275700186731 /* BPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86CD179F275700186731 /* BPLanguageManager.m */; };
 		902E86D5179F34F300186731 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902E86D7179F34F300186731 /* Localizable.strings */; };
 		902E86DB179F461900186731 /* BPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86DA179F461900186731 /* BPThemeManager.m */; };
@@ -34,6 +33,10 @@
 		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
+		909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 909C957C17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld */; };
+		909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958417BC0CD300EEC795 /* BPSettings+Additions.m */; };
+		909C958C17BC0D0600EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958B17BC0D0600EEC795 /* BPProfile.m */; };
+		909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958E17BC0D2400EEC795 /* BPSettings.m */; };
 		90BA0668178D4A460045AB24 /* BPSettingsProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0667178D4A460045AB24 /* BPSettingsProfileViewController.m */; };
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
 		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
@@ -119,8 +122,6 @@
 		9029876717881C0900067D7A /* BPSettingsThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsThemeViewController.m; sourceTree = "<group>"; };
 		9029876A17881D6600067D7A /* BPThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeCell.h; sourceTree = "<group>"; };
 		9029876B17881D6600067D7A /* BPThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPThemeCell.m; sourceTree = "<group>"; };
-		902B71DB179DB14D001810D8 /* BPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettings.h; sourceTree = "<group>"; };
-		902B71DC179DB14D001810D8 /* BPSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettings.m; sourceTree = "<group>"; };
 		902B71DF179DB8CC001810D8 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		902E86CC179F275700186731 /* BPLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguageManager.h; sourceTree = "<group>"; };
 		902E86CD179F275700186731 /* BPLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguageManager.m; sourceTree = "<group>"; };
@@ -154,6 +155,13 @@
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		909C957D17BC0AB200EEC795 /* BabyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BabyPlanner.xcdatamodel; sourceTree = "<group>"; };
+		909C958317BC0CD300EEC795 /* BPSettings+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSettings+Additions.h"; sourceTree = "<group>"; };
+		909C958417BC0CD300EEC795 /* BPSettings+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSettings+Additions.m"; sourceTree = "<group>"; };
+		909C958A17BC0D0600EEC795 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
+		909C958B17BC0D0600EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
+		909C958D17BC0D2400EEC795 /* BPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettings.h; sourceTree = "<group>"; };
+		909C958E17BC0D2400EEC795 /* BPSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettings.m; sourceTree = "<group>"; };
 		90BA0666178D4A460045AB24 /* BPSettingsProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettingsProfileViewController.h; sourceTree = "<group>"; };
 		90BA0667178D4A460045AB24 /* BPSettingsProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettingsProfileViewController.m; sourceTree = "<group>"; };
 		90BA066A178D4AED0045AB24 /* BPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTextField.h; sourceTree = "<group>"; };
@@ -332,8 +340,6 @@
 		902B71DA179DB13F001810D8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				902B71DB179DB14D001810D8 /* BPSettings.h */,
-				902B71DC179DB14D001810D8 /* BPSettings.m */,
 				902E86CC179F275700186731 /* BPLanguageManager.h */,
 				902E86CD179F275700186731 /* BPLanguageManager.m */,
 				902E86D9179F461900186731 /* BPThemeManager.h */,
@@ -432,6 +438,36 @@
 				907BA9571779AC97005944D6 /* NSDate-Utilities.m */,
 			);
 			path = "NSDate-Utilities";
+			sourceTree = "<group>";
+		};
+		909C957B17BC0A9100EEC795 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				909C957C17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld */,
+				909C958217BC0CD300EEC795 /* Additions */,
+				909C958617BC0CEC00EEC795 /* Generated */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		909C958217BC0CD300EEC795 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				909C958317BC0CD300EEC795 /* BPSettings+Additions.h */,
+				909C958417BC0CD300EEC795 /* BPSettings+Additions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		909C958617BC0CEC00EEC795 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				909C958D17BC0D2400EEC795 /* BPSettings.h */,
+				909C958E17BC0D2400EEC795 /* BPSettings.m */,
+				909C958A17BC0D0600EEC795 /* BPProfile.h */,
+				909C958B17BC0D0600EEC795 /* BPProfile.m */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		90BA0665178D4A2B0045AB24 /* BPSettingsProfileViewController */ = {
@@ -551,6 +587,7 @@
 		90E881B71778738300682BB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				909C957B17BC0A9100EEC795 /* CoreData */,
 				902B71DA179DB13F001810D8 /* Settings */,
 				90E881B81778738300682BB3 /* Utils */,
 			);
@@ -1040,7 +1077,6 @@
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
-				902B71DD179DB14D001810D8 /* BPSettings.m in Sources */,
 				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
 				9020BE4017B20E0000A70B44 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
@@ -1100,6 +1136,10 @@
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 				90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */,
 				90E1DB9D17BAAC8C000460C7 /* BPMyTemperatureSelectViewController.m in Sources */,
+				909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */,
+				909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */,
+				909C958C17BC0D0600EEC795 /* BPProfile.m in Sources */,
+				909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1322,19 @@
 			defaultConfigurationName = AdHoc;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		909C957C17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				909C957D17BC0AB200EEC795 /* BabyPlanner.xcdatamodel */,
+			);
+			currentVersion = 909C957D17BC0AB200EEC795 /* BabyPlanner.xcdatamodel */;
+			path = BabyPlanner.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90EB9DF217078C45008457A3 /* Project object */;
 }

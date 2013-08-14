@@ -13,7 +13,7 @@
 #import "BPMyTemperatureSelectViewController.h"
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
 #import "BPMyTemperatureNotationsViewController.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPLanguageManager.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"

@@ -12,7 +12,7 @@
 #import "BPSwitchCell.h"
 #import "BPSettingsCell.h"
 #import "BPValuePicker.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"

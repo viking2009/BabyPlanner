@@ -52,7 +52,7 @@
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
 
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
-    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
+    tabBarController.viewControllers = @[myChartsViewController, myPregnancyViewController, settingsViewController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];

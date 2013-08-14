@@ -7,7 +7,7 @@
 //
 
 #import "BPThemeManager.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPUtils.h"
 
 NSString *const BPThemeDidChangeNotification = @"BPThemeDidChangeNotification";

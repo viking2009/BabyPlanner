@@ -11,7 +11,7 @@
 #import "BPUtils.h"
 #import "BPValuePicker.h"
 
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPLanguageManager.h"
 
 @interface BPSettingsLanguageViewController ()

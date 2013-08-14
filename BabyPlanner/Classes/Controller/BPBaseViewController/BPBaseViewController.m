@@ -10,7 +10,7 @@
 #import "BPUtils.h"
 
 #import "BPLanguageManager.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPThemeManager.h"
 
 @interface BPBaseViewController ()

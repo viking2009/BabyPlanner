@@ -15,7 +15,7 @@
 #import "BPSettingsThemeViewController.h"
 #import "BPSettingsAlarmViewController.h"
 #import "BPSettingsProfileViewController.h"
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "BPLanguageManager.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"

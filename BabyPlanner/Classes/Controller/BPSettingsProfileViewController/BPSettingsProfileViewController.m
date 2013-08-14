@@ -13,7 +13,7 @@
 #import "BPSelectButton.h"
 #import "BPValuePicker.h"
 
-#import "BPSettings.h"
+#import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
 
 #define BPProfileControlsSpacing 5.f
@@ -246,6 +246,7 @@
     self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
     self.childBirthButton.subtitleLabel.text = BPLocalizedString(@"Childbirth");
 
+    DLog();
     // TODO: fill with data
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     
