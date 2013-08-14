@@ -19,7 +19,7 @@
 #import "UIImage+Additions.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
-#define BPConllectionViewCellIdentifier @"BPConllectionViewCellIdentifier"
+#define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
 
 @interface BPMyTemperatureControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
@@ -110,7 +110,7 @@
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
-    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPConllectionViewCellIdentifier];
+    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
     
     [self updateUI];
 
@@ -133,7 +133,7 @@
     self.data = @[ @[@{@"title": BPLocalizedString(@"Temperature"), @"image": @"mytemperature_icon_temperature"}],
                    @[@{@"title": BPLocalizedString(@"Menstruation"), @"image": @"mytemperature_icon_menstruation"},
                      @{@"title": BPLocalizedString(@"Sexual intercourse"), @"image": @"mytemperature_icon_sexual_intercourse"},
-                     @{@"title": BPLocalizedString(@"Symptoms and mood"), @"image": @"mytemperature_icon_symptoms_and_moods"},
+                     @{@"title": BPLocalizedString(@"Symptoms and mood"), @"image": @"mytemperature_icon_symptoms_and_mood"},
                      @{@"title": BPLocalizedString(@"Notations"), @"image": @"mytemperature_icon_notations"}],
                    @[@{@"title": BPLocalizedString(@"Pregnancy"), @"image": @"mytemperature_icon_pregnancy"}]
                   ];
@@ -178,10 +178,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPConllectionViewCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BPCollectionViewCellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPConllectionViewCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BPCollectionViewCellIdentifier];
     }
     
     DLog(@"cell = %@", cell);
@@ -255,7 +255,7 @@
     if (indexPath.section == 1 && indexPath.item < 2) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
     } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPConllectionViewCellIdentifier forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCollectionViewCellIdentifier forIndexPath:indexPath];
     }
     
     UIImageView *backgroundView = [[UIImageView alloc] init];

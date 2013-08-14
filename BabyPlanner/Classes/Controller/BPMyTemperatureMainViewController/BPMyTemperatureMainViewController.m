@@ -135,9 +135,11 @@
 {
     DLog();
     
+    BPSettings *sharedSetting = [BPSettings sharedSettings];
+    
     // demo
     self.indicatorsView.day = 18;
-    self.indicatorsView.pregnant = @NO;
+    self.indicatorsView.pregnant = sharedSetting[BPSettingsProfileIsPregnantKey];
     self.indicatorsView.menstruation = @NO;
     self.indicatorsView.temperature = @36.65;
     self.indicatorsView.boy = @YES;
@@ -236,6 +238,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog();
+    self.indicatorsView.day = indexPath.item + 1;
     self.indicatorsView.ovulation = @(indexPath.item == 13);
 }
 
