@@ -50,6 +50,8 @@
 		909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */; };
 		909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F417BC1A0B00EEC795 /* BPProfile.m */; };
 		909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F717BC1B8D00EEC795 /* BPDate.m */; };
+		909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */; };
+		909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */; };
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
 		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
 		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
@@ -189,6 +191,10 @@
 		909C95F417BC1A0B00EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
 		909C95F617BC1B8D00EEC795 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
 		909C95F717BC1B8D00EEC795 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
+		909C95F917BC1C2D00EEC795 /* BPDatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatesManager.h; sourceTree = "<group>"; };
+		909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatesManager.m; sourceTree = "<group>"; };
+		909C95FD17BC382000EEC795 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
+		909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transition.m"; sourceTree = "<group>"; };
 		90BA066A178D4AED0045AB24 /* BPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTextField.h; sourceTree = "<group>"; };
 		90BA066B178D4AED0045AB24 /* BPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTextField.m; sourceTree = "<group>"; };
 		90BA066E178D4C6B0045AB24 /* BPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLabel.h; sourceTree = "<group>"; };
@@ -433,6 +439,8 @@
 		909C959617BC17DD00EEC795 /* MyTemperature */ = {
 			isa = PBXGroup;
 			children = (
+				909C95F917BC1C2D00EEC795 /* BPDatesManager.h */,
+				909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */,
 			);
 			path = MyTemperature;
 			sourceTree = "<group>";
@@ -564,9 +572,9 @@
 		909C95C517BC18B800EEC795 /* Tab Bar Application */ = {
 			isa = PBXGroup;
 			children = (
-				909C95C617BC18B800EEC795 /* BPBaseViewController */,
-				909C95C917BC18B800EEC795 /* BPNavigationController */,
 				909C95CC17BC18B800EEC795 /* BPTabBarController */,
+				909C95C917BC18B800EEC795 /* BPNavigationController */,
+				909C95C617BC18B800EEC795 /* BPBaseViewController */,
 				909C95CF17BC18B800EEC795 /* BPViewController */,
 			);
 			path = "Tab Bar Application";
@@ -640,6 +648,15 @@
 				909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */,
 			);
 			path = BPMyPregnancyViewController;
+			sourceTree = "<group>";
+		};
+		909C95FC17BC382000EEC795 /* UINavigationController+Transition */ = {
+			isa = PBXGroup;
+			children = (
+				909C95FD17BC382000EEC795 /* UINavigationController+Transition.h */,
+				909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */,
+			);
+			path = "UINavigationController+Transition";
 			sourceTree = "<group>";
 		};
 		90BA0669178D4AD80045AB24 /* BPTextField */ = {
@@ -967,6 +984,7 @@
 		90EB9E941707A614008457A3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				909C95FC17BC382000EEC795 /* UINavigationController+Transition */,
 				90FCA80E17B9EB8800686048 /* ObjectiveSugar */,
 				90FCA82217B9EB9B00686048 /* ObjectiveRecord */,
 				90F3562517A20B7C00E0261B /* SVSegmentedControl */,
@@ -1194,6 +1212,8 @@
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
 				909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */,
 				909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */,
+				909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */,
+				909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

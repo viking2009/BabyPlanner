@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BPBaseViewController.h"
 
+@class BPMyTemperatureMainViewController;
+@class BPMyTemperatureControlsViewController;
+
 @interface BPMyTemperatureViewController : BPBaseViewController
+
+@property (nonatomic, readonly) BPMyTemperatureMainViewController *mainController;
+@property (nonatomic, readonly) BPMyTemperatureControlsViewController *controlsController;
 
 @end

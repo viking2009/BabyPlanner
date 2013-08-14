@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="BPDate" representedClassName="BPDate" syncable="YES">
-        <attribute name="boy" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="boy" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="girl" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="menstruation" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="girl" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="menstruation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="notations" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ovulation" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="pregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="sexualIntercourse" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="sexualIntercourse" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="36.6" syncable="YES"/>
         <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPProfile" inverseName="dates" inverseEntity="BPProfile" syncable="YES"/>
     </entity>
     <entity name="BPProfile" representedClassName="BPProfile" syncable="YES">

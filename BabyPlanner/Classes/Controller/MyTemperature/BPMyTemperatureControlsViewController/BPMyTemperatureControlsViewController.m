@@ -7,6 +7,8 @@
 //
 
 #import "BPMyTemperatureControlsViewController.h"
+#import "BPMyTemperatureMainViewController.h"
+#import "BPMyTemperatureViewController.h"
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
@@ -17,6 +19,8 @@
 #import "BPLanguageManager.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
+#import "BPDate.h"
+#import "ObjectiveRecord.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
@@ -142,6 +146,8 @@
 - (void)updateUI
 {
     [super updateUI];
+    
+    DLog(@"self.date:%@", self.date);
     
     self.titleLabel.text = BPLocalizedString(@"My controls");
     self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
@@ -284,6 +290,10 @@
         switchCell.toggleView.onText = BPLocalizedString(@"Yes");
         switchCell.toggleView.offText = BPLocalizedString(@"No");
         switchCell.delegate = self;
+        if (indexPath.item == 0)
+            switchCell.toggleView.on = [self.date.menstruation boolValue];
+        else if (indexPath.item == 0)
+            switchCell.toggleView.on = [self.date.sexualIntercourse boolValue];
     } else {
         BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
         settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
@@ -372,8 +382,15 @@
 
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
-//    BPSettings *sharedSettings = [BPSettings sharedSettings];
-
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    if (indexPath.section == 1) {
+        if (indexPath.item == 0)
+            self.date.menstruation = @(![self.date.menstruation boolValue]);
+        else if (indexPath.item == 1)
+            self.date.sexualIntercourse = @(![self.date.sexualIntercourse boolValue]);
+        
+        [self.date save];
+    }
 }
 
 #pragma mark - Private

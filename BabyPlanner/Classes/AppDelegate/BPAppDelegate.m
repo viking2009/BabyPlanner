@@ -10,6 +10,7 @@
 #import "BPTabBarController.h"
 #import "BPNavigationController.h"
 #import "BPMyTemperatureViewController.h"
+#import "BPMyTemperatureMainViewController.h"
 #import "BPMyChartsViewController.h"
 #import "BPMyPregnancyViewController.h"
 #import "BPSettingsViewController.h"
@@ -46,13 +47,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    BPNavigationController *myTemperatureViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyTemperatureViewController new]];
+    BPNavigationController *myTemperatureViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyTemperatureMainViewController new]];
     BPNavigationController *myChartsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyChartsViewController new]];
     BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
 
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
-    tabBarController.viewControllers = @[myChartsViewController, myPregnancyViewController, settingsViewController];
+    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];

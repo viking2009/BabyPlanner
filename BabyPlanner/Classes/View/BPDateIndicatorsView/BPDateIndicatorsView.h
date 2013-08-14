@@ -12,7 +12,7 @@
 
 // NOTE: CoreData will be used for store data, so use NSNumber
 
-@property (nonatomic, assign) NSUInteger day;
+@property (nonatomic, strong) NSNumber *day;
 @property (nonatomic, strong) NSNumber *pregnant;
 @property (nonatomic, strong) NSNumber *menstruation;
 @property (nonatomic, strong) NSNumber *temperature;

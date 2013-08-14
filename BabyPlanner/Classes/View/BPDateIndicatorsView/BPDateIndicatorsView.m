@@ -105,9 +105,9 @@
     self.ovulationView.frame = CGRectMake(centerX - floorf(self.ovulationView.image.size.width/2) + 10.f, top, self.ovulationView.image.size.width, self.ovulationView.image.size.height);
 }
 
-- (void)setDay:(NSUInteger)day
+- (void)setDay:(NSNumber *)day
 {
-    if (!_day != day) {
+    if (_day != day) {
         _day = day;
         
         [self refreshDay];
@@ -203,19 +203,22 @@
 
 - (void)refreshDay
 {
-    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %u"), self.day];
+    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %@"), self.day];
 }
 
 - (void)refreshTemperature
 {
     DLog(@"self.temperature = %@", self.temperature);
     
-    NSString *temperatureSign = [BPLanguageManager sharedManager].currentMetric ? @"C" :@"F";
-    float temperature = [self.temperature floatValue];
-    if ([BPLanguageManager sharedManager].currentMetric == 0)
-        temperature = temperature * 9/5 + 32.f;
-    
-    self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", temperature, temperatureSign];
+    if (self.temperature) {
+        NSString *temperatureSign = [BPLanguageManager sharedManager].currentMetric ? @"C" :@"F";
+        float temperature = [self.temperature floatValue];
+        if ([BPLanguageManager sharedManager].currentMetric == 0)
+            temperature = temperature * 9/5 + 32.f;
+        
+        self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", temperature, temperatureSign];
+    } else
+        self.temperatureLabel.text = nil;
 }
 
 - (void)updateUI

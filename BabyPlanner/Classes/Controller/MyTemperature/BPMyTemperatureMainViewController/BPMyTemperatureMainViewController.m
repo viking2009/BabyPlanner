@@ -7,6 +7,7 @@
 //
 
 #import "BPMyTemperatureMainViewController.h"
+#import "BPMyTemperatureControlsViewController.h"
 #import "BPUtils.h"
 #import "BPThemeManager.h"
 #import "BPSettings+Additions.h"
@@ -15,6 +16,11 @@
 #import "BPFlagView.h"
 #import "BPDateIndicatorsView.h"
 #import "NSDate-Utilities.h"
+#import "BPDatesManager.h"
+#import "BPDate.h"
+#import "ObjectiveSugar.h"
+#import "UINavigationController+Transition.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 #define BPCircleCellIdentifier @"BPCircleCellIdentifier"
@@ -29,6 +35,9 @@
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
 
+@property (nonatomic, strong) BPDatesManager *datesManager;
+@property (nonatomic, strong) BPDate *selectedDate;
+
 @end
 
 @implementation BPMyTemperatureMainViewController
@@ -38,6 +47,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.datesManager = [[BPDatesManager alloc] init];
+
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:BPDatesManagerDidChangeContentNotification object:nil];
     }
     return self;
 }
@@ -57,8 +69,6 @@
     UIImage *redFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_red"];
     self.leftFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(6.f, 20.f, redFlagImage.size.width, redFlagImage.size.height)];
     self.leftFlagView.imageView.image = redFlagImage;
-    // TODO: add property for controller
-    self.leftFlagView.date = [NSDate date];
     [self.view addSubview:self.leftFlagView];
 
     UIImage *pinkFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_pink"];
@@ -120,6 +130,10 @@
     [self.view addSubview:self.indicatorsView];
     [self.view addSubview:self.collectionView];
 
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myControlsButtonTapped)];
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipeUp];
+    
     [self updateUI];
     
     [self loadData];
@@ -134,20 +148,27 @@
 - (void)loadData
 {
     DLog();
-    
-    BPSettings *sharedSetting = [BPSettings sharedSettings];
-    
+        
+    NSInteger selectedDay = (self.selectedDate ? [self.selectedDate.day intValue] - 1 : 17);
+    DLog(@"selectedDay = %i", selectedDay);
+        
     // demo
-    self.indicatorsView.day = 18;
-    self.indicatorsView.pregnant = sharedSetting[BPSettingsProfileIsPregnantKey];
-    self.indicatorsView.menstruation = @NO;
-    self.indicatorsView.temperature = @36.65;
-    self.indicatorsView.boy = @YES;
-    self.indicatorsView.girl = @NO;
-    self.indicatorsView.sexualIntercourse = @YES;
-    self.indicatorsView.ovulation = @NO;
+    BPDate *date = [self datesManager][selectedDay];
     
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:17 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    DLog(@"date = %@", date);
+
+    self.indicatorsView.day = date.day;
+    self.indicatorsView.pregnant = date.pregnant;
+    self.indicatorsView.menstruation = date.menstruation;
+    self.indicatorsView.temperature = date.temperature;
+    self.indicatorsView.boy = date.boy;
+    self.indicatorsView.girl = date.girl;
+    self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
+    self.indicatorsView.ovulation = date.ovulation;
+    
+    self.leftFlagView.date = date.date;
+        
+    self.selectedDate = date;
 }
 
 - (void)updateUI
@@ -170,6 +191,9 @@
     
     [self loadData];
     [self.collectionView reloadData];
+    
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedDate.day intValue] - 1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
 }
 
 #pragma mark - BPBaseViewController
@@ -188,7 +212,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 56.f;
+    return [self.datesManager count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -238,16 +262,56 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog();
-    self.indicatorsView.day = indexPath.item + 1;
-    self.indicatorsView.ovulation = @(indexPath.item == 13);
+    BPDate *date = self.datesManager[indexPath.item];
+    
+    self.indicatorsView.day = date.day;
+    self.indicatorsView.pregnant = date.pregnant;
+    self.indicatorsView.menstruation = date.menstruation;
+    self.indicatorsView.temperature = date.temperature;
+    self.indicatorsView.boy = date.boy;
+    self.indicatorsView.girl = date.girl;
+    self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
+    self.indicatorsView.ovulation = date.ovulation;
+    
+    self.leftFlagView.date = date.date;
+    
+    self.selectedDate = date;
 }
 
 #pragma mark - Private
 
 - (void)myControlsButtonTapped
 {
-    if (self.handler)
-        self.handler();
+//    if (self.handler)
+//        self.handler();
+
+    BPMyTemperatureControlsViewController *controlsController = [[BPMyTemperatureControlsViewController alloc] init];
+    controlsController.date = self.selectedDate;
+
+    __weak __typeof(&*self) weakSelf = self;
+    controlsController.handler = ^{
+        [weakSelf.navigationController popViewControllerWithDuration:0.3f
+                                                          prelayouts:^(UIView *fromView, UIView *toView) {
+                                                              [weakSelf updateUI];
+                                                          }
+                                                          animations:^(UIView *fromView, UIView *toView) {
+                                                              fromView.frame = CGRectOffset(toView.bounds, 0, toView.bounds.size.height);
+                                                          }
+                                                          completion:^(UIView *fromView, UIView *toView) {
+                                                              //
+                                                          }];
+    };
+
+    [self.navigationController pushViewController:controlsController duration:0.3f
+                                       prelayouts:^(UIView *fromView, UIView *toView) {
+                                           toView.frame = CGRectOffset(fromView.bounds, 0, fromView.bounds.size.height);
+                                       }
+                                       animations:^(UIView *fromView, UIView *toView) {
+                                           toView.frame = fromView.frame;
+                                       }
+                                       completion:^(UIView *fromView, UIView *toView) {
+                                           //
+                                       }];
 }
 
 @end

@@ -13,8 +13,6 @@
 
 @interface BPMyTemperatureViewController ()
 
-@property (nonatomic, readonly) BPMyTemperatureMainViewController *mainController;
-@property (nonatomic, readonly) BPMyTemperatureControlsViewController *controlsController;
 @property (nonatomic, weak) UIViewController *visibleViewController;
 
 @end

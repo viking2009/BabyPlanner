@@ -7,10 +7,11 @@
 //
 
 #import "BPBaseViewController.h"
+@class BPDate;
 
 @interface BPMyTemperatureControlsViewController : BPBaseViewController
 
 @property (nonatomic, copy) void (^handler)(void);
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) BPDate *date;
 
 @end
