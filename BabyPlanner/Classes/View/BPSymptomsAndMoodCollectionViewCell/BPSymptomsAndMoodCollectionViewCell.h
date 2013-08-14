@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#define BPSymptomsAndMoodDefaultImageWidth 102.f
+#define BPSymptomsAndMoodDefaultImageHeight 102.f
+#define BPSymptomsAndMoodDefaultTitleHeight 18.f
+
 @interface BPSymptomsAndMoodCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
