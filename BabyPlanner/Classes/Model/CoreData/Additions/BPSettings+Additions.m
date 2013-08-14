@@ -44,12 +44,11 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     if (!key)
         return nil;
     
-    id result = [self valueForKey:key];
-    DLog(@"%@:%@", key, result);
+    id result = [self valueForKeyPath:key];
     
     // TODO: set default settings here
     if ([key isEqualToString:BPSettingsProfileLengthOfCycleKey]) {
-        
+        // NOTE: setted by CoreData
 //        if (!result)
 //            result = @30;
     } if ([key isEqualToString:BPSettingsProfileWeightKey]) {
@@ -59,16 +58,12 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
         float height = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierCm2Ft : 1);
         result = @((int)(height * 10)/10.f);
     }
-    
-    DLog(@"result = %@", result)
-    
+        
     return result;
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id<NSCopying>)key
 {
-    DLog(@"%@:%@", obj, key);
-
     if (!obj || !key)
         return ;
     
@@ -82,7 +77,7 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
             obj = @(height);
         }
         
-        [self setValue:obj forKey:(NSString *)key];
+        [self setValue:obj forKeyPath:(NSString *)key];
         
         if ([self save]) {
             NSString *notificationName = BPSettingsDidChangeNotification;
