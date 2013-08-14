@@ -18,7 +18,7 @@
 "Notations" = "Notations";
 
 /* BPMyTemperatureMainViewController */
-"Day %u" = "Day %u";
+"Day %@" = "Day %@";
 
 /* BPMyTemperatureControlsViewController */
 "My controls" = "My controls";
