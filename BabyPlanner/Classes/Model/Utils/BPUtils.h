@@ -14,7 +14,7 @@
 
 #define BPLocalizedString(key) [[BPLanguageManager sharedManager] localizedStringForKey:(key)]
 
-#define BPDefaultCellInset 10.f
+#define BPDefaultCellInset 8.f
 
 #define BPAlarmGuid 100
 #define BPPickerViewHeight (216.f + 44.f)

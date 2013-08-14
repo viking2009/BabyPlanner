@@ -9,6 +9,8 @@
 #import "BPMyTemperatureSelectViewController.h"
 #import "BPUtils.h"
 #import "BPValuePicker.h"
+#import "BPDate.h"
+#import "ObjectiveRecord.h"
 
 @interface BPMyTemperatureSelectViewController ()
 
@@ -37,7 +39,7 @@
     [self.view addSubview:self.pickerView];
     
     self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
-    self.pickerView.value = @36.65;
+    self.pickerView.value = self.date.temperature;
     
     [self updateUI];
 }
@@ -58,6 +60,8 @@
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeTemperature:
             DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
+            self.date.temperature = self.pickerView.value;
+            [self.date save];
             break;
         default:
             break;

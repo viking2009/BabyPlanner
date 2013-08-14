@@ -47,6 +47,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = BPLocalizedString(@"My Temperature");
+        [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_selected"]
+                      withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_unselected"]];
+
         self.datesManager = [[BPDatesManager alloc] init];
 
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:BPDatesManagerDidChangeContentNotification object:nil];
@@ -175,25 +179,26 @@
 {
     [super updateUI];
     
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    
-    [self.leftFlagView updateUI];
-    self.rightFlagView.date = sharedSettings[BPSettingsProfileChildBirthdayKey];
-    DLog(@"self.rightFlagView.date: %@", self.rightFlagView.date);
-    self.rightFlagView.hidden = !([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && sharedSettings[BPSettingsProfileChildBirthdayKey]);
-    [self.rightFlagView updateUI];
-    [self.indicatorsView updateUI];
-    
-    self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
-    
-//    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
-    self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
-    
-    [self loadData];
-    [self.collectionView reloadData];
-    
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedDate.day intValue] - 1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-
+    if (self.isViewLoaded) {
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        
+        [self.leftFlagView updateUI];
+        self.rightFlagView.date = sharedSettings[BPSettingsProfileChildBirthdayKey];
+        DLog(@"self.rightFlagView.date: %@", self.rightFlagView.date);
+        self.rightFlagView.hidden = !([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && sharedSettings[BPSettingsProfileChildBirthdayKey]);
+        [self.rightFlagView updateUI];
+        [self.indicatorsView updateUI];
+        
+        self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
+        
+        //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
+        self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
+        
+        [self loadData];
+        [self.collectionView reloadData];
+        
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedDate.day intValue] - 1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
 }
 
 #pragma mark - BPBaseViewController
@@ -221,20 +226,22 @@
     BPCircleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
     
     BPSettings *sharedSettings = [BPSettings sharedSettings];
+    BPDate *date = self.datesManager[indexPath.item];
 
     NSString *imageName = @"point_4";
     
-    if (indexPath.item < 12)
+    if (indexPath.item < self.datesManager.ovulationIndex)
         imageName = @"point_1";
-    else if (indexPath.item < 18)
-        imageName = @"point_2";
     else if (indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
         imageName = @"point_3";
     else
         imageName = @"point_4";
     
-    if (indexPath.item == 13)
+    if (indexPath.item == self.datesManager.ovulationIndex)
         imageName = @"point_5";
+    
+    if ([date.menstruation boolValue])
+        imageName = @"point_2";
     
     cell.imageView.image = [BPUtils imageNamed:imageName];
     cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];

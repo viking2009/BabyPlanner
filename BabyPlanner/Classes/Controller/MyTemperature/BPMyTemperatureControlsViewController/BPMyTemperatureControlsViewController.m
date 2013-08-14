@@ -289,11 +289,12 @@
         switchCell.titleLabel.text = dataItem[@"title"];
         switchCell.toggleView.onText = BPLocalizedString(@"Yes");
         switchCell.toggleView.offText = BPLocalizedString(@"No");
-        switchCell.delegate = self;
         if (indexPath.item == 0)
             switchCell.toggleView.on = [self.date.menstruation boolValue];
-        else if (indexPath.item == 0)
+        else if (indexPath.item == 1)
             switchCell.toggleView.on = [self.date.sexualIntercourse boolValue];
+        switchCell.delegate = self;
+
     } else {
         BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
         settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
@@ -325,15 +326,21 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog()
-    if (indexPath.section == 0 && indexPath.row == 0)
-        [self.navigationController pushViewController:[BPMyTemperatureSelectViewController new] animated:YES];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
+        temperatureSelectViewController.date = self.date;
+        [self.navigationController pushViewController:temperatureSelectViewController animated:YES];
+    }
     else if (indexPath.section == 1) {
         switch (indexPath.item) {
             case 2:
                 [self.navigationController pushViewController:[BPMyTemperatureSymptomsAndMoodViewController new] animated:YES];
                 break;
-            case 3:
-                [self.navigationController pushViewController:[BPMyTemperatureNotationsViewController new] animated:YES];
+            case 3: {
+                BPMyTemperatureNotationsViewController *temperatureNotationsViewController = [[BPMyTemperatureNotationsViewController alloc] init];
+                temperatureNotationsViewController.date = self.date;
+                [self.navigationController pushViewController:temperatureNotationsViewController animated:YES];
+            }
                 break;
                 
             default:
@@ -342,7 +349,6 @@
     } else if (indexPath.section == 2 &indexPath.row == 0) {
         BPSettings *sharedSettings = [BPSettings sharedSettings];
         sharedSettings[BPSettingsProfileIsPregnantKey] = @(![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-
     } else {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
@@ -383,11 +389,19 @@
 - (void)switchCellDidToggle:(BPSwitchCell *)cell
 {
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    DLog(@"indexPath: %@", indexPath);
+
     if (indexPath.section == 1) {
-        if (indexPath.item == 0)
-            self.date.menstruation = @(![self.date.menstruation boolValue]);
-        else if (indexPath.item == 1)
-            self.date.sexualIntercourse = @(![self.date.sexualIntercourse boolValue]);
+        if (indexPath.item == 0) {
+            DLog(@"self.date.menstruation: %@", self.date.menstruation);
+            self.date.menstruation = @(cell.toggleView.on);
+            DLog(@"self.date.menstruation: %@", self.date.menstruation);
+        }
+        else if (indexPath.item == 1) {
+            DLog(@"self.date.sexualIntercourse: %@", self.date.sexualIntercourse);
+            self.date.sexualIntercourse = @(cell.toggleView.on);
+            DLog(@"self.date.sexualIntercourse: %@", self.date.sexualIntercourse);
+        }
         
         [self.date save];
     }

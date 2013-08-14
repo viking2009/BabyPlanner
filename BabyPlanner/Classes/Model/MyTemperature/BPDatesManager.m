@@ -53,10 +53,14 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     return 56;
 }
 
-- (id)objectAtIndexedSubscript:(NSUInteger)idx
+- (NSInteger)ovulationIndex
 {
-    DLog(@"%u", idx);
-    
+    // TODO: calculate;
+    return 13;
+}
+
+- (id)objectAtIndexedSubscript:(NSUInteger)idx
+{    
     BPSettings *sharedSettings = [BPSettings sharedSettings];
 
     NSDate *dateForItem = [self.startDate dateByAddingDays:idx];
@@ -76,7 +80,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     
     item.day = @(idx + 1);
     item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-    item.ovulation = @(idx == 13);
+    item.ovulation = @(idx == self.ovulationIndex);
     
     return item;
 }

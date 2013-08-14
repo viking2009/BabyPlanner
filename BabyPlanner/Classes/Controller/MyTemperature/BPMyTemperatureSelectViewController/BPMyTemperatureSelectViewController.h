@@ -8,6 +8,10 @@
 
 #import "BPViewController.h"
 
+@class BPDate;
+
 @interface BPMyTemperatureSelectViewController : BPViewController
+
+@property (nonatomic, strong) BPDate *date;
 
 @end

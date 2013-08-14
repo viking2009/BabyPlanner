@@ -8,6 +8,8 @@
 
 #import "BPMyTemperatureNotationsViewController.h"
 #import "EKKeyboardAvoidingScrollViewManager.h"
+#import "BPDate.h"
+#import "ObjectiveRecord.h"
 
 @interface BPMyTemperatureNotationsViewController () <UITextViewDelegate>
 
@@ -48,6 +50,8 @@
     [self.view insertSubview:notesHeader atIndex:1];
     
     [[EKKeyboardAvoidingScrollViewManager sharedInstance] registerScrollViewForKeyboardAvoiding:self.notesView];
+    
+    self.notesView.text = self.date.notations;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +63,9 @@
 - (void)dealloc
 {
 //    self.notesView.delegate = nil;
+    self.date.notations = self.notesView.text;
+    [self.date save];
+
     [[EKKeyboardAvoidingScrollViewManager sharedInstance] unregisterScrollViewFromKeyboardAvoiding:self.notesView];
 }
 

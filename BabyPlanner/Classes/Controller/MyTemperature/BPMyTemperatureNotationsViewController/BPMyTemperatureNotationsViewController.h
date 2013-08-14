@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BPViewController.h"
 
+@class BPDate;
+
 @interface BPMyTemperatureNotationsViewController : BPViewController
 
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) BPDate *date;
 
 @end
