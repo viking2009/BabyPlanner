@@ -7,6 +7,7 @@
 //
 
 #import "BPProfile.h"
+#import "BPDate.h"
 #import "BPSettings.h"
 
 
@@ -22,5 +23,6 @@
 @dynamic lastOvulation;
 @dynamic childBirthday;
 @dynamic settings;
+@dynamic dates;
 
 @end

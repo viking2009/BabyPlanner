@@ -31,8 +31,6 @@
 		909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 909C957C17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld */; };
 		909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958417BC0CD300EEC795 /* BPSettings+Additions.m */; };
 		909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958E17BC0D2400EEC795 /* BPSettings.m */; };
-		909C959217BC17AB00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C959117BC17AB00EEC795 /* BPProfile.m */; };
-		909C959517BC17AC00EEC795 /* BPTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C959417BC17AC00EEC795 /* BPTemperature.m */; };
 		909C95AA17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C959A17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m */; };
 		909C95AB17BC181F00EEC795 /* BPMyTemperatureMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C959D17BC181F00EEC795 /* BPMyTemperatureMainViewController.m */; };
 		909C95AC17BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95A017BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m */; };
@@ -50,6 +48,8 @@
 		909C95D517BC18B800EEC795 /* BPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95D117BC18B800EEC795 /* BPViewController.m */; };
 		909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E317BC18EE00EEC795 /* BPMyChartsViewController.m */; };
 		909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */; };
+		909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F417BC1A0B00EEC795 /* BPProfile.m */; };
+		909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F717BC1B8D00EEC795 /* BPDate.m */; };
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
 		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
 		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
@@ -151,10 +151,6 @@
 		909C958417BC0CD300EEC795 /* BPSettings+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSettings+Additions.m"; sourceTree = "<group>"; };
 		909C958D17BC0D2400EEC795 /* BPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSettings.h; sourceTree = "<group>"; };
 		909C958E17BC0D2400EEC795 /* BPSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSettings.m; sourceTree = "<group>"; };
-		909C959017BC17AB00EEC795 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
-		909C959117BC17AB00EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
-		909C959317BC17AC00EEC795 /* BPTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTemperature.h; sourceTree = "<group>"; };
-		909C959417BC17AC00EEC795 /* BPTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperature.m; sourceTree = "<group>"; };
 		909C959917BC181F00EEC795 /* BPMyTemperatureControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureControlsViewController.h; sourceTree = "<group>"; };
 		909C959A17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyTemperatureControlsViewController.m; sourceTree = "<group>"; };
 		909C959C17BC181F00EEC795 /* BPMyTemperatureMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyTemperatureMainViewController.h; sourceTree = "<group>"; };
@@ -189,6 +185,10 @@
 		909C95E317BC18EE00EEC795 /* BPMyChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsViewController.m; sourceTree = "<group>"; };
 		909C95E617BC18EE00EEC795 /* BPMyPregnancyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyViewController.h; sourceTree = "<group>"; };
 		909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyViewController.m; sourceTree = "<group>"; };
+		909C95F317BC1A0900EEC795 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
+		909C95F417BC1A0B00EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
+		909C95F617BC1B8D00EEC795 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
+		909C95F717BC1B8D00EEC795 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		90BA066A178D4AED0045AB24 /* BPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTextField.h; sourceTree = "<group>"; };
 		90BA066B178D4AED0045AB24 /* BPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTextField.m; sourceTree = "<group>"; };
 		90BA066E178D4C6B0045AB24 /* BPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLabel.h; sourceTree = "<group>"; };
@@ -420,10 +420,10 @@
 		909C958617BC0CEC00EEC795 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				909C959317BC17AC00EEC795 /* BPTemperature.h */,
-				909C959417BC17AC00EEC795 /* BPTemperature.m */,
-				909C959017BC17AB00EEC795 /* BPProfile.h */,
-				909C959117BC17AB00EEC795 /* BPProfile.m */,
+				909C95F617BC1B8D00EEC795 /* BPDate.h */,
+				909C95F717BC1B8D00EEC795 /* BPDate.m */,
+				909C95F317BC1A0900EEC795 /* BPProfile.h */,
+				909C95F417BC1A0B00EEC795 /* BPProfile.m */,
 				909C958D17BC0D2400EEC795 /* BPSettings.h */,
 				909C958E17BC0D2400EEC795 /* BPSettings.m */,
 			);
@@ -440,12 +440,12 @@
 		909C959717BC181F00EEC795 /* MyTemperature */ = {
 			isa = PBXGroup;
 			children = (
-				909C959817BC181F00EEC795 /* BPMyTemperatureControlsViewController */,
+				909C95A717BC181F00EEC795 /* BPMyTemperatureViewController */,
 				909C959B17BC181F00EEC795 /* BPMyTemperatureMainViewController */,
-				909C959E17BC181F00EEC795 /* BPMyTemperatureNotationsViewController */,
+				909C959817BC181F00EEC795 /* BPMyTemperatureControlsViewController */,
 				909C95A117BC181F00EEC795 /* BPMyTemperatureSelectViewController */,
 				909C95A417BC181F00EEC795 /* BPMyTemperatureSymptomsAndMoodViewController */,
-				909C95A717BC181F00EEC795 /* BPMyTemperatureViewController */,
+				909C959E17BC181F00EEC795 /* BPMyTemperatureNotationsViewController */,
 			);
 			path = MyTemperature;
 			sourceTree = "<group>";
@@ -507,11 +507,11 @@
 		909C95B017BC182800EEC795 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				909C95B117BC182800EEC795 /* BPSettingsAlarmViewController */,
-				909C95B417BC182800EEC795 /* BPSettingsLanguageViewController */,
-				909C95B717BC182800EEC795 /* BPSettingsProfileViewController */,
-				909C95BA17BC182800EEC795 /* BPSettingsThemeViewController */,
 				909C95BD17BC182800EEC795 /* BPSettingsViewController */,
+				909C95B417BC182800EEC795 /* BPSettingsLanguageViewController */,
+				909C95BA17BC182800EEC795 /* BPSettingsThemeViewController */,
+				909C95B117BC182800EEC795 /* BPSettingsAlarmViewController */,
+				909C95B717BC182800EEC795 /* BPSettingsProfileViewController */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1175,8 +1175,6 @@
 				909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */,
 				909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */,
 				909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */,
-				909C959217BC17AB00EEC795 /* BPProfile.m in Sources */,
-				909C959517BC17AC00EEC795 /* BPTemperature.m in Sources */,
 				909C95AA17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m in Sources */,
 				909C95AB17BC181F00EEC795 /* BPMyTemperatureMainViewController.m in Sources */,
 				909C95AC17BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m in Sources */,
@@ -1194,6 +1192,8 @@
 				909C95D517BC18B800EEC795 /* BPViewController.m in Sources */,
 				909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */,
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
+				909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */,
+				909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

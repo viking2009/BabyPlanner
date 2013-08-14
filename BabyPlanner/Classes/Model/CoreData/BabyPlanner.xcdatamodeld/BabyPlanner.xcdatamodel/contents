@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BPDate" representedClassName="BPDate" syncable="YES">
+        <attribute name="boy" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="girl" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="menstruation" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notations" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ovulation" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="pregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sexualIntercourse" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPProfile" inverseName="dates" inverseEntity="BPProfile" syncable="YES"/>
+    </entity>
     <entity name="BPProfile" representedClassName="BPProfile" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="childBirthday" optional="YES" attributeType="Date" syncable="YES"/>
@@ -10,6 +23,7 @@
         <attribute name="lengthOfCycle" optional="YES" attributeType="Integer 16" defaultValueString="30" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BPDate" inverseName="profile" inverseEntity="BPDate" syncable="YES"/>
         <relationship name="settings" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPSettings" inverseName="profile" inverseEntity="BPSettings" syncable="YES"/>
     </entity>
     <entity name="BPSettings" representedClassName="BPSettings" syncable="YES">
@@ -21,6 +35,7 @@
     </entity>
     <elements>
         <element name="BPSettings" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="BPProfile" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="BPProfile" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="BPDate" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

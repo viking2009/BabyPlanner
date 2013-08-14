@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BPSettings;
+@class BPDate, BPSettings;
 
 @interface BPProfile : NSManagedObject
 
@@ -23,5 +23,14 @@
 @property (nonatomic, retain) NSDate * lastOvulation;
 @property (nonatomic, retain) NSDate * childBirthday;
 @property (nonatomic, retain) BPSettings *settings;
+@property (nonatomic, retain) NSSet *dates;
+@end
+
+@interface BPProfile (CoreDataGeneratedAccessors)
+
+- (void)addDatesObject:(BPDate *)value;
+- (void)removeDatesObject:(BPDate *)value;
+- (void)addDates:(NSSet *)values;
+- (void)removeDates:(NSSet *)values;
 
 @end
