@@ -46,8 +46,8 @@
     
     if (self.imageView.image) {
         self.imageView.frame = CGRectMake(left, floorf(self.contentView.frame.size.height/2 - self.imageView.image.size.height/2), self.imageView.image.size.width, self.imageView.image.size.height);
-        left += self.imageView.frame.size.width + BPDefaultCellInset;
-        maxWidth -= self.imageView.frame.size.width + BPDefaultCellInset;
+        left += self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
+        maxWidth -= self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
     } else {
         self.imageView.frame = CGRectZero;
     }
