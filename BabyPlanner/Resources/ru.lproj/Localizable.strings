@@ -27,6 +27,20 @@
 "Yes" = "Да";
 "No" = "Нет";
 
+/* BPMyTemperatureSymptomsAndMoodViewController */
+"Good mood" = "Хорошее настроение";
+"Irritability" = "Раздражительность";
+"Hunger" = "Голод";
+"Tearfulness" = "Плаксивость";
+"Fatigue" = "Усталость";
+"Party" = "Вечеринка";
+"Pressure" = "Давление";
+"Migraine" = "Мигрень";
+"Colds" = "Простуда";
+//"Temperature" = "Температура";
+"Nausea" = "Тошнота";
+"Heartburn" = "Изжога";
+
 /* BPMyChartsViewController */
 "My Charts" = "Мои графики";
 

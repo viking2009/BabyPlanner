@@ -27,6 +27,20 @@
 "Yes" = "Yes";
 "No" = "No";
 
+/* BPMyTemperatureSymptomsAndMoodViewController */
+"Good mood" = "Good mood";
+"Irritability" = "Irritability";
+"Hunger" = "Hunger";
+"Tearfulness" = "Tearfulness";
+"Fatigue" = "Fatigue";
+"Party" = "Party";
+"Pressure" = "Pressure";
+"Migraine" = "Migraine";
+"Colds" = "Colds";
+//"Temperature" = "Temperature";
+"Nausea" = "Nausea";
+"Heartburn" = "Heartburn";
+
 /* BPMyChartsViewController */
 "My Charts" = "My Charts";
 

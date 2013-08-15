@@ -9,6 +9,7 @@
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
 #import "BPSymptomsAndMoodCollectionViewCell.h"
 #import "BPUtils.h"
+#import "ObjectiveSugar.h"
 
 #define BPSymptomsAndMoodCollectionViewCellIdentifier @"BPSymptomsAndMoodCollectionViewCellIdentifier"
 
@@ -69,11 +70,17 @@
 
 - (void)loadData
 {
-    // TODO: localize
-    self.symptoms = @[@"Хорошее настроение", @"Раздражительность", @"Вечеринка",
-                      @"Плаксивость", @"Голод", @"Усталость",
-                      @"Давление", @"Мигрень", @"Простуда",
-                      @"Температура", @"Тошнота", @"Изжога"];
+    self.symptoms = @[@"Good mood", @"Irritability", @"Hunger",
+                      @"Tearfulness", @"Fatigue", @"Party",
+                      @"Pressure", @"Migraine", @"Colds",
+                      @"Temperature", @"Nausea", @"Heartburn"];
+}
+
+- (void)updateUI
+{
+    [super updateUI];
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -87,9 +94,11 @@
 {
     BPSymptomsAndMoodCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSymptomsAndMoodCollectionViewCellIdentifier forIndexPath:indexPath];
     
-    NSString *imageName = [NSString stringWithFormat:@"symptoms_icon_%i", indexPath.item + 1];
+    NSString *symptom = _symptoms[indexPath.item];
+    NSString *underscored = [[symptom lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    NSString *imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
     cell.imageView.image = [BPUtils imageNamed:imageName];
-    cell.titleLabel.text = _symptoms[indexPath.item];
+    cell.titleLabel.text = BPLocalizedString(symptom);
 
     return cell;
 }
