@@ -107,7 +107,10 @@
                 break;
         }
         
-        self.toolBar.hidden = !_pickerView;
+        self.toolBar.hidden = !_pickerView || _valuePickerMode == BPValuePickerModeLanguage ||
+            _valuePickerMode == BPValuePickerModeTime ||
+        _valuePickerMode == BPValuePickerModeTemperature ||
+        _valuePickerMode == BPValuePickerModeSound;
         if (self.superview) {
             if (!_pickerView)
                 [self.superview sendSubviewToBack:self];
