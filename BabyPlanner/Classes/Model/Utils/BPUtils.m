@@ -19,6 +19,22 @@
     return [UIImage imageNamed:[@"BPImages.bundle" stringByAppendingPathComponent:name]];
 }
 
++ (NSString *)shortStringFromDate:(NSDate *)date
+{
+    if (!date)
+        return nil;
+    
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"d.MM.yyyy"];
+    }
+    
+    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSString *)stringFromDate:(NSDate *)date
 {
     if (!date)

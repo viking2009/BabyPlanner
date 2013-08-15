@@ -259,7 +259,7 @@
     [self.lengthOfCycleButton setTitle:lengthOfCycleString forState:UIControlStateNormal];
     
     NSDate *lastMenstruationDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey];
-    [self.lastMenstruationButton setTitle:[BPUtils stringFromDate:lastMenstruationDate] forState:UIControlStateNormal];
+    [self.lastMenstruationButton setTitle:[BPUtils shortStringFromDate:lastMenstruationDate] forState:UIControlStateNormal];
     
     self.pregnancyButton.selected = [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue];
     
@@ -267,10 +267,10 @@
     self.childBirthButton.hidden = !self.pregnancyButton.selected;
     
     NSDate *lastOvulationDate = sharedSettings[BPSettingsProfileLastOvulationDateKey];
-    [self.lastOvulationButton setTitle:[BPUtils stringFromDate:lastOvulationDate] forState:UIControlStateNormal];
+    [self.lastOvulationButton setTitle:[BPUtils shortStringFromDate:lastOvulationDate] forState:UIControlStateNormal];
     
     NSDate *childBirthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
-    [self.childBirthButton setTitle:[BPUtils stringFromDate:childBirthday] forState:UIControlStateNormal];
+    [self.childBirthButton setTitle:[BPUtils shortStringFromDate:childBirthday] forState:UIControlStateNormal];
 }
 
 //- (void)settingsDidChange
