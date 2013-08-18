@@ -73,6 +73,13 @@
         
         self.ovulationView = [[UIImageView alloc] init];
         [self addSubview:self.ovulationView];
+        
+//        self.pregnant = @NO;
+//        self.menstruation = @NO;
+//        self.boy = @NO;
+//        self.girl = @NO;
+//        self.sexualIntercourse = @NO;
+//        self.ovulation = @NO;
     }
 
     return self;

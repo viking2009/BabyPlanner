@@ -225,20 +225,19 @@
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     BPDate *date = self.datesManager[indexPath.item];
 
-    NSString *imageName = @"point_4";
+    NSString *imageName = @"point_clear";
     
     if (indexPath.item < self.datesManager.ovulationIndex)
-        imageName = @"point_1";
+        imageName = @"point_green";
     else if (indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
         imageName = @"point_3";
-    else
-        imageName = @"point_4";
     
     if (indexPath.item == self.datesManager.ovulationIndex)
-        imageName = @"point_5";
+        imageName = @"point_ovulation";
     
+    // TODO: fertile
     if ([date.menstruation boolValue])
-        imageName = @"point_2";
+        imageName = @"point_red";
     
     cell.imageView.image = [BPUtils imageNamed:imageName];
     cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
