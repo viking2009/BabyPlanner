@@ -14,7 +14,7 @@
 - (void)setup
 {
     self.backgroundColor = [UIColor clearColor];
-    self.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    self.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
     self.textColor = RGB(76, 86, 108);
     self.shadowColor = RGBA(255, 255, 255, 0.75f);
     self.shadowOffset = CGSizeMake(0, 1);

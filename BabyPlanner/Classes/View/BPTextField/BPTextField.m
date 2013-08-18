@@ -11,6 +11,12 @@
 
 //#define USE_FIXED_BOUND
 
+@interface BPTextField()
+
+@property (nonatomic, strong) UIImageView *indicatorView;
+
+@end
+
 @implementation BPTextField
 
 - (void)setup
@@ -76,5 +82,39 @@
 //    [self.textColor setFill];
 //    [self.placeholder drawInRect:rect withFont:self.font lineBreakMode:NSLineBreakByTruncatingTail alignment:self.textAlignment];
 //}
+
+- (void)setNumber:(NSUInteger)number
+{
+    DLog(@"%u", number);
+    if (_number != number) {
+        _number = number;
+
+        self.text = nil;
+        [self setNeedsLayout];
+    }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.number) {
+        CGFloat inset = floorf(self.frame.size.height/2 - self.indicatorView.image.size.height/2);
+        self.indicatorView.frame = CGRectMake(inset, inset, self.number * self.indicatorView.image.size.width, self.indicatorView.image.size.height);
+    }
+    else
+        _indicatorView.frame = CGRectZero;
+}
+
+- (UIImageView *)indicatorView
+{
+    if (!_indicatorView) {
+        _indicatorView = [[UIImageView alloc] init];
+        _indicatorView.image = [[BPUtils imageNamed:@"textfield_menstruation_icon"] resizableImageWithCapInsets:UIEdgeInsetsZero];
+        [self addSubview:_indicatorView];
+    }
+    
+    return _indicatorView;
+}
 
 @end

@@ -72,7 +72,7 @@
 "Sound" = "Sound";
 "It's time to get up" = "It's time to get up";
 
-/* BPSettingsAlarmViewController */
+/* BPSettingsProfileViewController */
 "My Profile" = "My Profile";
 
 "Name" = "Name";
@@ -84,6 +84,8 @@
 
 "Length of my cycle" = "Length of my cycle";
 "Last menstruation" = "Last menstruation";
+
+"days" = "days";
 
 "Pregnancy" = "Pregnancy";
 

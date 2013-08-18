@@ -17,10 +17,11 @@
 #import "NSDate-Utilities.h"
 
 #define BPProfileControlsSpacing 5.f
-#define BPProfileControlsMargin 10.f
-#define BPProfileLabelWidth 90.f
+#define BPProfileControlsMargin 8.f
+#define BPProfileLabelWidth 100.f
 #define BPProfileLabelSmallWidth 40.f
 #define BPProfileTextFieldSmallWidth 100.f
+#define BPProfileMenstruationTextFieldWidth 153.f
 
 #define BPPregnancyPeriod 280
 
@@ -32,12 +33,17 @@
 @property (nonatomic, strong) BPLabel *heightLabel;
 @property (nonatomic, strong) BPLabel *kgLabel;
 @property (nonatomic, strong) BPLabel *cmLabel;
+
+@property (nonatomic, strong) BPLabel *menstruationLabel;
+@property (nonatomic, strong) BPLabel *daysLabel;
+
 @property (nonatomic, strong) BPLabel *pregnancyLabel;
 
 @property (nonatomic, strong) BPTextField *nameTextField;
 @property (nonatomic, strong) BPTextField *birthdayTextField;
 @property (nonatomic, strong) BPTextField *weightTextField;
 @property (nonatomic, strong) BPTextField *heightTextField;
+@property (nonatomic, strong) BPTextField *menstruationTextField;
 
 @property (nonatomic, strong) UIButton *pregnancyButton;
 
@@ -73,7 +79,7 @@
 	// Do any additional setup after loading the view.
 
     UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_bubble"]];
-    [self.view addSubview:bubbleView];
+//    [self.view addSubview:bubbleView];
     
     self.selectLabel = [[UILabel alloc] init];
     self.selectLabel.backgroundColor = [UIColor clearColor];
@@ -81,10 +87,10 @@
     self.selectLabel.textColor = RGB(0, 0, 0);
     self.selectLabel.textAlignment = NSTextAlignmentCenter;
     self.selectLabel.numberOfLines = 1;
-    [self.view addSubview:self.selectLabel];
+//    [self.view addSubview:self.selectLabel];
 
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_girl"]];
-    self.girlView.frame = CGRectMake(self.view.bounds.size.width - self.girlView.image.size.width, MAX(260.f, self.view.bounds.size.height - self.girlView.image.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.girlView.image.size.width/2), MAX(260.f, self.view.bounds.size.height - self.girlView.image.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
     bubbleView.frame = CGRectMake(25.f, self.girlView.frame.origin.y + 24.f, bubbleView.image.size.width, bubbleView.image.size.height);
@@ -166,6 +172,18 @@
     [self.lastMenstruationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     top += self.lastMenstruationButton.frame.size.height + BPProfileControlsSpacing;
     
+    left = BPProfileControlsMargin;
+    self.menstruationLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
+    left += self.menstruationLabel.frame.size.width + BPProfileControlsSpacing;
+    
+    self.menstruationTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, top, BPProfileMenstruationTextFieldWidth, BPTextFieldHeigth)];
+    self.menstruationTextField.delegate = self;
+    left += self.menstruationTextField.frame.size.width + BPProfileControlsMargin;
+    
+    self.daysLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, self.view.frame.size.width - left - BPProfileControlsMargin, BPTextFieldHeigth)];
+    
+    top += self.menstruationLabel.frame.size.height + BPProfileControlsSpacing;
+    
     UIImage *checkBoxNormalImage = [BPUtils imageNamed:@"checkbox_normal"];
     UIImage *checkBoxSelectedImage = [BPUtils imageNamed:@"checkbox_selected"];
     
@@ -206,6 +224,10 @@
     [self.view addSubview:self.lengthOfCycleButton];
     [self.view addSubview:self.lastMenstruationButton];
     
+    [self.view addSubview:self.menstruationLabel];
+    [self.view addSubview:self.menstruationTextField];
+    [self.view addSubview:self.daysLabel];
+    
     [self.view addSubview:self.pregnancyLabel];
     [self.view addSubview:self.pregnancyButton];
     
@@ -241,6 +263,9 @@
     self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
     self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");
 
+    self.menstruationLabel.text = BPLocalizedString(@"Menstruation");
+    self.daysLabel.text = BPLocalizedString(@"days");
+    
     self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
 
     self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
@@ -260,6 +285,8 @@
     
     NSDate *lastMenstruationDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey];
     [self.lastMenstruationButton setTitle:[BPUtils shortStringFromDate:lastMenstruationDate] forState:UIControlStateNormal];
+    
+    self.menstruationTextField.number = [sharedSettings[BPSettingsProfileMenstruationPeriodKey] unsignedIntegerValue];
     
     self.pregnancyButton.selected = [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue];
     
@@ -296,6 +323,9 @@
     } else if (textField == self.heightTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeHeight;
         self.pickerView.value = sharedSettings[BPSettingsProfileHeightKey] ? : @0;
+    } else if (textField == self.menstruationTextField) {
+        self.pickerView.valuePickerMode = BPValuePickerModeMenstruationPeriod;
+        self.pickerView.value = sharedSettings[BPSettingsProfileMenstruationPeriodKey];
     }
     
     if ([self.nameTextField isFirstResponder])
@@ -354,6 +384,9 @@
             break;
         case BPValuePickerModeMenstruationLength:
             sharedSettings[BPSettingsProfileLengthOfCycleKey] = self.pickerView.value;
+            break;
+        case BPValuePickerModeMenstruationPeriod:
+            sharedSettings[BPSettingsProfileMenstruationPeriodKey] = self.pickerView.value;
             break;
         case BPValuePickerModeLastMenstruationDate:
             sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.pickerView.value;

@@ -11,7 +11,6 @@
 #define kBPMenstruationPickerMinPeriod 3
 #define kBPMenstruationPickerMaxPeriod 7
 
-
 @interface BPMenstruationPicker ()
 
 @property (nonatomic, strong) NSNumber *periodLength;

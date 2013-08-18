@@ -27,6 +27,7 @@
 
 #define BPSettingsProfileLengthOfCycleKey           @"profile.lengthOfCycle"
 #define BPSettingsProfileLastMenstruationDateKey    @"profile.lastMenstruation"
+#define BPSettingsProfileMenstruationPeriodKey      @"profile.menstruationPeriod"
 
 #define BPSettingsProfileIsPregnantKey              @"profile.isPregnant"
 

@@ -13,4 +13,6 @@
 
 @interface BPTextField : UITextField
 
+@property (nonatomic, assign) NSUInteger number;
+
 @end

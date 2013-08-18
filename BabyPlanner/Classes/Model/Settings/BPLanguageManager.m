@@ -42,7 +42,6 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 
 - (void)setCurrentLanguage:(NSString *)aLanguage
 {
-    DLog();
     _currentLocale = nil;
 
     BPSettings *sharedSettings = [BPSettings sharedSettings];
@@ -51,7 +50,6 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 
 - (NSLocale *)currentLocale
 {
-    DLog();
     if (!_currentLocale)
         _currentLocale = [[NSLocale alloc] initWithLocaleIdentifier:self.currentLanguage];
     
@@ -66,7 +64,6 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 
 - (NSUInteger)currentMetric
 {
-    DLog();
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     if (!sharedSettings[BPSettingsMetricKey])
         sharedSettings[BPSettingsMetricKey] = @([self.supportedLanguages indexOfObject:self.currentLanguage]);
@@ -76,7 +73,6 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 
 - (void)setCurrentMetric:(NSUInteger)aMetric
 {
-    DLog();
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     sharedSettings[BPSettingsMetricKey] = @(aMetric);
 }
