@@ -154,12 +154,9 @@
     DLog();
         
     NSInteger selectedDay = (self.selectedDate ? [self.selectedDate.day intValue] - 1 : 17);
-    DLog(@"selectedDay = %i", selectedDay);
-        
+    
     // demo
     BPDate *date = [self datesManager][selectedDay];
-    
-    DLog(@"date = %@", date);
 
     self.indicatorsView.day = date.day;
     self.indicatorsView.pregnant = date.pregnant;

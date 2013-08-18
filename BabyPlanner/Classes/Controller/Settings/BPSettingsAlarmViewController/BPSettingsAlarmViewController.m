@@ -107,11 +107,12 @@
 - (void)loadData
 {
     DLog();
+    NSString *timeString = (self.fireDate && self.canScheduleAlarm ? [BPUtils timeFromDate:self.fireDate] : @"");
     NSString *soundName = [self.soundName stringByDeletingPathExtension];
     DLog(@"soundName = %@", soundName);
     
     self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @""},
+                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : timeString},
                      @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : (soundName ? : @"")}]
                   ];
 }
@@ -176,6 +177,7 @@
     if (indexPath.section == 0 && indexPath.item == 0) {
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.titleLabel.text = dataItem[@"title"];
+        switchCell.subtitleLabel.text = dataItem[@"subtitle"];
         switchCell.delegate = self;
         switchCell.toggleView.onText = BPLocalizedString(@"ON");
         switchCell.toggleView.offText = BPLocalizedString(@"OFF");
@@ -253,9 +255,8 @@
     if (self.canScheduleAlarm) {
         self.pickerView.valuePickerMode = BPValuePickerModeTime;
         self.pickerView.value = self.fireDate;
-    } else {
+    } else
         self.pickerView.valuePickerMode = BPValuePickerModeNone;
-    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:BPSettingsDidChangeNotification object:nil];
 
@@ -303,15 +304,15 @@
             self.fireDate = self.pickerView.value;
             [self scheduleAlarm:self.canScheduleAlarm];
             break;
-        case BPValuePickerModeSound: {
+        case BPValuePickerModeSound:
             self.soundName = self.pickerView.value;
             [self scheduleAlarm:self.canScheduleAlarm];
-            [self updateUI];
-        }
             break;
         default:
             break;
     }
+    
+    [self updateUI];
 }
 
 @end

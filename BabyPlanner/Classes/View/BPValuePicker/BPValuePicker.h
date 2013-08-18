@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, BPValuePickerMode) {
     BPValuePickerModeLastMenstruationDate,
     BPValuePickerModeLastOvulationDate,
     BPValuePickerModeChildBirthday,
-    BPValuePickerModeTemperature
+    BPValuePickerModeTemperature,
+    BPValuePickerModeMenstruationPeriod
 };
 
 @interface BPValuePicker : UIControl

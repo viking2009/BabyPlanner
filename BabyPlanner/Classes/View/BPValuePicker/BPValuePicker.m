@@ -16,6 +16,7 @@
 #import "BPPeriodPicker.h"
 #import "BPUnitPicker.h"
 #import "BPTemperaturePicker.h"
+#import "BPMenstruationPicker.h"
 
 #import "BPUtils.h"
 
@@ -103,6 +104,11 @@
                 self.delegate = [[BPTemperaturePicker alloc] init];
                 self.delegate.control = self;
                 break;
+                
+            case BPValuePickerModeMenstruationPeriod:
+                self.delegate = [[BPMenstruationPicker alloc] init];
+                self.delegate.control = self;
+                
             default:
                 break;
         }
