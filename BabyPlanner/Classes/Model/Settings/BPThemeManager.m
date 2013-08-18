@@ -9,6 +9,7 @@
 #import "BPThemeManager.h"
 #import "BPSettings+Additions.h"
 #import "BPUtils.h"
+#import "ObjectiveSugar.h"
 
 NSString *const BPThemeDidChangeNotification = @"BPThemeDidChangeNotification";
 
@@ -36,7 +37,7 @@ NSString *const BPThemeDidChangeNotification = @"BPThemeDidChangeNotification";
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     if (!sharedSettings[BPSettingsThemeKey])
-        sharedSettings[BPSettingsThemeKey] = (self.supportedThemes)[0];
+        sharedSettings[BPSettingsThemeKey] = self.supportedThemes.first;
     
     return sharedSettings[BPSettingsThemeKey];
 }

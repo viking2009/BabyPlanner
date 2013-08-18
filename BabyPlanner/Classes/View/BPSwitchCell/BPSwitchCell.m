@@ -11,6 +11,7 @@
 
 #define BPDefaultSwitchWidth 76.f
 #define BPDefaultSwitchHeight 28.f
+#define BPDefaultSubtitleWidth 80.f
 
 @implementation BPSwitchCell
 
@@ -26,6 +27,14 @@
         self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
         self.titleLabel.textColor = RGB(0, 0, 0);
         [self.contentView addSubview:self.titleLabel];
+
+        self.subtitleLabel = [[UILabel alloc] init];
+        self.subtitleLabel.backgroundColor = [UIColor clearColor];
+        self.subtitleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
+        self.subtitleLabel.textColor = RGB(56, 84, 135);
+        self.subtitleLabel.highlightedTextColor = RGB(255, 255, 255);
+        self.subtitleLabel.textAlignment = NSTextAlignmentRight;
+        [self.contentView addSubview:self.subtitleLabel];
         
 //        self.toggleView = [[TTSwitch alloc] initWithFrame:CGRectMake(0, 0, BPDefaultSwitchWidth, BPDefaultSwitchHeight)];
 //        self.toggleView.onLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
@@ -49,6 +58,7 @@
     [super layoutSubviews];
     
     CGFloat left = BPDefaultCellInset;
+    CGFloat right = self.contentView.frame.size.width - BPDefaultCellInset - BPDefaultSwitchWidth;
     CGFloat maxWidth = self.contentView.frame.size.width - BPDefaultSwitchWidth - 3*BPDefaultCellInset;
     
     if (self.imageView.image) {
@@ -59,6 +69,13 @@
         self.imageView.frame = CGRectZero;
     }
     
+    if (self.subtitleLabel.text.length) {
+        self.subtitleLabel.frame = CGRectMake(right - BPDefaultCellInset - BPDefaultSubtitleWidth, 0, BPDefaultSubtitleWidth, self.contentView.frame.size.height);
+        maxWidth -= self.subtitleLabel.frame.size.width + BPDefaultCellInset;
+    } else {
+        self.subtitleLabel.frame = CGRectZero;
+    }
+    
     if (self.titleLabel.text.length) {
         self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.frame.size.height);
         left += self.titleLabel.frame.size.width + BPDefaultCellInset;
@@ -66,7 +83,7 @@
         self.titleLabel.frame = CGRectZero;
     }
     
-    self.toggleView.frame = CGRectMake(left, floorf(self.contentView.frame.size.height/2 - BPDefaultSwitchHeight/2),
+    self.toggleView.frame = CGRectMake(right, floorf(self.contentView.frame.size.height/2 - BPDefaultSwitchHeight/2),
                                        BPDefaultSwitchWidth, BPDefaultSwitchHeight);
 }
 

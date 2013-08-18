@@ -22,8 +22,10 @@
 @interface BPUtils : NSObject
 
 + (UIImage *)imageNamed:(NSString *)name;
+
 + (NSString *)shortStringFromDate:(NSDate *)date;
 + (NSString *)stringFromDate:(NSDate *)date;
++ (NSString *)timeFromDate:(NSDate *)date;
 
 /**
  * @return device full model name in human readable strings

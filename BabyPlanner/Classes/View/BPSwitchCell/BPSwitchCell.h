@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subtitleLabel;
 //@property (nonatomic, strong) TTSwitch *toggleView;
 @property (nonatomic, strong) DCRoundSwitch *toggleView;
 @property (nonatomic, weak) id delegate;

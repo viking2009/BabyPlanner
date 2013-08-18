@@ -51,6 +51,22 @@
     return [dateFormatter stringFromDate:date];
 }
 
++ (NSString *)timeFromDate:(NSDate *)date
+{
+    if (!date)
+        return nil;
+    
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+    }
+    
+    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSString *)deviceModelName {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
