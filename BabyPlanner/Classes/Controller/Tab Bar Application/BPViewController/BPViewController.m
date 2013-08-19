@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) UIImageView *navigationImageView;
 @property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
 
 - (void)goBack;
 
@@ -54,7 +54,7 @@
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.bounds.size.width - 2*68.f, 44.f)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:20];
+    self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:19];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = RGB(255, 255, 255);
     self.titleLabel.shadowColor = RGBA(0, 0, 0, 0.29);

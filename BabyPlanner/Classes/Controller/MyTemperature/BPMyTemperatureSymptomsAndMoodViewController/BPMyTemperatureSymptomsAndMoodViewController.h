@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BPViewController.h"
+#import "BPDate.h"
 
 @interface BPMyTemperatureSymptomsAndMoodViewController : BPViewController
 
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) BPDate *date;
 
 @end

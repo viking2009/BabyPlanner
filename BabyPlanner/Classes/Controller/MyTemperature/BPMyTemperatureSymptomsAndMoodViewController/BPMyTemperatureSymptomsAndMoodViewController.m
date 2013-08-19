@@ -9,7 +9,8 @@
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
 #import "BPSymptomsAndMoodCollectionViewCell.h"
 #import "BPUtils.h"
-#import "ObjectiveSugar.h"
+#import "ObjectiveRecord.h"
+#import "BPSymptom.h"
 
 #define BPSymptomsAndMoodCollectionViewCellIdentifier @"BPSymptomsAndMoodCollectionViewCellIdentifier"
 
@@ -33,10 +34,19 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [self.date save];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    CGRect titleLabelFrame = self.titleLabel.frame;
+    titleLabelFrame.size.width = self.view.frame.size.width - titleLabelFrame.origin.x - 8.f;
+    self.titleLabel.frame = titleLabelFrame;
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[collectionViewFlowLayout setItemSize:CGSizeMake(BPSymptomsAndMoodDefaultImageWidth, BPSymptomsAndMoodDefaultImageHeight + BPSymptomsAndMoodDefaultTitleHeight)];
@@ -70,10 +80,17 @@
 
 - (void)loadData
 {
-    self.symptoms = @[@"Good mood", @"Irritability", @"Hunger",
-                      @"Tearfulness", @"Fatigue", @"Party",
-                      @"Pressure", @"Migraine", @"Colds",
-                      @"Temperature", @"Nausea", @"Heartburn"];
+    self.symptoms = [BPSymptom all];
+    
+    int i = 0;
+    for (BPSymptom *symptom in self.symptoms) {
+        if ([self.date.symptoms containsObject:symptom]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        }
+        
+        i++;
+    }
 }
 
 - (void)updateUI
@@ -94,11 +111,9 @@
 {
     BPSymptomsAndMoodCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSymptomsAndMoodCollectionViewCellIdentifier forIndexPath:indexPath];
     
-    NSString *symptom = _symptoms[indexPath.item];
-    NSString *underscored = [[symptom lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    NSString *imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
-    cell.imageView.image = [BPUtils imageNamed:imageName];
-    cell.titleLabel.text = BPLocalizedString(symptom);
+    BPSymptom *symptom = _symptoms[indexPath.item];
+    cell.imageView.image = [BPUtils imageNamed:symptom.imageName];
+    cell.titleLabel.text = BPLocalizedString(symptom.name);
 
     return cell;
 }
@@ -108,6 +123,15 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath = %@", indexPath);
+    [self.date addSymptomsObject:_symptoms[indexPath.item]];
+    DLog(@"self.date.symptoms: %@", self.date.symptoms);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"indexPath = %@", indexPath);
+    [self.date removeSymptomsObject:_symptoms[indexPath.item]];
+    DLog(@"self.date.symptoms: %@", self.date.symptoms);
 }
 
 @end

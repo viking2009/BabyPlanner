@@ -1,16 +1,15 @@
-
- 
 h2. 20130819
 
 h3. Note:
 
 * remove old app before install new version
 
-h3. New:
-
-
 h3. Improvements:
-
+Task #31: My Temperature: Symptoms And Mood
+* save symptoms
+Task #38: My Temperature: save data
+* symptoms support
 
 h3. Fixes:
-
+Task #31: My Temperature: Symptoms And Mood
+* fix title label frame

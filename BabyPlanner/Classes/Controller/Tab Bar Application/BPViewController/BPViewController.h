@@ -10,4 +10,6 @@
 
 @interface BPViewController : BPBaseViewController
 
+@property (nonatomic, readonly) UILabel *titleLabel;
+
 @end

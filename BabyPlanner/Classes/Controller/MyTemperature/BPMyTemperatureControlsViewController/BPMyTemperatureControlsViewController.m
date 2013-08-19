@@ -329,7 +329,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog()
+    DLog();
     if (indexPath.section == 0 && indexPath.row == 0) {
         BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
         temperatureSelectViewController.date = self.date;
@@ -337,8 +337,11 @@
     }
     else if (indexPath.section == 1) {
         switch (indexPath.item) {
-            case 2:
-                [self.navigationController pushViewController:[BPMyTemperatureSymptomsAndMoodViewController new] animated:YES];
+            case 2: {
+                BPMyTemperatureSymptomsAndMoodViewController *temperatureSymptomsAndMoodViewController = [[BPMyTemperatureSymptomsAndMoodViewController alloc] init];
+                temperatureSymptomsAndMoodViewController.date = self.date;
+                [self.navigationController pushViewController:temperatureSymptomsAndMoodViewController animated:YES];
+            }
                 break;
             case 3: {
                 BPMyTemperatureNotationsViewController *temperatureNotationsViewController = [[BPMyTemperatureNotationsViewController alloc] init];
