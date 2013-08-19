@@ -27,6 +27,13 @@
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSString *)timeFromDate:(NSDate *)date;
 
++ (float)kgToLb:(float)weight;
++ (float)lbToKg:(float)weight;
++ (float)cmToFt:(float)length;
++ (float)ftToCm:(float)length;
++ (float)fahrenheitToCelsius:(float)temperature;
++ (float)celsiusToFahrenheit:(float)temperature;
+
 /**
  * @return device full model name in human readable strings
  */

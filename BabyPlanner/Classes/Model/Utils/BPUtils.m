@@ -12,6 +12,9 @@
 #import <sys/types.h>
 #import <sys/sysctl.h>
 
+#define BPMultiplierKg2Lb 2.20462262
+#define BPMultiplierCm2Ft 0.032808399
+
 @implementation BPUtils
 
 + (UIImage *)imageNamed:(NSString *)name
@@ -65,6 +68,36 @@
     dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
     
     return [dateFormatter stringFromDate:date];
+}
+
++ (float)kgToLb:(float)weight
+{
+    return BPMultiplierKg2Lb * weight;
+}
+
++ (float)lbToKg:(float)weight
+{
+    return weight / BPMultiplierKg2Lb;
+}
+
++ (float)cmToFt:(float)length
+{
+    return BPMultiplierCm2Ft * length;
+}
+
++ (float)ftToCm:(float)length
+{
+    return length / BPMultiplierCm2Ft;
+}
+
++ (float)celsiusToFahrenheit:(float)temperature
+{
+    return temperature*9/5 + 32.f;
+}
+
++ (float)fahrenheitToCelsius:(float)temperature
+{
+    return (temperature - 32.f)*5/9;
 }
 
 + (NSString *)deviceModelName {
