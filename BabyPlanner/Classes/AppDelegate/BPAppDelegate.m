@@ -16,11 +16,23 @@
 #import "BPSettingsViewController.h"
 #import "TTSwitch.h"
 #import "BPUtils.h"
+#import "ObjectiveRecord.h"
 #import <BugSense-iOS/BugSenseController.h>
+
+//#define BPCreateSeedDataBase
+#import "BPSymptom.h"
+
+@interface BPAppDelegate()
+
+- (void)initBugSense;
+- (void)importDatabaseIfNeeded;
+- (void)customizeAppearance;
+
+@end
 
 @implementation BPAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (void)initBugSense
 {
     // Override point for customization after application launch.
     NSString *programVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
@@ -34,7 +46,58 @@
     
     [BugSenseController sharedControllerWithBugSenseAPIKey:BPBugSenseApiKey
                                             userDictionary:@{ @"device" : device }];
+}
+
+- (void)importDatabaseIfNeeded
+{
+#ifdef BPCreateSeedDataBase
+    NSArray *symptoms = @[@"Good mood", @"Irritability", @"Hunger",
+                          @"Tearfulness", @"Fatigue", @"Party",
+                          @"Pressure", @"Migraine", @"Colds",
+                          @"Temperature", @"Nausea", @"Heartburn"];
+
+    for (int i = 0; i < [symptoms count]; i++) {
+        DLog(@"i: %i", i);
+        BPSymptom *symptom = [BPSymptom create];
+        symptom.position = @(i);
+        symptom.name = symptoms[i];
+        NSString *underscored = [[symptom.name lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        symptom.imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
+    }
     
+    NSError *error;
+    [[NSManagedObjectContext defaultContext] save:&error];
+    if (error)
+        DLog(@"error: %@", error);
+    
+#else
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    NSURL *directory = [[CoreDataManager sharedManager] applicationDocumentsDirectory];
+    NSURL *databaseURL = [directory URLByAppendingPathComponent:[CoreDataManager sharedManager].databaseName];
+
+    DLog(@"databaseURL: %@", databaseURL);
+
+    if (![fm fileExistsAtPath:[databaseURL absoluteString]]) {
+        NSURL *seedURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:[CoreDataManager sharedManager].databaseName];
+        DLog(@"seedURL: %@", seedURL);
+//        if ([fm fileExistsAtPath:[seedURL absoluteString]]) {
+            NSError *error;
+            
+            [fm copyItemAtURL:seedURL toURL:databaseURL error:&error];
+            if (error)
+                DLog(@"error: %@", error);
+            else {
+                DLog(@"imported");
+                DLog(@"%@", [BPSymptom all]);
+            }
+//        }
+    }
+#endif
+}
+
+- (void)customizeAppearance
+{
     [[TTSwitch appearance] setMaskInLockPosition:@0];
     [[TTSwitch appearance] setTrackImage:[BPUtils imageNamed:@"round-switch-track-no-text"]];
     [[TTSwitch appearance] setOverlayImage:[BPUtils imageNamed:@"round-switch-overlay"]];
@@ -44,6 +107,13 @@
     [[TTSwitch appearance] setThumbMaskImage:[BPUtils imageNamed:@"round-switch-mask"]];
     [[TTSwitch appearance] setThumbInsetX:-3.0f];
     [[TTSwitch appearance] setThumbOffsetY:-3.0f];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self initBugSense];
+    
+    [self importDatabaseIfNeeded];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     

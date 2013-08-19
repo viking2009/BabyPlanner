@@ -10,6 +10,10 @@
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
+		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
+		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
+		9011DF8517C1D82900EAA9CE /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8417C1D82900EAA9CE /* BPDate.m */; };
+		9011DF8717C1D8FA00EAA9CE /* BabyPlanner.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
 		902E86CE179F275700186731 /* BPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86CD179F275700186731 /* BPLanguageManager.m */; };
@@ -49,7 +53,6 @@
 		909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E317BC18EE00EEC795 /* BPMyChartsViewController.m */; };
 		909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */; };
 		909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F417BC1A0B00EEC795 /* BPProfile.m */; };
-		909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F717BC1B8D00EEC795 /* BPDate.m */; };
 		909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */; };
 		909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */; };
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
@@ -116,6 +119,13 @@
 		9005C55E17944415001338BA /* BPPeriodPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPeriodPicker.m; sourceTree = "<group>"; };
 		9005C56017944882001338BA /* BPUnitPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUnitPicker.h; sourceTree = "<group>"; };
 		9005C56117944882001338BA /* BPUnitPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUnitPicker.m; sourceTree = "<group>"; };
+		9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptom.h; sourceTree = "<group>"; };
+		9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptom.m; sourceTree = "<group>"; };
+		9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSymptom+Additions.h"; sourceTree = "<group>"; };
+		9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSymptom+Additions.m"; sourceTree = "<group>"; };
+		9011DF8317C1D82900EAA9CE /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
+		9011DF8417C1D82900EAA9CE /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
+		9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BabyPlanner.sqlite; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		9029876A17881D6600067D7A /* BPThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeCell.h; sourceTree = "<group>"; };
@@ -190,8 +200,6 @@
 		909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyViewController.m; sourceTree = "<group>"; };
 		909C95F317BC1A0900EEC795 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
 		909C95F417BC1A0B00EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
-		909C95F617BC1B8D00EEC795 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
-		909C95F717BC1B8D00EEC795 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		909C95F917BC1C2D00EEC795 /* BPDatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatesManager.h; sourceTree = "<group>"; };
 		909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatesManager.m; sourceTree = "<group>"; };
 		909C95FD17BC382000EEC795 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
@@ -424,6 +432,8 @@
 			children = (
 				909C958317BC0CD300EEC795 /* BPSettings+Additions.h */,
 				909C958417BC0CD300EEC795 /* BPSettings+Additions.m */,
+				9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */,
+				9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -431,12 +441,14 @@
 		909C958617BC0CEC00EEC795 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				909C95F617BC1B8D00EEC795 /* BPDate.h */,
-				909C95F717BC1B8D00EEC795 /* BPDate.m */,
 				909C95F317BC1A0900EEC795 /* BPProfile.h */,
 				909C95F417BC1A0B00EEC795 /* BPProfile.m */,
 				909C958D17BC0D2400EEC795 /* BPSettings.h */,
 				909C958E17BC0D2400EEC795 /* BPSettings.m */,
+				9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */,
+				9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */,
+				9011DF8317C1D82900EAA9CE /* BPDate.h */,
+				9011DF8417C1D82900EAA9CE /* BPDate.m */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -895,6 +907,7 @@
 		90EB9E2B17079021008457A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */,
 				90E881B1177872C300682BB3 /* BPImages.bundle */,
 				90EB9E2C17079021008457A3 /* InfoPlist.strings */,
 				902E86D7179F34F300186731 /* Localizable.strings */,
@@ -1137,6 +1150,7 @@
 				903452F4179461AB001B397B /* Marimba.caf in Resources */,
 				903452F5179461AB001B397B /* Old Phone.caf in Resources */,
 				903452F6179461AB001B397B /* Piano Riff.caf in Resources */,
+				9011DF8717C1D8FA00EAA9CE /* BabyPlanner.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,9 +1231,11 @@
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
 				909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */,
 				90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */,
-				909C95F817BC1B8D00EEC795 /* BPDate.m in Sources */,
 				909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */,
 				909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */,
+				9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */,
+				9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */,
+				9011DF8517C1D82900EAA9CE /* BPDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
