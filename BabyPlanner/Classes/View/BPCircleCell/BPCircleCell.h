@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define BPCircleCellImageSize 24.f
+#define BPCircleCellImageSize 28.f
 
 @interface BPCircleCell : UICollectionViewCell
 

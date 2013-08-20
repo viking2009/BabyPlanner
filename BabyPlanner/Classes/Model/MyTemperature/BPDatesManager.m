@@ -28,7 +28,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 - (id)init
 {
-    return [self initWithStartDate:[NSDate date]];
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
+    return [self initWithStartDate:sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date]];
 }
 
 - (id)initWithStartDate:(NSDate *)date
@@ -59,6 +61,13 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     return 13;
 }
 
+- (NSInteger)todayIndex
+{
+    NSInteger days = [self.startDate distanceInDaysToDate:[NSDate date]];
+    DLog(@"days: %i", days);
+    return (days < self.count ? days : NSNotFound);
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
 {    
     BPSettings *sharedSettings = [BPSettings sharedSettings];
@@ -79,6 +88,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     }
     
     item.day = @(idx + 1);
+    item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
     item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
     item.ovulation = @(idx == self.ovulationIndex);
     

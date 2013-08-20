@@ -51,8 +51,6 @@
         [self.tabBarItem setFinishedSelectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_selected"]
                       withFinishedUnselectedImage:[BPUtils imageNamed:@"tabbar_mytemperature_unselected"]];
 
-        self.datesManager = [[BPDatesManager alloc] init];
-
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:BPDatesManagerDidChangeContentNotification object:nil];
     }
     return self;
@@ -152,8 +150,12 @@
 - (void)loadData
 {
     DLog();
-        
-    NSInteger selectedDay = (self.selectedDate ? [self.selectedDate.day intValue] - 1 : 17);
+    
+    self.datesManager = [[BPDatesManager alloc] init];
+
+    NSInteger selectedDay = (self.selectedDate ? [self.selectedDate.day intValue] - 1 : self.datesManager.todayIndex);
+    if (selectedDay == NSNotFound)
+        selectedDay = 0;
     
     // demo
     BPDate *date = [self datesManager][selectedDay];
@@ -230,14 +232,14 @@
     if (indexPath.item < self.datesManager.ovulationIndex)
         imageName = @"point_green";
     else if (indexPath.item < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
-        imageName = @"point_3";
+        imageName = @"point_salad";
     
     if (indexPath.item == self.datesManager.ovulationIndex)
         imageName = @"point_ovulation";
     
     // TODO: fertile
     if ([date.menstruation boolValue])
-        imageName = @"point_red";
+        imageName = @"point_pink";
     
     cell.imageView.image = [BPUtils imageNamed:imageName];
     cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];

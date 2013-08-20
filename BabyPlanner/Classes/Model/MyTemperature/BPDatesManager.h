@@ -15,9 +15,9 @@ extern NSString *const BPDatesManagerDidChangeContentNotification;
 @property (nonatomic, readonly) NSDate *startDate;
 @property (nonatomic, readonly) NSInteger count;
 @property (nonatomic, readonly) NSInteger ovulationIndex;
+@property (nonatomic, readonly) NSInteger todayIndex;
 
 - (id)initWithStartDate:(NSDate *)date;
-
 - (id)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
 
 @end
