@@ -140,17 +140,14 @@
         else
             _currentValue = value;
 
-        
-        // TODO: fix value: v = @(floorf(v*100)/100);??
-        
-//        float floatValue = MIN(kBPTemperaturePickerMaxTemperature + 0.99f, MAX([self.currentValue floatValue], kBPTemperaturePickerMinTemperature));
+//        float floatValue = MIN(self.maxValue + 0.99f, MAX([self.currentValue floatValue], self.minValue));
 //        _currentValue = @(floatValue);
-        NSInteger length = [self.currentValue integerValue];
+        NSInteger length = floorf([self.currentValue floatValue]);
         
         // TODO: fix bug with conversion
         [pickerView selectRow:length - self.minValue inComponent:0 animated:animated];
         [pickerView selectRow:(int)([self.currentValue floatValue] * 10) % 10 inComponent:2 animated:animated];
-        [pickerView selectRow:(int)([self.currentValue floatValue] * 100) % 10 inComponent:3 animated:animated];
+        [pickerView selectRow:(int)round([self.currentValue floatValue] * 100) % 10 inComponent:3 animated:animated];
         
         DLog(@"_temperature = %@", _currentValue);
     }

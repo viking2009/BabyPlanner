@@ -8,8 +8,6 @@
 
 #import "BPAbstractPicker.h"
 
-// TODO: C to F converter
-
 @interface BPTemperaturePicker : BPAbstractPicker
 
 @end
