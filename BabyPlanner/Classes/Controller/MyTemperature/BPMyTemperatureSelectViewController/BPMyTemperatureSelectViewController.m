@@ -38,9 +38,6 @@
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     
-    self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
-    self.pickerView.value = self.date.temperature;
-    
     [self updateUI];
 }
 
@@ -53,6 +50,10 @@
 - (void)updateUI
 {
     [super updateUI];
+    
+    self.pickerView.valuePickerMode = BPValuePickerModeNone;
+    self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
+    self.pickerView.value = self.date.temperature;    
 }
 
 - (void)pickerViewValueChanged

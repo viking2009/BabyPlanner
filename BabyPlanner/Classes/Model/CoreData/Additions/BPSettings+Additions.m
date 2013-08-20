@@ -13,10 +13,7 @@
 #import "ObjectiveRecord.h"
 #import "ObjectiveSugar.h"
 #import "BPProfile.h"
-
-
-#define BPMultiplierKg2Lb 2.20462262
-#define BPMultiplierCm2Ft 0.032808399
+#import "BPUtils.h"
 
 NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotification";
 
@@ -46,19 +43,14 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     
     id result = [self valueForKeyPath:key];
     
-    // TODO: set default settings here
-    if ([key isEqualToString:BPSettingsProfileLengthOfCycleKey]) {
-        // NOTE: setted by CoreData
-//        if (!result)
-//            result = @30;
-    } if ([key isEqualToString:BPSettingsProfileWeightKey]) {
-        float weight = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierKg2Lb : 1);
-        result = @((int)(weight * 10)/10.f);
+    if ([key isEqualToString:BPSettingsProfileWeightKey]) {
+        if ([BPLanguageManager sharedManager].currentMetric == 0)
+            result = @([BPUtils kgToLb:[result floatValue]]);
     } else if ([key isEqualToString:BPSettingsProfileHeightKey]) {
-        float height = [result floatValue] * ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierCm2Ft : 1);
-        result = @((int)(height * 10)/10.f);
+        if ([BPLanguageManager sharedManager].currentMetric == 0)
+            result = @([BPUtils cmToFt:[result floatValue]]);
     }
-        
+    
     return result;
 }
 
@@ -70,11 +62,11 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     id oldObj = [self objectForKeyedSubscript:key];
     if (![obj isEqual:oldObj]) {        
         if ([(id)key isEqualToString:BPSettingsProfileWeightKey]) {
-            float weight = [obj floatValue] / ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierKg2Lb : 1);
-            obj = @(weight);
+            if ([BPLanguageManager sharedManager].currentMetric == 0)
+                obj = @([BPUtils lbToKg:[obj floatValue]]);
         } else if ([(id)key isEqualToString:BPSettingsProfileHeightKey]) {
-            float height = [obj floatValue] / ([BPLanguageManager sharedManager].currentMetric == 0 ? BPMultiplierCm2Ft : 1);
-            obj = @(height);
+            if ([BPLanguageManager sharedManager].currentMetric == 0)
+                obj = @([BPUtils ftToCm:[obj floatValue]]);
         }
         
         [self setValue:obj forKeyPath:(NSString *)key];

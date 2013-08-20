@@ -219,11 +219,11 @@
     
     if (self.temperature) {
         NSString *temperatureSign = [BPLanguageManager sharedManager].currentMetric ? @"C" :@"F";
-        float temperature = [self.temperature floatValue];
-        if ([BPLanguageManager sharedManager].currentMetric == 0)
-            temperature = temperature * 9/5 + 32.f;
+//        float temperature = [self.temperature floatValue];
+//        if ([BPLanguageManager sharedManager].currentMetric == 0)
+//            temperature = temperature * 9/5 + 32.f;
         
-        self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", temperature, temperatureSign];
+        self.temperatureLabel.text = [NSString stringWithFormat:@"%.2f °%@", [self.temperature floatValue], temperatureSign];
     } else
         self.temperatureLabel.text = nil;
 }
