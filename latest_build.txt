@@ -4,17 +4,10 @@ h3. Note:
 
 * remove old app before install new version
 
-h3. New
-
 h3. Improvements:
 
 Task #39: My Temperature: select temperature
 * select 36.6°C if temperature not set
 * display list of temperatures for cycle
 Task #41: My Temperature: Cycle logic
-* fix for date selection
-
-h3. Fixes:
-
-Bug #42: My Temperature: no support for Fahrenheit
-* fix title label frame
+* don’t change menstruation value after menstruation period changed, if menstruation value has been changed by user

@@ -402,6 +402,7 @@
         if (indexPath.item == 0) {
             DLog(@"self.date.menstruation: %@", self.date.menstruation);
             self.date.menstruation = @(cell.toggleView.on);
+            self.date.mmenstruation = @YES;
             DLog(@"self.date.menstruation: %@", self.date.menstruation);
         }
         else if (indexPath.item == 1) {

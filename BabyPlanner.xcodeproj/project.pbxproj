@@ -12,7 +12,6 @@
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
 		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
 		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
-		9011DF8517C1D82900EAA9CE /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8417C1D82900EAA9CE /* BPDate.m */; };
 		9011DF8717C1D8FA00EAA9CE /* BabyPlanner.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
@@ -64,6 +63,7 @@
 		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
 		90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */; };
+		90E56C4517C546F1003646F4 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E56C4417C546F1003646F4 /* BPDate.m */; };
 		90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755417B7E1190045C30E /* BPCollectionViewCell.m */; };
 		90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755817B7EF880045C30E /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -123,8 +123,6 @@
 		9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSymptom.m; sourceTree = "<group>"; };
 		9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSymptom+Additions.h"; sourceTree = "<group>"; };
 		9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSymptom+Additions.m"; sourceTree = "<group>"; };
-		9011DF8317C1D82900EAA9CE /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
-		9011DF8417C1D82900EAA9CE /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BabyPlanner.sqlite; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
@@ -222,6 +220,8 @@
 		90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperaturePicker.m; sourceTree = "<group>"; };
 		90E32AB117C0FF3800E34FC4 /* BPMenstruationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMenstruationPicker.h; sourceTree = "<group>"; };
 		90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMenstruationPicker.m; sourceTree = "<group>"; };
+		90E56C4317C546F1003646F4 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
+		90E56C4417C546F1003646F4 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		90E6755317B7E1190045C30E /* BPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewCell.h; sourceTree = "<group>"; };
 		90E6755417B7E1190045C30E /* BPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewCell.m; sourceTree = "<group>"; };
 		90E6755717B7EF880045C30E /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
@@ -441,14 +441,14 @@
 		909C958617BC0CEC00EEC795 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				90E56C4317C546F1003646F4 /* BPDate.h */,
+				90E56C4417C546F1003646F4 /* BPDate.m */,
 				909C95F317BC1A0900EEC795 /* BPProfile.h */,
 				909C95F417BC1A0B00EEC795 /* BPProfile.m */,
 				909C958D17BC0D2400EEC795 /* BPSettings.h */,
 				909C958E17BC0D2400EEC795 /* BPSettings.m */,
 				9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */,
 				9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */,
-				9011DF8317C1D82900EAA9CE /* BPDate.h */,
-				9011DF8417C1D82900EAA9CE /* BPDate.m */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -1235,7 +1235,7 @@
 				909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */,
 				9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */,
 				9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */,
-				9011DF8517C1D82900EAA9CE /* BPDate.m in Sources */,
+				90E56C4517C546F1003646F4 /* BPDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

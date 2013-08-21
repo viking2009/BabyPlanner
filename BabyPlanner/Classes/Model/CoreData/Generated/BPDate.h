@@ -2,7 +2,7 @@
 //  BPDate.h
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 19.08.13.
+//  Created by Mykola Vyshynskyi on 21.08.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSNumber * pregnant;
 @property (nonatomic, retain) NSNumber * sexualIntercourse;
 @property (nonatomic, retain) NSNumber * temperature;
+@property (nonatomic, retain) NSNumber * mmenstruation;
 @property (nonatomic, retain) BPProfile *profile;
 @property (nonatomic, retain) NSSet *symptoms;
 @end

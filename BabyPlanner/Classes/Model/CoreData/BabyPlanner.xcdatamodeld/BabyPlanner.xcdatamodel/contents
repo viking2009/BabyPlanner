@@ -6,8 +6,9 @@
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="girl" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="menstruation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mmenstruation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="notations" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ovulation" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="ovulation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="pregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sexualIntercourse" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
@@ -42,7 +43,7 @@
         <relationship name="date" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPDate" inverseName="symptoms" inverseEntity="BPDate" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BPDate" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="BPDate" positionX="0" positionY="0" width="128" height="240"/>
         <element name="BPProfile" positionX="0" positionY="0" width="128" height="225"/>
         <element name="BPSettings" positionX="0" positionY="0" width="128" height="120"/>
         <element name="BPSymptom" positionX="160" positionY="192" width="128" height="105"/>

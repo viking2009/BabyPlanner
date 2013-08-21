@@ -91,7 +91,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     }
     
     item.day = @(idx + 1);
-    item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
+    DLog(@"item.menstruation: %@", item.menstruation);
+    if (![item.mmenstruation boolValue])
+        item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
+
     item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
     item.ovulation = @(idx == self.ovulationIndex);
     
