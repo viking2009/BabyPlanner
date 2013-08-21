@@ -96,7 +96,7 @@
     bubbleView.frame = CGRectMake(25.f, self.girlView.frame.origin.y + 24.f, bubbleView.image.size.width, bubbleView.image.size.height);
     self.selectLabel.frame = CGRectOffset(bubbleView.frame, 0, -10.f);
 
-    CGFloat top = MAX(0, self.girlView.frame.origin.y - 320.f) + 64.f + 3.f + BPProfileControlsSpacing;
+    CGFloat top = /*MAX(0, self.girlView.frame.origin.y - 390.f) +*/ 64.f + 3.f + BPProfileControlsSpacing;
     CGFloat left = BPProfileControlsMargin;
     CGFloat maxWidth = self.view.frame.size.width - 2*BPProfileControlsMargin - BPProfileLabelWidth - BPProfileControlsSpacing;
     
@@ -209,6 +209,13 @@
     [self.childBirthButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 //    top += self.childBirthButton.frame.size.height + BPProfileControlsSpacing;
     
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEnd];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.view addSubview:self.pickerView];
+    
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.birthdayLabel];
     [self.view addSubview:self.weightLabel];
@@ -230,13 +237,6 @@
     
     [self.view addSubview:self.pregnancyLabel];
     [self.view addSubview:self.pregnancyButton];
-    
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
-    [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.pickerView addTarget:self action:@selector(pickerViewValueDidBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
-    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEnd];
-    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.view addSubview:self.pickerView];
     
     [self.view addSubview:self.lastOvulationButton];
     [self.view addSubview:self.childBirthButton];

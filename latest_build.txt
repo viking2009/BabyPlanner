@@ -8,5 +8,9 @@ h3. Improvements:
 
 h3. Fixes:
 
+Task #14: Settings: My Profile
+* fix layout
+Bug #24: Localization strings
+* localize metric labels
 Task #39: My Temperature: select temperature
 * fix layout
