@@ -53,7 +53,7 @@
     
     self.pickerView.valuePickerMode = BPValuePickerModeNone;
     self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
-    self.pickerView.value = [BPUtils temperatureFromNumber:self.date.temperature];
+    self.pickerView.value = [BPUtils temperatureFromNumber:([self.date.temperature intValue] ? self.date.temperature : @36.6)];
 }
 
 - (void)pickerViewValueChanged
