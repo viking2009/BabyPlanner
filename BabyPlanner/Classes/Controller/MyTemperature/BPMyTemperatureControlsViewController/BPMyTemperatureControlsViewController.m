@@ -332,7 +332,7 @@
     DLog();
     if (indexPath.section == 0 && indexPath.row == 0) {
         BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
-        temperatureSelectViewController.date = self.date;
+        temperatureSelectViewController.selectedDate = self.date;
         [self.navigationController pushViewController:temperatureSelectViewController animated:YES];
     }
     else if (indexPath.section == 1) {

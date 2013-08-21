@@ -12,7 +12,7 @@
 
 @interface BPSettingsCell()
 
-@property (nonatomic, strong) UIImageView *accessoryView;
+//@property (nonatomic, strong) UIImageView *accessoryView;
 
 @end
 

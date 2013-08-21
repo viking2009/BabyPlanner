@@ -12,6 +12,6 @@
 
 @interface BPMyTemperatureSelectViewController : BPViewController
 
-@property (nonatomic, strong) BPDate *date;
+@property (nonatomic, strong) BPDate *selectedDate;
 
 @end

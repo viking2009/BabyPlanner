@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
+@property (nonatomic, strong) UIImageView *accessoryView;
 
 @end

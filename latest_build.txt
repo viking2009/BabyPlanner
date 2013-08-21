@@ -10,6 +10,7 @@ h3. Improvements:
 
 Task #39: My Temperature: select temperature
 * select 36.6°C if temperature not set
+* display list of temperatures for cycle
 Task #41: My Temperature: Cycle logic
 * fix for date selection
 

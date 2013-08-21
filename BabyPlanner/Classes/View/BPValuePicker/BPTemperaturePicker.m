@@ -139,6 +139,8 @@
         float floatValue = MIN(kBPTemperaturePickerMaxTemperature + 0.99f, MAX([valueNumber floatValue], kBPTemperaturePickerMinTemperature));
         value = [BPUtils temperatureFromNumber:@(floatValue)];
         
+        // BUG: when on value was fixed for range closed to kBPTemperaturePickerMinTemperature or kBPTemperaturePickerMaxTemperature _ 0.99f;
+        
         // remove suffix
         _currentValue = [value split:@"°"].first;
 
