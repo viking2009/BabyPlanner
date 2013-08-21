@@ -1,4 +1,4 @@
-h2. 20130821#2
+h2. 20130822
 
 h3. Note:
 
@@ -6,8 +6,7 @@ h3. Note:
 
 h3. Improvements:
 
+h3. Fixes:
+
 Task #39: My Temperature: select temperature
-* select 36.6°C if temperature not set
-* display list of temperatures for cycle
-Task #41: My Temperature: Cycle logic
-* don’t change menstruation value after menstruation period changed, if menstruation value has been changed by user
+* fix layout
