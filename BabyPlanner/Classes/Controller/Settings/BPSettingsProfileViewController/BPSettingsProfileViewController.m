@@ -233,6 +233,9 @@
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEnd];
+    [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.view addSubview:self.pickerView];
     
     [self.view addSubview:self.lastOvulationButton];
@@ -404,13 +407,26 @@
     }
 }
 
+- (void)pickerViewValueDidBeginEditing
+{
+    if (self.pickerView.valuePickerMode == BPValuePickerModeNone)
+        [self.view sendSubviewToBack:self.pickerView];
+    else
+        [self.view bringSubviewToFront:self.pickerView];
+}
+
+- (void)pickerViewValueDidEndEditing
+{
+    self.pickerView.valuePickerMode = BPValuePickerModeNone;
+    [self.view sendSubviewToBack:self.pickerView];
+}
+
 - (void)selectButtonTapped:(id)sender
 {
     DLog(@"%@", sender);
     
-    if ([self.nameTextField isFirstResponder]) {
+    if ([self.nameTextField isFirstResponder])
         [self.nameTextField resignFirstResponder];
-    }
 
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     

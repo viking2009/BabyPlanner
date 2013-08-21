@@ -117,12 +117,14 @@
             _valuePickerMode == BPValuePickerModeTime ||
         _valuePickerMode == BPValuePickerModeTemperature ||
         _valuePickerMode == BPValuePickerModeSound;
-        if (self.superview) {
-            if (!_pickerView)
-                [self.superview sendSubviewToBack:self];
-            else
-                [self.superview bringSubviewToFront:self];
-        }
+//        if (self.superview) {
+//            if (!_pickerView)
+//                [self.superview sendSubviewToBack:self];
+//            else
+//                [self.superview bringSubviewToFront:self];
+//        }
+        
+        [self sendActionsForControlEvents:UIControlEventEditingDidBegin];
     }
 }
 
@@ -216,16 +218,20 @@
 
 - (void)cancelPressed:(id)sender;
 {
-    self.valuePickerMode = BPValuePickerModeNone;
-    if (self.superview)
-        [self.superview sendSubviewToBack:self];
+//    self.valuePickerMode = BPValuePickerModeNone;
+//    if (self.superview)
+//        [self.superview sendSubviewToBack:self];
+    
+    [self sendActionsForControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)donePressed:(id)sender;
 {
-    self.valuePickerMode = BPValuePickerModeNone;
-    if (self.superview)
-        [self.superview sendSubviewToBack:self];
+//    self.valuePickerMode = BPValuePickerModeNone;
+//    if (self.superview)
+//        [self.superview sendSubviewToBack:self];
+    
+    [self sendActionsForControlEvents:UIControlEventEditingDidEnd];
 }
 
 @end

@@ -1,15 +1,16 @@
-h2. 20130819
+h2. 20130821
 
 h3. Note:
 
 * remove old app before install new version
 
+h3. New
+
+Task #41: My Temperature: Cycle logic
+* template cycle
+
 h3. Improvements:
-Task #31: My Temperature: Symptoms And Mood
-* save symptoms
-Task #38: My Temperature: save data
-* symptoms support
 
 h3. Fixes:
-Task #31: My Temperature: Symptoms And Mood
+Bug #42: My Temperature: no support for Fahrenheit
 * fix title label frame
