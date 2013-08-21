@@ -21,4 +21,6 @@ extern NSString *const BPDatesManagerDidChangeContentNotification;
 - (id)initWithStartDate:(NSDate *)date;
 - (id)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
 
+- (NSInteger)indexForDate:(NSDate *)date;
+
 @end

@@ -153,8 +153,9 @@
     
     self.datesManager = [[BPDatesManager alloc] init];
 
-    NSInteger selectedDay = (self.selectedDate ? [self.selectedDate.day intValue] - 1 : self.datesManager.todayIndex);
-    if (selectedDay == NSNotFound || selectedDay < 0 || selectedDay >= self.datesManager.count)
+    NSInteger selectedDay = (self.selectedDate ? [self.datesManager indexForDate:self.selectedDate.date] : self.datesManager.todayIndex);
+    
+    if (selectedDay == NSNotFound)
         selectedDay = 0;
     
     // demo

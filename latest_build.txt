@@ -1,4 +1,4 @@
-h2. 20130821
+h2. 20130821#2
 
 h3. Note:
 
@@ -6,16 +6,12 @@ h3. Note:
 
 h3. New
 
-Task #41: My Temperature: Cycle logic
-* template cycle
-
 h3. Improvements:
 
-Task #15: Custom picker
-* cancel and done events support
-Feature #45: Measure conversion
-* use number formatter for displaying measures
-* don't use default value for temperature
+Task #39: My Temperature: select temperature
+* select 36.6°C if temperature not set
+Task #41: My Temperature: Cycle logic
+* fix for date selection
 
 h3. Fixes:
 

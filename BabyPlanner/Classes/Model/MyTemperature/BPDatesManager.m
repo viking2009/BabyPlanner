@@ -68,9 +68,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 - (NSInteger)todayIndex
 {
-    NSInteger days = [self.startDate distanceInDaysToDate:[NSDate date]];
-    DLog(@"days: %i", days);
-    return (days >= 0 && days < self.count ? days : NSNotFound);
+    return [self indexForDate:[NSDate date]];
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
@@ -98,6 +96,13 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     item.ovulation = @(idx == self.ovulationIndex);
     
     return item;
+}
+
+- (NSInteger)indexForDate:(NSDate *)date
+{
+    NSInteger days = [self.startDate distanceInDaysToDate:date];
+    DLog(@"days: %i", days);
+    return (days >= 0 && days < self.count ? days : NSNotFound);    
 }
 
 - (void)refresh:(NSNotification *)notification
