@@ -81,6 +81,8 @@
 "Height" = "Рост";
 "kg" = "кг";
 "cm" = "см";
+"lb" = "фунтов";
+"ft" = "футов";
 
 "Length of my cycle" = "Длина цикла";
 "Last menstruation" = "Менструация";

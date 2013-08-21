@@ -81,6 +81,8 @@
 "Height" = "Height";
 "kg" = "kg";
 "cm" = "cm";
+"lb" = "lb";
+"ft" = "ft";
 
 "Length of my cycle" = "Length of my cycle";
 "Last menstruation" = "Last menstruation";
