@@ -11,6 +11,13 @@ Task #41: My Temperature: Cycle logic
 
 h3. Improvements:
 
+Task #15: Custom picker
+* cancel and done events support
+Feature #45: Measure conversion
+* use number formatter for displaying measures
+* don't use default value for temperature
+
 h3. Fixes:
+
 Bug #42: My Temperature: no support for Fahrenheit
 * fix title label frame

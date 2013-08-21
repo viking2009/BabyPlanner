@@ -53,15 +53,15 @@
     
     self.pickerView.valuePickerMode = BPValuePickerModeNone;
     self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
-    self.pickerView.value = self.date.temperature;    
+    self.pickerView.value = [BPUtils temperatureFromNumber:self.date.temperature];
 }
 
 - (void)pickerViewValueChanged
 {
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeTemperature:
-            DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, self.pickerView.value);
-            self.date.temperature = self.pickerView.value;
+            DLog(@"%s %i %@", __PRETTY_FUNCTION__, self.pickerView.valuePickerMode, [BPUtils temperatureFromString:self.pickerView.value]);
+            self.date.temperature = [BPUtils temperatureFromString:self.pickerView.value];
             [self.date save];
             break;
         default:

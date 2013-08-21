@@ -43,13 +43,13 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     
     id result = [self valueForKeyPath:key];
     
-    if ([key isEqualToString:BPSettingsProfileWeightKey]) {
-        if ([BPLanguageManager sharedManager].currentMetric == 0)
-            result = @([BPUtils kgToLb:[result floatValue]]);
-    } else if ([key isEqualToString:BPSettingsProfileHeightKey]) {
-        if ([BPLanguageManager sharedManager].currentMetric == 0)
-            result = @([BPUtils cmToFt:[result floatValue]]);
-    }
+//    if ([key isEqualToString:BPSettingsProfileWeightKey]) {
+//        if ([BPLanguageManager sharedManager].currentMetric == 0)
+//            result = @([BPUtils kgToLb:[result floatValue]]);
+//    } else if ([key isEqualToString:BPSettingsProfileHeightKey]) {
+//        if ([BPLanguageManager sharedManager].currentMetric == 0)
+//            result = @([BPUtils cmToFt:[result floatValue]]);
+//    }
     
     return result;
 }
@@ -61,13 +61,13 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     
     id oldObj = [self objectForKeyedSubscript:key];
     if (![obj isEqual:oldObj]) {        
-        if ([(id)key isEqualToString:BPSettingsProfileWeightKey]) {
-            if ([BPLanguageManager sharedManager].currentMetric == 0)
-                obj = @([BPUtils lbToKg:[obj floatValue]]);
-        } else if ([(id)key isEqualToString:BPSettingsProfileHeightKey]) {
-            if ([BPLanguageManager sharedManager].currentMetric == 0)
-                obj = @([BPUtils ftToCm:[obj floatValue]]);
-        }
+//        if ([(id)key isEqualToString:BPSettingsProfileWeightKey]) {
+//            if ([BPLanguageManager sharedManager].currentMetric == 0)
+//                obj = @([BPUtils lbToKg:[obj floatValue]]);
+//        } else if ([(id)key isEqualToString:BPSettingsProfileHeightKey]) {
+//            if ([BPLanguageManager sharedManager].currentMetric == 0)
+//                obj = @([BPUtils ftToCm:[obj floatValue]]);
+//        }
         
         [self setValue:obj forKeyPath:(NSString *)key];
         

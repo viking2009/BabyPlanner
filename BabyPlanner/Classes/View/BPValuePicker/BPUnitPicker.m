@@ -7,10 +7,11 @@
 //
 
 #import "BPUnitPicker.h"
+#import "BPUtils.h"
 
 @interface BPUnitPicker ()
 
-@property (nonatomic, strong) NSNumber *currentValue;
+@property (nonatomic, strong) NSString *currentValue;
 
 @end
 
@@ -30,14 +31,12 @@
 
 - (void)pickerView:(BPPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    float length = 0;
-    length += 100 * [pickerView selectedRowInComponent:0];
-    length += 10 * [pickerView selectedRowInComponent:1];
-    length += [pickerView selectedRowInComponent:2];
-    length += 0.1 * [pickerView selectedRowInComponent:4];
-
-    //    [self pickerView:pickerView setValue:date animated:NO];
-    self.control.value = @(length);
+    self.control.value = [NSString stringWithFormat:@"%i%i%i%@%i",
+                          [pickerView selectedRowInComponent:0],
+                          [pickerView selectedRowInComponent:1],
+                          [pickerView selectedRowInComponent:2],
+                          [[BPUtils numberFormatter] decimalSeparator],
+                          [pickerView selectedRowInComponent:4]];
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
@@ -55,7 +54,7 @@
         label.textAlignment = NSTextAlignmentCenter;
     }
     
-    label.text = (component == 3 ? @"." : [NSString stringWithFormat:@"%d", row]);
+    label.text = (component == 3 ? [[BPUtils numberFormatter] decimalSeparator] : [NSString stringWithFormat:@"%d", row]);
     
     return label;
 }
@@ -77,13 +76,15 @@
     DLog(@"%@ %@ %i", pickerView, value, animated);
     if (_currentValue != value && [pickerView.dataSource isKindOfClass:[self class]]) {
         _currentValue = value;
-        
+                
         NSInteger length = [self.currentValue integerValue];
         
         [pickerView selectRow:(length / 100) inComponent:0 animated:animated];
         [pickerView selectRow:((length / 10) % 10) inComponent:1 animated:animated];
         [pickerView selectRow:(length % 10) inComponent:2 animated:animated];
-        [pickerView selectRow:(int)([self.currentValue floatValue] * 10) % 10 inComponent:4 animated:animated];
+        
+        NSString *lastChar = [self.currentValue substringFromIndex:[self.currentValue length] - 1];
+        [pickerView selectRow:[lastChar integerValue] inComponent:4 animated:animated];
 
         DLog(@"_periodLength = %@", _currentValue);
     }

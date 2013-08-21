@@ -280,8 +280,8 @@
     
     self.nameTextField.text = sharedSettings[BPSettingsProfileNameKey];
     self.birthdayTextField.text = [BPUtils stringFromDate:sharedSettings[BPSettingsProfileBirthdayKey]];
-    self.weightTextField.text = [sharedSettings[BPSettingsProfileWeightKey] description];
-    self.heightTextField.text = [sharedSettings[BPSettingsProfileHeightKey] description];
+    self.weightTextField.text = [BPUtils weightFromNumber:sharedSettings[BPSettingsProfileWeightKey]];
+    self.heightTextField.text = [BPUtils heightFromNumber:sharedSettings[BPSettingsProfileHeightKey]];
     
     NSString *lengthOfCycleString = ([sharedSettings[BPSettingsProfileLengthOfCycleKey] description] ? : nil);
     [self.lengthOfCycleButton setTitle:lengthOfCycleString forState:UIControlStateNormal];
@@ -322,10 +322,10 @@
         self.pickerView.value = sharedSettings[BPSettingsProfileBirthdayKey] ? : [NSDate date];
     } else if (textField == self.weightTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeWeight;
-        self.pickerView.value = sharedSettings[BPSettingsProfileWeightKey] ? : @0;
+        self.pickerView.value = [BPUtils weightFromNumber:sharedSettings[BPSettingsProfileWeightKey]];
     } else if (textField == self.heightTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeHeight;
-        self.pickerView.value = sharedSettings[BPSettingsProfileHeightKey] ? : @0;
+        self.pickerView.value = [BPUtils heightFromNumber:sharedSettings[BPSettingsProfileHeightKey]];
     } else if (textField == self.menstruationTextField) {
         self.pickerView.valuePickerMode = BPValuePickerModeMenstruationPeriod;
         self.pickerView.value = sharedSettings[BPSettingsProfileMenstruationPeriodKey];
@@ -380,10 +380,10 @@
             sharedSettings[BPSettingsProfileBirthdayKey] = self.pickerView.value;
             break;
         case BPValuePickerModeWeight:
-            sharedSettings[BPSettingsProfileWeightKey] = self.pickerView.value;
+            sharedSettings[BPSettingsProfileWeightKey] = [BPUtils weightFromString:self.pickerView.value];
             break;
         case BPValuePickerModeHeight:
-            sharedSettings[BPSettingsProfileHeightKey] = self.pickerView.value;
+            sharedSettings[BPSettingsProfileHeightKey] = [BPUtils heightFromString:self.pickerView.value];
             break;
         case BPValuePickerModeMenstruationLength:
             sharedSettings[BPSettingsProfileLengthOfCycleKey] = self.pickerView.value;

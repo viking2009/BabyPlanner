@@ -70,6 +70,7 @@
     if (error)
         DLog(@"error: %@", error);
     
+    exit(0);
 #else
     NSFileManager *fm = [NSFileManager defaultManager];
     

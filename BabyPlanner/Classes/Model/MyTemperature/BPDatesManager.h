@@ -13,6 +13,7 @@ extern NSString *const BPDatesManagerDidChangeContentNotification;
 @interface BPDatesManager : NSObject
 
 @property (nonatomic, readonly) NSDate *startDate;
+@property (nonatomic, readonly) NSDate *endDate;
 @property (nonatomic, readonly) NSInteger count;
 @property (nonatomic, readonly) NSInteger ovulationIndex;
 @property (nonatomic, readonly) NSInteger todayIndex;

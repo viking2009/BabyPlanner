@@ -29,7 +29,6 @@ NSString *const BPLanguageDidChangeNotification = @"BPLanguageDidChangeNotificat
 
 - (NSString *)currentLanguage
 {
-    DLog();
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     if (!sharedSettings[BPSettingsLanguageKey]) {
         NSArray* languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];

@@ -10,7 +10,7 @@
         <attribute name="ovulation" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="pregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sexualIntercourse" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="36.6" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPProfile" inverseName="dates" inverseEntity="BPProfile" syncable="YES"/>
         <relationship name="symptoms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BPSymptom" inverseName="date" inverseEntity="BPSymptom" syncable="YES"/>
     </entity>

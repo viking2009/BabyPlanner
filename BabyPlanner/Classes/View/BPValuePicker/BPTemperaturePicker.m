@@ -9,13 +9,14 @@
 #import "BPTemperaturePicker.h"
 #import "BPLanguageManager.h"
 #import "BPUtils.h"
+#import "ObjectiveSugar.h"
 
 #define kBPTemperaturePickerMinTemperature 34
 #define kBPTemperaturePickerMaxTemperature 42
 
 @interface BPTemperaturePicker ()
 
-@property (nonatomic, strong) NSNumber *currentValue;
+@property (nonatomic, strong) NSString *currentValue;
 @property (nonatomic, assign) NSInteger minValue;
 @property (nonatomic, assign) NSInteger maxValue;
 
@@ -65,12 +66,12 @@
 
 - (void)pickerView:(BPPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    float length = 0;
-    length += self.minValue + [pickerView selectedRowInComponent:0];
-    length += 0.1 * [pickerView selectedRowInComponent:2];
-    length += 0.01 * [pickerView selectedRowInComponent:3];
-    
-    self.control.value = @(length);
+    self.control.value = [NSString stringWithFormat:@"%i%@%i%i%@",
+                          self.minValue + [pickerView selectedRowInComponent:0],
+                          [[BPUtils numberFormatter] decimalSeparator],
+                          [pickerView selectedRowInComponent:2],
+                          [pickerView selectedRowInComponent:3],
+                          ([BPLanguageManager sharedManager].currentMetric == 0 ? @"°F" : @"°C")];
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
@@ -106,7 +107,7 @@
             label.text = [NSString stringWithFormat:@"%d", self.minValue + row];
             break;
         case 1:
-            label.text = @".";
+            label.text = [[BPUtils numberFormatter] decimalSeparator];
             break;
         default:
             label.text = [NSString stringWithFormat:@"%d", row];
@@ -125,29 +126,28 @@
 
 - (id)value
 {
-    if ([BPLanguageManager sharedManager].currentMetric == 0)
-        return @([BPUtils fahrenheitToCelsius:[self.currentValue floatValue]]);
-    else
-        return self.currentValue;
+    return self.currentValue;
 }
 
 - (void)pickerView:(BPPickerView *)pickerView setValue:(id)value animated:(BOOL)animated
 {
     DLog(@"%@ %@ %i", pickerView, value, animated);
     if (_currentValue != value && [pickerView.dataSource isKindOfClass:[self class]]) {
-        if ([BPLanguageManager sharedManager].currentMetric == 0)
-            _currentValue =  @([BPUtils celsiusToFahrenheit:[value floatValue]]);
-        else
-            _currentValue = value;
+        NSNumber *valueNumber = [BPUtils temperatureFromString:value];
 
-//        float floatValue = MIN(self.maxValue + 0.99f, MAX([self.currentValue floatValue], self.minValue));
-//        _currentValue = @(floatValue);
-        NSInteger length = floorf([self.currentValue floatValue]);
+        // fix range
+        float floatValue = MIN(kBPTemperaturePickerMaxTemperature + 0.99f, MAX([valueNumber floatValue], kBPTemperaturePickerMinTemperature));
+        value = [BPUtils temperatureFromNumber:@(floatValue)];
         
-        // TODO: fix bug with conversion
-        [pickerView selectRow:length - self.minValue inComponent:0 animated:animated];
-        [pickerView selectRow:(int)([self.currentValue floatValue] * 10) % 10 inComponent:2 animated:animated];
-        [pickerView selectRow:(int)round([self.currentValue floatValue] * 100) % 10 inComponent:3 animated:animated];
+        // remove suffix
+        _currentValue = [value split:@"°"].first;
+
+        // select rows
+        [pickerView selectRow:[self.currentValue integerValue] - self.minValue inComponent:0 animated:animated];
+        NSString *lastChar = [self.currentValue substringWithRange:NSMakeRange([self.currentValue length] - 2, 1)];
+        [pickerView selectRow:[lastChar integerValue] inComponent:2 animated:animated];
+        lastChar = [self.currentValue substringFromIndex:[self.currentValue length] - 1];
+        [pickerView selectRow:[lastChar integerValue] inComponent:3 animated:animated];
         
         DLog(@"_temperature = %@", _currentValue);
     }

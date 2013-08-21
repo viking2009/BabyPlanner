@@ -50,6 +50,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSDate *)endDate
+{
+    return [self.startDate dateByAddingDays:self.count - 1];
+}
+
 - (NSInteger)count
 {
     return 56;
@@ -65,7 +70,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 {
     NSInteger days = [self.startDate distanceInDaysToDate:[NSDate date]];
     DLog(@"days: %i", days);
-    return (days < self.count ? days : NSNotFound);
+    return (days >= 0 && days < self.count ? days : NSNotFound);
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx

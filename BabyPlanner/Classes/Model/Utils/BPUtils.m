@@ -12,8 +12,12 @@
 #import <sys/types.h>
 #import <sys/sysctl.h>
 
-#define BPMultiplierKg2Lb 2.20462262
-#define BPMultiplierCm2Ft 0.032808399
+#define BPMultiplierKg2Lb   2.20462262
+#define BPMultiplierCm2Ft   0.032808399
+#define BPMultiplierC2F     1.8
+
+static NSDateFormatter *_dateFormatter = nil;
+static NSNumberFormatter *_numberFormatter = nil;
 
 @implementation BPUtils
 
@@ -27,13 +31,8 @@
     if (!date)
         return nil;
     
-    static NSDateFormatter *dateFormatter = nil;
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"d.MM.yyyy"];
-    }
-    
-    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
     
     return [dateFormatter stringFromDate:date];
 }
@@ -43,13 +42,8 @@
     if (!date)
         return nil;
     
-    static NSDateFormatter *dateFormatter = nil;
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"d MMMM yyyy"];
-    }
-    
-    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"d MMMM yyyy"];
     
     return [dateFormatter stringFromDate:date];
 }
@@ -59,15 +53,98 @@
     if (!date)
         return nil;
     
-    static NSDateFormatter *dateFormatter = nil;
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm"];
-    }
-    
-    dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"HH:mm"];
     
     return [dateFormatter stringFromDate:date];
+}
+
++ (NSString *)weightFromNumber:(NSNumber *)number
+{
+    if (!number || ![number integerValue])
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    [numberFormatter setMinimumFractionDigits:1];
+    [numberFormatter setMaximumFractionDigits:1];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        [numberFormatter setMultiplier:@(BPMultiplierKg2Lb)];
+    
+    return [numberFormatter stringFromNumber:number];
+}
+
++ (NSString *)heightFromNumber:(NSNumber *)number
+{
+    if (!number || ![number integerValue])
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    [numberFormatter setMinimumFractionDigits:1];
+    [numberFormatter setMaximumFractionDigits:1];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        [numberFormatter setMultiplier:@(BPMultiplierCm2Ft)];
+    
+    return [numberFormatter stringFromNumber:number];
+}
+
++ (NSString *)temperatureFromNumber:(NSNumber *)number
+{
+    if (!number || ![number integerValue])
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    [numberFormatter setMinimumFractionDigits:2];
+    [numberFormatter setMaximumFractionDigits:2];
+    if ([BPLanguageManager sharedManager].currentMetric == 0) {
+        number = @([self celsiusToFahrenheit:[number floatValue]]);
+        [numberFormatter setPositiveSuffix:@"°F"];
+    } else
+        [numberFormatter setPositiveSuffix:@"°C"];
+    
+    return [numberFormatter stringFromNumber:number];
+}
+
++ (NSNumber *)weightFromString:(NSString *)string
+{
+    if (!string)
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        [numberFormatter setMultiplier:@(BPMultiplierKg2Lb)];
+    
+    return [numberFormatter numberFromString:string];
+}
+
++ (NSNumber *)heightFromString:(NSString *)string
+{
+    if (!string)
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        [numberFormatter setMultiplier:@(BPMultiplierCm2Ft)];
+    
+    return [numberFormatter numberFromString:string];
+}
+
++ (NSNumber *)temperatureFromString:(NSString *)string
+{
+    if (!string)
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        [numberFormatter setPositiveSuffix:@"°F"];
+    else
+        [numberFormatter setPositiveSuffix:@"°C"];
+    
+    NSNumber *temperature = [numberFormatter numberFromString:string];
+    
+    if ([BPLanguageManager sharedManager].currentMetric == 0)
+        temperature = @([self fahrenheitToCelsius:[temperature floatValue]]);
+
+    return temperature;
 }
 
 + (float)kgToLb:(float)weight
@@ -98,6 +175,36 @@
 + (float)fahrenheitToCelsius:(float)temperature
 {
     return (temperature - 32.f)*5/9;
+}
+
++ (NSDateFormatter *)dateFormatter
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+    });
+    
+    [_dateFormatter setLocale:[BPLanguageManager sharedManager].currentLocale];
+
+    return _dateFormatter;
+}
+
++ (NSNumberFormatter *)numberFormatter
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+//        [_numberFormatter setRoundingMode:NSNumberFormatterRoundCeiling];
+        [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    });
+    
+    [_numberFormatter setLocale:[BPLanguageManager sharedManager].currentLocale];
+    [_numberFormatter setMultiplier:@1];
+    [_numberFormatter setMinimumFractionDigits:0];
+    [_numberFormatter setMaximumFractionDigits:0];
+    [_numberFormatter setPositiveSuffix:nil];
+
+    return _numberFormatter;
 }
 
 + (NSString *)deviceModelName {
