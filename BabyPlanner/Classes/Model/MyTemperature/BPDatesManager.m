@@ -21,6 +21,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSMutableDictionary *dates;
 
+@property (nonatomic, assign) NSDate *endDate;
+@property (nonatomic, assign) NSInteger ovulationIndex;
+@property (nonatomic, assign) NSInteger todayIndex;
+
 @end
 
 
@@ -38,6 +42,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     self = [super init];
     if (self) {
         self.startDate = [date dateAtStartOfDay];
+        self.endDate = [self.startDate dateByAddingDays:self.count - 1];
+        // TODO: calculate;
+        self.ovulationIndex = 13;
+        self.todayIndex = [self indexForDate:[NSDate date]];
+        
         self.dates = [[NSMutableDictionary alloc] init];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextDidSaveNotification object:[NSManagedObjectContext defaultContext]];
     }
@@ -50,25 +59,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (NSDate *)endDate
-{
-    return [self.startDate dateByAddingDays:self.count - 1];
-}
-
 - (NSInteger)count
 {
     return 56;
-}
-
-- (NSInteger)ovulationIndex
-{
-    // TODO: calculate;
-    return 13;
-}
-
-- (NSInteger)todayIndex
-{
-    return [self indexForDate:[NSDate date]];
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
@@ -91,7 +84,6 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     }
     
     item.day = @(idx + 1);
-    DLog(@"item.menstruation: %@", item.menstruation);
     if (![item.mmenstruation boolValue])
         item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
 
@@ -104,7 +96,6 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 - (NSInteger)indexForDate:(NSDate *)date
 {
     NSInteger days = [self.startDate distanceInDaysToDate:date];
-    DLog(@"days: %i", days);
     return (days >= 0 && days < self.count ? days : NSNotFound);    
 }
 
