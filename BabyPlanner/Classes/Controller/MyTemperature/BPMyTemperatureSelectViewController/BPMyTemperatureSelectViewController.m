@@ -92,8 +92,6 @@
 
 - (void)loadData
 {
-    DLog();
-    
     self.temperaturesManagerManager = [[BPTemperaturesManager alloc] init];
     
     NSInteger selectedDay = (self.selectedDate ? [self.temperaturesManagerManager indexForDate:self.selectedDate.date] : self.temperaturesManagerManager.todayIndex);

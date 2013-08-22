@@ -103,7 +103,7 @@ NSString *const BPTemperaturesManagerDidChangeContentNotification = @"BPTemperat
     if ([date isEqualToDate:today])
         return 0;
     
-    NSInteger days = [self.endDate distanceInDaysToDate:date];
+    NSInteger days = [date distanceInDaysToDate:self.endDate];
 
     if (![self.endDate isEqualToDate:today])
         days++;
