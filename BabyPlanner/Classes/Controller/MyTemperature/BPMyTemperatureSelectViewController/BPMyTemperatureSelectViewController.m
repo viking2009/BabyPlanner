@@ -149,9 +149,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    return [self.datesManager count];
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    return [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+    return [self.datesManager count];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    return [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
