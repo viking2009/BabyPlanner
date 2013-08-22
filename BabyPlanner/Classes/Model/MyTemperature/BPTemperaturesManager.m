@@ -12,6 +12,7 @@
 #import "ObjectiveRecord.h"
 #import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
+#import "BPDate+Additions.h"
 #import <CoreData/CoreData.h>
 
 NSString *const BPTemperaturesManagerDidChangeContentNotification = @"BPTemperaturesManagerDidChangeContentNotification";
@@ -68,7 +69,6 @@ NSString *const BPTemperaturesManagerDidChangeContentNotification = @"BPTemperat
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
     NSDate *today = [[NSDate date] dateAtStartOfDay];
     
     NSDate *dateForItem;
@@ -83,13 +83,7 @@ NSString *const BPTemperaturesManagerDidChangeContentNotification = @"BPTemperat
     BPDate *item = _dates[dateForItem];
     
     if (!item) {
-        item = [BPDate where:[NSPredicate predicateWithFormat:@"date == %@ AND profile == %@", dateForItem, sharedSettings.profile]].first;
-        
-        if (!item) {
-            item = [BPDate create:@{@"date": dateForItem}];
-            item.profile = sharedSettings.profile;
-        }
-        
+        item = [BPDate dateWithDate:dateForItem];
         _dates[dateForItem] = item;
     }
         

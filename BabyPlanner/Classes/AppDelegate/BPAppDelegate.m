@@ -22,8 +22,6 @@
 //#define BPCreateSeedDataBase
 #import "BPSymptom.h"
 
-#import "BPTemperaturesManager.h"
-
 @interface BPAppDelegate()
 
 - (void)initBugSense;
@@ -132,17 +130,6 @@
     [self.window makeKeyAndVisible];
     
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    
-    
-    BPTemperaturesManager *tm = [[BPTemperaturesManager alloc] init];
-    for (int i = 0; i < tm.count; i++) {
-        DLog(@"%i: %@", i, [tm[i] date]);
-    }
-
-    tm = [[BPTemperaturesManager alloc] initWithStartDate:[[NSDate date] dateByAddingTimeInterval:-50*24*60*60]];
-    for (int i = 0; i < tm.count; i++) {
-        DLog(@"%i: %@", i, [tm[i] date]);
-    }    
     
     return YES;
 }

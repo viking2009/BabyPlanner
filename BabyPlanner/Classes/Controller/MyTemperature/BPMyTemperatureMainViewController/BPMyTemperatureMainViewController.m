@@ -11,6 +11,7 @@
 #import "BPUtils.h"
 #import "BPThemeManager.h"
 #import "BPSettings+Additions.h"
+#import "BPDate+Additions.h"
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
 #import "BPFlagView.h"
@@ -71,14 +72,12 @@
     UIImage *redFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_red"];
     self.leftFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(6.f, 20.f, redFlagImage.size.width, redFlagImage.size.height)];
     self.leftFlagView.imageView.image = redFlagImage;
-    [self.view addSubview:self.leftFlagView];
 
     UIImage *pinkFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_pink"];
     self.rightFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - pinkFlagImage.size.width -  6.f, 20.f, pinkFlagImage.size.width, pinkFlagImage.size.height)];
     self.rightFlagView.imageView.image = pinkFlagImage;
     self.rightFlagView.hidden = YES;
     // TODO: add property for controller
-    [self.view addSubview:self.rightFlagView];
 
     UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
     bottomView.frame = CGRectMake(0.f, self.view.bounds.size.height - 55.f - self.tabBarController.tabBar.frame.size.height, bottomView.image.size.width, bottomView.image.size.height);
@@ -131,10 +130,15 @@
     self.indicatorsView = [[BPDateIndicatorsView alloc] initWithFrame:collectionViewRect];
     [self.view addSubview:self.indicatorsView];
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.leftFlagView];
+    [self.view addSubview:self.rightFlagView];
 
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myControlsButtonTapped)];
     swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipeUp];
+    
+    UITapGestureRecognizer *tapLeftFlagView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftFlagViewTapped)];
+    [self.leftFlagView addGestureRecognizer:tapLeftFlagView];
     
     [self updateUI];
     
@@ -319,5 +323,13 @@
                                            //
                                        }];
 }
+
+- (void)leftFlagViewTapped
+{
+    DLog();
+    self.selectedDate = [BPDate dateWithDate:[NSDate date]];
+    [self updateUI];
+}
+
 
 @end

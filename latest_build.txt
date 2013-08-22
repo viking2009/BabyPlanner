@@ -6,6 +6,8 @@ h3. Note:
 
 h3. Improvements:
 
+Feature #46 My Temperature: select today
+* select today (first day of cycle if today is outside of cycle)
 Feature #47: My Temperature: sort temperature history
 * don't display future dates for cycle (only today if outside of cycle)
 * sort descending by date

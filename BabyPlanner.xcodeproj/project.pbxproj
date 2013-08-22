@@ -13,6 +13,7 @@
 		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
 		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
 		9011DF8717C1D8FA00EAA9CE /* BabyPlanner.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */; };
+		902540A117C6B0E1005BFE01 /* BPDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 902540A017C6B0E1005BFE01 /* BPDate+Additions.m */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
 		902E86CE179F275700186731 /* BPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 902E86CD179F275700186731 /* BPLanguageManager.m */; };
@@ -125,6 +126,8 @@
 		9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSymptom+Additions.h"; sourceTree = "<group>"; };
 		9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSymptom+Additions.m"; sourceTree = "<group>"; };
 		9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BabyPlanner.sqlite; sourceTree = "<group>"; };
+		9025409F17C6B0E1005BFE01 /* BPDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPDate+Additions.h"; sourceTree = "<group>"; };
+		902540A017C6B0E1005BFE01 /* BPDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPDate+Additions.m"; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
 		9029876317880C3A00067D7A /* BPLanguagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLanguagePicker.m; sourceTree = "<group>"; };
 		9029876A17881D6600067D7A /* BPThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPThemeCell.h; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 				909C958417BC0CD300EEC795 /* BPSettings+Additions.m */,
 				9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */,
 				9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */,
+				9025409F17C6B0E1005BFE01 /* BPDate+Additions.h */,
+				902540A017C6B0E1005BFE01 /* BPDate+Additions.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -1212,6 +1217,7 @@
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
 				90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */,
+				902540A117C6B0E1005BFE01 /* BPDate+Additions.m in Sources */,
 				90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */,
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 				90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */,
