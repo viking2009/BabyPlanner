@@ -22,11 +22,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, strong) NSMutableDictionary *dates;
 
 @property (nonatomic, assign) NSDate *endDate;
+@property (nonatomic, assign) NSInteger count;
 @property (nonatomic, assign) NSInteger ovulationIndex;
 @property (nonatomic, assign) NSInteger todayIndex;
 
 @end
-
 
 @implementation BPDatesManager
 
@@ -42,6 +42,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     self = [super init];
     if (self) {
         self.startDate = [date dateAtStartOfDay];
+        self.count = 56;
         self.endDate = [self.startDate dateByAddingDays:self.count - 1];
         // TODO: calculate;
         self.ovulationIndex = 13;
@@ -57,11 +58,6 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 - (void)dealloc
 {
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (NSInteger)count
-{
-    return 56;
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx

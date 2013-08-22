@@ -6,6 +6,10 @@ h3. Note:
 
 h3. Improvements:
 
+Feature #47: My Temperature: sort temperature history
+* don't display future dates for cycle (only today if outside of cycle)
+* sort descending by date
+
 h3. Fixes:
 
 Task #14: Settings: My Profile

@@ -13,7 +13,7 @@
 #import "ObjectiveRecord.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
-#import "BPDatesManager.h"
+#import "BPTemperaturesManager.h"
 #import "BPSettingsCell.h"
 #import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) BPValuePicker *pickerView;
 
-@property (nonatomic, strong) BPDatesManager *datesManager;
+@property (nonatomic, strong) BPTemperaturesManager *temperaturesManagerManager;
 
 @end
 
@@ -94,14 +94,14 @@
 {
     DLog();
     
-    self.datesManager = [[BPDatesManager alloc] init];
+    self.temperaturesManagerManager = [[BPTemperaturesManager alloc] init];
     
-    NSInteger selectedDay = (self.selectedDate ? [self.datesManager indexForDate:self.selectedDate.date] : self.datesManager.todayIndex);
+    NSInteger selectedDay = (self.selectedDate ? [self.temperaturesManagerManager indexForDate:self.selectedDate.date] : self.temperaturesManagerManager.todayIndex);
     
     if (selectedDay == NSNotFound)
         selectedDay = 0;
     
-    self.selectedDate = [self datesManager][selectedDay];
+    self.selectedDate = _temperaturesManagerManager[selectedDay];
 }
 
 - (void)updateUI
@@ -112,7 +112,7 @@
         [self loadData];
         [self.collectionView reloadData];
         
-        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedDate.day intValue] - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.temperaturesManagerManager indexForDate:self.selectedDate.date] inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
         
         self.pickerView.valuePickerMode = BPValuePickerModeNone;
         self.pickerView.valuePickerMode = BPValuePickerModeTemperature;
@@ -131,7 +131,7 @@
             NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].first;
             BPSettingsCell *selectedCell = (BPSettingsCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
             
-            BPDate *date = _datesManager[indexPath.item];
+            BPDate *date = _temperaturesManagerManager[indexPath.item];
             selectedCell.subtitleLabel.text = [BPUtils temperatureFromNumber:date.temperature];
         }
             break;
@@ -149,7 +149,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.datesManager count];
+    return [self.temperaturesManagerManager count];
 //    BPSettings *sharedSettings = [BPSettings sharedSettings];
 //    return [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
 }
@@ -176,7 +176,7 @@
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
     
-    BPDate *date = _datesManager[indexPath.item];
+    BPDate *date = _temperaturesManagerManager[indexPath.item];
     cell.titleLabel.text = [BPUtils shortStringFromDate:date.date];
     cell.subtitleLabel.text = [BPUtils temperatureFromNumber:date.temperature];
     cell.accessoryView.image = nil;
@@ -190,7 +190,7 @@
 {
     DLog();
     // TODO: optimize
-    self.selectedDate = self.datesManager[indexPath.item];
+    self.selectedDate = _temperaturesManagerManager[indexPath.item];
     
     [self updateUI];
 }

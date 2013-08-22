@@ -110,6 +110,7 @@
 		90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82617B9EB9B00686048 /* NSManagedObject+ActiveRecord.m */; };
 		90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */; };
 		90FCA82E17B9EC1700686048 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCA82D17B9EC1700686048 /* CoreData.framework */; };
+		90FE3D8B17C63C9100B8D9A4 /* BPTemperaturesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3D8A17C63C9100B8D9A4 /* BPTemperaturesManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -299,6 +300,8 @@
 		90FCA82817B9EB9B00686048 /* NSManagedObject+Mappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mappings.m"; sourceTree = "<group>"; };
 		90FCA82917B9EB9B00686048 /* ObjectiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveRecord.h; sourceTree = "<group>"; };
 		90FCA82D17B9EC1700686048 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		90FE3D8917C63C9100B8D9A4 /* BPTemperaturesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTemperaturesManager.h; sourceTree = "<group>"; };
+		90FE3D8A17C63C9100B8D9A4 /* BPTemperaturesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperaturesManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +461,8 @@
 			children = (
 				909C95F917BC1C2D00EEC795 /* BPDatesManager.h */,
 				909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */,
+				90FE3D8917C63C9100B8D9A4 /* BPTemperaturesManager.h */,
+				90FE3D8A17C63C9100B8D9A4 /* BPTemperaturesManager.m */,
 			);
 			path = MyTemperature;
 			sourceTree = "<group>";
@@ -1169,6 +1174,7 @@
 				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
 				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
+				90FE3D8B17C63C9100B8D9A4 /* BPTemperaturesManager.m in Sources */,
 				90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */,
 				90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */,
 				9029876C17881D6600067D7A /* BPThemeCell.m in Sources */,
