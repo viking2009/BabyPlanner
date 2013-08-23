@@ -1,22 +1,10 @@
-h2. 20130822
+h2. 20130825
 
 h3. Note:
 
 * remove old app before install new version
 
-h3. Improvements:
-
-Feature #46 My Temperature: select today
-* select today (first day of cycle if today is outside of cycle)
-Feature #47: My Temperature: sort temperature history
-* don't display future dates for cycle (only today if outside of cycle)
-* sort descending by date
-
 h3. Fixes:
 
-Task #14: Settings: My Profile
-* fix layout
-Bug #24: Localization strings
-* localize metric labels
-Task #39: My Temperature: select temperature
-* fix layout
+Bug #53: Symptoms And Mood: doubled symptoms
+* fix database

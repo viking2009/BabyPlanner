@@ -50,7 +50,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         self.todayIndex = [self indexForDate:[NSDate date]];
         
         self.dates = [[NSMutableDictionary alloc] init];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextDidSaveNotification object:[NSManagedObjectContext defaultContext]];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
     }
     
     return self;

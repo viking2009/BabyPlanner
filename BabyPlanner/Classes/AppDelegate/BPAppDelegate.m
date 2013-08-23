@@ -69,8 +69,6 @@
     [[NSManagedObjectContext defaultContext] save:&error];
     if (error)
         DLog(@"error: %@", error);
-    
-    exit(0);
 #else
     NSFileManager *fm = [NSFileManager defaultManager];
     
@@ -115,7 +113,8 @@
     [self initBugSense];
     
     [self importDatabaseIfNeeded];
-    
+
+#ifndef BPCreateSeedDataBase
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     BPNavigationController *myTemperatureViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyTemperatureMainViewController new]];
@@ -130,7 +129,7 @@
     [self.window makeKeyAndVisible];
     
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    
+#endif
     return YES;
 }
 							
