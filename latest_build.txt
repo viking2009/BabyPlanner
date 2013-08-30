@@ -6,5 +6,7 @@ h3. Note:
 
 h3. Fixes:
 
+Task #13: Settings: Alarm settings
+* fix time rounding
 Bug #53: Symptoms And Mood: doubled symptoms
 * fix database

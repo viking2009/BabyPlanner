@@ -13,6 +13,7 @@
 #import "BPSettingsCell.h"
 #import "BPValuePicker.h"
 #import "BPSettings+Additions.h"
+#import "NSDate-Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -76,8 +77,9 @@
     self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm_clock"]];
     self.alarmView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.alarmView.image.size.width/2), self.pickerView.frame.origin.y - self.alarmView.image.size.height + 5.f, self.alarmView.image.size.width, self.alarmView.image.size.height);
     [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
-
-    self.fireDate = [NSDate date];
+    
+    NSDate *now = [NSDate date];
+    self.fireDate = [now dateByAddingMinutes:(now.minute % 5 == 0 ? 0 : (5 - now.minute % 5))];
     self.soundName = @"Marimba.caf";
 
     NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];    
