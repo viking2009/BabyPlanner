@@ -27,6 +27,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, assign) NSInteger ovulationIndex;
 @property (nonatomic, assign) NSInteger todayIndex;
 
+@property (nonatomic, strong) NSDictionary *testTemperatures;
+
 @end
 
 @implementation BPDatesManager
@@ -42,6 +44,14 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 {
     self = [super init];
     if (self) {
+        
+        self.testTemperatures = @{@"normal": @[@36.7, @36.7, @36.5, @36.5, @36.4, @36.4, @36.3, @36.4, @36.3, @36.4,
+                                               @36.4, @36.2, @36.3, @36.3, @36.6, @36.7, @36.7, @36.8, @36.9, @37.0,
+                                               @37.0, @36.9, @37.0, @37.1, @37.0, @36.7, @36.7, @36.6],
+                                  @"anovul": @[@36.5, @36.4, @36.4, @36.5, @36.6, @36.7, @36.5, @36.5, @36.7, @36.4,
+                                               @36.6, @36.5, @36.6, @36.7, @36.8, @36.7, @36.9, @36.8, @36.6, @37.0,
+                                               @37.0, @36.8, @36.6, @36.8, @36.7, @36.6, @36.5, @36.5]};
+        
         self.startDate = [date dateAtStartOfDay];
         self.count = 56;
         self.endDate = [self.startDate dateByAddingDays:self.count - 1];
