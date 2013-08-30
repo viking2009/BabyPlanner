@@ -81,6 +81,24 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
     item.ovulation = @(idx == self.ovulationIndex);
     
+    NSString *imageName = @"point_clear";
+    
+    if (idx < self.ovulationIndex)
+        imageName = @"point_green";
+    else if (idx < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
+        imageName = @"point_salad";
+    
+    if (idx > self.ovulationIndex - 4 && idx <= self.ovulationIndex + 2)
+        imageName = @"point_red";
+    
+    if (idx == self.ovulationIndex)
+        imageName = @"point_ovulation";
+    
+    if ([item.menstruation boolValue])
+        imageName = @"point_pink";
+    
+    item.imageName = imageName;
+    
     return item;
 }
 

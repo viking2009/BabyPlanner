@@ -11,8 +11,21 @@
 #import "ObjectiveRecord.h"
 #import "ObjectiveSugar.h"
 #import "NSDate-Utilities.h"
+#import <objc/runtime.h>
+
+#define kBPDateImageName @"kBPDateImageName"
 
 @implementation BPDate (Additions)
+
+- (NSString *)imageName
+{
+    return objc_getAssociatedObject(self, kBPDateImageName);
+}
+
+- (void)setImageName:(NSString *)imageName
+{
+    objc_setAssociatedObject(self, kBPDateImageName, imageName, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
 + (BPDate *)dateWithDate:(NSDate *)aDate
 {

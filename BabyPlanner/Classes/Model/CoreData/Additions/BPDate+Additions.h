@@ -10,6 +10,8 @@
 
 @interface BPDate (Additions)
 
+@property (nonatomic, copy) NSString *imageName;
+
 + (BPDate *)dateWithDate:(NSDate *)date;
 
 @end
