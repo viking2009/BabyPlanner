@@ -130,17 +130,18 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     else if (idx < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
         imageName = @"point_salad";
     
-    if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
-        imageName = @"point_red";
-    
     if (self.ovulationIndex == NSNotFound) {
+        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
+            imageName = @"point_red";
+        
         if (idx > self.ovulationCandidateIndex + 2 && idx <= self.todayIndex)
             imageName = @"point_yellow";
     } else {
+        if (idx > self.ovulationCandidateIndex - 4 && idx <= MIN(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
+            imageName = @"point_red";
+        
         if (idx > self.ovulationCandidateIndex + 2 && idx < self.ovulationIndex)
             imageName = @"point_yellow";
-        else if (idx > self.ovulationIndex && idx <= self.ovulationIndex + 2)
-            imageName = @"point_red";
     }
     
     if (idx == self.ovulationIndex)
@@ -249,7 +250,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 DLog(@"count1: %i, count2: %i", count1, count2);
 
                 //if (count2 > 2 || (count2 == 2 && count1 == 1)) {
-                if (count1 > 2 || (count1 == 2 && count2 == 1)) {
+                //if (count1 > 2 || (count1 == 2 && count2 == 1) || count2 > 2) {
+                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
                     self.ovulationIndex = ovulationIndex;
                 } else {
                     self.ovulationIndex = NSNotFound;
