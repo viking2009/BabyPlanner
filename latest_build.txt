@@ -1,4 +1,4 @@
-h2. 20130830
+h2. 20130905
 
 h3. Note:
 
@@ -8,6 +8,8 @@ h3. Improvements:
 
 Task #41: My Temperature: Cycle logic
 * fertile period for normal cycle
+* calculate ovulation index
+* update UI when application becomes active
 
 h3. Fixes:
 

@@ -11,9 +11,6 @@
 #import "BPUtils.h"
 #import "ObjectiveSugar.h"
 
-#define kBPTemperaturePickerMinTemperature 34
-#define kBPTemperaturePickerMaxTemperature 42
-
 @interface BPTemperaturePicker ()
 
 @property (nonatomic, strong) NSString *currentValue;

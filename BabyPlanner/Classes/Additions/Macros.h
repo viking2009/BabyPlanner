@@ -12,6 +12,9 @@
 #define BPBugSenseApiKey                    @"4d8df9f5"
 #define USE_CFBUNDLEVERSION                 1
 
+#define kBPTemperaturePickerMinTemperature 34
+#define kBPTemperaturePickerMaxTemperature 42
+
 #define BPSettingsToolbarHeight             44.f
 #define BPSettingsPickerMinimalOriginY      (300.f - BPSettingsToolbarHeight)
 
