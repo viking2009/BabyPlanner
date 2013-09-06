@@ -125,10 +125,14 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     
     NSString *imageName = @"point_clear";
     
-    if (idx < self.ovulationCandidateIndex)
+//    if (idx < self.ovulationCandidateIndex)
+//        imageName = @"point_green";
+//    else if (idx < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
+//        imageName = @"point_salad";
+    
+    NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+    if (idx < lengthOfCycle || [item.temperature floatValue] > kBPTemperaturePickerMinTemperature - BP_EPSILON)
         imageName = @"point_green";
-    else if (idx < [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue])
-        imageName = @"point_salad";
     
     if (self.ovulationIndex == NSNotFound) {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
@@ -251,7 +255,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
                 //if (count2 > 2 || (count2 == 2 && count1 == 1)) {
                 //if (count1 > 2 || (count1 == 2 && count2 == 1) || count2 > 2) {
-                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
+//                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
+                if (count1 + count2 >= 2) {
                     self.ovulationIndex = ovulationIndex;
                 } else {
                     self.ovulationIndex = NSNotFound;

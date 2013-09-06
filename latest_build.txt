@@ -1,19 +1,5 @@
-h2. 20130905
-
-h3. Note:
-
-* remove old app before install new version
+h2. 20130906
 
 h3. Improvements:
 
 Task #41: My Temperature: Cycle logic
-* fertile period for normal cycle
-* calculate ovulation index
-* update UI when application becomes active
-
-h3. Fixes:
-
-Task #13: Settings: Alarm settings
-* fix time rounding
-Bug #53: Symptoms And Mood: doubled symptoms
-* fix database
