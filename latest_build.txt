@@ -3,3 +3,5 @@ h2. 20130906
 h3. Improvements:
 
 Task #41: My Temperature: Cycle logic
+Task #29 My Temperature: Controls page
+* change cycle if set menstruation ON on 21st day of cycle or later

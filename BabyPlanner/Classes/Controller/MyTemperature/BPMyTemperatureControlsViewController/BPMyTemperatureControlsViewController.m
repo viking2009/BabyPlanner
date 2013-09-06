@@ -404,6 +404,12 @@
             self.date.menstruation = @(cell.toggleView.on);
             self.date.mmenstruation = @YES;
             DLog(@"self.date.menstruation: %@", self.date.menstruation);
+            
+            // change cycle
+            if ([self.date.menstruation boolValue] && [self.date.day integerValue] > 20) {
+                BPSettings *sharedSettings = [BPSettings sharedSettings];
+                sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.date.date;
+            }
         }
         else if (indexPath.item == 1) {
             DLog(@"self.date.sexualIntercourse: %@", self.date.sexualIntercourse);
