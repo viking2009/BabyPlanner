@@ -39,8 +39,9 @@
 
 // TESTS
 
-#define TEST_NORMAL_CYCLE1  0
-#define TEST_NORMAL_CYCLE2  0
-#define TEST_ANOVUL_CYCLE   0
+#define TEST_NORMAL_CYCLE1      0
+#define TEST_NORMAL_CYCLE2      0
+#define TEST_ANOVUL_CYCLE       0
+#define TEST_PREGNANCY_CYCLE    0
 
 #endif

@@ -124,9 +124,9 @@
     BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
 
-#if TEST_NORMAL_CYCLE1 || TEST_NORMAL_CYCLE2  || TEST_ANOVUL_CYCLE
+#if TEST_NORMAL_CYCLE1 || TEST_NORMAL_CYCLE2  || TEST_ANOVUL_CYCLE || TEST_PREGNANCY_CYCLE
     BPSettings *sharedSettings = [BPSettings sharedSettings];
-    sharedSettings[BPSettingsProfileLastMenstruationDateKey] = [[NSDate date] dateBySubtractingDays:40];
+    sharedSettings[BPSettingsProfileLastMenstruationDateKey] = [[NSDate date] dateBySubtractingDays:32];
 #endif
     
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];

@@ -64,7 +64,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                                                @37.1, @36.9, @37.0, @36.9, @37.0, @36.9, @36.9, @36.7],
                                   @"anovul": @[@36.5, @36.4, @36.4, @36.5, @36.6, @36.7, @36.5, @36.5, @36.7, @36.4,
                                                @36.6, @36.5, @36.6, @36.7, @36.8, @36.7, @36.9, @36.8, @36.6, @37.0,
-                                               @37.0, @36.8, @36.6, @36.8, @36.7, @36.6, @36.5, @36.5]};
+                                               @37.0, @36.8, @36.6, @36.8, @36.7, @36.6, @36.5, @36.5],
+                                  @"pregnancy": @[@37.0, @36.8, @36.8, @36.6, @36.4, @36.4, @36.3, @36.4, @36.3, @36.4,
+                                                  @36.4, @36.2, @36.3, @36.3, @36.6, @36.7, @36.8, @36.9, @36.9, @37.0,
+                                                  @36.7, @36.9, @37.0, @37.0, @36.9, @37.1, @37.1, @37.2, @37.1, @37.1]};
         
         self.startDate = [date dateAtStartOfDay];
         self.count = 56;
@@ -116,7 +119,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         item.temperature = self.testTemperatures[@"normal2"][idx];
 #elif TEST_ANOVUL_CYCLE
     if (idx < [self.testTemperatures[@"anovul"] count])
-        item.temperature = self.testTemperatures[@"anovul"][idx];    
+        item.temperature = self.testTemperatures[@"anovul"][idx];
+#elif TEST_PREGNANCY_CYCLE
+    if (idx < [self.testTemperatures[@"pregnancy"] count])
+        item.temperature = self.testTemperatures[@"pregnancy"][idx];
 #endif
     
     NSString *imageName = @"point_clear";
