@@ -19,7 +19,6 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 #define kBPDatesManagerSkipDays 5
 #define kBPDatesManagerPrevDays 6
-#define kBPDatesManagerForecastDays 6
 #define kBPDatesManagerNextDays 3
 #define kBPDatesManagerMinOvulationIndex 10
 #define kBPDatesManagerDefaultOvulationIndex 13
@@ -129,25 +128,28 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     
     NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
 //    if (idx < lengthOfCycle || [item.temperature floatValue] > kBPTemperaturePickerMinTemperature - BP_EPSILON)
-    if (idx < MAX(lengthOfCycle, self.todayIndex + kBPDatesManagerForecastDays + 1))
+    if (idx < MAX(lengthOfCycle, self.todayIndex + 1))
         imageName = @"point_green";
     
     if (self.ovulationIndex == NSNotFound) {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
             imageName = @"point_red";
         
-        if (idx > self.ovulationCandidateIndex + 2 && idx <= self.todayIndex + kBPDatesManagerForecastDays)
-            imageName = @"point_yellow";
+        if (idx > self.ovulationCandidateIndex + 2 && self.todayIndex >= self.ovulationCandidateIndex + 2 && idx < MAX(lengthOfCycle, self.todayIndex + 1))
+                imageName = @"point_yellow";
+
+        if (idx == self.ovulationCandidateIndex && self.todayIndex < self.ovulationCandidateIndex)
+            imageName = @"point_ovulation";
     } else {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
             imageName = @"point_red";
         
         if (idx > self.ovulationCandidateIndex + 2 && idx < self.ovulationIndex)
             imageName = @"point_yellow";
+        
+        if (idx == self.ovulationIndex)
+            imageName = @"point_ovulation";
     }
-    
-    if (idx == self.ovulationIndex)
-        imageName = @"point_ovulation";
     
     if ([item.menstruation boolValue])
         imageName = @"point_pink";
@@ -171,6 +173,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
     NSInteger lengthOfCycle = self.count;// [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
     
+    DLog(@"self.todayIndex = %i", self.todayIndex);
+    
     if (self.todayIndex < lengthOfCycle && self.todayIndex > kBPDatesManagerMinOvulationIndex - 1) {
         NSInteger minIndex = 0;
         float minTemperature = kBPTemperaturePickerMaxTemperature;
@@ -187,6 +191,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 minTemperature = temperature;
             }
         }
+        
+        DLog(@"minTemperature: %f", minTemperature);
         
         // found min temperature
         if (minTemperature < kBPTemperaturePickerMaxTemperature) {
@@ -260,8 +266,13 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                     self.ovulationIndex = NSNotFound;
                 }
             }
-        }
+        } else
+            self.ovulationIndex = NSNotFound;
     }
+    
+    
+    DLog(@"self.ovulationCandidateIndex: %i", self.ovulationCandidateIndex);
+    DLog(@"self.ovulationIndex: %i", self.ovulationIndex);
 }
 
 - (void)refresh:(NSNotification *)notification

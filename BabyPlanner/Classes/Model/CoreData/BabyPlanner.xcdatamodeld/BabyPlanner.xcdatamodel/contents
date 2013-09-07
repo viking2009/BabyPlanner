@@ -22,7 +22,7 @@
         <attribute name="isPregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastMenstruation" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastOvulation" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="lengthOfCycle" optional="YES" attributeType="Integer 16" defaultValueString="30" syncable="YES"/>
+        <attribute name="lengthOfCycle" optional="YES" attributeType="Integer 16" defaultValueString="28" syncable="YES"/>
         <attribute name="menstruationPeriod" optional="YES" attributeType="Integer 16" defaultValueString="3" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>

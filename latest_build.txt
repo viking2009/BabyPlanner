@@ -1,4 +1,4 @@
-h2. 20130907#2
+h2. 20130907#3
 
 h3. Note:
 
@@ -6,8 +6,6 @@ h3. Note:
 
 h3. Fixes:
 
-Task #39 My Temperature: select temperature
-* display days from today to first day of cycle
 Task #41: My Temperature: Cycle logic
-* add forecast 6 days
-* fix red points if ovulation found
+* default cycle length 28 days
+* no forecast
