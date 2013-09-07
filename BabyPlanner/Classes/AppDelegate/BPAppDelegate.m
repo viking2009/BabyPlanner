@@ -21,6 +21,8 @@
 
 //#define BPCreateSeedDataBase
 #import "BPSymptom.h"
+#import "BPSettings+Additions.h"
+#import "NSDate-Utilities.h"
 
 @interface BPAppDelegate()
 
@@ -122,6 +124,11 @@
     BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
 
+#if TEST_NORMAL_CYCLE1 || TEST_NORMAL_CYCLE2  || TEST_ANOVUL_CYCLE
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    sharedSettings[BPSettingsProfileLastMenstruationDateKey] = [[NSDate date] dateBySubtractingDays:40];
+#endif
+    
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
     tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
     

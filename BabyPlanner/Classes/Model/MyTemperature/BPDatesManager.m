@@ -19,15 +19,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 #define kBPDatesManagerSkipDays 5
 #define kBPDatesManagerPrevDays 6
+#define kBPDatesManagerForecastDays 6
 #define kBPDatesManagerNextDays 3
 #define kBPDatesManagerMinOvulationIndex 10
 #define kBPDatesManagerDefaultOvulationIndex 13
 
 #define BP_EPSILON  0.001f
-
-#define TEST_NORMAL_CYCLE1  0
-#define TEST_NORMAL_CYCLE2  0
-#define TEST_ANOVUL_CYCLE   0
 
 @interface BPDatesManager()
 
@@ -131,17 +128,18 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 //        imageName = @"point_salad";
     
     NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
-    if (idx < lengthOfCycle || [item.temperature floatValue] > kBPTemperaturePickerMinTemperature - BP_EPSILON)
+//    if (idx < lengthOfCycle || [item.temperature floatValue] > kBPTemperaturePickerMinTemperature - BP_EPSILON)
+    if (idx < MAX(lengthOfCycle, self.todayIndex + kBPDatesManagerForecastDays + 1))
         imageName = @"point_green";
     
     if (self.ovulationIndex == NSNotFound) {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
             imageName = @"point_red";
         
-        if (idx > self.ovulationCandidateIndex + 2 && idx <= self.todayIndex)
+        if (idx > self.ovulationCandidateIndex + 2 && idx <= self.todayIndex + kBPDatesManagerForecastDays)
             imageName = @"point_yellow";
     } else {
-        if (idx > self.ovulationCandidateIndex - 4 && idx <= MIN(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
+        if (idx > self.ovulationCandidateIndex - 4 && idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
             imageName = @"point_red";
         
         if (idx > self.ovulationCandidateIndex + 2 && idx < self.ovulationIndex)
