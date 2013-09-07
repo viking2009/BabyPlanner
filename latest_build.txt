@@ -1,4 +1,4 @@
-h2. 20130907
+h2. 20130907#2
 
 h3. Note:
 
@@ -6,15 +6,8 @@ h3. Note:
 
 h3. Improvements:
 
-Task #15: Custom picker
-* implement design according to PSD templates
-Task #29 My Temperature: Controls page
-* change cycle if set menstruation ON on 21st day of cycle or later
-
 h3. Fixes:
 
-Task #1: Tab Bar Application
-* fix empty space in tabbar for iOS7
-* fix iOS7 status bar appearance
+Task #39 My Temperature: select temperature
+* display days from today to first day of cycle
 Task #41: My Temperature: Cycle logic
-* fix colors for point indicators on main page

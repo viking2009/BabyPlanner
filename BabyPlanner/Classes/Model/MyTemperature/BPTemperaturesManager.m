@@ -43,10 +43,11 @@ NSString *const BPTemperaturesManagerDidChangeContentNotification = @"BPTemperat
     if (self) {
         self.startDate = [date dateAtStartOfDay];
         
-        BPSettings *sharedSettings = [BPSettings sharedSettings];
+//        BPSettings *sharedSettings = [BPSettings sharedSettings];
         
         NSDate *today = [[NSDate date] dateAtStartOfDay];
-        self.endDate = [self.startDate dateByAddingDays:[sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue]];
+//        self.endDate = [self.startDate dateByAddingDays:[sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue]];
+        self.endDate = [self.startDate dateByAddingDays:56];
         self.endDate = [self.endDate earlierDate:today];
         // TODO: calculate;
         self.todayIndex = 0;
