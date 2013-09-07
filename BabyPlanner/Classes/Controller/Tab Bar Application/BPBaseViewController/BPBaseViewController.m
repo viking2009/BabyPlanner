@@ -53,6 +53,12 @@
     self.backgroundImageView.image = self.backgroundImage;
     [self.view addSubview:self.backgroundImageView];
     [self.view sendSubviewToBack:self.backgroundImageView];
+    
+    // fix iOS7 status bar appearance
+    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20.f)];
+    statusBarView.backgroundColor = RGB(0, 0, 0);
+//    statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:statusBarView];
 }
 
 - (void)didReceiveMemoryWarning

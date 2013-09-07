@@ -1,4 +1,4 @@
-h2. 20130906
+h2. 20130907
 
 h3. Improvements:
 
@@ -9,5 +9,8 @@ Task #29 My Temperature: Controls page
 
 h3. Fixes:
 
+Task #1: Tab Bar Application
+* fix empty space in tabbar for iOS7
+* fix iOS7 status bar appearance
 Task #41: My Temperature: Cycle logic
 * fix colors for point indicators on main page
