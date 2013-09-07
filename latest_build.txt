@@ -1,5 +1,9 @@
 h2. 20130907
 
+h3. Note:
+
+* remove old app before install new version
+
 h3. Improvements:
 
 Task #15: Custom picker

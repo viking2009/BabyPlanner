@@ -27,7 +27,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 #define TEST_NORMAL_CYCLE1  0
 #define TEST_NORMAL_CYCLE2  0
-#define TEST_ANOVUL_CYCLE   1
+#define TEST_ANOVUL_CYCLE   0
 
 @interface BPDatesManager()
 
@@ -167,11 +167,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 - (void)calculateOvulationIndex
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
 
     self.ovulationIndex = self.ovulationCandidateIndex;
 
-    NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+    NSInteger lengthOfCycle = self.count;// [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
     
     if (self.todayIndex < lengthOfCycle && self.todayIndex > kBPDatesManagerMinOvulationIndex - 1) {
         NSInteger minIndex = 0;
@@ -256,7 +256,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 //if (count2 > 2 || (count2 == 2 && count1 == 1)) {
                 //if (count1 > 2 || (count1 == 2 && count2 == 1) || count2 > 2) {
 //                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
-                if (count1 + count2 >= 2) {
+                if (count1 + count2 >= 3) {
                     self.ovulationIndex = ovulationIndex;
                 } else {
                     self.ovulationIndex = NSNotFound;
