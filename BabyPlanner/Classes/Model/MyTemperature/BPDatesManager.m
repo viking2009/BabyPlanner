@@ -27,7 +27,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 #define TEST_NORMAL_CYCLE1  0
 #define TEST_NORMAL_CYCLE2  0
-#define TEST_ANOVUL_CYCLE   0
+#define TEST_ANOVUL_CYCLE   1
 
 @interface BPDatesManager()
 

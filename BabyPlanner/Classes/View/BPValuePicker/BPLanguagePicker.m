@@ -55,24 +55,19 @@
     return 252.f;
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    label.text = BPLocalizedString(_languages[row]);
-    
-    return label;
+    return BPLocalizedString(_languages[row]);
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (UIEdgeInsets)pickerView:(BPPickerView *)pickerView textInsetForComponent:(NSInteger)component
+{
+    return UIEdgeInsetsMake(0, 60.f, 0, 40.f);
 }
 
 #pragma mark - BPValuePickerDelegate

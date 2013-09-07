@@ -51,29 +51,23 @@
     return 126.f;
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
     NSInteger value = row;
-    if (component == 1) {
+    if (component == 1)
         value *= 5;
-    }
     
-    label.text = [NSString stringWithFormat:@"%@%i", (value < 10 ? @"0" : @""), value];
-    
-    return label;
+    return [NSString stringWithFormat:@"%02i", value];
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (NSTextAlignment)pickerView:(BPPickerView *)pickerView textAlignmentForComponent:(NSInteger)component
+{
+    return NSTextAlignmentCenter;
 }
 
 #pragma mark - BPValuePickerDelegate

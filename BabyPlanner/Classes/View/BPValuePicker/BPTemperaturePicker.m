@@ -80,7 +80,7 @@
             width = 108.f;
             break;
         case 1:
-            width = 20.f;
+            width = 24.f;
             break;
         default:
             break;
@@ -89,34 +89,32 @@
     return width;
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
+    NSString *title = nil;
     switch (component) {
         case 0:
-            label.text = [NSString stringWithFormat:@"%d", self.minValue + row];
+            title = [NSString stringWithFormat:@"%i", self.minValue + row];
             break;
         case 1:
-            label.text = [[BPUtils numberFormatter] decimalSeparator];
+            title = [[BPUtils numberFormatter] decimalSeparator];
             break;
         default:
-            label.text = [NSString stringWithFormat:@"%d", row];
+            title = [NSString stringWithFormat:@"%i", row];
             break;
     }
     
-    return label;
+    return title;
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (NSTextAlignment)pickerView:(BPPickerView *)pickerView textAlignmentForComponent:(NSInteger)component
+{
+    return NSTextAlignmentCenter;
 }
 
 #pragma mark - BPValuePickerDelegate

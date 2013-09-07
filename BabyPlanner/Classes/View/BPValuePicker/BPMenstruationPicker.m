@@ -41,24 +41,19 @@
     return 126.f;
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    label.text = [NSString stringWithFormat:@"%d", kBPMenstruationPickerMinPeriod + row];
-    
-    return label;
+    return [NSString stringWithFormat:@"%i", kBPMenstruationPickerMinPeriod + row];
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (NSTextAlignment)pickerView:(BPPickerView *)pickerView textAlignmentForComponent:(NSInteger)component
+{
+    return NSTextAlignmentCenter;
 }
 
 #pragma mark - BPValuePickerDelegate

@@ -41,27 +41,22 @@
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return (component == 3 ? 20.f : 58.f);
+    return (component == 3 ? 24.f : 58.f);
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    label.text = (component == 3 ? [[BPUtils numberFormatter] decimalSeparator] : [NSString stringWithFormat:@"%d", row]);
-    
-    return label;
+    return (component == 3 ? [[BPUtils numberFormatter] decimalSeparator] : [NSString stringWithFormat:@"%i", row]);
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (NSTextAlignment)pickerView:(BPPickerView *)pickerView textAlignmentForComponent:(NSInteger)component
+{
+    return NSTextAlignmentCenter;
 }
 
 #pragma mark - BPValuePickerDelegate

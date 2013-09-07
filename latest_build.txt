@@ -2,6 +2,8 @@ h2. 20130906
 
 h3. Improvements:
 
+Task #15: Custom picker
+* implement design according to PSD templates
 Task #29 My Temperature: Controls page
 * change cycle if set menstruation ON on 21st day of cycle or later
 

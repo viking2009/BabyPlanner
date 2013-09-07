@@ -82,8 +82,11 @@
     //    [self pickerView:pickerView setValue:date animated:NO];
     self.control.value = date;
     
-    if (component == 1)
+    if (component == 1) {
         [pickerView reloadComponent:0];
+        [pickerView selectRow:[pickerView selectedRowInComponent:0] inComponent:0 animated:NO];
+        [pickerView selectRow:[pickerView selectedRowInComponent:1] inComponent:1 animated:NO];
+    }
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView widthForComponent:(NSInteger)component
@@ -92,13 +95,13 @@
     
     switch (component) {
         case 0:
-            width = 40.f;
+            width = 44.f;
             break;
         case 1:
-            width = 138.f;
+            width = 144.f;
             break;
         case 2:
-            width = 74.f;
+            width = 70.f;
             break;
         default:
             break;
@@ -107,17 +110,8 @@
     return width;
 }
 
-- (UIView *)pickerView:(BPPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (NSString *)pickerView:(BPPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    UILabel *label = (UILabel *)view;
-    if (!label) {
-        label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24];
-    }
-    
-    label.textAlignment = (component == 1 ? NSTextAlignmentLeft : NSTextAlignmentCenter);
-    
     static NSDateFormatter *dateFormatter = nil;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -125,26 +119,44 @@
     
     dateFormatter.locale = [BPLanguageManager sharedManager].currentLocale;
     
+    NSString *title = nil;
     switch (component) {
         case 0:
-            label.text = [NSString stringWithFormat:@"%d", (row + 1)];
+            title = [NSString stringWithFormat:@"%i", (row + 1)];
             break;
         case 1:
-            label.text = [[dateFormatter monthSymbols] objectAtIndex:row];
+            title = [[dateFormatter monthSymbols] objectAtIndex:row];
             break;
         case 2:
-            label.text = [NSString stringWithFormat:@"%d", (self.yearRange.location + row)];
+            title = [NSString stringWithFormat:@"%i", (self.yearRange.location + row)];
             break;
         default:
             break;
     }
     
-    return label;
+    return title;
 }
 
 - (CGFloat)pickerView:(BPPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     return 44.f;
+}
+
+- (NSTextAlignment)pickerView:(BPPickerView *)pickerView textAlignmentForComponent:(NSInteger)component
+{
+    NSTextAlignment textAlignment = NSTextAlignmentLeft;
+    switch (component) {
+        case 0:
+            textAlignment = NSTextAlignmentRight;
+            break;
+        case 2:
+            textAlignment = NSTextAlignmentCenter;
+            break;
+        default:
+            break;
+    }
+
+    return textAlignment;
 }
 
 #pragma mark - BPValuePickerDelegate
