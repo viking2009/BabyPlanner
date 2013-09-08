@@ -1,4 +1,4 @@
-h2. 20130907#3
+h2. 201309..
 
 h3. Note:
 
@@ -8,6 +8,7 @@ h3. Fixes:
 
 Task #28: My Temperature: Main page
 * localizable tab bar item title
+* update indicators for ovulation day
 Task #41: My Temperature: Cycle logic
 * default cycle length 28 days
 * no forecast
