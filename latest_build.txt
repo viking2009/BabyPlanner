@@ -1,4 +1,4 @@
-h2. 20130909
+h2. 201309..
 
 h3. Note:
 
@@ -6,19 +6,9 @@ h3. Note:
 
 h3. New:
 
-Task #56: My Charts: All
-* demo data
-
 h3. Improvements:
-
-Task #29: My Temperature: Controls page
-* confirmation text for pregnancy
 
 h3. Fixes:
 
-Task #28: My Temperature: Main page
-* localizable tab bar item title
-* update indicators for ovulation day
-Task #41: My Temperature: Cycle logic
-* default cycle length 28 days
-* no forecast
+Task #56: My Charts: All
+* fix label frames

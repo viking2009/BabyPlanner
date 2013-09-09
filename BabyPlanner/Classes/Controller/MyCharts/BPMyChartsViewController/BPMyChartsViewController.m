@@ -224,13 +224,10 @@
     
     if (indexPath.section == 0) {
         NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
-        CGSize subtitleSize = [dataItem[@"subtitle"] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15]
-                                                constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                                    lineBreakMode:NSLineBreakByWordWrapping];
         CGSize titleSize = [dataItem[@"title"] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15]
-                                          constrainedToSize:CGSizeMake(maxWidth - BPDefaultCellInset - ceilf(subtitleSize.width - 0.5f*BPDefaultCellInset), CGFLOAT_MAX)
+                                          constrainedToSize:CGSizeMake(maxWidth - (BPDefaultCellInset + BPStatsCellSubtitleWidth), CGFLOAT_MAX)
                                               lineBreakMode:NSLineBreakByWordWrapping];
-        height = titleSize.height + 2.f;
+        height = ceilf(titleSize.height) + 2*BPStatsCellInset;
     } else if (indexPath.section == 1) {
         if ([collectionView numberOfItemsInSection:indexPath.section] == 1) {
             height = 46.f;

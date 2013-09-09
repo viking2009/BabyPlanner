@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "BPLabel.h"
+
+#define BPStatsCellSubtitleWidth    30.f
+#define BPStatsCellInset            1.f
 
 @interface BPStatsCollectionViewCell : UICollectionViewCell
 

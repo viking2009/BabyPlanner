@@ -32,19 +32,16 @@
 {
     [super layoutSubviews];
     
-    CGFloat maxWidth = self.contentView.frame.size.width - BPDefaultCellInset;
+    CGFloat maxWidth = self.contentView.frame.size.width;
     
     if (self.subtitleLabel.text.length) {
-        CGSize subtitleSize = [self.subtitleLabel.text sizeWithFont:self.subtitleLabel.font
-                                                  constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                                      lineBreakMode:NSLineBreakByWordWrapping];
-        self.subtitleLabel.frame = CGRectMake(maxWidth - ceilf(subtitleSize.width - 0.5f*BPDefaultCellInset), 1, ceilf(subtitleSize.width), self.contentView.frame.size.height);
+        self.subtitleLabel.frame = CGRectMake(maxWidth - BPStatsCellSubtitleWidth, BPStatsCellInset, BPStatsCellSubtitleWidth, self.contentView.frame.size.height - 2*BPStatsCellInset);
         maxWidth -= self.subtitleLabel.frame.size.width + BPDefaultCellInset;
     } else
         self.subtitleLabel.frame = CGRectZero;
     
     if (self.titleLabel.text.length)
-        self.titleLabel.frame = CGRectMake(floorf(0.5f*BPDefaultCellInset), 0, maxWidth, self.contentView.frame.size.height);
+        self.titleLabel.frame = CGRectMake(0, 0, maxWidth, self.contentView.frame.size.height);
     else
         self.titleLabel.frame = CGRectZero;
 }
