@@ -8,13 +8,15 @@
 
 #import "BPMyChartsViewController.h"
 #import "BPUtils.h"
-#import "BPCollectionViewCell.h"
-#import "BPCollectionViewHeader.h"
+#import "BPStatsCollectionViewCell.h"
+#import "BPCycleInfoCell.h"
+#import "BPStatsCollectionViewHeader.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
 
-#define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
-#define BPCollectionViewHeaderIdentifier @"BPCollectionViewHeaderIdentifier"
+#define BPStatsCollectionViewCellIdentifier @"BPStatsCollectionViewCellIdentifier"
+#define BPCycleInfoCellIdentifier @"BPCycleInfoCellIdentifier"
+#define BPStatsCollectionViewHeaderIdentifier @"BPStatsCollectionViewHeaderIdentifier"
 
 @interface BPMyChartsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -61,8 +63,9 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
-    [self.collectionView registerClass:[BPCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCollectionViewHeaderIdentifier];
+    [self.collectionView registerClass:[BPStatsCollectionViewCell class] forCellWithReuseIdentifier:BPStatsCollectionViewCellIdentifier];
+    [self.collectionView registerClass:[BPCycleInfoCell class] forCellWithReuseIdentifier:BPCycleInfoCellIdentifier];
+    [self.collectionView registerClass:[BPStatsCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPStatsCollectionViewHeaderIdentifier];
     
     [self updateUI];
 }
@@ -75,18 +78,16 @@
 
 - (void)loadData
 {
-    NSString *language = [BPLanguageManager sharedManager].currentLanguage;
-    DLog(@"language: %@", language);
-    
-    // TODO: set data for self.date;
-    self.data = @[ @[@{@"title": @"4. 21.08.12-21.09.12", @"subtitle": @"30"},
-                     @{@"title": @"3. 20.07.12-20.08.12", @"subtitle": @"30"},
-                     @{@"title": @"2. 19.06.12-19.07.12", @"subtitle": @"30"},
-                     @{@"title": @"1. 18.05.12-18.06.12", @"subtitle": @"30"}],
-                   @[@{@"title": @"4. 21.08.12-21.09.12", @"subtitle": @"30"},
-                     @{@"title": @"3. 20.07.12-20.08.12", @"subtitle": @"30"},
-                     @{@"title": @"2. 19.06.12-19.07.12", @"subtitle": @"30"},
-                     @{@"title": @"1. 18.05.12-18.06.12", @"subtitle": @"30"}]];
+    // TODO: set data
+    self.data = @[ @[@{@"title": BPLocalizedString(@"Number of all your cycles"), @"subtitle": @"4"},
+                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": @"30"},
+                     @{@"title": BPLocalizedString(@"Your length of high level on average"), @"subtitle": @"12"},
+                     @{@"title": BPLocalizedString(@"Your mono-phases\n(of the last 20 cycles)"), @"subtitle": @"1%"},
+                     @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}],
+                   @[@{@"title": @"21.08.12-21.09.12", @"subtitle": @"30"},
+                     @{@"title": @"20.07.12-20.08.12", @"subtitle": @"30"},
+                     @{@"title": @"19.06.12-19.07.12", @"subtitle": @"30"},
+                     @{@"title": @"18.05.12-18.06.12", @"subtitle": @"30"}]];
 }
 
 - (void)updateUI
@@ -113,10 +114,9 @@
 {
     UICollectionViewCell *cell;
     if (indexPath.section == 0) {
-        // TODO: separate UICollectionViewCell subclass for this section
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCollectionViewCellIdentifier forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPStatsCollectionViewCellIdentifier forIndexPath:indexPath];
     } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCollectionViewCellIdentifier forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCycleInfoCellIdentifier forIndexPath:indexPath];
     }
     
     if (indexPath.section == 1) {
@@ -140,14 +140,21 @@
     }
     
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
-//    if (indexPath.section == 1) {
-//        
-//    } else {
-        BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
-        settingsCell.titleLabel.text = dataItem[@"title"];
-        settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
-        settingsCell.accessoryView.highlightedImage = [settingsCell.accessoryView.image tintedImageWithColor:RGB(255, 255, 255) style:UIImageTintedStyleKeepingAlpha];
-//    }
+    if (indexPath.section == 0) {
+        BPStatsCollectionViewCell *statsCell = (BPStatsCollectionViewCell *)cell;
+        statsCell.titleLabel.text = dataItem[@"title"];
+        statsCell.subtitleLabel.text = dataItem[@"subtitle"];
+    } else {
+        BPCycleInfoCell *cycleInfoCell = (BPCycleInfoCell *)cell;
+        cycleInfoCell.counterLabel.text = [NSString stringWithFormat:@"%i.", [_data[indexPath.section] count] - indexPath.row];
+        cycleInfoCell.titleLabel.text = dataItem[@"title"];
+        cycleInfoCell.subtitleLabel.text = dataItem[@"subtitle"];
+        
+        if (indexPath.item == 1 || indexPath.item == 2)
+            cycleInfoCell.imageView.image = [BPUtils imageNamed:@"mycharts_icon_ovulation"];
+        else
+            cycleInfoCell.imageView.image = nil;
+    }
     
     return cell;
 }
@@ -156,9 +163,7 @@
 {
     DLog(@"indexPath: %@", indexPath);
     if (indexPath.section == 0 && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        BPCollectionViewHeader *collectionViewHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCollectionViewHeaderIdentifier forIndexPath:indexPath];
-        collectionViewHeader.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.f];
-        collectionViewHeader.titleLabel.textColor = RGB(0, 0, 0);
+        BPStatsCollectionViewHeader *collectionViewHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPStatsCollectionViewHeaderIdentifier forIndexPath:indexPath];
         collectionViewHeader.titleLabel.text = BPLocalizedString(@"Planning statistics");
         return collectionViewHeader;
     }
@@ -179,8 +184,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"collectionView: %@", [collectionView performSelector:@selector(recursiveDescription)]);
-
 //    if (indexPath.section == 0 && indexPath.row == 0) {
 //        BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
 //        temperatureSelectViewController.selectedDate = self.date;
@@ -217,8 +220,18 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 0.f;
+    CGFloat maxWidth = 302.f;
     
-//    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
+        CGSize subtitleSize = [dataItem[@"subtitle"] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15]
+                                                constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                                                    lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize titleSize = [dataItem[@"title"] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15]
+                                          constrainedToSize:CGSizeMake(maxWidth - BPDefaultCellInset - ceilf(subtitleSize.width - 0.5f*BPDefaultCellInset), CGFLOAT_MAX)
+                                              lineBreakMode:NSLineBreakByWordWrapping];
+        height = titleSize.height + 2.f;
+    } else if (indexPath.section == 1) {
         if ([collectionView numberOfItemsInSection:indexPath.section] == 1) {
             height = 46.f;
         } else if (indexPath.item == 0 || indexPath.item == [collectionView numberOfItemsInSection:indexPath.section] - 1) {
@@ -226,24 +239,26 @@
         } else {
             height = 44.f;
         }
-//    }
+    }
     
-    return CGSizeMake(302.f, height);
+    return CGSizeMake(maxWidth, height);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(10.f, 0, 10.f, 0);
-    if (section < [collectionView numberOfSections] - 1) {
+    if (section == 0)
+        edgeInsets.top = 0;
+    
+    if (section < [collectionView numberOfSections] - 1)
         edgeInsets.bottom = 0;
-    }
     
     return edgeInsets;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return (section == 0 ? CGSizeMake(collectionView.frame.size.width, 32.f) : CGSizeZero);
+    return (section == 0 ? CGSizeMake(collectionView.frame.size.width, 36.f) : CGSizeZero);
 }
 
 @end

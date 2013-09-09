@@ -38,4 +38,29 @@
     return self;
 }
 
+#pragma mark - UILabel
+
+- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines
+{
+    CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
+    
+    if (self.contentMode == UIViewContentModeTop)
+        textRect.size.height = MIN(bounds.size.height, textRect.size.height);
+    else if (self.contentMode == UIViewContentModeBottom) {
+        textRect.origin.y = MAX(0, bounds.size.height - textRect.size.height);
+        textRect.size.height = MIN(bounds.size.height, textRect.size.height);
+    }
+
+    return textRect;
+}
+
+- (void)drawTextInRect:(CGRect)rect
+{
+    CGRect textRect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
+    DLog(@"textRect = %@", NSStringFromCGRect(CGRectIntegral(textRect)));
+    [super drawTextInRect:CGRectIntegral(textRect)];
+}
+
+
+
 @end

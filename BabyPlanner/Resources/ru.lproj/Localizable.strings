@@ -45,6 +45,11 @@
 /* BPMyChartsViewController */
 "My Charts" = "Мои графики";
 "Planning statistics" = "Статистика планирования";
+"Number of all your cycles" = "Число всех ваших циклов";
+"Your cycle length on average" = "Средняя продолжительность цикла";
+"Your length of high level on average" = "Средняя длина ...";
+"Your mono-phases\n(of the last 20 cycles)" = "Ваши моно-фазы\n(за последние 20 циклов)";
+"Corpus luteum insufficiency" = "Недостаточность желтого тела";
 
 /* BPMyChartsViewController */
 "My Pregnancy" = "Моя Беременность";

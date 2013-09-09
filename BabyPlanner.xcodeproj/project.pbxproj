@@ -55,6 +55,8 @@
 		909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F417BC1A0B00EEC795 /* BPProfile.m */; };
 		909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */; };
 		909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */; };
+		90AD89CB17DE3C070085A015 /* BPStatsCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AD89CA17DE3C070085A015 /* BPStatsCollectionViewHeader.m */; };
+		90AD89CF17DE3E730085A015 /* BPCycleInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AD89CE17DE3E730085A015 /* BPCycleInfoCell.m */; };
 		90BA066C178D4AED0045AB24 /* BPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066B178D4AED0045AB24 /* BPTextField.m */; };
 		90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA066F178D4C6B0045AB24 /* BPLabel.m */; };
 		90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA0673178D4E890045AB24 /* BPSelectButton.m */; };
@@ -99,6 +101,7 @@
 		90EC01AA17B1EA46009A4692 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */; };
 		90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */; };
 		90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01B017B1EFF7009A4692 /* libz.dylib */; };
+		90F082D717DE349100EBD957 /* BPStatsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F082D617DE349100EBD957 /* BPStatsCollectionViewCell.m */; };
 		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
 		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
 		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
@@ -207,6 +210,10 @@
 		909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatesManager.m; sourceTree = "<group>"; };
 		909C95FD17BC382000EEC795 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
 		909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transition.m"; sourceTree = "<group>"; };
+		90AD89C917DE3C070085A015 /* BPStatsCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPStatsCollectionViewHeader.h; sourceTree = "<group>"; };
+		90AD89CA17DE3C070085A015 /* BPStatsCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPStatsCollectionViewHeader.m; sourceTree = "<group>"; };
+		90AD89CD17DE3E730085A015 /* BPCycleInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCycleInfoCell.h; sourceTree = "<group>"; };
+		90AD89CE17DE3E730085A015 /* BPCycleInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCycleInfoCell.m; sourceTree = "<group>"; };
 		90BA066A178D4AED0045AB24 /* BPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTextField.h; sourceTree = "<group>"; };
 		90BA066B178D4AED0045AB24 /* BPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTextField.m; sourceTree = "<group>"; };
 		90BA066E178D4C6B0045AB24 /* BPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLabel.h; sourceTree = "<group>"; };
@@ -279,6 +286,8 @@
 		90EC01A917B1EA46009A4692 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		90EC01B017B1EFF7009A4692 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		90F082D517DE349100EBD957 /* BPStatsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPStatsCollectionViewCell.h; sourceTree = "<group>"; };
+		90F082D617DE349100EBD957 /* BPStatsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPStatsCollectionViewCell.m; sourceTree = "<group>"; };
 		90F3562617A20B7C00E0261B /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		90F3562717A20B7C00E0261B /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -689,6 +698,24 @@
 			path = "UINavigationController+Transition";
 			sourceTree = "<group>";
 		};
+		90AD89C817DE3BEF0085A015 /* BPStatsCollectionViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				90AD89C917DE3C070085A015 /* BPStatsCollectionViewHeader.h */,
+				90AD89CA17DE3C070085A015 /* BPStatsCollectionViewHeader.m */,
+			);
+			path = BPStatsCollectionViewHeader;
+			sourceTree = "<group>";
+		};
+		90AD89CC17DE3E5D0085A015 /* BPCycleInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				90AD89CD17DE3E730085A015 /* BPCycleInfoCell.h */,
+				90AD89CE17DE3E730085A015 /* BPCycleInfoCell.m */,
+			);
+			path = BPCycleInfoCell;
+			sourceTree = "<group>";
+		};
 		90BA0669178D4AD80045AB24 /* BPTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +851,9 @@
 				90C85C9E17B4FC5700308A2A /* BPDateIndicatorsView */,
 				90E6755217B7E0FF0045C30E /* BPCollectionViewCell */,
 				90CB305317DDCD5E009AE3C3 /* BPCollectionViewHeader */,
+				90F082D417DE345F00EBD957 /* BPStatsCollectionViewCell */,
+				90AD89C817DE3BEF0085A015 /* BPStatsCollectionViewHeader */,
+				90AD89CC17DE3E5D0085A015 /* BPCycleInfoCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1048,6 +1078,15 @@
 			path = EKKeyboardAvoidingScrollView;
 			sourceTree = "<group>";
 		};
+		90F082D417DE345F00EBD957 /* BPStatsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				90F082D517DE349100EBD957 /* BPStatsCollectionViewCell.h */,
+				90F082D617DE349100EBD957 /* BPStatsCollectionViewCell.m */,
+			);
+			path = BPStatsCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		90F3562517A20B7C00E0261B /* SVSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,6 +1224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */,
+				90F082D717DE349100EBD957 /* BPStatsCollectionViewCell.m in Sources */,
 				90E881D61778BB1700682BB3 /* BPSwitchCell.m in Sources */,
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */,
@@ -1215,6 +1255,7 @@
 				9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */,
 				905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
+				90AD89CF17DE3E730085A015 /* BPCycleInfoCell.m in Sources */,
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
 				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
@@ -1240,6 +1281,7 @@
 				909C95AA17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m in Sources */,
 				909C95AB17BC181F00EEC795 /* BPMyTemperatureMainViewController.m in Sources */,
 				909C95AC17BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m in Sources */,
+				90AD89CB17DE3C070085A015 /* BPStatsCollectionViewHeader.m in Sources */,
 				909C95AD17BC181F00EEC795 /* BPMyTemperatureSelectViewController.m in Sources */,
 				909C95AE17BC181F00EEC795 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				909C95AF17BC181F00EEC795 /* BPMyTemperatureViewController.m in Sources */,

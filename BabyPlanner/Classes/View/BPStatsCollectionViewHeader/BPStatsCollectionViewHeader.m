@@ -1,21 +1,21 @@
 //
-//  BPCollectionViewHeader.m
+//  BPStatsCollectionViewHeader.m
 //  BabyPlanner
 //
 //  Created by Mykola Vyshynskyi on 09.09.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPCollectionViewHeader.h"
+#import "BPStatsCollectionViewHeader.h"
 #import "BPUtils.h"
 
-@interface BPCollectionViewHeader ()
+@interface BPStatsCollectionViewHeader ()
 
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
 
 @end
 
-@implementation BPCollectionViewHeader
+@implementation BPStatsCollectionViewHeader
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,8 +23,8 @@
     if (self) {
         self.titleLabel = [[UILabel alloc] init];
         self.titleLabel.backgroundColor = [UIColor clearColor];
-        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:10.f];
-        self.titleLabel.textColor = RGB(250, 235, 111);
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.f];
+        self.titleLabel.textColor = RGB(0, 0, 0);
         [self addSubview:self.titleLabel];
     }
     return self;
@@ -35,9 +35,10 @@
     [super layoutSubviews];
     
     if (self.titleLabel.text.length)
-        self.titleLabel.frame = CGRectInset(self.bounds, 2*BPDefaultCellInset, 0);
+        self.titleLabel.frame = CGRectInset(self.bounds, floorf(1.5f*BPDefaultCellInset), 0);
     else
         self.titleLabel.frame = CGRectZero;
 }
+
 
 @end

@@ -323,8 +323,6 @@
     DLog(@"indexPath: %@", indexPath);
     if (indexPath.section == 2 && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
         BPCollectionViewHeader *collectionViewHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCollectionViewHeaderIdentifier forIndexPath:indexPath];
-        collectionViewHeader.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:10.f];
-        collectionViewHeader.titleLabel.textColor = RGB(250, 235, 111);
         collectionViewHeader.titleLabel.text = BPLocalizedString(@"Please check if you confirm your pregnancy");
         return collectionViewHeader;
     }
