@@ -12,6 +12,7 @@
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
+#import "BPCollectionViewHeader.h"
 #import "BPMyTemperatureSelectViewController.h"
 #import "BPMyTemperatureSymptomsAndMoodViewController.h"
 #import "BPMyTemperatureNotationsViewController.h"
@@ -24,6 +25,7 @@
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
+#define BPCollectionViewHeaderIdentifier @"BPCollectionViewHeaderIdentifier"
 
 @interface BPMyTemperatureControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
 
@@ -115,6 +117,7 @@
     
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
     [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
+    [self.collectionView registerClass:[BPCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCollectionViewHeaderIdentifier];
     
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTapped)];
     swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
@@ -316,6 +319,20 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"indexPath: %@", indexPath);
+    if (indexPath.section == 2 && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        BPCollectionViewHeader *collectionViewHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCollectionViewHeaderIdentifier forIndexPath:indexPath];
+        collectionViewHeader.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:10.f];
+        collectionViewHeader.titleLabel.textColor = RGB(250, 235, 111);
+        collectionViewHeader.titleLabel.text = BPLocalizedString(@"Please check if you confirm your pregnancy");
+        return collectionViewHeader;
+    }
+    
+    return nil;
+}
+
 #pragma mark - UICollectionViewDelegate
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
@@ -384,11 +401,17 @@
         edgeInsets.bottom = 0;
     }
     
-    if (section == 0) {
+    if (section == 0)
         edgeInsets.top = 120.f;
-    }
+    else if (section == 2)
+        edgeInsets.top = 0.f;
     
     return edgeInsets;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return (section == 2 ? CGSizeMake(collectionView.frame.size.width, 32.f) : CGSizeZero);
 }
 
 #pragma mark - BPSwitchCellDelegate

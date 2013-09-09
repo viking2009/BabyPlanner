@@ -26,6 +26,7 @@
 "Please, enter\nyour data!" = "Введите\nВаши данные!";
 "Yes" = "Да";
 "No" = "Нет";
+"Please check if you confirm your pregnancy" = "Отметьте, если Вы подтверждаете беременность";
 
 /* BPMyTemperatureSymptomsAndMoodViewController */
 "Good mood" = "Хорошее настроение";
