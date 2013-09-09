@@ -124,8 +124,7 @@
     [self.view addGestureRecognizer:swipeDown];
 
     [self updateUI];
-
-    [self loadData];
+//    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated

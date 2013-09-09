@@ -4,6 +4,9 @@ h3. Note:
 
 * remove old app before install new version
 
+h3. New:
+Task #56 My Charts: All
+
 h3. Improvements:
 
 Task #29 My Temperature: Controls page
