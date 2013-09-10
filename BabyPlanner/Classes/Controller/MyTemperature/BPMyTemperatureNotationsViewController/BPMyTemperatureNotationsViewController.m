@@ -9,6 +9,7 @@
 #import "BPMyTemperatureNotationsViewController.h"
 #import "EKKeyboardAvoidingScrollViewManager.h"
 #import "BPDate.h"
+#import "BPUtils.h"
 #import "ObjectiveRecord.h"
 
 @interface BPMyTemperatureNotationsViewController () <UITextViewDelegate>
@@ -45,7 +46,7 @@
 //    self.notesView.delegate = self;
     [self.view addSubview:self.notesView];
     
-    UIImageView *notesHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notes_header"]];
+    UIImageView *notesHeader = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"notes_header"]];
     notesHeader.frame = CGRectMake(self.notesView.frame.origin.x, self.notesView.frame.origin.y, notesHeader.image.size.width, notesHeader.image.size.height);
     [self.view insertSubview:notesHeader atIndex:1];
     

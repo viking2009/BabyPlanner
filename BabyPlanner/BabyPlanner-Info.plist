@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>20130909</string>
+	<string>20130910</string>
 	<key>LSApplicationCategoryType</key>
 	<dict/>
 	<key>LSRequiresIPhoneOS</key>
@@ -30,6 +30,8 @@
 	<array>
 		<string>Gabriola.ttf</string>
 	</array>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -1,12 +1,8 @@
-h2. 201309..
-
-h3. Note:
-
-* remove old app before install new version
+h2. 20130910
 
 h3. New:
 
-h3. Improvements:
+Task #60: App icons and launch images
 
 h3. Fixes:
 
