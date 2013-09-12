@@ -35,10 +35,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, assign) NSInteger ovulationCandidateIndex;
 @property (nonatomic, assign) NSInteger ovulationIndex;
 @property (nonatomic, assign) NSInteger todayIndex;
+@property (nonatomic, assign) NSInteger conceivingIndex;
 
 @property (nonatomic, strong) NSDictionary *testTemperatures;
 
 - (void)calculateOvulationIndex;
+- (void)calculateConceivingIndex;
 
 @end
 
@@ -78,6 +80,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         self.ovulationCandidateIndex = kBPDatesManagerDefaultOvulationIndex;
         
         [self calculateOvulationIndex];
+        [self calculateConceivingIndex];
         
         self.dates = [[NSMutableDictionary alloc] init];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
@@ -159,6 +162,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     
     if ([item.menstruation boolValue])
         imageName = @"point_pink";
+
+    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
+        imageName = @"point_red";
     
     item.imageName = imageName;
     
@@ -167,6 +173,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
 - (NSInteger)indexForDate:(NSDate *)date
 {
+    if (!date)
+        return NSNotFound;
+    
     NSInteger days = [self.startDate distanceInDaysToDate:date];
     return (days >= 0 && days < self.count ? days : NSNotFound);    
 }
@@ -279,6 +288,18 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     
     DLog(@"self.ovulationCandidateIndex: %i", self.ovulationCandidateIndex);
     DLog(@"self.ovulationIndex: %i", self.ovulationIndex);
+}
+
+- (void)calculateConceivingIndex {
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    NSDate *conceiving = sharedSettings[BPSettingsProfileConceivingKey];
+    if (conceiving && [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
+        self.conceivingIndex = [self indexForDate:conceiving];
+    else {
+        // TODO: calculate
+        self.conceivingIndex = NSNotFound;
+    }
 }
 
 - (void)refresh:(NSNotification *)notification
