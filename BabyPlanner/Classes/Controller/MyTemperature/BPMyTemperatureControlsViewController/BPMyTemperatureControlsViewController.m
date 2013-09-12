@@ -21,6 +21,7 @@
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
 #import "BPDate.h"
+#import "NSDate-Utilities.h"
 #import "ObjectiveRecord.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
@@ -239,7 +240,17 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [_data count];
+    NSInteger numberOfSections = [_data count];
+    
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    NSDate *conceiving = sharedSettings[BPSettingsProfileConceivingKey];
+    if (conceiving && [conceiving isLaterThanDate:self.date.date] && [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
+        numberOfSections--;
+    
+    DLog(@"conceiving: %@, isPregnant: %@", conceiving, sharedSettings[BPSettingsProfileIsPregnantKey]);
+    
+    return numberOfSections;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -370,6 +381,7 @@
     } else if (indexPath.section == 2 &indexPath.row == 0) {
         BPSettings *sharedSettings = [BPSettings sharedSettings];
         sharedSettings[BPSettingsProfileIsPregnantKey] = @(![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
+        sharedSettings[BPSettingsProfileConceivingKey] = (sharedSettings[BPSettingsProfileIsPregnantKey] ? self.date.date : nil);
     } else {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }

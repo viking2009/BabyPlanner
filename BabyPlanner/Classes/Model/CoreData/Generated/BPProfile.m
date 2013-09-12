@@ -2,7 +2,7 @@
 //  BPProfile.m
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 14.08.13.
+//  Created by Mykola Vyshynskyi on 12.09.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
@@ -13,16 +13,18 @@
 
 @implementation BPProfile
 
-@dynamic name;
 @dynamic birthday;
-@dynamic weight;
-@dynamic height;
-@dynamic lengthOfCycle;
-@dynamic lastMenstruation;
-@dynamic isPregnant;
-@dynamic lastOvulation;
 @dynamic childBirthday;
-@dynamic settings;
+@dynamic height;
+@dynamic isPregnant;
+@dynamic lastMenstruation;
+@dynamic lastOvulation;
+@dynamic lengthOfCycle;
+@dynamic menstruationPeriod;
+@dynamic name;
+@dynamic weight;
+@dynamic conceiving;
 @dynamic dates;
+@dynamic settings;
 
 @end

@@ -33,6 +33,7 @@
 #define BPSettingsProfileMenstruationPeriodKey      @"profile.menstruationPeriod"
 
 #define BPSettingsProfileIsPregnantKey              @"profile.isPregnant"
+#define BPSettingsProfileConceivingKey              @"profile.conceiving"
 
 #define BPSettingsProfileLastOvulationDateKey       @"profile.lastOvulation"
 #define BPSettingsProfileChildBirthdayKey           @"profile.childBirthday"

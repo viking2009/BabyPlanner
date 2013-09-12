@@ -18,6 +18,7 @@
     <entity name="BPProfile" representedClassName="BPProfile" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="childBirthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="conceiving" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isPregnant" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastMenstruation" optional="YES" attributeType="Date" syncable="YES"/>
@@ -44,7 +45,7 @@
     </entity>
     <elements>
         <element name="BPDate" positionX="0" positionY="0" width="128" height="240"/>
-        <element name="BPProfile" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="BPProfile" positionX="0" positionY="0" width="128" height="240"/>
         <element name="BPSettings" positionX="0" positionY="0" width="128" height="120"/>
         <element name="BPSymptom" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
