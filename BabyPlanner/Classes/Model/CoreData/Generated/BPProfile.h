@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BPDate, BPSettings;
+@class BPCycle, BPSettings;
 
 @interface BPProfile : NSManagedObject
 
 @property (nonatomic, retain) NSDate * birthday;
 @property (nonatomic, retain) NSDate * childBirthday;
+@property (nonatomic, retain) NSDate * conceiving;
 @property (nonatomic, retain) NSNumber * height;
 @property (nonatomic, retain) NSNumber * isPregnant;
 @property (nonatomic, retain) NSDate * lastMenstruation;
@@ -23,16 +24,17 @@
 @property (nonatomic, retain) NSNumber * menstruationPeriod;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * weight;
-@property (nonatomic, retain) NSDate * conceiving;
-@property (nonatomic, retain) NSSet *dates;
+@property (nonatomic, retain) NSNumber * boy;
+@property (nonatomic, retain) NSNumber * girl;
 @property (nonatomic, retain) BPSettings *settings;
+@property (nonatomic, retain) NSSet *cycles;
 @end
 
 @interface BPProfile (CoreDataGeneratedAccessors)
 
-- (void)addDatesObject:(BPDate *)value;
-- (void)removeDatesObject:(BPDate *)value;
-- (void)addDates:(NSSet *)values;
-- (void)removeDates:(NSSet *)values;
+- (void)addCyclesObject:(BPCycle *)value;
+- (void)removeCyclesObject:(BPCycle *)value;
+- (void)addCycles:(NSSet *)values;
+- (void)removeCycles:(NSSet *)values;
 
 @end

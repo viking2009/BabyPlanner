@@ -7,7 +7,7 @@
 //
 
 #import "BPProfile.h"
-#import "BPDate.h"
+#import "BPCycle.h"
 #import "BPSettings.h"
 
 
@@ -15,6 +15,7 @@
 
 @dynamic birthday;
 @dynamic childBirthday;
+@dynamic conceiving;
 @dynamic height;
 @dynamic isPregnant;
 @dynamic lastMenstruation;
@@ -23,8 +24,9 @@
 @dynamic menstruationPeriod;
 @dynamic name;
 @dynamic weight;
-@dynamic conceiving;
-@dynamic dates;
+@dynamic boy;
+@dynamic girl;
 @dynamic settings;
+@dynamic cycles;
 
 @end

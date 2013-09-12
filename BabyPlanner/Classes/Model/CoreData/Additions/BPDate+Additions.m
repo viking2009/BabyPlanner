@@ -29,13 +29,15 @@
 
 + (BPDate *)dateWithDate:(NSDate *)aDate
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
     aDate = [aDate dateAtStartOfDay];
     
-    BPDate *date = [BPDate where:[NSPredicate predicateWithFormat:@"date == %@ AND profile == %@", aDate, sharedSettings.profile]].first;
+//    BPDate *date = [BPDate where:[NSPredicate predicateWithFormat:@"date == %@ AND profile == %@", aDate, sharedSettings.profile]].first;
+    BPDate *date = [BPDate where:[NSPredicate predicateWithFormat:@"date == %@", aDate]].first;
     if (!date) {
         date = [BPDate create:@{@"date": aDate}];
-        date.profile = sharedSettings.profile;
+//        date.profile = sharedSettings.profile;
+        // TODO: ADD TO CYCLE
     }
     
     return date;

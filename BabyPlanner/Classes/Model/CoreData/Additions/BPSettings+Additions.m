@@ -34,8 +34,6 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
     return _sharedSettings;
 }
 
-// TODO: ?use CoreData for Profile?
-
 - (id)objectForKeyedSubscript:(id)key
 {
     if (!key)

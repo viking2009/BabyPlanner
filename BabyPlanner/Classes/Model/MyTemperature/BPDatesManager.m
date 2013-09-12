@@ -95,7 +95,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
-{    
+{
     BPSettings *sharedSettings = [BPSettings sharedSettings];
 
     NSDate *dateForItem = [self.startDate dateByAddingDays:idx];
@@ -160,11 +160,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             imageName = @"point_ovulation";
     }
     
+//    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
+    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx <= self.todayIndex)
+        imageName = @"point_red";
+    
     if ([item.menstruation boolValue])
         imageName = @"point_pink";
-
-    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
-        imageName = @"point_red";
     
     item.imageName = imageName;
     
@@ -291,6 +292,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 }
 
 - (void)calculateConceivingIndex {
+    DLog();
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     
     NSDate *conceiving = sharedSettings[BPSettingsProfileConceivingKey];

@@ -38,6 +38,11 @@
 		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
+		9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC5617E23C1800B01132 /* BPCyclesManager.m */; };
+		9094EC6F17E240B800B01132 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC6E17E240B800B01132 /* BPProfile.m */; };
+		9094EC7217E240B900B01132 /* BPCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC7117E240B900B01132 /* BPCycle.m */; };
+		9094EC7517E240B900B01132 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC7417E240B900B01132 /* BPDate.m */; };
+		9094EC7817E2472A00B01132 /* BPCycle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC7717E2472A00B01132 /* BPCycle+Additions.m */; };
 		909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 909C957C17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld */; };
 		909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958417BC0CD300EEC795 /* BPSettings+Additions.m */; };
 		909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C958E17BC0D2400EEC795 /* BPSettings.m */; };
@@ -58,7 +63,6 @@
 		909C95D517BC18B800EEC795 /* BPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95D117BC18B800EEC795 /* BPViewController.m */; };
 		909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E317BC18EE00EEC795 /* BPMyChartsViewController.m */; };
 		909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */; };
-		909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95F417BC1A0B00EEC795 /* BPProfile.m */; };
 		909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */; };
 		909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 909C95FE17BC382000EEC795 /* UINavigationController+Transition.m */; };
 		90AD89CB17DE3C070085A015 /* BPStatsCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AD89CA17DE3C070085A015 /* BPStatsCollectionViewHeader.m */; };
@@ -73,7 +77,6 @@
 		90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
 		90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */; };
-		90E56C4517C546F1003646F4 /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E56C4417C546F1003646F4 /* BPDate.m */; };
 		90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755417B7E1190045C30E /* BPCollectionViewCell.m */; };
 		90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755817B7EF880045C30E /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90E6756017B7EF880045C30E /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755A17B7EF880045C30E /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -171,6 +174,16 @@
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		9094EC5517E23C1800B01132 /* BPCyclesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCyclesManager.h; sourceTree = "<group>"; };
+		9094EC5617E23C1800B01132 /* BPCyclesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCyclesManager.m; sourceTree = "<group>"; };
+		9094EC6D17E240B800B01132 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
+		9094EC6E17E240B800B01132 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
+		9094EC7017E240B900B01132 /* BPCycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCycle.h; sourceTree = "<group>"; };
+		9094EC7117E240B900B01132 /* BPCycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCycle.m; sourceTree = "<group>"; };
+		9094EC7317E240B900B01132 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
+		9094EC7417E240B900B01132 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
+		9094EC7617E2472A00B01132 /* BPCycle+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPCycle+Additions.h"; sourceTree = "<group>"; };
+		9094EC7717E2472A00B01132 /* BPCycle+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPCycle+Additions.m"; sourceTree = "<group>"; };
 		909C957D17BC0AB200EEC795 /* BabyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BabyPlanner.xcdatamodel; sourceTree = "<group>"; };
 		909C958317BC0CD300EEC795 /* BPSettings+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSettings+Additions.h"; sourceTree = "<group>"; };
 		909C958417BC0CD300EEC795 /* BPSettings+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSettings+Additions.m"; sourceTree = "<group>"; };
@@ -210,8 +223,6 @@
 		909C95E317BC18EE00EEC795 /* BPMyChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsViewController.m; sourceTree = "<group>"; };
 		909C95E617BC18EE00EEC795 /* BPMyPregnancyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyViewController.h; sourceTree = "<group>"; };
 		909C95E717BC18EE00EEC795 /* BPMyPregnancyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyViewController.m; sourceTree = "<group>"; };
-		909C95F317BC1A0900EEC795 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
-		909C95F417BC1A0B00EEC795 /* BPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPProfile.m; sourceTree = "<group>"; };
 		909C95F917BC1C2D00EEC795 /* BPDatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatesManager.h; sourceTree = "<group>"; };
 		909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatesManager.m; sourceTree = "<group>"; };
 		909C95FD17BC382000EEC795 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
@@ -240,8 +251,6 @@
 		90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperaturePicker.m; sourceTree = "<group>"; };
 		90E32AB117C0FF3800E34FC4 /* BPMenstruationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMenstruationPicker.h; sourceTree = "<group>"; };
 		90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMenstruationPicker.m; sourceTree = "<group>"; };
-		90E56C4317C546F1003646F4 /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
-		90E56C4417C546F1003646F4 /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		90E6755317B7E1190045C30E /* BPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewCell.h; sourceTree = "<group>"; };
 		90E6755417B7E1190045C30E /* BPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewCell.m; sourceTree = "<group>"; };
 		90E6755717B7EF880045C30E /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
@@ -454,6 +463,8 @@
 				9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */,
 				9025409F17C6B0E1005BFE01 /* BPDate+Additions.h */,
 				902540A017C6B0E1005BFE01 /* BPDate+Additions.m */,
+				9094EC7617E2472A00B01132 /* BPCycle+Additions.h */,
+				9094EC7717E2472A00B01132 /* BPCycle+Additions.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -461,10 +472,12 @@
 		909C958617BC0CEC00EEC795 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				90E56C4317C546F1003646F4 /* BPDate.h */,
-				90E56C4417C546F1003646F4 /* BPDate.m */,
-				909C95F317BC1A0900EEC795 /* BPProfile.h */,
-				909C95F417BC1A0B00EEC795 /* BPProfile.m */,
+				9094EC7317E240B900B01132 /* BPDate.h */,
+				9094EC7417E240B900B01132 /* BPDate.m */,
+				9094EC7017E240B900B01132 /* BPCycle.h */,
+				9094EC7117E240B900B01132 /* BPCycle.m */,
+				9094EC6D17E240B800B01132 /* BPProfile.h */,
+				9094EC6E17E240B800B01132 /* BPProfile.m */,
 				909C958D17BC0D2400EEC795 /* BPSettings.h */,
 				909C958E17BC0D2400EEC795 /* BPSettings.m */,
 				9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */,
@@ -476,6 +489,8 @@
 		909C959617BC17DD00EEC795 /* MyTemperature */ = {
 			isa = PBXGroup;
 			children = (
+				9094EC5517E23C1800B01132 /* BPCyclesManager.h */,
+				9094EC5617E23C1800B01132 /* BPCyclesManager.m */,
 				909C95F917BC1C2D00EEC795 /* BPDatesManager.h */,
 				909C95FA17BC1C2D00EEC795 /* BPDatesManager.m */,
 				90FE3D8917C63C9100B8D9A4 /* BPTemperaturesManager.h */,
@@ -1241,19 +1256,23 @@
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
 				90AD89CF17DE3E730085A015 /* BPCycleInfoCell.m in Sources */,
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
+				9094EC7217E240B900B01132 /* BPCycle.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
 				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90FCA82117B9EB8800686048 /* NSString+ObjectiveSugar.m in Sources */,
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,
 				90E881D21778BA2600682BB3 /* TTSwitch.m in Sources */,
+				9094EC7517E240B900B01132 /* BPDate.m in Sources */,
 				90FCA82017B9EB8800686048 /* NSSet+ObjectiveSugar.m in Sources */,
 				90E6756217B7EF880045C30E /* DCRoundSwitchToggleLayer.m in Sources */,
 				90FCA81F17B9EB8800686048 /* NSNumber+ObjectiveSugar.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
+				9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
+				9094EC7817E2472A00B01132 /* BPCycle+Additions.m in Sources */,
 				90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */,
 				902540A117C6B0E1005BFE01 /* BPDate+Additions.m in Sources */,
 				90FCA82A17B9EB9B00686048 /* CoreDataManager.m in Sources */,
@@ -1278,16 +1297,15 @@
 				909C95D317BC18B800EEC795 /* BPNavigationController.m in Sources */,
 				909C95D417BC18B800EEC795 /* BPTabBarController.m in Sources */,
 				909C95D517BC18B800EEC795 /* BPViewController.m in Sources */,
+				9094EC6F17E240B800B01132 /* BPProfile.m in Sources */,
 				909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */,
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
 				90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */,
-				909C95F517BC1A0C00EEC795 /* BPProfile.m in Sources */,
 				90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */,
 				909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */,
 				909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */,
 				9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */,
 				9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */,
-				90E56C4517C546F1003646F4 /* BPDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

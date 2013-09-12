@@ -2,29 +2,27 @@
 //  BPDate.m
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 21.08.13.
+//  Created by Mykola Vyshynskyi on 12.09.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
 #import "BPDate.h"
-#import "BPProfile.h"
+#import "BPCycle.h"
 #import "BPSymptom.h"
 
 
 @implementation BPDate
 
-@dynamic boy;
 @dynamic date;
 @dynamic day;
-@dynamic girl;
 @dynamic menstruation;
+@dynamic mmenstruation;
 @dynamic notations;
 @dynamic ovulation;
 @dynamic pregnant;
 @dynamic sexualIntercourse;
 @dynamic temperature;
-@dynamic mmenstruation;
-@dynamic profile;
 @dynamic symptoms;
+@dynamic cycle;
 
 @end

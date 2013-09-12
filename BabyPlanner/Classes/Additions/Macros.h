@@ -34,6 +34,8 @@
 
 #define BPSettingsProfileIsPregnantKey              @"profile.isPregnant"
 #define BPSettingsProfileConceivingKey              @"profile.conceiving"
+#define BPSettingsProfileBoyKey                     @"profile.boy"
+#define BPSettingsProfileGirlKey                    @"profile.girl"
 
 #define BPSettingsProfileLastOvulationDateKey       @"profile.lastOvulation"
 #define BPSettingsProfileChildBirthdayKey           @"profile.childBirthday"

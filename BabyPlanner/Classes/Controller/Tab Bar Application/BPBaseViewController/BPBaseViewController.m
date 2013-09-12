@@ -25,7 +25,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        DLog(@"%@", [self class]);
         self.wantsFullScreenLayout = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageDidChanged:) name:BPLanguageDidChangeNotification object:nil];

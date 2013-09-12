@@ -215,7 +215,6 @@
 
 - (void)refreshTemperature
 {
-    DLog(@"self.temperature = %@", self.temperature);
     self.temperatureLabel.text = [BPUtils temperatureFromNumber:self.temperature];
 }
 

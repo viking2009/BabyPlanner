@@ -162,17 +162,18 @@
     if (selectedDay == NSNotFound)
         selectedDay = 0;
     
-    // demo
     BPDate *date = [self datesManager][selectedDay];
 
     self.indicatorsView.day = date.day;
     self.indicatorsView.pregnant = date.pregnant;
     self.indicatorsView.menstruation = date.menstruation;
     self.indicatorsView.temperature = date.temperature;
-    self.indicatorsView.boy = date.boy;
-    self.indicatorsView.girl = date.girl;
     self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
     self.indicatorsView.ovulation = date.ovulation;
+    
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
+    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
     
     self.leftFlagView.date = date.date;
         
@@ -226,10 +227,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     BPCircleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCircleCellIdentifier forIndexPath:indexPath];
     
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
     BPDate *date = self.datesManager[indexPath.item];
 
     cell.imageView.image = [BPUtils imageNamed:date.imageName];
@@ -264,10 +263,12 @@
     self.indicatorsView.pregnant = date.pregnant;
     self.indicatorsView.menstruation = date.menstruation;
     self.indicatorsView.temperature = date.temperature;
-    self.indicatorsView.boy = date.boy;
-    self.indicatorsView.girl = date.girl;
     self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
     self.indicatorsView.ovulation = date.ovulation;
+    
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
+    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
     
     self.leftFlagView.date = date.date;
     
