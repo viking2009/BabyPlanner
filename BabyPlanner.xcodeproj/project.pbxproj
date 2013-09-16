@@ -1489,7 +1489,7 @@
 		90EB9E2A17078C45008457A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/BabyPlanner/Vendor",
@@ -1499,7 +1499,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "446B7911-18C4-4068-B911-4977D11D8E16";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

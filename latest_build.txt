@@ -1,10 +1,6 @@
-h2. 20130910
+h2. 20130916#2
 
-h3. New:
+h3. Improvements:
 
-Task #60: App icons and launch images
-
-h3. Fixes:
-
-Task #56: My Charts: All
-* fix label frames
+Task #63: My Temperature: Using thermometer
+* test formula

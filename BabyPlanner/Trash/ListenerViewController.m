@@ -9,6 +9,7 @@
 #import "ListenerViewController.h"
 #import "RIOInterface.h"
 #import "KeyHelper.h"
+#import "BPUtils.h"
 
 @implementation ListenerViewController
 
@@ -116,7 +117,9 @@
 		 
 - (void)updateFrequencyLabel {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	self.titleLabel.text = [NSString stringWithFormat:@"%.2f", self.currentFrequency];
+    float temperature = 0.00286498831762*self.currentFrequency+3.89924954358;
+//    float temperature = 0.0028649883095*self.currentFrequency+3.89924963297;
+	self.titleLabel.text = [NSString stringWithFormat:@"%.2fHz - %@", self.currentFrequency, [BPUtils temperatureFromNumber:@(temperature)]];
 //	[self.titleLabel setNeedsDisplay];
 	[pool drain];
 	pool = nil;
