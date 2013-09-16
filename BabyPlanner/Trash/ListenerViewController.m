@@ -12,13 +12,23 @@
 
 @implementation ListenerViewController
 
-@synthesize currentPitchLabel;
 @synthesize listenButton;
 @synthesize key;
 @synthesize prevChar;
 @synthesize isListening;
 @synthesize	rioRef;
 @synthesize currentFrequency;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.navigationItem.hidesBackButton = YES;
+        self.title = @"Test";
+    }
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Listener Controls
@@ -60,7 +70,6 @@
 }
 
 - (void)viewDidUnload {
-	currentPitchLabel = nil;
     listenButton = nil;
     [super viewDidUnload];
 }
@@ -107,8 +116,8 @@
 		 
 - (void)updateFrequencyLabel {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	self.currentPitchLabel.text = [NSString stringWithFormat:@"%f", self.currentFrequency];
-	[self.currentPitchLabel setNeedsDisplay];
+	self.titleLabel.text = [NSString stringWithFormat:@"%.2f", self.currentFrequency];
+//	[self.titleLabel setNeedsDisplay];
 	[pool drain];
 	pool = nil;
 }

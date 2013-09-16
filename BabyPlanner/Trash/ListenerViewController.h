@@ -10,8 +10,9 @@
 
 @class RIOInterface;
 
-@interface ListenerViewController : UIViewController {
-	IBOutlet UILabel *currentPitchLabel;
+#import "BPViewController.h"
+
+@interface ListenerViewController : BPViewController {
 	IBOutlet UIButton *listenButton;
 	
 	BOOL isListening;
@@ -22,7 +23,6 @@
 	NSString *prevChar;
 }
 
-@property(nonatomic, retain) UILabel *currentPitchLabel;
 @property(nonatomic, retain) UIButton *listenButton;
 @property(nonatomic, retain) NSMutableString *key;
 @property(nonatomic, retain) NSString *prevChar;
