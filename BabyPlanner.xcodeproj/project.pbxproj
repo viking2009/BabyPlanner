@@ -38,6 +38,12 @@
 		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
+		908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62417E6F3D500AC0AFD /* KeyHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		908DF62817E6F3D500AC0AFD /* RIOInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62617E6F3D500AC0AFD /* RIOInterface.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		908DF62C17E6F3E900AC0AFD /* ListenerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62A17E6F3E900AC0AFD /* ListenerViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		908DF62D17E6F3E900AC0AFD /* ListenerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */; };
+		908DF62F17E6F4D600AC0AFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908DF62E17E6F4D600AC0AFD /* AVFoundation.framework */; };
+		908DF63117E6F4F500AC0AFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908DF63017E6F4F500AC0AFD /* Accelerate.framework */; };
 		9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC5617E23C1800B01132 /* BPCyclesManager.m */; };
 		9094EC6F17E240B800B01132 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC6E17E240B800B01132 /* BPProfile.m */; };
 		9094EC7217E240B900B01132 /* BPCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC7117E240B900B01132 /* BPCycle.m */; };
@@ -174,6 +180,15 @@
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		908DF62317E6F3D500AC0AFD /* KeyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyHelper.h; sourceTree = "<group>"; };
+		908DF62417E6F3D500AC0AFD /* KeyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyHelper.m; sourceTree = "<group>"; };
+		908DF62517E6F3D500AC0AFD /* RIOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIOInterface.h; sourceTree = "<group>"; };
+		908DF62617E6F3D500AC0AFD /* RIOInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RIOInterface.mm; sourceTree = "<group>"; };
+		908DF62917E6F3E900AC0AFD /* ListenerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenerViewController.h; sourceTree = "<group>"; };
+		908DF62A17E6F3E900AC0AFD /* ListenerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenerViewController.m; sourceTree = "<group>"; };
+		908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListenerViewController.xib; sourceTree = "<group>"; };
+		908DF62E17E6F4D600AC0AFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		908DF63017E6F4F500AC0AFD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9094EC5517E23C1800B01132 /* BPCyclesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCyclesManager.h; sourceTree = "<group>"; };
 		9094EC5617E23C1800B01132 /* BPCyclesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCyclesManager.m; sourceTree = "<group>"; };
 		9094EC6D17E240B800B01132 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
@@ -333,6 +348,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				908DF63117E6F4F500AC0AFD /* Accelerate.framework in Frameworks */,
+				908DF62F17E6F4D600AC0AFD /* AVFoundation.framework in Frameworks */,
 				90FCA82E17B9EC1700686048 /* CoreData.framework in Frameworks */,
 				907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */,
 				90EB9DFE17078C45008457A3 /* UIKit.framework in Frameworks */,
@@ -442,6 +459,20 @@
 				907BA9571779AC97005944D6 /* NSDate-Utilities.m */,
 			);
 			path = "NSDate-Utilities";
+			sourceTree = "<group>";
+		};
+		908DF62217E6F3C100AC0AFD /* Trash */ = {
+			isa = PBXGroup;
+			children = (
+				908DF62317E6F3D500AC0AFD /* KeyHelper.h */,
+				908DF62417E6F3D500AC0AFD /* KeyHelper.m */,
+				908DF62517E6F3D500AC0AFD /* RIOInterface.h */,
+				908DF62617E6F3D500AC0AFD /* RIOInterface.mm */,
+				908DF62917E6F3E900AC0AFD /* ListenerViewController.h */,
+				908DF62A17E6F3E900AC0AFD /* ListenerViewController.m */,
+				908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */,
+			);
+			path = Trash;
 			sourceTree = "<group>";
 		};
 		909C957B17BC0A9100EEC795 /* CoreData */ = {
@@ -939,6 +970,8 @@
 		90EB9DFC17078C45008457A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				908DF63017E6F4F500AC0AFD /* Accelerate.framework */,
+				908DF62E17E6F4D600AC0AFD /* AVFoundation.framework */,
 				90FCA82D17B9EC1700686048 /* CoreData.framework */,
 				907BA9531779A69E005944D6 /* AudioToolbox.framework */,
 				90EB9DFD17078C45008457A3 /* UIKit.framework */,
@@ -956,6 +989,7 @@
 			children = (
 				90EB9E44170790D9008457A3 /* Classes */,
 				90EB9E941707A614008457A3 /* Vendor */,
+				908DF62217E6F3C100AC0AFD /* Trash */,
 				90EB9E2B17079021008457A3 /* Resources */,
 				90EB9E0417078C45008457A3 /* Supporting Files */,
 			);
@@ -1197,6 +1231,7 @@
 				90EB9E7B170798C0008457A3 /* Gabriola.ttf in Resources */,
 				90EB9E8717079AFD008457A3 /* Default-568h@2x.png in Resources */,
 				90EB9E8817079AFD008457A3 /* Default.png in Resources */,
+				908DF62D17E6F3E900AC0AFD /* ListenerViewController.xib in Resources */,
 				90EB9E8917079AFD008457A3 /* Default@2x.png in Resources */,
 				902E86D5179F34F300186731 /* Localizable.strings in Resources */,
 				90E881B2177872C300682BB3 /* BPImages.bundle in Resources */,
@@ -1228,6 +1263,7 @@
 				9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */,
 				90FCA82C17B9EB9B00686048 /* NSManagedObject+Mappings.m in Sources */,
 				905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */,
+				908DF62817E6F3D500AC0AFD /* RIOInterface.mm in Sources */,
 				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
 				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
@@ -1258,6 +1294,7 @@
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				9094EC7217E240B900B01132 /* BPCycle.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
+				908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */,
 				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90FCA82117B9EB8800686048 /* NSString+ObjectiveSugar.m in Sources */,
@@ -1286,6 +1323,7 @@
 				909C95AC17BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m in Sources */,
 				90AD89CB17DE3C070085A015 /* BPStatsCollectionViewHeader.m in Sources */,
 				909C95AD17BC181F00EEC795 /* BPMyTemperatureSelectViewController.m in Sources */,
+				908DF62C17E6F3E900AC0AFD /* ListenerViewController.m in Sources */,
 				909C95AE17BC181F00EEC795 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				909C95AF17BC181F00EEC795 /* BPMyTemperatureViewController.m in Sources */,
 				909C95C017BC182800EEC795 /* BPSettingsAlarmViewController.m in Sources */,
