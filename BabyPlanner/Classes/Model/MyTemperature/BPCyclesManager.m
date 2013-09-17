@@ -30,6 +30,11 @@
     return self.cycles.count;
 }
 
+- (NSUInteger)avgCycleLength
+{
+    return [[self.cycles valueForKeyPath:@"@avg.length"] unsignedIntegerValue];
+}
+
 - (NSArray *)cycles
 {
     // TODO: SORT

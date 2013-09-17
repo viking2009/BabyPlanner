@@ -2,7 +2,7 @@
 //  BPDate.m
 //  BabyPlanner
 //
-//  Created by Mykola Vyshynskyi on 12.09.13.
+//  Created by Mykola Vyshynskyi on 17.09.13.
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
@@ -22,7 +22,9 @@
 @dynamic pregnant;
 @dynamic sexualIntercourse;
 @dynamic temperature;
-@dynamic symptoms;
+@dynamic girl;
+@dynamic boy;
 @dynamic cycle;
+@dynamic symptoms;
 
 @end

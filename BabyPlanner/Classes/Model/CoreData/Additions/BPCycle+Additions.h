@@ -11,5 +11,6 @@
 @interface BPCycle (Additions)
 
 @property (nonatomic, readonly) NSUInteger length;
+@property (nonatomic, readonly) NSString *title;
 
 @end

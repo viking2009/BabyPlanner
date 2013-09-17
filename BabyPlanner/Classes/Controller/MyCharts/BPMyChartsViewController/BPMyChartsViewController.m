@@ -13,6 +13,8 @@
 #import "BPStatsCollectionViewHeader.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
+#import "BPCyclesManager.h"
+#import "BPCycle+Additions.h"
 
 #define BPStatsCollectionViewCellIdentifier @"BPStatsCollectionViewCellIdentifier"
 #define BPCycleInfoCellIdentifier @"BPCycleInfoCellIdentifier"
@@ -78,9 +80,10 @@
 
 - (void)loadData
 {
+    BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
     // TODO: set data
-    self.data = @[ @[@{@"title": BPLocalizedString(@"Number of all your cycles"), @"subtitle": @"4"},
-                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": @"30"},
+    self.data = @[ @[@{@"title": BPLocalizedString(@"Number of all your cycles"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.numberOfCycles]},
+                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.avgCycleLength]},
                      @{@"title": BPLocalizedString(@"Your length of high level on average"), @"subtitle": @"12"},
                      @{@"title": BPLocalizedString(@"Your mono-phases\n(of the last 20 cycles)"), @"subtitle": @"1%"},
                      @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}],
@@ -102,12 +105,17 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [_data count];
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_data[section] count];
+    if (section == 0) {
+        return 5;
+    }
+    
+    BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
+    return sharedManager.numberOfCycles;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -145,10 +153,13 @@
         statsCell.titleLabel.text = dataItem[@"title"];
         statsCell.subtitleLabel.text = dataItem[@"subtitle"];
     } else {
+        BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
+        BPCycle *cycle = sharedManager.cycles[indexPath.item];
+
         BPCycleInfoCell *cycleInfoCell = (BPCycleInfoCell *)cell;
-        cycleInfoCell.counterLabel.text = [NSString stringWithFormat:@"%i.", [_data[indexPath.section] count] - indexPath.row];
-        cycleInfoCell.titleLabel.text = dataItem[@"title"];
-        cycleInfoCell.subtitleLabel.text = dataItem[@"subtitle"];
+        cycleInfoCell.counterLabel.text = [NSString stringWithFormat:@"%@.", cycle.index];
+        cycleInfoCell.titleLabel.text = cycle.title;
+        cycleInfoCell.subtitleLabel.text = [NSString stringWithFormat:@"%u", cycle.length];
         
         if (indexPath.item == 1 || indexPath.item == 2)
             cycleInfoCell.imageView.image = [BPUtils imageNamed:@"mycharts_icon_ovulation"];

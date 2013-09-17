@@ -170,10 +170,12 @@
     self.indicatorsView.temperature = date.temperature;
     self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
     self.indicatorsView.ovulation = date.ovulation;
+    self.indicatorsView.boy = date.boy;
+    self.indicatorsView.girl = date.girl;
     
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
-    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
+//    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
     
     self.leftFlagView.date = date.date;
         
@@ -265,10 +267,12 @@
     self.indicatorsView.temperature = date.temperature;
     self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
     self.indicatorsView.ovulation = date.ovulation;
+    self.indicatorsView.boy = date.boy;
+    self.indicatorsView.girl = date.girl;
     
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
-    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
-    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
+//    self.indicatorsView.girl = sharedSettings[BPSettingsProfileGirlKey];
     
     self.leftFlagView.date = date.date;
     

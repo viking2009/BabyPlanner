@@ -13,6 +13,7 @@
 + (BPCyclesManager *)sharedManager;
 
 @property (nonatomic, readonly) NSUInteger numberOfCycles;
+@property (nonatomic, readonly) NSUInteger avgCycleLength;
 @property (nonatomic, readonly) NSArray *cycles;
 
 @end

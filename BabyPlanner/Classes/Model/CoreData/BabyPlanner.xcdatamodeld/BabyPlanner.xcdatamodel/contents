@@ -8,8 +8,10 @@
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BPProfile" inverseName="cycles" inverseEntity="BPProfile" syncable="YES"/>
     </entity>
     <entity name="BPDate" representedClassName="BPDate" syncable="YES">
+        <attribute name="boy" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="girl" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="menstruation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="mmenstruation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="notations" optional="YES" attributeType="String" syncable="YES"/>
@@ -51,10 +53,10 @@
         <relationship name="date" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BPDate" inverseName="symptoms" inverseEntity="BPDate" syncable="YES"/>
     </entity>
     <elements>
+        <element name="BPCycle" positionX="0" positionY="0" width="0" height="0"/>
         <element name="BPDate" positionX="0" positionY="0" width="0" height="0"/>
         <element name="BPProfile" positionX="0" positionY="0" width="0" height="0"/>
         <element name="BPSettings" positionX="0" positionY="0" width="0" height="0"/>
         <element name="BPSymptom" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BPCycle" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

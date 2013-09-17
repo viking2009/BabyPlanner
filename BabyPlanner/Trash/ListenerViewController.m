@@ -61,6 +61,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	rioRef = [RIOInterface sharedInstance];
+    
+    self.titleLabel.frame = CGRectMake(10.f, self.titleLabel.frame.origin.y, self.view.frame.size.width - 20.f, self.titleLabel.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
