@@ -140,6 +140,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     if (idx < MAX(lengthOfCycle, self.todayIndex + 1))
         imageName = @"point_green";
     
+    //    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
+    BOOL isPregnant = (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx <= self.todayIndex);
+    if (isPregnant)
+        imageName = @"point_red";
+
     if (self.ovulationIndex == NSNotFound) {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
             imageName = @"point_red";
@@ -160,14 +165,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             imageName = @"point_ovulation";
     }
     
-//    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
-    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx <= self.todayIndex)
-        imageName = @"point_red";
-    
     if ([item.menstruation boolValue])
         imageName = @"point_pink";
     
     item.imageName = imageName;
+    
+    item.pregnant = @(isPregnant);
     
     return item;
 }
@@ -299,8 +302,20 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     if (conceiving && [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
         self.conceivingIndex = [self indexForDate:conceiving];
     else {
-        // TODO: calculate
         self.conceivingIndex = NSNotFound;
+        
+        if (self.ovulationIndex) {
+            BOOL isPregnant = NO;
+            
+            for (NSInteger i = self.ovulationIndex - 4; i <= MIN(self.ovulationIndex + 2, self.todayIndex); i++) {
+                BPDate *date = self[i];
+                if ([date.sexualIntercourse boolValue]) {
+                    isPregnant = YES;
+                    self.conceivingIndex = i;
+                    break;
+                }
+            }
+        }
     }
 }
 

@@ -1,6 +1,8 @@
-h2. 20130916#2
+h2. 20130917
 
-h3. Improvements:
+h3. New:
 
-Task #63: My Temperature: Using thermometer
-* test formula
+Task #61: My Temperature: Cycle logic (pregnancy)
+* find conceiving date, show later date with red color
+Task #62: My Charts: Cycles logic
+* use cycles info (one cycle supported for now)
