@@ -37,7 +37,7 @@
 
 - (NSArray *)cycles
 {
-    // TODO: SORT
+    // TODO: SORT, get from profile
     NSArray *cycles = [BPCycle all];
     if (!cycles.count) {
         // create default cycle
@@ -49,6 +49,8 @@
 
         NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
         cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
+        
+        [cycle save];
         
         return @[cycle];
     }

@@ -86,11 +86,7 @@
                      @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.avgCycleLength]},
                      @{@"title": BPLocalizedString(@"Your length of high level on average"), @"subtitle": @"12"},
                      @{@"title": BPLocalizedString(@"Your mono-phases\n(of the last 20 cycles)"), @"subtitle": @"1%"},
-                     @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}],
-                   @[@{@"title": @"21.08.12-21.09.12", @"subtitle": @"30"},
-                     @{@"title": @"20.07.12-20.08.12", @"subtitle": @"30"},
-                     @{@"title": @"19.06.12-19.07.12", @"subtitle": @"30"},
-                     @{@"title": @"18.05.12-18.06.12", @"subtitle": @"30"}]];
+                     @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}]];
 }
 
 - (void)updateUI
@@ -110,12 +106,10 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0)
         return 5;
-    }
-    
-    BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
-    return sharedManager.numberOfCycles;
+    else
+        return [BPCyclesManager sharedManager].numberOfCycles;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -147,8 +141,8 @@
         cell.selectedBackgroundView = selectedBackgroundView;
     }
     
-    NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
     if (indexPath.section == 0) {
+        NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
         BPStatsCollectionViewCell *statsCell = (BPStatsCollectionViewCell *)cell;
         statsCell.titleLabel.text = dataItem[@"title"];
         statsCell.subtitleLabel.text = dataItem[@"subtitle"];
