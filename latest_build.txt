@@ -1,8 +1,6 @@
 h2. 20130917
 
-h3. New:
+h3. Improvements:
 
 Task #61: My Temperature: Cycle logic (pregnancy)
-* find conceiving date, show later date with red color
-Task #62: My Charts: Cycles logic
-* use cycles info (one cycle supported for now)
+* boy/girl logic

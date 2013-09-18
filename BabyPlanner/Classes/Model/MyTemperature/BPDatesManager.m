@@ -154,6 +154,13 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
         if (idx == self.ovulationCandidateIndex && self.todayIndex < self.ovulationCandidateIndex)
             imageName = @"point_ovulation";
+        
+        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex - 2)
+            item.boy = @YES;
+        
+        if (idx > self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex)
+            item.girl = @YES;
+
     } else {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
             imageName = @"point_red";
@@ -163,6 +170,18 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         
         if (idx == self.ovulationIndex)
             imageName = @"point_ovulation";
+        
+        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex - 2)
+            item.boy = @NO;
+        
+        if (idx > self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex)
+            item.girl = @NO;
+        
+        if (idx > self.ovulationIndex - 4 && idx <= self.ovulationIndex - 2)
+            item.boy = @YES;
+        
+        if (idx >= self.ovulationIndex && idx < self.ovulationIndex + 2)
+            item.girl = @YES;
     }
     
     if ([item.menstruation boolValue])
