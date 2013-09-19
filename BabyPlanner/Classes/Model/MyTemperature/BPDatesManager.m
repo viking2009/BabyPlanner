@@ -23,6 +23,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 #define kBPDatesManagerMinOvulationIndex 10
 #define kBPDatesManagerDefaultOvulationIndex 13
 
+#define kBPDatesManagerFertileBefore 3
+#define kBPDatesManagerFertileAfter 2
+
 #define BP_EPSILON  0.001f
 
 @interface BPDatesManager()
@@ -36,6 +39,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, assign) NSInteger ovulationIndex;
 @property (nonatomic, assign) NSInteger todayIndex;
 @property (nonatomic, assign) NSInteger conceivingIndex;
+@property (nonatomic, assign) float midTemperature;
 
 @property (nonatomic, strong) NSDictionary *testTemperatures;
 
@@ -158,8 +162,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex - 2)
             item.boy = @YES;
         
-        if (idx > self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex)
+        if (idx >= self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex + 2)
             item.girl = @YES;
+        
+        if (idx == self.ovulationCandidateIndex)
+            imageName = @"point_ovulation";
 
     } else {
         if (idx > self.ovulationCandidateIndex - 4 && idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
@@ -207,8 +214,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 {
 //    BPSettings *sharedSettings = [BPSettings sharedSettings];
 
-    self.ovulationIndex = self.ovulationCandidateIndex;
-
+//    self.ovulationIndex = self.ovulationCandidateIndex;
+    self.ovulationIndex = NSNotFound;
+    self.midTemperature = kBPTemperaturePickerMaxTemperature;
+    
     NSInteger lengthOfCycle = self.count;// [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
     
     DLog(@"self.todayIndex = %i", self.todayIndex);
@@ -236,12 +245,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         if (minTemperature < kBPTemperaturePickerMaxTemperature) {
             // TODO: if not enough data
             
-            DLog(@"self.ovulationIndex: %i", self.ovulationIndex);
+            DLog(@"self.ovulationIndex: %i", self.ovulationCandidateIndex);
             
             float midTemperature = minTemperature;
             DLog(@"minTemperature: %f", minTemperature);
 
-            for (NSInteger i = self.ovulationIndex - (kBPDatesManagerPrevDays - 1); i < self.ovulationIndex; i++) {
+            for (NSInteger i = self.ovulationCandidateIndex - (kBPDatesManagerPrevDays - 1); i < self.ovulationCandidateIndex; i++) {
                 DLog(@"2:i: %i", i);
                 BPDate *date = self[i];
                 float temperature = [date.temperature floatValue];
@@ -300,6 +309,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 //                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
                 if (count1 + count2 >= 3) {
                     self.ovulationIndex = ovulationIndex;
+                    self.midTemperature = midTemperature;
                 } else {
                     self.ovulationIndex = NSNotFound;
                 }
@@ -331,6 +341,17 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 if ([date.sexualIntercourse boolValue]) {
                     isPregnant = YES;
                     self.conceivingIndex = i;
+                    break;
+                }
+            }
+            
+            // check temperature
+            for (NSInteger i = self.ovulationIndex + 1; i < MIN(self.count, self.todayIndex + 1); i++) {
+                BPDate *date = self[i];
+                float temperature = [date.temperature floatValue];
+                if (temperature && temperature < self.midTemperature) {
+                    isPregnant = NO;
+                    self.conceivingIndex = NSNotFound;
                     break;
                 }
             }
