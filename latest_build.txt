@@ -1,6 +1,9 @@
-h2. 20130917
+h2. 20130919
 
 h3. Improvements:
 
 Task #61: My Temperature: Cycle logic (pregnancy)
 * boy/girl logic
+Task #62: My Charts: Cycles logic
+* update current cycle when length of cycle or last menstruation date changed
+* cycles sorted by index descending

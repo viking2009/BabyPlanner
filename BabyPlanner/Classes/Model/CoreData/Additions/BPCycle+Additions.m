@@ -28,4 +28,9 @@
     return [NSString stringWithFormat:@"%@-%@", [dateFormatter stringFromDate:self.startDate], [dateFormatter stringFromDate:self.endDate]];
 }
 
+- (NSComparisonResult)compare:(BPCycle *)cycle {
+    // MARK: reverse order
+    return [cycle.index compare:self.index];
+}
+
 @end

@@ -14,6 +14,9 @@
 #import "ObjectiveSugar.h"
 #import "BPProfile.h"
 #import "BPUtils.h"
+#import "BPCyclesManager.h"
+#import "BPCycle.h"
+#import "NSDate-Utilities.h"
 
 NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotification";
 
@@ -54,7 +57,7 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
 
 - (void)setObject:(id)obj forKeyedSubscript:(id<NSCopying>)key
 {
-    if (!obj || !key)
+    if (!obj || !key || ![(id)key isKindOfClass:[NSString class]])
         return ;
     
     id oldObj = [self objectForKeyedSubscript:key];
@@ -70,6 +73,19 @@ NSString *const BPSettingsDidChangeNotification = @"BPSettingsDidChangeNotificat
         [self setValue:obj forKeyPath:(NSString *)key];
         
         if ([self save]) {
+            // MARK: update current cycle
+            if ([(id)key isEqualToString:BPSettingsProfileLastMenstruationDateKey] || [(id)key isEqualToString:BPSettingsProfileLengthOfCycleKey]) {
+                BPCycle *cycle = [BPCyclesManager sharedManager].currentCycle;
+                
+                NSDate *startDate = self[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
+                cycle.startDate = [startDate dateAtStartOfDay];
+                
+                NSInteger lengthOfCycle = [self[BPSettingsProfileLengthOfCycleKey] integerValue];
+                cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
+                
+                [cycle save];
+            }
+            
             NSString *notificationName = BPSettingsDidChangeNotification;
             if ([(id)key isEqualToString:BPSettingsLanguageKey])
                 notificationName = BPLanguageDidChangeNotification;

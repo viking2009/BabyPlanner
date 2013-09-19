@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class BPCycle;
+
 @interface BPCyclesManager : NSObject
 
 + (BPCyclesManager *)sharedManager;
 
 @property (nonatomic, readonly) NSUInteger numberOfCycles;
-@property (nonatomic, readonly) NSUInteger avgCycleLength;
+@property (nonatomic, readonly) NSUInteger averageCycleLength;
 @property (nonatomic, readonly) NSArray *cycles;
+@property (nonatomic, readonly) BPCycle *currentCycle;
 
 @end

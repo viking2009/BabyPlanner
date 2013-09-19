@@ -83,7 +83,7 @@
     BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
     // TODO: set data
     self.data = @[ @[@{@"title": BPLocalizedString(@"Number of all your cycles"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.numberOfCycles]},
-                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.avgCycleLength]},
+                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.averageCycleLength]},
                      @{@"title": BPLocalizedString(@"Your length of high level on average"), @"subtitle": @"12"},
                      @{@"title": BPLocalizedString(@"Your mono-phases\n(of the last 20 cycles)"), @"subtitle": @"1%"},
                      @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}]];

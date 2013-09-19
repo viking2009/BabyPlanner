@@ -8,7 +8,9 @@
 
 #import "BPCyclesManager.h"
 #import "BPCycle.h"
+#import "BPProfile.h"
 #import "ObjectiveRecord.h"
+#import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
 
@@ -30,32 +32,37 @@
     return self.cycles.count;
 }
 
-- (NSUInteger)avgCycleLength
+- (NSUInteger)averageCycleLength
 {
     return [[self.cycles valueForKeyPath:@"@avg.length"] unsignedIntegerValue];
 }
 
 - (NSArray *)cycles
 {
-    // TODO: SORT, get from profile
-    NSArray *cycles = [BPCycle all];
-    if (!cycles.count) {
-        // create default cycle
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+    NSArray *cycles = [[sharedSettings.profile.cycles allObjects] sort];
+    if (![cycles count]) {
         BPCycle *cycle = [BPCycle create:@{@"index": @1}];
-        BPSettings *sharedSettings = [BPSettings sharedSettings];
         
         NSDate *startDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
         cycle.startDate = [startDate dateAtStartOfDay];
-
+        
         NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
         cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
         
+        cycle.profile = sharedSettings.profile;
         [cycle save];
         
         return @[cycle];
     }
     
     return cycles;
+}
+
+- (BPCycle *)currentCycle
+{
+    return self.cycles.first;
 }
 
 @end
