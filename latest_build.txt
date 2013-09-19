@@ -2,6 +2,8 @@ h2. 20130919
 
 h3. Improvements:
 
+Task #28: My Temperature: Main page
+* exchange boy and girl frames
 Task #61: My Temperature: Cycle logic (pregnancy)
 * boy/girl logic
 * check for temperature to confirm pregnancy

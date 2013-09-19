@@ -47,10 +47,15 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 @property (nonatomic, assign) NSInteger conceivingIndex;
 @property (nonatomic, assign) float midTemperature;
 
+@property (nonatomic, assign) BOOL boy;
+@property (nonatomic, assign) BOOL girl;
+
+
 @property (nonatomic, strong) NSDictionary *testTemperatures;
 
 - (void)calculateOvulationIndex;
 - (void)calculateConceivingIndex;
+- (void)calculateBoyGirl;
 
 @end
 
@@ -91,6 +96,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         
         [self calculateOvulationIndex];
         [self calculateConceivingIndex];
+        [self calculateBoyGirl];
         
         self.dates = [[NSMutableDictionary alloc] init];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
@@ -121,7 +127,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     if (![item.mmenstruation boolValue])
         item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
 
-    item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
+//    item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
     item.ovulation = @(idx == self.ovulationIndex);
  
 #if TEST_NORMAL_CYCLE1
@@ -151,13 +157,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         imageName = @"point_green";
     
     //    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
-    BOOL isPregnant = (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx <= self.todayIndex);
+    BOOL isPregnant = (self.conceivingIndex != NSNotFound && idx > self.conceivingIndex && idx <= self.todayIndex);
     if (isPregnant)
         imageName = @"point_red";
-
-    // clear previous result
-    item.boy = @NO;
-    item.girl = @NO;
     
     if (self.ovulationIndex == NSNotFound) {
         if ((idx >= self.ovulationCandidateIndex - kBPDatesManagerFertileBefore) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerFertileAfter))
@@ -166,18 +168,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         if ((idx > self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && (self.todayIndex >= self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && idx < MAX(lengthOfCycle, self.todayIndex + 1))
                 imageName = @"point_yellow";
 
-        if (idx == self.ovulationCandidateIndex && self.todayIndex < self.ovulationCandidateIndex)
+        if (idx == self.ovulationCandidateIndex && self.todayIndex <= self.ovulationCandidateIndex)
             imageName = @"point_ovulation";
         
-        if ((idx >= self.ovulationCandidateIndex + kBPDatesManagerBoyStart) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerBoyEnd))
-            item.boy = @YES;
-        
-        if ((idx >= self.ovulationCandidateIndex + kBPDatesManagerGirlStart) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerGirlEnd))
-            item.girl = @YES;
-        
-        if (idx == self.ovulationCandidateIndex)
-            imageName = @"point_ovulation";
-
+//        if (idx == self.ovulationCandidateIndex)
+//            imageName = @"point_ovulation";
     } else {
         if ((idx >= self.ovulationCandidateIndex - kBPDatesManagerFertileBefore) && (idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + kBPDatesManagerFertileAfter))
             imageName = @"point_red";
@@ -188,11 +183,15 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         if (idx == self.ovulationIndex)
             imageName = @"point_ovulation";
         
-        if ((idx >= self.ovulationIndex + kBPDatesManagerBoyStart) && (idx <= self.ovulationIndex + kBPDatesManagerBoyEnd))
-            item.boy = @YES;
-        
-        if ((idx >= self.ovulationIndex + kBPDatesManagerGirlStart) && (idx <= self.ovulationIndex + kBPDatesManagerGirlEnd))
-            item.girl = @YES;
+    }
+    
+    if (isPregnant) {
+        item.boy = @(self.boy);
+        item.girl = @(self.girl);
+    } else {
+        NSInteger ovulationIndex = (self.ovulationIndex == NSNotFound ? self.ovulationCandidateIndex : self.ovulationIndex);
+        item.boy = @((idx >= ovulationIndex + kBPDatesManagerBoyStart) && (idx <= ovulationIndex + kBPDatesManagerBoyEnd));
+        item.girl = @((idx >= ovulationIndex + kBPDatesManagerGirlStart) && (idx <= ovulationIndex + kBPDatesManagerGirlEnd));
     }
     
     if ([item.menstruation boolValue])
@@ -349,7 +348,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 }
             }
             
-            self.conceivingIndex = MAX(self.conceivingIndex, self.ovulationIndex);
+            if (self.conceivingIndex != NSNotFound && self.ovulationIndex != NSNotFound)
+                self.conceivingIndex = MAX(self.conceivingIndex, self.ovulationIndex);
             
             // check temperature
             for (NSInteger i = self.ovulationIndex + 1; i < MIN(self.count, self.todayIndex + 1); i++) {
@@ -361,6 +361,21 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                     break;
                 }
             }
+        }
+    }
+}
+
+- (void)calculateBoyGirl {
+    BOOL isPregnant = (self.ovulationIndex != NSNotFound && self.conceivingIndex != NSNotFound && self.conceivingIndex <= self.todayIndex);
+    if (isPregnant) {
+        for (NSInteger i = self.ovulationIndex - kBPDatesManagerFertileBefore; i <= self.ovulationIndex + kBPDatesManagerFertileAfter; i++) {
+            BPDate *date = self[i];
+            
+            if (!self.boy)
+                self.boy = ([date.boy boolValue] && [date.sexualIntercourse boolValue]);
+            
+            if (!self.girl)
+                self.girl = ([date.girl boolValue] && [date.sexualIntercourse boolValue]);
         }
     }
 }
