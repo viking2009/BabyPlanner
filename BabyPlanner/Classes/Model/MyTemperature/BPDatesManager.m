@@ -23,8 +23,14 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 #define kBPDatesManagerMinOvulationIndex 10
 #define kBPDatesManagerDefaultOvulationIndex 13
 
-#define kBPDatesManagerFertileBefore 3
-#define kBPDatesManagerFertileAfter 2
+#define kBPDatesManagerFertileBefore 5
+#define kBPDatesManagerFertileAfter 1
+
+#define kBPDatesManagerBoyStart -4
+#define kBPDatesManagerBoyEnd -2
+
+#define kBPDatesManagerGirlStart -2
+#define kBPDatesManagerGirlEnd 0
 
 #define BP_EPSILON  0.001f
 
@@ -149,45 +155,43 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     if (isPregnant)
         imageName = @"point_red";
 
+    // clear previous result
+    item.boy = @NO;
+    item.girl = @NO;
+    
     if (self.ovulationIndex == NSNotFound) {
-        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex + 2)
+        if ((idx >= self.ovulationCandidateIndex - kBPDatesManagerFertileBefore) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerFertileAfter))
             imageName = @"point_red";
         
-        if (idx > self.ovulationCandidateIndex + 2 && self.todayIndex >= self.ovulationCandidateIndex + 2 && idx < MAX(lengthOfCycle, self.todayIndex + 1))
+        if ((idx > self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && (self.todayIndex >= self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && idx < MAX(lengthOfCycle, self.todayIndex + 1))
                 imageName = @"point_yellow";
 
         if (idx == self.ovulationCandidateIndex && self.todayIndex < self.ovulationCandidateIndex)
             imageName = @"point_ovulation";
         
-        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex - 2)
+        if ((idx >= self.ovulationCandidateIndex + kBPDatesManagerBoyStart) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerBoyEnd))
             item.boy = @YES;
         
-        if (idx >= self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex + 2)
+        if ((idx >= self.ovulationCandidateIndex + kBPDatesManagerGirlStart) && (idx <= self.ovulationCandidateIndex + kBPDatesManagerGirlEnd))
             item.girl = @YES;
         
         if (idx == self.ovulationCandidateIndex)
             imageName = @"point_ovulation";
 
     } else {
-        if (idx > self.ovulationCandidateIndex - 4 && idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + 2)
+        if ((idx >= self.ovulationCandidateIndex - kBPDatesManagerFertileBefore) && (idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + kBPDatesManagerFertileAfter))
             imageName = @"point_red";
         
-        if (idx > self.ovulationCandidateIndex + 2 && idx < self.ovulationIndex)
+        if ((idx > self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && idx < self.ovulationIndex)
             imageName = @"point_yellow";
         
         if (idx == self.ovulationIndex)
             imageName = @"point_ovulation";
         
-        if (idx > self.ovulationCandidateIndex - 4 && idx <= self.ovulationCandidateIndex - 2)
-            item.boy = @NO;
-        
-        if (idx > self.ovulationCandidateIndex - 2 && idx <= self.ovulationCandidateIndex)
-            item.girl = @NO;
-        
-        if (idx > self.ovulationIndex - 4 && idx <= self.ovulationIndex - 2)
+        if ((idx >= self.ovulationIndex + kBPDatesManagerBoyStart) && (idx <= self.ovulationIndex + kBPDatesManagerBoyEnd))
             item.boy = @YES;
         
-        if (idx >= self.ovulationIndex && idx < self.ovulationIndex + 2)
+        if ((idx >= self.ovulationIndex + kBPDatesManagerGirlStart) && (idx <= self.ovulationIndex + kBPDatesManagerGirlEnd))
             item.girl = @YES;
     }
     
@@ -333,7 +337,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     else {
         self.conceivingIndex = NSNotFound;
         
-        if (self.ovulationIndex) {
+        if (self.ovulationIndex != NSNotFound) {
             BOOL isPregnant = NO;
             
             for (NSInteger i = self.ovulationIndex - 4; i <= MIN(self.ovulationIndex + 2, self.todayIndex); i++) {
@@ -344,6 +348,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                     break;
                 }
             }
+            
+            self.conceivingIndex = MAX(self.conceivingIndex, self.ovulationIndex);
             
             // check temperature
             for (NSInteger i = self.ovulationIndex + 1; i < MIN(self.count, self.todayIndex + 1); i++) {

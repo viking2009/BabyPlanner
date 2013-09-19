@@ -103,8 +103,8 @@
     self.temperatureLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.temperatureLabel.font.lineHeight));
     
     top = BPDateIndicatorsViewSecondLine;
-    self.boyView.frame = CGRectMake(centerX - BPDateIndicatorsViewSecondLinePadding - self.boyView.image.size.width, top, self.boyView.image.size.width, self.boyView.image.size.height);
-    self.girlView.frame = CGRectMake(centerX + BPDateIndicatorsViewSecondLinePadding, top, self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(centerX - BPDateIndicatorsViewSecondLinePadding - self.boyView.image.size.width, top, self.boyView.image.size.width, self.boyView.image.size.height);
+    self.boyView.frame = CGRectMake(centerX + BPDateIndicatorsViewSecondLinePadding, top, self.girlView.image.size.width, self.girlView.image.size.height);
 
     self.sexualIntercourseView.frame = CGRectMake(centerX - floorf(self.sexualIntercourseView.image.size.width/2), top - 5.f, self.sexualIntercourseView.image.size.width, self.sexualIntercourseView.image.size.height);
     
