@@ -8,10 +8,15 @@
 
 #import "BPViewController.h"
 
-@class BPCycle;
+#import "BPMyChartsCalendarViewController.h"
+#import "BPMyChartsDiagramViewController.h"
+#import "BPCycle+Additions.h"
 
 @interface BPMyChartsDetailsViewController : BPViewController
 
 @property (nonatomic, strong) BPCycle *cycle;
+
+@property (nonatomic, readonly) BPMyChartsCalendarViewController *calendarViewController;
+@property (nonatomic, readonly) BPMyChartsDiagramViewController *diagramViewController;
 
 @end

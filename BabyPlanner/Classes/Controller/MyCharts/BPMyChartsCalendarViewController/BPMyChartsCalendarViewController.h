@@ -7,7 +7,10 @@
 //
 
 #import "BPBaseViewController.h"
+#import "BPCycle+Additions.h"
 
 @interface BPMyChartsCalendarViewController : BPBaseViewController
+
+@property (nonatomic, strong) BPCycle *cycle;
 
 @end

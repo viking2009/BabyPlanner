@@ -10,6 +10,8 @@
 
 @interface BPMyChartsCalendarViewController ()
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 @end
 
 @implementation BPMyChartsCalendarViewController
@@ -28,10 +30,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.statusBarView.backgroundColor = [UIColor clearColor];
+
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.scrollView];
+    
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    titleLabel.text = [NSString stringWithFormat:@"TODO: %@", [self class]];
-    [self.view addSubview:titleLabel];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.numberOfLines = 0;
+    titleLabel.text = [NSString stringWithFormat:@"TODO:\n%@", [self class]];
+    [self.scrollView addSubview:titleLabel];
 }
 
 - (void)didReceiveMemoryWarning
