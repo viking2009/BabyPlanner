@@ -1,10 +1,11 @@
-h2. 20130923#2
+h2. 20130924
 
 h3. New:
 
-
+Task #59: My Charts: Cycle Details
+* segmented controller
 
 h3. Improvements:
 
-Task #56 My Charts: All
+Task #56: My Charts: All
 * open cycle details

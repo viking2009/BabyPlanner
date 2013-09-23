@@ -60,7 +60,7 @@
     
     UIImageView *topView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_button_background"]];
     topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
-    [self.view addSubview:topView];
+    [self.view insertSubview:topView belowSubview:self.statusBarView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.bounds.size.width - 2*68.f, 34.f)];
     self.titleLabel.backgroundColor = [UIColor clearColor];

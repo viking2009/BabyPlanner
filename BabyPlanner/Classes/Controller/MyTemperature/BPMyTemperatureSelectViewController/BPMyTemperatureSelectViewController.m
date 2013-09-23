@@ -48,7 +48,7 @@
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.view insertSubview:self.pickerView atIndex:1];
+    [self.view insertSubview:self.pickerView belowSubview:self.navigationImageView];
 
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];

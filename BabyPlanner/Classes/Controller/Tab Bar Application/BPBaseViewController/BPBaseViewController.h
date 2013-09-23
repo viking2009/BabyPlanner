@@ -10,6 +10,7 @@
 
 @interface BPBaseViewController : UIViewController
 
+@property (nonatomic, readonly) UIView *statusBarView;
 @property (nonatomic, strong) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
 
 - (void)updateUI;

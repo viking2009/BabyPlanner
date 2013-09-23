@@ -15,6 +15,7 @@
 
 @interface BPBaseViewController ()
 
+@property (nonatomic, strong) UIView *statusBarView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @end
@@ -54,10 +55,10 @@
     [self.view sendSubviewToBack:self.backgroundImageView];
     
     // fix iOS7 status bar appearance
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20.f)];
-    statusBarView.backgroundColor = RGB(0, 0, 0);
-//    statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:statusBarView];
+    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20.f)];
+    self.statusBarView.backgroundColor = RGB(0, 0, 0);
+    self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:self.statusBarView];
 }
 
 - (void)didReceiveMemoryWarning

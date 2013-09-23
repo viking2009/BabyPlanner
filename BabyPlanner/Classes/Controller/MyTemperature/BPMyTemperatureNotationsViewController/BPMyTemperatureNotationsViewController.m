@@ -48,7 +48,7 @@
     
     UIImageView *notesHeader = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"notes_header"]];
     notesHeader.frame = CGRectMake(self.notesView.frame.origin.x, self.notesView.frame.origin.y, notesHeader.image.size.width, notesHeader.image.size.height);
-    [self.view insertSubview:notesHeader atIndex:1];
+    [self.view insertSubview:notesHeader belowSubview:self.navigationImageView];
     
     [[EKKeyboardAvoidingScrollViewManager sharedInstance] registerScrollViewForKeyboardAvoiding:self.notesView];
     
