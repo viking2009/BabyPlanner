@@ -14,6 +14,7 @@
 		90023D1017DFA4D000CDE630 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0A17DFA4D000CDE630 /* iTunesArtwork */; };
 		90023D1117DFA4D000CDE630 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0B17DFA4D000CDE630 /* iTunesArtwork@2x */; };
 		9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */; };
+		9004DFB417F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */; };
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
@@ -137,6 +138,8 @@
 		90023D0B17DFA4D000CDE630 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		9004DFAE17F0BF13000F72D3 /* BPMyChartsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyChartsDetailsViewController.h; sourceTree = "<group>"; };
 		9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsDetailsViewController.m; sourceTree = "<group>"; };
+		9004DFB217F0CC3D000F72D3 /* BPMyChartsCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyChartsCalendarViewController.h; sourceTree = "<group>"; };
+		9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsCalendarViewController.m; sourceTree = "<group>"; };
 		9005C55A1794346B001338BA /* BPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatePicker.h; sourceTree = "<group>"; };
 		9005C55B1794346B001338BA /* BPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatePicker.m; sourceTree = "<group>"; };
 		9005C55D17944415001338BA /* BPPeriodPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPeriodPicker.h; sourceTree = "<group>"; };
@@ -375,6 +378,15 @@
 				9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */,
 			);
 			path = BPMyChartsDetailsViewController;
+			sourceTree = "<group>";
+		};
+		9004DFB117F0CC1F000F72D3 /* BPMyChartsCalendarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9004DFB217F0CC3D000F72D3 /* BPMyChartsCalendarViewController.h */,
+				9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */,
+			);
+			path = BPMyChartsCalendarViewController;
 			sourceTree = "<group>";
 		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
@@ -718,6 +730,7 @@
 			children = (
 				909C95E117BC18EE00EEC795 /* BPMyChartsViewController */,
 				9004DFAD17F0BEEF000F72D3 /* BPMyChartsDetailsViewController */,
+				9004DFB117F0CC1F000F72D3 /* BPMyChartsCalendarViewController */,
 			);
 			path = MyCharts;
 			sourceTree = "<group>";
@@ -1343,6 +1356,7 @@
 				909C95C117BC182800EEC795 /* BPSettingsLanguageViewController.m in Sources */,
 				909C95C217BC182800EEC795 /* BPSettingsProfileViewController.m in Sources */,
 				909C95C317BC182800EEC795 /* BPSettingsThemeViewController.m in Sources */,
+				9004DFB417F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m in Sources */,
 				909C95C417BC182800EEC795 /* BPSettingsViewController.m in Sources */,
 				909C95D217BC18B800EEC795 /* BPBaseViewController.m in Sources */,
 				909C95D317BC18B800EEC795 /* BPNavigationController.m in Sources */,
