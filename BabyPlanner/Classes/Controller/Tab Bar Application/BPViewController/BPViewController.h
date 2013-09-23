@@ -11,5 +11,6 @@
 @interface BPViewController : BPBaseViewController
 
 @property (nonatomic, readonly) UILabel *titleLabel;
+@property (nonatomic, readonly) UIImageView *navigationImageView;
 
 @end

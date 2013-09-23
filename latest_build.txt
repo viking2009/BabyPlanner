@@ -1,7 +1,10 @@
-h2. 2013092.
+h2. 20130923#2
+
+h3. New:
+
+
 
 h3. Improvements:
 
-Task #41: My Temperature: Cycle logic
-* cycle manager depends on cycle
-* calculate ovulation candidate index depending on previous cycles 
+Task #56 My Charts: All
+* open cycle details

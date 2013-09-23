@@ -13,6 +13,7 @@
 		90023D0F17DFA4D000CDE630 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0917DFA4D000CDE630 /* Icon@2x.png */; };
 		90023D1017DFA4D000CDE630 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0A17DFA4D000CDE630 /* iTunesArtwork */; };
 		90023D1117DFA4D000CDE630 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0B17DFA4D000CDE630 /* iTunesArtwork@2x */; };
+		9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */; };
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
@@ -134,6 +135,8 @@
 		90023D0917DFA4D000CDE630 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		90023D0A17DFA4D000CDE630 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		90023D0B17DFA4D000CDE630 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		9004DFAE17F0BF13000F72D3 /* BPMyChartsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyChartsDetailsViewController.h; sourceTree = "<group>"; };
+		9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsDetailsViewController.m; sourceTree = "<group>"; };
 		9005C55A1794346B001338BA /* BPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatePicker.h; sourceTree = "<group>"; };
 		9005C55B1794346B001338BA /* BPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatePicker.m; sourceTree = "<group>"; };
 		9005C55D17944415001338BA /* BPPeriodPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPeriodPicker.h; sourceTree = "<group>"; };
@@ -365,6 +368,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9004DFAD17F0BEEF000F72D3 /* BPMyChartsDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9004DFAE17F0BF13000F72D3 /* BPMyChartsDetailsViewController.h */,
+				9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */,
+			);
+			path = BPMyChartsDetailsViewController;
+			sourceTree = "<group>";
+		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +717,7 @@
 			isa = PBXGroup;
 			children = (
 				909C95E117BC18EE00EEC795 /* BPMyChartsViewController */,
+				9004DFAD17F0BEEF000F72D3 /* BPMyChartsDetailsViewController */,
 			);
 			path = MyCharts;
 			sourceTree = "<group>";
@@ -1275,6 +1288,7 @@
 				90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */,
 				902E86CE179F275700186731 /* BPLanguageManager.m in Sources */,
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
+				9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */,
 				902E86DB179F461900186731 /* BPThemeManager.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */,

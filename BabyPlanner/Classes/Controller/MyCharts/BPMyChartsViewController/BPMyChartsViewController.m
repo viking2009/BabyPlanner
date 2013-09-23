@@ -15,6 +15,7 @@
 #import "UIImage+Additions.h"
 #import "BPCyclesManager.h"
 #import "BPCycle+Additions.h"
+#import "BPMyChartsDetailsViewController.h"
 
 #define BPStatsCollectionViewCellIdentifier @"BPStatsCollectionViewCellIdentifier"
 #define BPCycleInfoCellIdentifier @"BPCycleInfoCellIdentifier"
@@ -76,6 +77,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.collectionView deselectItemAtIndexPath:[[self.collectionView indexPathsForSelectedItems] lastObject] animated:YES];
 }
 
 - (void)loadData
@@ -189,35 +197,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 0 && indexPath.row == 0) {
-//        BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
-//        temperatureSelectViewController.selectedDate = self.date;
-//        [self.navigationController pushViewController:temperatureSelectViewController animated:YES];
-//    }
-//    else if (indexPath.section == 1) {
-//        switch (indexPath.item) {
-//            case 2: {
-//                BPMyTemperatureSymptomsAndMoodViewController *temperatureSymptomsAndMoodViewController = [[BPMyTemperatureSymptomsAndMoodViewController alloc] init];
-//                temperatureSymptomsAndMoodViewController.date = self.date;
-//                [self.navigationController pushViewController:temperatureSymptomsAndMoodViewController animated:YES];
-//            }
-//                break;
-//            case 3: {
-//                BPMyTemperatureNotationsViewController *temperatureNotationsViewController = [[BPMyTemperatureNotationsViewController alloc] init];
-//                temperatureNotationsViewController.date = self.date;
-//                [self.navigationController pushViewController:temperatureNotationsViewController animated:YES];
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    } else if (indexPath.section == 2 &indexPath.row == 0) {
-//        BPSettings *sharedSettings = [BPSettings sharedSettings];
-//        sharedSettings[BPSettingsProfileIsPregnantKey] = @(![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-//    } else {
-        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-//    }
+    if (indexPath.section == 1) {
+        BPMyChartsDetailsViewController *chartsDetailsViewController = [[BPMyChartsDetailsViewController alloc] init];
+        BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
+        chartsDetailsViewController.cycle = sharedManager.cycles[indexPath.item];
+        [self.navigationController pushViewController:chartsDetailsViewController animated:YES];
+    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
