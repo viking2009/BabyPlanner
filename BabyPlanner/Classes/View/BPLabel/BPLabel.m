@@ -57,7 +57,6 @@
 - (void)drawTextInRect:(CGRect)rect
 {
     CGRect textRect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
-    DLog(@"textRect = %@", NSStringFromCGRect(CGRectIntegral(textRect)));
     [super drawTextInRect:CGRectIntegral(textRect)];
 }
 

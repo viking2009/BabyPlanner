@@ -15,6 +15,7 @@
 		90023D1117DFA4D000CDE630 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 90023D0B17DFA4D000CDE630 /* iTunesArtwork@2x */; };
 		9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */; };
 		9004DFB417F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */; };
+		9004DFB817F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9004DFB717F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m */; };
 		9005C55C1794346B001338BA /* BPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55B1794346B001338BA /* BPDatePicker.m */; };
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
@@ -140,6 +141,8 @@
 		9004DFAF17F0BF13000F72D3 /* BPMyChartsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsDetailsViewController.m; sourceTree = "<group>"; };
 		9004DFB217F0CC3D000F72D3 /* BPMyChartsCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyChartsCalendarViewController.h; sourceTree = "<group>"; };
 		9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsCalendarViewController.m; sourceTree = "<group>"; };
+		9004DFB617F0CD1A000F72D3 /* BPMyChartsDiagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyChartsDiagramViewController.h; sourceTree = "<group>"; };
+		9004DFB717F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyChartsDiagramViewController.m; sourceTree = "<group>"; };
 		9005C55A1794346B001338BA /* BPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDatePicker.h; sourceTree = "<group>"; };
 		9005C55B1794346B001338BA /* BPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDatePicker.m; sourceTree = "<group>"; };
 		9005C55D17944415001338BA /* BPPeriodPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPeriodPicker.h; sourceTree = "<group>"; };
@@ -387,6 +390,15 @@
 				9004DFB317F0CC3D000F72D3 /* BPMyChartsCalendarViewController.m */,
 			);
 			path = BPMyChartsCalendarViewController;
+			sourceTree = "<group>";
+		};
+		9004DFB517F0CD0A000F72D3 /* BPMyChartsDiagramViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9004DFB617F0CD1A000F72D3 /* BPMyChartsDiagramViewController.h */,
+				9004DFB717F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m */,
+			);
+			path = BPMyChartsDiagramViewController;
 			sourceTree = "<group>";
 		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
@@ -731,6 +743,7 @@
 				909C95E117BC18EE00EEC795 /* BPMyChartsViewController */,
 				9004DFAD17F0BEEF000F72D3 /* BPMyChartsDetailsViewController */,
 				9004DFB117F0CC1F000F72D3 /* BPMyChartsCalendarViewController */,
+				9004DFB517F0CD0A000F72D3 /* BPMyChartsDiagramViewController */,
 			);
 			path = MyCharts;
 			sourceTree = "<group>";
@@ -1364,6 +1377,7 @@
 				909C95D517BC18B800EEC795 /* BPViewController.m in Sources */,
 				900CBD0D17E8A1E600E230EE /* BPDate.m in Sources */,
 				9094EC6F17E240B800B01132 /* BPProfile.m in Sources */,
+				9004DFB817F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m in Sources */,
 				909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */,
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
 				90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */,
