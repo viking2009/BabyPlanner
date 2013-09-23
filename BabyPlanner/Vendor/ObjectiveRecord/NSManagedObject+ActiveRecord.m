@@ -46,6 +46,15 @@
     return [self where:condition];
 }
 
++ (instancetype)findOrCreate:(NSDictionary *)properties {
+    return [self findOrCreate:properties inContext:[NSManagedObjectContext defaultContext]];
+}
+
++ (instancetype)findOrCreate:(NSDictionary *)properties inContext:(NSManagedObjectContext *)context {
+    NSManagedObject *existing = [self where:properties inContext:context].first;
+    return existing ?: [self create:properties];
+}
+
 + (NSArray *)where:(id)condition {
     return [self where:condition inContext:[NSManagedObjectContext defaultContext]];
 }
@@ -57,7 +66,6 @@
     
     return [self fetchWithPredicate:predicate inContext:context];
 }
-
 
 #pragma mark - Creation / Deletion
 

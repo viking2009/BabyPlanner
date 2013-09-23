@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BPCycle;
+
 extern NSString *const BPDatesManagerDidChangeContentNotification;
 
 @interface BPDatesManager : NSObject
@@ -17,8 +19,9 @@ extern NSString *const BPDatesManagerDidChangeContentNotification;
 @property (nonatomic, readonly) NSInteger count;
 @property (nonatomic, readonly) NSInteger ovulationIndex;
 @property (nonatomic, readonly) NSInteger todayIndex;
+@property (nonatomic, readonly) BPCycle *cycle;
 
-- (id)initWithStartDate:(NSDate *)date;
+- (id)initWithCycle:(BPCycle *)cycle;
 - (id)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
 
 - (NSInteger)indexForDate:(NSDate *)date;
