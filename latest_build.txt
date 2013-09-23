@@ -1,12 +1,7 @@
-h2. 20130919
+h2. 2013092.
 
 h3. Improvements:
 
-Task #28: My Temperature: Main page
-* exchange boy and girl frames
-Task #61: My Temperature: Cycle logic (pregnancy)
-* boy/girl logic
-* check for temperature to confirm pregnancy
-Task #62: My Charts: Cycles logic
-* update current cycle when length of cycle or last menstruation date changed
-* cycles sorted by index descending
+Task #41: My Temperature: Cycle logic
+* cycle manager depends on cycle
+* calculate ovulation candidate index depending on previous cycles 
