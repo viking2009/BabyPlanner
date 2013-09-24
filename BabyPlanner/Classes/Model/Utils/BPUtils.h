@@ -35,6 +35,8 @@
 + (NSNumber *)heightFromString:(NSString *)string;
 + (NSNumber *)temperatureFromString:(NSString *)string;
 
++ (NSString *)ordinalStringFromNumber:(NSNumber *)number;
+
 + (float)kgToLb:(float)weight;
 + (float)lbToKg:(float)weight;
 + (float)cmToFt:(float)length;

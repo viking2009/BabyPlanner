@@ -147,6 +147,40 @@ static NSNumberFormatter *_numberFormatter = nil;
     return temperature;
 }
 
++ (NSString *)ordinalStringFromNumber:(NSNumber *)number
+{
+    if (!number || [number integerValue] < 0)
+        return nil;
+    
+    NSString *suffix = nil;
+    
+    if ([[BPLanguageManager sharedManager].currentLanguage isEqualToString:@"ru"])
+        suffix = @"й";
+    else {
+        // If number % 100 is 11, 12, or 13
+        if (NSLocationInRange([number integerValue] % 100, NSMakeRange(11, 3)))
+            suffix = @"th";
+        else {
+            switch ([number integerValue] % 10) {
+                case 1:
+                    suffix = @"st";
+                    break;
+                case 2:
+                    suffix = @"nd";
+                    break;
+                case 3:
+                    suffix = @"rd";
+                    break;
+                default:
+                    suffix = @"th";
+                    break;
+            }
+        }
+    }
+    
+    return [NSString stringWithFormat:@"%i%@", [number integerValue], suffix];
+}
+
 + (float)kgToLb:(float)weight
 {
     return BPMultiplierKg2Lb * weight;
