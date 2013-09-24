@@ -84,6 +84,7 @@
 		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
 		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
 		90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */; };
+		90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC8D8417F1798700F2A331 /* UIView+Sizes.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
 		90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */; };
 		90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E6755417B7E1190045C30E /* BPCollectionViewCell.m */; };
@@ -271,6 +272,8 @@
 		90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateIndicatorsView.m; sourceTree = "<group>"; };
 		90CB305417DDCD79009AE3C3 /* BPCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewHeader.h; sourceTree = "<group>"; };
 		90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewHeader.m; sourceTree = "<group>"; };
+		90DC8D8317F1798700F2A331 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		90DC8D8417F1798700F2A331 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		90E1DB9717BAA453000460C7 /* BPTemperaturePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTemperaturePicker.h; sourceTree = "<group>"; };
 		90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTemperaturePicker.m; sourceTree = "<group>"; };
 		90E32AB117C0FF3800E34FC4 /* BPMenstruationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMenstruationPicker.h; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 			children = (
 				902B71DF179DB8CC001810D8 /* Macros.h */,
 				90C85C9217B4D88600308A2A /* UIImage-Additions */,
+				90DC8D8217F1798700F2A331 /* RNBoilerplate */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -871,6 +875,15 @@
 				90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */,
 			);
 			path = BPCollectionViewHeader;
+			sourceTree = "<group>";
+		};
+		90DC8D8217F1798700F2A331 /* RNBoilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				90DC8D8317F1798700F2A331 /* UIView+Sizes.h */,
+				90DC8D8417F1798700F2A331 /* UIView+Sizes.m */,
+			);
+			path = RNBoilerplate;
 			sourceTree = "<group>";
 		};
 		90E6755217B7E0FF0045C30E /* BPCollectionViewCell */ = {
@@ -1347,6 +1360,7 @@
 				90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */,
 				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */,
+				90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
 				9094EC7817E2472A00B01132 /* BPCycle+Additions.m in Sources */,
 				90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */,
