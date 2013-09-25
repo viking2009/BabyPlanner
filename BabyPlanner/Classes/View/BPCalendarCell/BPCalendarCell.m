@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) UIImageView *topRightImageView;
 @property (nonatomic, strong) UIImageView *bottomLeftImageView;
+@property (nonatomic, assign) NSUInteger position;
 
 @end
 
@@ -27,8 +28,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderWidth = 1.f;
-        self.layer.borderColor = RGB(255, 255, 255).CGColor;
+        self.contentView.clipsToBounds = NO;
+        
+        self.imageView = [[UIImageView alloc] init];
+        self.imageView.contentMode = UIViewContentModeCenter;
+        [self.contentView addSubview:self.imageView];
         
         self.topRightImageView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.topRightImageView];
@@ -52,6 +56,8 @@
 {
     [super layoutSubviews];
     
+    self.imageView.frame = self.contentView.bounds;
+    
     if (self.topRightImageView.image)
         self.topRightImageView.frame = CGRectMake(self.contentView.right - (BPCalendarCellPadding + self.topRightImageView.image.size.width), BPCalendarCellPadding, self.topRightImageView.image.size.width, self.topRightImageView.image.size.height);
     else
@@ -74,6 +80,32 @@
     self.dayLabel.text = nil;
     self.topRightImageView.image = nil;
     self.bottomLeftImageView.image = nil;
+}
+
+#pragma mark - UICollectionViewCell
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    if (selected) {
+        self.position = [self.superview.subviews indexOfObject:self];
+        [self.superview bringSubviewToFront:self];
+    }
+    else
+        [self.superview insertSubview:self atIndex:self.position];
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    
+    if (highlighted) {
+        self.position = [self.superview.subviews indexOfObject:self];
+        [self.superview bringSubviewToFront:self];
+    }
+    else
+        [self.superview insertSubview:self atIndex:self.position];
 }
 
 #pragma mark - Public

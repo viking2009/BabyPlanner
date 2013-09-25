@@ -9,7 +9,7 @@ h3. Improvements:
 Task #56: My Charts: All
 * 
 Task #57 My Charts: Calendar
-* 
+* calendar cell with background images
 Task #59: My Charts: Cycle Details
 * 
 

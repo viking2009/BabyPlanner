@@ -12,6 +12,7 @@
 
 @interface BPCalendarCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *dayLabel;
 
 @property (nonatomic, strong) BPDate *date;
