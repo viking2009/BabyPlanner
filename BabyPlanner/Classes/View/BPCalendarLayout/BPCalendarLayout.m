@@ -56,6 +56,9 @@
                            (CGRectGetMaxY(lastCellAttrs.frame) - headerHeight)
                            );
             
+            if (contentOffset.y < 0)
+                origin.y = contentOffset.y;
+            
             layoutAttributes.zIndex = 1024;
             layoutAttributes.frame = (CGRect){
                 .origin = origin,

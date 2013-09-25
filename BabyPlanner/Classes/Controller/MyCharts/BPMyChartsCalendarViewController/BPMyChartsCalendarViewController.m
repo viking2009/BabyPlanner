@@ -15,6 +15,7 @@
 #import "NSDate-Utilities.h"
 #import "BPDatesManager.h"
 #import "BPDate+Additions.h"
+#import "BPSettings+Additions.h"
 
 #define BPCalendarCellIdentifier @"BPCalendarCellIdentifier"
 #define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
@@ -64,6 +65,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.delaysContentTouches = NO;
+//    self.collectionView.bounces = NO;
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
@@ -135,8 +137,10 @@
     else
         cell.backgroundView.backgroundColor = RGBA(138, 220, 208, 0.85);
 
-    if (indexPath.item == 27)
-        cell.childBirth = @YES;
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+    NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
+    
+    cell.childBirth = @([cell.date.date isEqualToDateIgnoringTime:birthday]);
     
     return cell;
 }
@@ -160,10 +164,11 @@
     } else {
         BPCalendarFooter *calendarFooter = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarFooterIdentifier forIndexPath:indexPath];
 
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
+    
         calendarFooter.date = self.selectedDate;
-        
-        NSIndexPath *indexPath = collectionView.indexPathsForSelectedItems.lastObject;
-        calendarFooter.childBirth = @(indexPath.item == 27);
+        calendarFooter.childBirth = @([self.selectedDate.date isEqualToDateIgnoringTime:birthday]);
         
         [calendarFooter updateUI];
         
