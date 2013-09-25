@@ -9,6 +9,7 @@
 #import "BPDateIndicatorsView.h"
 #import "BPLanguageManager.h"
 #import "BPUtils.h"
+#import "BPDate+Additions.h"
 
 #define BPDateIndicatorsViewDayTop              50.f
 #define BPDateIndicatorsViewFirstLine           110.f
@@ -112,110 +113,53 @@
     self.ovulationView.frame = CGRectMake(centerX - floorf(self.ovulationView.image.size.width/2) + 10.f, top, self.ovulationView.image.size.width, self.ovulationView.image.size.height);
 }
 
-- (void)setDay:(NSNumber *)day
+- (void)setDate:(BPDate *)date
 {
-    if (_day != day) {
-        _day = day;
-        
-        [self refreshDay];
-    }
-}
-
-- (void)setPregnant:(NSNumber *)pregnant
-{
-    if (_pregnant != pregnant) {
-        _pregnant = pregnant;
+//    if (_date != date) {
+        _date = date;
         
         NSString *imageName = @"mytemperature_main_icon_pregnant";
-        if ([pregnant boolValue])
+        if ([_date.pregnant boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-        
         self.pregnantView.image = [BPUtils imageNamed:imageName];
-    }
-}
-
-- (void)setMenstruation:(NSNumber *)menstruation
-{
-    if (_menstruation != menstruation) {
-        _menstruation = menstruation;
         
-        NSString *imageName = @"mytemperature_main_icon_menstruation";
-        if ([menstruation boolValue])
+        imageName = @"mytemperature_main_icon_menstruation";
+        if ([_date.menstruation boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-
         self.menstruationView.image = [BPUtils imageNamed:imageName];
-    }
-}
-
-- (void)setTemperature:(NSNumber *)temperature
-{
-    if (_temperature != temperature) {
-        _temperature = temperature;
         
-        [self refreshTemperature];
-    }
-}
-
-- (void)setBoy:(NSNumber *)boy
-{
-    if (_boy != boy) {
-        _boy = boy;
-        
-        NSString *imageName = @"mytemperature_main_icon_boy";
-        if ([boy boolValue])
+        imageName = @"mytemperature_main_icon_boy";
+        if ([_date.boy boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-        
         self.boyView.image = [BPUtils imageNamed:imageName];
-    }
-}
 
-- (void)setGirl:(NSNumber *)girl
-{
-    if (_girl != girl) {
-        _girl = girl;
-        
-        NSString *imageName = @"mytemperature_main_icon_girl";
-        if ([girl boolValue])
+        imageName = @"mytemperature_main_icon_girl";
+        if ([_date.girl boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-        
         self.girlView.image = [BPUtils imageNamed:imageName];
-    }
-}
 
-- (void)setSexualIntercourse:(NSNumber *)sexualIntercourse
-{
-    if (_sexualIntercourse != sexualIntercourse) {
-        _sexualIntercourse = sexualIntercourse;
-        
-        NSString *imageName = @"mytemperature_main_icon_sexualintercourse";
-        if ([sexualIntercourse boolValue])
+        imageName = @"mytemperature_main_icon_sexualintercourse";
+        if ([_date.sexualIntercourse boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-        
         self.sexualIntercourseView.image = [BPUtils imageNamed:imageName];
-    }
-}
 
-- (void)setOvulation:(NSNumber *)ovulation
-{
-    if (_ovulation != ovulation) {
-        _ovulation = ovulation;
-        
-        NSString *imageName = @"mytemperature_main_icon_ovulation";
-        if ([ovulation boolValue])
+        imageName = @"mytemperature_main_icon_ovulation";
+        if ([_date.ovulation boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
-        
         self.ovulationView.image = [BPUtils imageNamed:imageName];
-    }
+
+        [self updateUI];
+//    }
 }
 
 - (void)refreshDay
 {
-    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %@"), self.day];
+    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %@"), self.date.day];
 }
 
 - (void)refreshTemperature
 {
-    self.temperatureLabel.text = [BPUtils temperatureFromNumber:self.temperature];
+    self.temperatureLabel.text = [BPUtils temperatureFromNumber:self.date.temperature];
 }
 
 - (void)updateUI

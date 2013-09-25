@@ -164,14 +164,7 @@
     
     BPDate *date = [self datesManager][selectedDay];
 
-    self.indicatorsView.day = date.day;
-    self.indicatorsView.pregnant = date.pregnant;
-    self.indicatorsView.menstruation = date.menstruation;
-    self.indicatorsView.temperature = date.temperature;
-    self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
-    self.indicatorsView.ovulation = date.ovulation;
-    self.indicatorsView.boy = date.boy;
-    self.indicatorsView.girl = date.girl;
+    self.indicatorsView.date = date;
     
 //    BPSettings *sharedSettings = [BPSettings sharedSettings];
 //    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
@@ -261,14 +254,7 @@
     DLog();
     BPDate *date = self.datesManager[indexPath.item];
     
-    self.indicatorsView.day = date.day;
-    self.indicatorsView.pregnant = date.pregnant;
-    self.indicatorsView.menstruation = date.menstruation;
-    self.indicatorsView.temperature = date.temperature;
-    self.indicatorsView.sexualIntercourse = date.sexualIntercourse;
-    self.indicatorsView.ovulation = date.ovulation;
-    self.indicatorsView.boy = date.boy;
-    self.indicatorsView.girl = date.girl;
+    self.indicatorsView.date = date;
     
 //    BPSettings *sharedSettings = [BPSettings sharedSettings];
 //    self.indicatorsView.boy = sharedSettings[BPSettingsProfileBoyKey];
