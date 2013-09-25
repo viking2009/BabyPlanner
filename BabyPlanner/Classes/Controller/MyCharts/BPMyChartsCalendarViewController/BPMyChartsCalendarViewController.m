@@ -89,22 +89,22 @@
     BPCalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCalendarCellIdentifier forIndexPath:indexPath];
 
     if (indexPath.item < 10)
-        cell.backgroundView.backgroundColor = [UIColor greenColor];
+        cell.backgroundView.backgroundColor = RGBA(138, 220, 208, 0.85);
     else if (indexPath.item < 13)
-        cell.backgroundView.backgroundColor = [UIColor orangeColor];
+        cell.backgroundView.backgroundColor = RGBA(235, 72, 0, 0.85);
     else if (indexPath.item == 13) {
-        cell.backgroundView.backgroundColor = [UIColor redColor];
+        cell.backgroundView.backgroundColor = RGBA(230, 11, 5, 0.85);
         cell.sexualIntercourse = @YES;
         cell.ovulation = @YES;
     }
     else if (indexPath.item < 17)
-        cell.backgroundView.backgroundColor = [UIColor orangeColor];
+        cell.backgroundView.backgroundColor = RGBA(235, 72, 0, 0.85);
     else if (indexPath.item < 26)
-        cell.backgroundView.backgroundColor = [UIColor greenColor];
+        cell.backgroundView.backgroundColor = RGBA(138, 220, 208, 0.85);
     else if (indexPath.item == 26)
-        cell.backgroundView.backgroundColor = [UIColor yellowColor];
+        cell.backgroundView.backgroundColor = RGBA(231, 231, 141, 0.9);
     else
-        cell.backgroundView.backgroundColor = [UIColor greenColor];
+        cell.backgroundView.backgroundColor = RGBA(138, 220, 208, 0.85);
     
     cell.dayLabel.text = [NSString stringWithFormat:@"%i", (indexPath.item % 30 + 1)];
     cell.dayLabel.textColor = (indexPath.item < 28 ? RGB(255, 255, 255) : RGB(42, 192, 169));
