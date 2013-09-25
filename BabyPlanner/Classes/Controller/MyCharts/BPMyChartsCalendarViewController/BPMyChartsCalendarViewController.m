@@ -92,8 +92,11 @@
         cell.backgroundView.backgroundColor = [UIColor greenColor];
     else if (indexPath.item < 13)
         cell.backgroundView.backgroundColor = [UIColor orangeColor];
-    else if (indexPath.item == 13)
+    else if (indexPath.item == 13) {
         cell.backgroundView.backgroundColor = [UIColor redColor];
+        cell.sexualIntercourse = @YES;
+        cell.ovulation = @YES;
+    }
     else if (indexPath.item < 17)
         cell.backgroundView.backgroundColor = [UIColor orangeColor];
     else if (indexPath.item < 26)
@@ -103,9 +106,23 @@
     else
         cell.backgroundView.backgroundColor = [UIColor greenColor];
     
-    cell.dayLabel.text = [NSString stringWithFormat:@"%i", indexPath.item + 1];
+    cell.dayLabel.text = [NSString stringWithFormat:@"%i", (indexPath.item % 30 + 1)];
     cell.dayLabel.textColor = (indexPath.item < 28 ? RGB(255, 255, 255) : RGB(42, 192, 169));
 
+    if (indexPath.item < 3 || (indexPath.item > 27 && indexPath.item < 31))
+        cell.menstruation = @YES;
+    
+    if (indexPath.item == 25) {
+        cell.sexualIntercourse = @YES;
+        cell.pregnant = @YES;
+    }
+    
+    if (indexPath.item == 15)
+        cell.sexualIntercourse = @YES;
+    
+    if (indexPath.item == 27)
+        cell.childBirth = @YES;
+    
     return cell;
 }
 
