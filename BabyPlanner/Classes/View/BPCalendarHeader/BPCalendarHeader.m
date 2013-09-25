@@ -33,6 +33,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
+        
         UIImage *backgroundImage = [BPUtils imageNamed:@"mycharts_calendar_header_background"];
         self.backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
         [self addSubview:self.backgroundImageView];
@@ -108,6 +110,8 @@
         dayOfWeekLabel.frame = CGRectMake(-1 + idx*BPCalendarHeaderDayOfWeekLabelWidth, BPCalendarHeaderBackgroundImageHeight, BPCalendarHeaderDayOfWeekLabelWidth, dayOfWeekLabelHeight);
     }];
 }
+
+#pragma mark - UICollectionReusableView
 
 - (void)prepareForReuse
 {

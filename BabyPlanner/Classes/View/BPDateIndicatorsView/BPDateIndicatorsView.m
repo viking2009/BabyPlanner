@@ -19,7 +19,7 @@
 #define BPDateIndicatorsViewSecondLinePadding   40.f
 #define BPDateIndicatorsViewPadding             20.f
 
-@interface BPDateIndicatorsView()
+@interface BPDateIndicatorsView ()
 
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UIImageView *pregnantView;
@@ -29,9 +29,6 @@
 @property (nonatomic, strong) UIImageView *girlView;
 @property (nonatomic, strong) UIImageView *sexualIntercourseView;
 @property (nonatomic, strong) UIImageView *ovulationView;
-
-- (void)refreshDay;
-- (void)refreshTemperature;
 
 @end
 
@@ -152,20 +149,10 @@
 //    }
 }
 
-- (void)refreshDay
-{
-    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %@"), self.date.day];
-}
-
-- (void)refreshTemperature
-{
-    self.temperatureLabel.text = [BPUtils temperatureFromNumber:self.date.temperature];
-}
-
 - (void)updateUI
 {
-    [self refreshDay];
-    [self refreshTemperature];
+    self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Day %@"), self.date.day];
+    self.temperatureLabel.text = [BPUtils temperatureFromNumber:self.date.temperature];
 }
 
 @end

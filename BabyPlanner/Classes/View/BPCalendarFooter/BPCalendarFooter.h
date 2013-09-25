@@ -13,5 +13,8 @@
 @interface BPCalendarFooter : UICollectionReusableView
 
 @property (nonatomic, strong) BPDate *date;
+@property (nonatomic, strong) NSNumber *childBirth;
+
+- (void)updateUI;
 
 @end

@@ -11,6 +11,7 @@
 #import "BPDate.h"
 #import "BPUtils.h"
 #import "ObjectiveRecord.h"
+#import "BPSettings+Additions.h"
 
 @interface BPMyTemperatureNotationsViewController () <UITextViewDelegate>
 
@@ -63,11 +64,13 @@
 
 - (void)dealloc
 {
-//    self.notesView.delegate = nil;
+    self.notesView.delegate = nil;
+    [[EKKeyboardAvoidingScrollViewManager sharedInstance] unregisterScrollViewFromKeyboardAvoiding:self.notesView];
+
     self.date.notations = self.notesView.text;
     [self.date save];
-
-    [[EKKeyboardAvoidingScrollViewManager sharedInstance] unregisterScrollViewFromKeyboardAvoiding:self.notesView];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BPSettingsDidChangeNotification object:nil userInfo:nil];
 }
 
 @end

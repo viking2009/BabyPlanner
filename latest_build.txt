@@ -2,6 +2,8 @@ h2. 20130924
 
 h3. New:
 
+Task #57 My Charts: Calendar
+* demo data
 Task #59: My Charts: Cycle Details
 * segmented controller
 

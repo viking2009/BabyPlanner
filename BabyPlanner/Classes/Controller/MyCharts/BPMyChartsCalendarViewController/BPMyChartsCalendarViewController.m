@@ -9,6 +9,7 @@
 #import "BPMyChartsCalendarViewController.h"
 #import "BPCalendarCell.h"
 #import "BPCalendarHeader.h"
+#import "BPCalendarFooter.h"
 #import "BPUtils.h"
 #import "NSDate-Utilities.h"
 #import "BPDatesManager.h"
@@ -16,11 +17,13 @@
 
 #define BPCalendarCellIdentifier @"BPCalendarCellIdentifier"
 #define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
+#define BPCalendarFooterIdentifier @"BPCalendarFooterIdentifier"
 
 @interface BPMyChartsCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPCalendarHeaderDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) BPDatesManager *datesManager;
+@property (nonatomic, strong) BPDate *selectedDate;
 
 @end
 
@@ -45,7 +48,7 @@
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[collectionViewFlowLayout setItemSize:CGSizeMake(46.f, 46.f)];
 	[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320.f, 88.f)];
-	//[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320, 50)];
+	[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320.f, 150.f)];
 	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
 	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
@@ -54,7 +57,7 @@
     CGRect collectionViewRect = CGRectInset(self.view.bounds, -1, 0);
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
-//    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
     self.collectionView.backgroundView = nil;
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
@@ -64,6 +67,7 @@
 
     [self.collectionView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
     [self.collectionView registerClass:[BPCalendarHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCalendarHeaderIdentifier];
+    [self.collectionView registerClass:[BPCalendarFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BPCalendarFooterIdentifier];
     
     [self updateUI];
 }
@@ -138,51 +142,50 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"indexPath: %@", indexPath);
-    BPCalendarHeader *calendarHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarHeaderIdentifier forIndexPath:indexPath];
-    calendarHeader.delegate = self;
     
-    NSDateFormatter *dateFormatter = [BPUtils dateFormatter];
-    NSDate *now = [NSDate date];
-    calendarHeader.monthLabel.text = [dateFormatter standaloneMonthSymbols][now.month-1];
-    calendarHeader.yearLabel.text = [NSString stringWithFormat:@"%i", now.year];
-    
-    [calendarHeader updateDayOfWeekLabels];
-    
-    return calendarHeader;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        BPCalendarHeader *calendarHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarHeaderIdentifier forIndexPath:indexPath];
+        calendarHeader.delegate = self;
+        
+        NSDateFormatter *dateFormatter = [BPUtils dateFormatter];
+        NSDate *now = [NSDate date];
+        calendarHeader.monthLabel.text = [dateFormatter standaloneMonthSymbols][now.month-1];
+        calendarHeader.yearLabel.text = [NSString stringWithFormat:@"%i", now.year];
+        
+        [calendarHeader updateDayOfWeekLabels];
+        
+        return calendarHeader;
+    } else {
+        BPCalendarFooter *calendarFooter = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarFooterIdentifier forIndexPath:indexPath];
+
+        calendarFooter.date = self.selectedDate;
+        
+        NSIndexPath *indexPath = collectionView.indexPathsForSelectedItems.lastObject;
+        calendarFooter.childBirth = @(indexPath.item == 27);
+        
+        [calendarFooter updateUI];
+        
+        return calendarFooter;
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section > 0;
+    return YES;
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section > 0;
+    return YES;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if (indexPath.section == 1) {
-//        switch (indexPath.item) {
-//            case 0:
-//                [self.navigationController pushViewController:[BPSettingsLanguageViewController new] animated:YES];
-//                break;
-//            case 1:
-//                [self.navigationController pushViewController:[BPSettingsThemeViewController new] animated:YES];
-//                break;
-//            case 2:
-//                [self.navigationController pushViewController:[BPSettingsAlarmViewController new] animated:YES];
-//                break;
-//            case 3:
-//                [self.navigationController pushViewController:[BPSettingsProfileViewController new] animated:YES];
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    }
+{    
+    BPDate *date = self.datesManager[indexPath.item];
+    self.selectedDate = date;
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
