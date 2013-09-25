@@ -84,6 +84,13 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - BPBaseViewController
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

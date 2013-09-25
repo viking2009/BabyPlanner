@@ -50,4 +50,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - BPBaseViewController
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    
+}
+
 @end
