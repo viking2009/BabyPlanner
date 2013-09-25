@@ -7,6 +7,7 @@
 //
 
 #import "BPMyChartsCalendarViewController.h"
+#import "BPCalendarLayout.h"
 #import "BPCalendarCell.h"
 #import "BPCalendarHeader.h"
 #import "BPCalendarFooter.h"
@@ -45,18 +46,18 @@
     
     self.statusBarView.backgroundColor = [UIColor clearColor];
 
-    UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-	[collectionViewFlowLayout setItemSize:CGSizeMake(46.f, 46.f)];
-	[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320.f, 88.f)];
-	[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320.f, 150.f)];
-	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
-	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
-	[collectionViewFlowLayout setMinimumLineSpacing:0];
-//	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
+    BPCalendarLayout *calendarLayout = [[BPCalendarLayout alloc] init];
+	[calendarLayout setItemSize:CGSizeMake(46.f, 46.f)];
+	[calendarLayout setHeaderReferenceSize:CGSizeMake(320.f, 88.f)];
+	[calendarLayout setFooterReferenceSize:CGSizeMake(320.f, 150.f)];
+	//[calendarLayout setMinimumInteritemSpacing:20];
+	[calendarLayout setMinimumInteritemSpacing:0];
+	[calendarLayout setMinimumLineSpacing:0];
+//	[calendarLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     CGRect collectionViewRect = CGRectInset(self.view.bounds, -1, 0);
 
-    self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:calendarLayout];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
     self.collectionView.backgroundView = nil;
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -64,7 +65,7 @@
     self.collectionView.delegate = self;
     self.collectionView.delaysContentTouches = NO;
     [self.view addSubview:self.collectionView];
-
+    
     [self.collectionView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
     [self.collectionView registerClass:[BPCalendarHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCalendarHeaderIdentifier];
     [self.collectionView registerClass:[BPCalendarFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BPCalendarFooterIdentifier];
@@ -122,7 +123,8 @@
 
     BPDate *date = self.datesManager[indexPath.item];
     cell.date = date;
-    cell.dayLabel.textColor = (indexPath.item < 28 ? RGB(255, 255, 255) : RGB(42, 192, 169));
+    BOOL inCycle = ([self.datesManager indexForDate:date.date] != NSNotFound);
+    cell.dayLabel.textColor = (inCycle ? RGB(255, 255, 255) : RGB(42, 192, 169));
     
     if ([date.imageName isEqualToString:@"point_yellow"])
         cell.backgroundView.backgroundColor = RGBA(231, 231, 141, 0.9);

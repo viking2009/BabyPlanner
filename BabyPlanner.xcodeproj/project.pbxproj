@@ -22,6 +22,7 @@
 		9008D5A617F2DE9800367B90 /* BPCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5A517F2DE9800367B90 /* BPCalendarCell.m */; };
 		9008D5AA17F303DF00367B90 /* BPCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5A917F303DF00367B90 /* BPCalendarHeader.m */; };
 		9008D5AE17F31CFD00367B90 /* BPCalendarFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5AD17F31CFD00367B90 /* BPCalendarFooter.m */; };
+		9008D5B217F34CF300367B90 /* BPCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5B117F34CF300367B90 /* BPCalendarLayout.m */; };
 		900CBD0D17E8A1E600E230EE /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 900CBD0C17E8A1E600E230EE /* BPDate.m */; };
 		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
 		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
@@ -159,6 +160,8 @@
 		9008D5A917F303DF00367B90 /* BPCalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarHeader.m; sourceTree = "<group>"; };
 		9008D5AC17F31CFD00367B90 /* BPCalendarFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCalendarFooter.h; sourceTree = "<group>"; };
 		9008D5AD17F31CFD00367B90 /* BPCalendarFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarFooter.m; sourceTree = "<group>"; };
+		9008D5B017F34CF300367B90 /* BPCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCalendarLayout.h; sourceTree = "<group>"; };
+		9008D5B117F34CF300367B90 /* BPCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarLayout.m; sourceTree = "<group>"; };
 		900CBD0B17E8A1E600E230EE /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
 		900CBD0C17E8A1E600E230EE /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptom.h; sourceTree = "<group>"; };
@@ -438,6 +441,15 @@
 				9008D5AD17F31CFD00367B90 /* BPCalendarFooter.m */,
 			);
 			path = BPCalendarFooter;
+			sourceTree = "<group>";
+		};
+		9008D5AF17F34CD100367B90 /* BPCalendarLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9008D5B017F34CF300367B90 /* BPCalendarLayout.h */,
+				9008D5B117F34CF300367B90 /* BPCalendarLayout.m */,
+			);
+			path = BPCalendarLayout;
 			sourceTree = "<group>";
 		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
@@ -988,6 +1000,7 @@
 				90F082D417DE345F00EBD957 /* BPStatsCollectionViewCell */,
 				90AD89C817DE3BEF0085A015 /* BPStatsCollectionViewHeader */,
 				90AD89CC17DE3E5D0085A015 /* BPCycleInfoCell */,
+				9008D5AF17F34CD100367B90 /* BPCalendarLayout */,
 				9008D5A317F2DE3C00367B90 /* BPCalendarCell */,
 				9008D5A717F303C500367B90 /* BPCalendarHeader */,
 				9008D5AB17F31CBF00367B90 /* BPCalendarFooter */,
@@ -1408,6 +1421,7 @@
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 				90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */,
 				909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */,
+				9008D5B217F34CF300367B90 /* BPCalendarLayout.m in Sources */,
 				9008D5AE17F31CFD00367B90 /* BPCalendarFooter.m in Sources */,
 				9008D5AA17F303DF00367B90 /* BPCalendarHeader.m in Sources */,
 				909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */,
