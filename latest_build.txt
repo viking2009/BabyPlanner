@@ -11,3 +11,5 @@ h3. Improvements:
 
 Task #56: My Charts: All
 * open cycle details
+Task #62 My Charts: Cycles logic
+* start new cycle when menstruation after 20 day

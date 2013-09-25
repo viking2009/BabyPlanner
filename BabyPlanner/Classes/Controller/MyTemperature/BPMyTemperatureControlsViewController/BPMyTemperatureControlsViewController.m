@@ -445,6 +445,9 @@
                 BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
                 BPCycle *currentCycle = sharedManager.currentCycle;
                 
+                currentCycle.endDate = [self.date.date dateBySubtractingDays:1];
+                [currentCycle save];
+                
                 BPCycle *cycle = [BPCycle cycleWithIndex:@([currentCycle.index integerValue] + 1)];
                 
                 NSDate *startDate = self.date.date;
