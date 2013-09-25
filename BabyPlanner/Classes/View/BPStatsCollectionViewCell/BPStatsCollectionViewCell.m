@@ -8,6 +8,7 @@
 
 #import "BPStatsCollectionViewCell.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 @implementation BPStatsCollectionViewCell
 
@@ -32,16 +33,16 @@
 {
     [super layoutSubviews];
     
-    CGFloat maxWidth = self.contentView.frame.size.width;
+    CGFloat maxWidth = self.contentView.width;
     
     if (self.subtitleLabel.text.length) {
-        self.subtitleLabel.frame = CGRectMake(maxWidth - BPStatsCellSubtitleWidth, BPStatsCellInset, BPStatsCellSubtitleWidth, self.contentView.frame.size.height - 2*BPStatsCellInset);
-        maxWidth -= self.subtitleLabel.frame.size.width + BPDefaultCellInset;
+        self.subtitleLabel.frame = CGRectMake(maxWidth - BPStatsCellSubtitleWidth, BPStatsCellInset, BPStatsCellSubtitleWidth, self.contentView.height - 2*BPStatsCellInset);
+        maxWidth -= self.subtitleLabel.width + BPDefaultCellInset;
     } else
         self.subtitleLabel.frame = CGRectZero;
     
     if (self.titleLabel.text.length)
-        self.titleLabel.frame = CGRectMake(0, 0, maxWidth, self.contentView.frame.size.height);
+        self.titleLabel.frame = CGRectMake(0, 0, maxWidth, self.contentView.height);
     else
         self.titleLabel.frame = CGRectZero;
 }

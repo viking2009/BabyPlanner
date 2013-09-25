@@ -8,6 +8,7 @@
 
 #import "BPSegmentCell.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 #define BPDefaultSegmentWidth 152.f
 #define BPDefaultSegmentHeight 28.f
@@ -33,12 +34,12 @@
     [super layoutSubviews];
     
     self.titleLabel.frame = CGRectMake(BPDefaultCellInset, 0,
-                                       self.contentView.frame.size.width - BPDefaultSegmentWidth - 3*BPDefaultCellInset,
-                                       self.contentView.frame.size.height);
+                                       self.contentView.width - BPDefaultSegmentWidth - 3*BPDefaultCellInset,
+                                       self.contentView.height);
     
-    self.segmentView.frame = CGRectMake(self.contentView.frame.size.width - self.segmentView.frame.size.width - BPDefaultCellInset,
-                                       floorf(self.contentView.frame.size.height/2 - BPDefaultSegmentHeight/2) - 2.f,
-                                       self.segmentView.frame.size.width, self.segmentView.frame.size.height);
+    self.segmentView.frame = CGRectMake(self.contentView.width - self.segmentView.width - BPDefaultCellInset,
+                                       floorf(self.contentView.height/2 - BPDefaultSegmentHeight/2) - 2.f,
+                                       self.segmentView.width, self.segmentView.height);
 }
 
 - (void)setSegmentView:(SVSegmentedControl *)segmentView

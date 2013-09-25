@@ -11,6 +11,7 @@
 #import "BPUtils.h"
 #import "ObjectiveRecord.h"
 #import "BPSymptom.h"
+#import "UIView+Sizes.h"
 
 #define BPSymptomsAndMoodCollectionViewCellIdentifier @"BPSymptomsAndMoodCollectionViewCellIdentifier"
 
@@ -45,7 +46,7 @@
 	// Do any additional setup after loading the view.
     
     CGRect titleLabelFrame = self.titleLabel.frame;
-    titleLabelFrame.size.width = self.view.frame.size.width - titleLabelFrame.origin.x - 8.f;
+    titleLabelFrame.size.width = self.view.width - titleLabelFrame.origin.x - 8.f;
     self.titleLabel.frame = titleLabelFrame;
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -57,7 +58,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(5, 5, 5, 5)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.allowsMultipleSelection = YES;

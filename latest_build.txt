@@ -1,15 +1,19 @@
-h2. 20130924
+h2. 2013092.
 
 h3. New:
 
-Task #57 My Charts: Calendar
-* demo data
-Task #59: My Charts: Cycle Details
-* segmented controller
+Task #58: My Charts: Diagram
 
 h3. Improvements:
 
 Task #56: My Charts: All
-* open cycle details
-Task #62 My Charts: Cycles logic
-* start new cycle when menstruation after 20 day
+* 
+Task #57 My Charts: Calendar
+* 
+Task #59: My Charts: Cycle Details
+* 
+
+h3. Fixes
+
+Task #59: My Charts: Cycle Details
+* fix iOS6 layout

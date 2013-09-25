@@ -9,6 +9,7 @@
 #import "BPPickerView.h"
 #import "UIImage+Additions.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BPPickerTableViewCell : UITableViewCell
@@ -72,7 +73,7 @@
 {
     [super drawRect:rect];
     
-    UIImage *tableBackgroundImage = [UIImage resizableImageWithGradient:@[RGBA(0, 0, 0, 0.6), RGBA(0, 0, 0, 0), RGBA(0, 0, 0, 0.6)] size:CGSizeMake(1, self.frame.size.height) direction:UIImageGradientDirectionVertical];
+    UIImage *tableBackgroundImage = [UIImage resizableImageWithGradient:@[RGBA(0, 0, 0, 0.6), RGBA(0, 0, 0, 0), RGBA(0, 0, 0, 0.6)] size:CGSizeMake(1, self.height) direction:UIImageGradientDirectionVertical];
     [tableBackgroundImage drawInRect:rect];
     
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:rect];
@@ -214,7 +215,7 @@
 
 - (void)layoutSubviews {
     
-    self.foregroundView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    self.foregroundView.center = CGPointMake(self.width/2, self.height/2);
     
     CGRect rect = self.bounds;
     
@@ -227,12 +228,12 @@
     rect.origin.y = rect.size.height;
     self.bottomGradient.frame = rect;
     
-    self.topLineView.frame = CGRectMake(0, 0, self.bounds.size.width, 1.f);
-    self.bottomLineView.frame = CGRectMake(0, 1, self.bounds.size.width, 1.f);
+    self.topLineView.frame = CGRectMake(0, 0, self.width, 1.f);
+    self.bottomLineView.frame = CGRectMake(0, 1, self.width, 1.f);
     [self bringSubviewToFront:self.topLineView];
     [self bringSubviewToFront:self.bottomLineView];
     
-    self.selectionIndicator.frame = CGRectInset(self.bounds, self.foregroundView.frame.origin.x - 1, (self.frame.size.height - 44.f) / 2);
+    self.selectionIndicator.frame = CGRectInset(self.bounds, self.foregroundView.left - 1, (self.height - 44.f) / 2);
     self.selectionIndicator.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.selectionIndicator.bounds].CGPath;
     [self bringSubviewToFront:self.selectionIndicator];
     
@@ -260,7 +261,7 @@
             self.numberOfComponents = [self.dataSource numberOfComponentsInPickerView:self];
             
             for (NSInteger i = 0; i < self.numberOfComponents; i++) {
-                BPPickerTableView *table = [[BPPickerTableView alloc] initWithFrame:CGRectMake(.0, -9.f, self.frame.size.width / self.numberOfComponents, self.frame.size.height)];
+                BPPickerTableView *table = [[BPPickerTableView alloc] initWithFrame:CGRectMake(.0, -9.f, self.width / self.numberOfComponents, self.frame.size.height)];
                 table.showsVerticalScrollIndicator = NO;
                 table.separatorStyle = UITableViewCellSeparatorStyleNone;
                 table.scrollsToTop = NO;
@@ -294,7 +295,7 @@
         
         // TODO: update
         CGFloat widthSum = .0f;
-        CGFloat selfWidth = self.frame.size.width;
+        CGFloat selfWidth = self.width;
         NSInteger tableCount = self.tables.count;
         for (NSInteger i = 0; i < tableCount; i++) {
             CGFloat width = selfWidth / tableCount;
@@ -306,7 +307,7 @@
             frame.size.width = width;
             table.frame = frame;
             
-            CGFloat height = (table.frame.size.height - [self rowSizeForComponent:i].height) / 2;
+            CGFloat height = (table.height - [self rowSizeForComponent:i].height) / 2;
             table.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(.0, .0, 1.0, height)];
             table.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(.0, .0, 1.0, height)];
             //        table.contentInset = UIEdgeInsetsMake(height, 0, height, 0);
@@ -319,7 +320,7 @@
             table.frame = frame;
             margin += frame.size.width;
         }
-        self.foregroundView.frame = CGRectMake(0, 0, widthSum, self.frame.size.height - 18.f);
+        self.foregroundView.frame = CGRectMake(0, 0, widthSum, self.height - 18.f);
     }
 }
 
@@ -331,7 +332,7 @@
 
 - (CGSize)rowSizeForComponent:(NSInteger)component {
     UITableView *table = _tables[component];
-    CGSize size = CGSizeMake(table.frame.size.width, 44.f);
+    CGSize size = CGSizeMake(table.width, 44.f);
     
     if (_pickerViewFlags.delegateRespondsToRowHeightForComponent)
         size.height = [self.delegate pickerView:self rowHeightForComponent:component];

@@ -9,6 +9,7 @@
 #import "BPSettingsCell.h"
 #import "BPUtils.h"
 #import "UIImage+Additions.h"
+#import "UIView+Sizes.h"
 
 @interface BPSettingsCell()
 
@@ -49,25 +50,25 @@
     [super layoutSubviews];
     
     CGFloat left = BPDefaultCellInset;
-    CGFloat maxWidth = self.contentView.frame.size.width - (self.accessoryView.image.size.width + 3*BPDefaultCellInset);
+    CGFloat maxWidth = self.contentView.width - (self.accessoryView.image.size.width + 3*BPDefaultCellInset);
     
     if (self.titleLabel.text.length) {
-        self.titleLabel.frame = CGRectMake(left, 0, 120.f, self.contentView.frame.size.height);
-        left += self.titleLabel.frame.size.width + BPDefaultCellInset;
-        maxWidth -= self.titleLabel.frame.size.width + BPDefaultCellInset;
+        self.titleLabel.frame = CGRectMake(left, 0, 120.f, self.contentView.height);
+        left += self.titleLabel.width + BPDefaultCellInset;
+        maxWidth -= self.titleLabel.width + BPDefaultCellInset;
     } else {
         self.titleLabel.frame = CGRectZero;
     }
     
     if (self.subtitleLabel.text.length) {
-        self.subtitleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.frame.size.height);
-        left += self.subtitleLabel.frame.size.width + BPDefaultCellInset;
+        self.subtitleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.height);
+        left += self.subtitleLabel.width + BPDefaultCellInset;
     } else {
         self.subtitleLabel.frame = CGRectZero;
     }
     
-    self.accessoryView.frame = CGRectMake(self.contentView.frame.size.width - self.accessoryView.image.size.width - BPDefaultCellInset,
-                                          floorf(self.contentView.frame.size.height/2 - self.accessoryView.image.size.height/2),
+    self.accessoryView.frame = CGRectMake(self.contentView.width - self.accessoryView.image.size.width - BPDefaultCellInset,
+                                          floorf(self.contentView.height/2 - self.accessoryView.image.size.height/2),
                                           self.accessoryView.image.size.width, self.accessoryView.image.size.height);
 }
 

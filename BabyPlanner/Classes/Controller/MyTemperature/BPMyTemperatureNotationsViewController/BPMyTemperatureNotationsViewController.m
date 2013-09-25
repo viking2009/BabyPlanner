@@ -12,6 +12,7 @@
 #import "BPUtils.h"
 #import "ObjectiveRecord.h"
 #import "BPSettings+Additions.h"
+#import "UIView+Sizes.h"
 
 @interface BPMyTemperatureNotationsViewController () <UITextViewDelegate>
 
@@ -36,7 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    CGRect notesViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect notesViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.notesView = [[UITextView alloc] initWithFrame:notesViewRect];
     self.notesView.backgroundColor = [UIColor clearColor];
@@ -48,7 +49,7 @@
     [self.view addSubview:self.notesView];
     
     UIImageView *notesHeader = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"notes_header"]];
-    notesHeader.frame = CGRectMake(self.notesView.frame.origin.x, self.notesView.frame.origin.y, notesHeader.image.size.width, notesHeader.image.size.height);
+    notesHeader.frame = CGRectMake(self.notesView.left, self.notesView.top, notesHeader.image.size.width, notesHeader.image.size.height);
     [self.view insertSubview:notesHeader belowSubview:self.navigationImageView];
     
     [[EKKeyboardAvoidingScrollViewManager sharedInstance] registerScrollViewForKeyboardAvoiding:self.notesView];

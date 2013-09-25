@@ -21,6 +21,7 @@
 #import "BPDate.h"
 #import "ObjectiveSugar.h"
 #import "UINavigationController+Transition.h"
+#import "UIView+Sizes.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -64,7 +65,7 @@
     
     self.view.clipsToBounds = YES;
     
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 8.f)];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 8.f)];
     topView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     topView.backgroundColor = RGB(13, 134, 116);
     [self.view addSubview:topView];
@@ -74,25 +75,25 @@
     self.leftFlagView.imageView.image = redFlagImage;
 
     UIImage *pinkFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_pink"];
-    self.rightFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - pinkFlagImage.size.width -  6.f, 20.f, pinkFlagImage.size.width, pinkFlagImage.size.height)];
+    self.rightFlagView = [[BPFlagView alloc] initWithFrame:CGRectMake(self.view.width - pinkFlagImage.size.width -  6.f, 20.f, pinkFlagImage.size.width, pinkFlagImage.size.height)];
     self.rightFlagView.imageView.image = pinkFlagImage;
     self.rightFlagView.hidden = YES;
     // TODO: add property for controller
 
     UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
-    bottomView.frame = CGRectMake(0.f, self.view.bounds.size.height - 55.f - self.tabBarController.tabBar.frame.size.height, bottomView.image.size.width, bottomView.image.size.height);
+    bottomView.frame = CGRectMake(0.f, self.view.height - 55.f - self.tabBarController.tabBar.height, bottomView.image.size.width, bottomView.image.size.height);
     [self.view addSubview:bottomView];
     
     self.myControlsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *myControlsButtonBackgroundImage = [BPUtils imageNamed:@"mytemperature_main_button_edit"];
     [self.myControlsButton setBackgroundImage:myControlsButtonBackgroundImage forState:UIControlStateNormal];
-    self.myControlsButton.frame = CGRectMake(self.view.bounds.size.width - 61.f, self.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height - myControlsButtonBackgroundImage.size.height - 8.f, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
+    self.myControlsButton.frame = CGRectMake(self.view.width - 61.f, self.view.height - self.tabBarController.tabBar.height - myControlsButtonBackgroundImage.size.height - 8.f, myControlsButtonBackgroundImage.size.width, myControlsButtonBackgroundImage.size.height);
     [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.myControlsButton];
     
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_girl"]];
 
-    CGFloat offset = MAX(330.f, self.view.bounds.size.height - self.girlView.image.size.height);
+    CGFloat offset = MAX(330.f, self.view.height - self.girlView.image.size.height);
     
     UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_bubble"]];
     bubbleView.frame = CGRectMake(3, offset, bubbleView.image.size.width, bubbleView.image.size.height);
@@ -117,7 +118,7 @@
     collectionViewCircleLayout.itemSize = CGSizeMake(BPCircleCellImageSize, BPCircleCellImageSize);
     collectionViewCircleLayout.distance = 18.f;
     
-    CGRect collectionViewRect = CGRectMake(0, MAX(32.f, self.girlView.frame.origin.y - self.view.bounds.size.width) - 10.f, self.view.bounds.size.width, self.view.bounds.size.width);
+    CGRect collectionViewRect = CGRectMake(0, MAX(32.f, self.girlView.top - self.view.width) - 10.f, self.view.width, self.view.width);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewCircleLayout];
     self.collectionView.backgroundView = nil;
@@ -282,7 +283,7 @@
                                                               [weakSelf updateUI];
                                                           }
                                                           animations:^(UIView *fromView, UIView *toView) {
-                                                              fromView.frame = CGRectOffset(toView.bounds, 0, toView.bounds.size.height);
+                                                              fromView.frame = CGRectOffset(toView.bounds, 0, toView.height);
                                                           }
                                                           completion:^(UIView *fromView, UIView *toView) {
                                                               //
@@ -291,7 +292,7 @@
 
     [self.navigationController pushViewController:controlsController duration:0.3f
                                        prelayouts:^(UIView *fromView, UIView *toView) {
-                                           toView.frame = CGRectOffset(fromView.bounds, 0, fromView.bounds.size.height);
+                                           toView.frame = CGRectOffset(fromView.bounds, 0, fromView.height);
                                        }
                                        animations:^(UIView *fromView, UIView *toView) {
                                            toView.frame = fromView.frame;

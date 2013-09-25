@@ -13,6 +13,7 @@
 
 #import "BPSettings+Additions.h"
 #import "BPLanguageManager.h"
+#import "UIView+Sizes.h"
 
 @interface BPSettingsLanguageViewController ()
 
@@ -57,7 +58,7 @@
     self.girlView.frame = CGRectMake(85, 146, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     

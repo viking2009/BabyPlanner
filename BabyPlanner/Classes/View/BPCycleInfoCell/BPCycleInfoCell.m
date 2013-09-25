@@ -9,6 +9,7 @@
 #import "BPCycleInfoCell.h"
 #import "BPUtils.h"
 #import "UIImage+Additions.h"
+#import "UIView+Sizes.h"
 
 #define BPCycleInfoCounterWidth 24.f
 #define BPCycleInfoTitleWidth   150.f
@@ -67,30 +68,30 @@
     CGFloat left = BPDefaultCellInset;
     
     if (self.counterLabel.text.length) {
-        self.counterLabel.frame = CGRectMake(left, 0, BPCycleInfoCounterWidth, self.contentView.frame.size.height);
-        left += self.counterLabel.frame.size.width + floorf(BPDefaultCellInset/2);
+        self.counterLabel.frame = CGRectMake(left, 0, BPCycleInfoCounterWidth, self.contentView.height);
+        left += self.counterLabel.width + floorf(BPDefaultCellInset/2);
     } else
         self.counterLabel.frame = CGRectZero;
     
     if (self.titleLabel.text.length)
-        self.titleLabel.frame = CGRectMake(left, 0, BPCycleInfoTitleWidth, self.contentView.frame.size.height);
+        self.titleLabel.frame = CGRectMake(left, 0, BPCycleInfoTitleWidth, self.contentView.height);
     else
         self.titleLabel.frame = CGRectZero;
 
-    self.accessoryView.frame = CGRectMake(self.contentView.frame.size.width - self.accessoryView.image.size.width - BPDefaultCellInset,
-                                          floorf(self.contentView.frame.size.height/2 - self.accessoryView.image.size.height/2),
+    self.accessoryView.frame = CGRectMake(self.contentView.width - self.accessoryView.image.size.width - BPDefaultCellInset,
+                                          floorf(self.contentView.height/2 - self.accessoryView.image.size.height/2),
                                           self.accessoryView.image.size.width, self.accessoryView.image.size.height);
     
     if (self.subtitleLabel.text.length)
-        self.subtitleLabel.frame = CGRectMake(self.accessoryView.frame.origin.x - BPDefaultCellInset - BPCycleInfoSubtitleWidth, 0, BPCycleInfoSubtitleWidth, self.contentView.frame.size.height);
+        self.subtitleLabel.frame = CGRectMake(self.accessoryView.left - BPDefaultCellInset - BPCycleInfoSubtitleWidth, 0, BPCycleInfoSubtitleWidth, self.contentView.height);
     else
         self.subtitleLabel.frame = CGRectZero;
     
     left = floorf(2.5f*BPDefaultCellInset + BPCycleInfoCounterWidth + BPCycleInfoTitleWidth);
-    CGFloat imageWidth = self.accessoryView.frame.origin.x - (left + 2*BPDefaultCellInset + BPCycleInfoSubtitleWidth);
+    CGFloat imageWidth = self.accessoryView.left - (left + 2*BPDefaultCellInset + BPCycleInfoSubtitleWidth);
     
     if (self.imageView.image)
-        self.imageView.frame = CGRectMake(left, 0, imageWidth, self.contentView.frame.size.height);
+        self.imageView.frame = CGRectMake(left, 0, imageWidth, self.contentView.height);
     else
         self.imageView.frame = CGRectZero;
 }

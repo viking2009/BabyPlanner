@@ -9,6 +9,7 @@
 #import "BPViewController.h"
 #import "BPUtils.h"
 #import "BPThemeManager.h"
+#import "UIView+Sizes.h"
 
 @interface BPViewController ()
 
@@ -36,7 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.navigationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20.f, self.view.bounds.size.width, 47.f)];
+    self.navigationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20.f, self.view.width, 47.f)];
     [self.view addSubview:self.navigationImageView];
     
     if (!self.navigationItem.hidesBackButton) {
@@ -46,13 +47,13 @@
         self.backButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
         [self.backButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
         [self.backButton setTitleShadowColor:RGBA(0, 0, 0, 0.5) forState:UIControlStateNormal];
-        self.backButton.frame = CGRectMake(8.f, self.navigationImageView.frame.origin.y + 7.f, 52.f, 32.f);
+        self.backButton.frame = CGRectMake(8.f, self.navigationImageView.top + 7.f, 52.f, 32.f);
         [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
 //        self.backButton.adjustsImageWhenHighlighted = YES;
         [self.view addSubview:self.backButton];
     }
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.bounds.size.width - 2*68.f, 44.f)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.width - 2*68.f, 44.f)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:19];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

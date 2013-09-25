@@ -8,6 +8,7 @@
 
 #import "BPSwitchCell.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 #define BPDefaultSwitchWidth 76.f
 #define BPDefaultSwitchHeight 28.f
@@ -58,32 +59,32 @@
     [super layoutSubviews];
     
     CGFloat left = BPDefaultCellInset;
-    CGFloat right = self.contentView.frame.size.width - BPDefaultCellInset - BPDefaultSwitchWidth;
-    CGFloat maxWidth = self.contentView.frame.size.width - BPDefaultSwitchWidth - 3*BPDefaultCellInset;
+    CGFloat right = self.contentView.width - BPDefaultCellInset - BPDefaultSwitchWidth;
+    CGFloat maxWidth = self.contentView.width - BPDefaultSwitchWidth - 3*BPDefaultCellInset;
     
     if (self.imageView.image) {
-        self.imageView.frame = CGRectMake(left, floorf(self.contentView.frame.size.height/2 - self.imageView.image.size.height/2), self.imageView.image.size.width, self.imageView.image.size.height);
-        left += self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
-        maxWidth -= self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
+        self.imageView.frame = CGRectMake(left, floorf(self.contentView.height/2 - self.imageView.image.size.height/2), self.imageView.image.size.width, self.imageView.image.size.height);
+        left += self.imageView.width + BPDefaultCellInset - 2.f;
+        maxWidth -= self.imageView.width + BPDefaultCellInset - 2.f;
     } else {
         self.imageView.frame = CGRectZero;
     }
     
     if (self.subtitleLabel.text.length) {
-        self.subtitleLabel.frame = CGRectMake(right - BPDefaultCellInset - BPDefaultSubtitleWidth, 0, BPDefaultSubtitleWidth, self.contentView.frame.size.height);
-        maxWidth -= self.subtitleLabel.frame.size.width + BPDefaultCellInset;
+        self.subtitleLabel.frame = CGRectMake(right - BPDefaultCellInset - BPDefaultSubtitleWidth, 0, BPDefaultSubtitleWidth, self.contentView.height);
+        maxWidth -= self.subtitleLabel.width + BPDefaultCellInset;
     } else {
         self.subtitleLabel.frame = CGRectZero;
     }
     
     if (self.titleLabel.text.length) {
-        self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.frame.size.height);
-        left += self.titleLabel.frame.size.width + BPDefaultCellInset;
+        self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.height);
+        left += self.titleLabel.width + BPDefaultCellInset;
     } else {
         self.titleLabel.frame = CGRectZero;
     }
     
-    self.toggleView.frame = CGRectMake(right, floorf(self.contentView.frame.size.height/2 - BPDefaultSwitchHeight/2),
+    self.toggleView.frame = CGRectMake(right, floorf(self.contentView.height/2 - BPDefaultSwitchHeight/2),
                                        BPDefaultSwitchWidth, BPDefaultSwitchHeight);
 }
 

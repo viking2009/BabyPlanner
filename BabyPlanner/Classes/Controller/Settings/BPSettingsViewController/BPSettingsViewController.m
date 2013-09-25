@@ -19,6 +19,7 @@
 #import "BPLanguageManager.h"
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
+#import "UIView+Sizes.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
@@ -60,7 +61,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;

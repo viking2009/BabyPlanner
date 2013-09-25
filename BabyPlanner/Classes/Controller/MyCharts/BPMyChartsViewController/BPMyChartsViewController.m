@@ -16,6 +16,7 @@
 #import "BPCyclesManager.h"
 #import "BPCycle+Additions.h"
 #import "BPMyChartsDetailsViewController.h"
+#import "UIView+Sizes.h"
 
 #define BPStatsCollectionViewCellIdentifier @"BPStatsCollectionViewCellIdentifier"
 #define BPCycleInfoCellIdentifier @"BPCycleInfoCellIdentifier"
@@ -57,7 +58,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;
@@ -245,7 +246,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return (section == 0 ? CGSizeMake(collectionView.frame.size.width, 36.f) : CGSizeZero);
+    return (section == 0 ? CGSizeMake(collectionView.width, 36.f) : CGSizeZero);
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "BPTextField.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 //#define USE_FIXED_BOUND
 
@@ -99,7 +100,7 @@
     [super layoutSubviews];
     
     if (self.number) {
-        CGFloat inset = floorf(self.frame.size.height/2 - self.indicatorView.image.size.height/2);
+        CGFloat inset = floorf(self.height/2 - self.indicatorView.image.size.height/2);
         self.indicatorView.frame = CGRectMake(inset, inset, self.number * self.indicatorView.image.size.width, self.indicatorView.image.size.height);
     }
     else

@@ -15,6 +15,7 @@
 
 #import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
+#import "UIView+Sizes.h"
 
 #define BPProfileControlsSpacing 5.f
 #define BPProfileControlsMargin 8.f
@@ -90,39 +91,39 @@
 //    [self.view addSubview:self.selectLabel];
 
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_myprofile_girl"]];
-    self.girlView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.girlView.image.size.width/2), MAX(260.f, self.view.bounds.size.height - self.girlView.image.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(floorf(self.view.width/2 - self.girlView.image.size.width/2), MAX(260.f, self.view.height - self.girlView.image.size.height), self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
-    bubbleView.frame = CGRectMake(25.f, self.girlView.frame.origin.y + 24.f, bubbleView.image.size.width, bubbleView.image.size.height);
+    bubbleView.frame = CGRectMake(25.f, self.girlView.top + 24.f, bubbleView.image.size.width, bubbleView.image.size.height);
     self.selectLabel.frame = CGRectOffset(bubbleView.frame, 0, -10.f);
 
-    CGFloat top = /*MAX(0, self.girlView.frame.origin.y - 390.f) +*/ 64.f + 3.f + BPProfileControlsSpacing;
+    CGFloat top = /*MAX(0, self.girlView.top - 390.f) +*/ 64.f + 3.f + BPProfileControlsSpacing;
     CGFloat left = BPProfileControlsMargin;
-    CGFloat maxWidth = self.view.frame.size.width - 2*BPProfileControlsMargin - BPProfileLabelWidth - BPProfileControlsSpacing;
+    CGFloat maxWidth = self.view.width - 2*BPProfileControlsMargin - BPProfileLabelWidth - BPProfileControlsSpacing;
     
     self.nameLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
+    top += self.nameLabel.height + BPProfileControlsSpacing;
     
     self.birthdayLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
+    top += self.nameLabel.height + BPProfileControlsSpacing;
 
     self.weightLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    top += self.nameLabel.frame.size.height + BPProfileControlsSpacing;
+    top += self.nameLabel.height + BPProfileControlsSpacing;
 
     self.heightLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    top += self.heightLabel.frame.size.height + BPProfileControlsSpacing;
+    top += self.heightLabel.height + BPProfileControlsSpacing;
 
     left += BPProfileLabelWidth + BPProfileControlsSpacing + BPProfileTextFieldSmallWidth + BPProfileControlsSpacing;
-    self.kgLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
-    self.cmLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.kgLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.weightLabel.top, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.cmLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, self.heightLabel.top, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
 
     left = BPProfileControlsMargin + BPProfileLabelWidth + BPProfileControlsSpacing;
 
-    self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
+    self.nameTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.nameLabel.top, maxWidth, BPTextFieldHeigth)];
     self.nameTextField.delegate = self;
     [self.nameTextField addTarget:self action:@selector(textFieldTextChanged:) forControlEvents:UIControlEventEditingChanged];
     
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BPSettingsToolbarHeight)];
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, BPSettingsToolbarHeight)];
     [toolBar setBackgroundImage:[BPUtils imageNamed:@"toolbar_background"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     
     UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -154,13 +155,13 @@
     toolBar.items = @[cancelItem, flexibleItem, doneItem];
     self.nameTextField.inputAccessoryView = toolBar;
     
-    self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.frame.origin.y, maxWidth, BPTextFieldHeigth)];
+    self.birthdayTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.birthdayLabel.top, maxWidth, BPTextFieldHeigth)];
     self.birthdayTextField.delegate = self;
     
-    self.weightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.weightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.weightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.weightLabel.top, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.weightTextField.delegate = self;
     
-    self.heightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.heightLabel.frame.origin.y, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
+    self.heightTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, self.heightLabel.top, BPProfileTextFieldSmallWidth, BPTextFieldHeigth)];
     self.heightTextField.delegate = self;
     
     self.lengthOfCycleButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
@@ -168,26 +169,26 @@
     [self.lengthOfCycleButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     self.lastMenstruationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.lastMenstruationButton.frame = CGRectMake(self.view.frame.size.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    self.lastMenstruationButton.frame = CGRectMake(self.view.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
     [self.lastMenstruationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    top += self.lastMenstruationButton.frame.size.height + BPProfileControlsSpacing;
+    top += self.lastMenstruationButton.height + BPProfileControlsSpacing;
     
     left = BPProfileControlsMargin;
     self.menstruationLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, BPProfileLabelWidth, BPTextFieldHeigth)];
-    left += self.menstruationLabel.frame.size.width + BPProfileControlsSpacing;
+    left += self.menstruationLabel.width + BPProfileControlsSpacing;
     
     self.menstruationTextField = [[BPTextField alloc] initWithFrame:CGRectMake(left, top, BPProfileMenstruationTextFieldWidth, BPTextFieldHeigth)];
     self.menstruationTextField.delegate = self;
-    left += self.menstruationTextField.frame.size.width + BPProfileControlsMargin;
+    left += self.menstruationTextField.width + BPProfileControlsMargin;
     
-    self.daysLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, self.view.frame.size.width - left - BPProfileControlsMargin, BPTextFieldHeigth)];
+    self.daysLabel = [[BPLabel alloc] initWithFrame:CGRectMake(left, top, self.view.width - left - BPProfileControlsMargin, BPTextFieldHeigth)];
     
-    top += self.menstruationLabel.frame.size.height + BPProfileControlsSpacing;
+    top += self.menstruationLabel.height + BPProfileControlsSpacing;
     
     UIImage *checkBoxNormalImage = [BPUtils imageNamed:@"checkbox_normal"];
     UIImage *checkBoxSelectedImage = [BPUtils imageNamed:@"checkbox_selected"];
     
-    left = self.heightTextField.frame.origin.x + self.heightTextField.frame.size.width - checkBoxNormalImage.size.width;
+    left = self.heightTextField.left + self.heightTextField.width - checkBoxNormalImage.size.width;
     self.pregnancyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.pregnancyButton.frame = CGRectMake(left, top, checkBoxNormalImage.size.width, checkBoxNormalImage.size.height);
     [self.pregnancyButton setBackgroundImage:checkBoxNormalImage forState:UIControlStateNormal];
@@ -196,20 +197,20 @@
     self.pregnancyButton.adjustsImageWhenHighlighted = NO;
     [self.pregnancyButton addTarget:self action:@selector(togglePregnancy:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.pregnancyLabel = [[BPLabel alloc] initWithFrame:CGRectMake(BPProfileControlsMargin, top, self.pregnancyButton.frame.origin.x - BPProfileControlsSpacing - BPProfileControlsMargin, checkBoxNormalImage.size.height)];
+    self.pregnancyLabel = [[BPLabel alloc] initWithFrame:CGRectMake(BPProfileControlsMargin, top, self.pregnancyButton.left - BPProfileControlsSpacing - BPProfileControlsMargin, checkBoxNormalImage.size.height)];
     
-    top += self.pregnancyButton.frame.size.height + BPProfileControlsSpacing;
+    top += self.pregnancyButton.height + BPProfileControlsSpacing;
     
     self.lastOvulationButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
     self.lastOvulationButton.frame = CGRectMake(BPProfileControlsSpacing, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
     [self.lastOvulationButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     self.childBirthButton = [BPSelectButton buttonWithType:UIButtonTypeCustom];
-    self.childBirthButton.frame = CGRectMake(self.view.frame.size.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
+    self.childBirthButton.frame = CGRectMake(self.view.width - BPProfileControlsSpacing - BPProfileSelectButtonWidth, top, BPProfileSelectButtonWidth, BPSelectButtonHeigth);
     [self.childBirthButton addTarget:self action:@selector(selectButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-//    top += self.childBirthButton.frame.size.height + BPProfileControlsSpacing;
+//    top += self.childBirthButton.height + BPProfileControlsSpacing;
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.pickerView addTarget:self action:@selector(pickerViewValueDidBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
     [self.pickerView addTarget:self action:@selector(pickerViewValueDidEndEditing) forControlEvents:UIControlEventEditingDidEnd];

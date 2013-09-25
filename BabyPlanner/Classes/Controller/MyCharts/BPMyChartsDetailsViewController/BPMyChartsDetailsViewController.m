@@ -8,6 +8,7 @@
 
 #import "BPMyChartsDetailsViewController.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 #define kBPSegmentButtonWidth   65.f
 #define kBPSegmentButtonHeight  30.f
@@ -48,12 +49,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    CGFloat navigationImageViewHeight = self.navigationImageView.frame.size.height - 3.f;
+    CGFloat navigationImageViewHeight = self.navigationImageView.height - 3.f;
     
     self.segmentLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.segmentLeftButton.contentEdgeInsets = UIEdgeInsetsMake(1.f, 0, 3.f, 0);
     self.segmentLeftButton.frame = CGRectMake(self.navigationImageView.center.x - kBPSegmentButtonWidth,
-                                              self.navigationImageView.frame.origin.y + floorf(navigationImageViewHeight/2 - kBPSegmentButtonHeight/2),
+                                              self.navigationImageView.top + floorf(navigationImageViewHeight/2 - kBPSegmentButtonHeight/2),
                                               kBPSegmentButtonWidth, kBPSegmentButtonHeight);
     
     UIImage *segmentLeftButtonNormalImage = [BPUtils imageNamed:@"mycharts_segment_left_normal"];
@@ -77,7 +78,7 @@
     self.segmentRightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.segmentRightButton.contentEdgeInsets = UIEdgeInsetsMake(1.f, 0, 3.f, 0);
     self.segmentRightButton.frame = CGRectMake(self.navigationImageView.center.x,
-                                               self.navigationImageView.frame.origin.y + floorf(navigationImageViewHeight/2 - kBPSegmentButtonHeight/2),
+                                               self.navigationImageView.top + floorf(navigationImageViewHeight/2 - kBPSegmentButtonHeight/2),
                                                kBPSegmentButtonWidth, kBPSegmentButtonHeight);
     
     UIImage *segmentRightButtonNormalImage = [BPUtils imageNamed:@"mycharts_segment_right_normal"];
@@ -98,9 +99,11 @@
 
     [self.view addSubview:self.segmentRightButton];
     
-    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationImageView.frame.origin.y + navigationImageViewHeight, self.view.frame.size.width, self.view.frame.size.height - (self.navigationImageView.frame.origin.y + navigationImageViewHeight) - self.tabBarController.tabBar.frame.size.height)];
-    self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationImageView.top + navigationImageViewHeight, self.view.width, self.view.height - (self.navigationImageView.top + navigationImageViewHeight) - self.tabBarController.tabBar.height)];
+//    self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleTopMargin;
     [self.view insertSubview:self.containerView belowSubview:self.navigationImageView];
+    
+    DLog(@"containerView: %@", self.containerView);
     
     [self showCalendar];
 }
@@ -163,6 +166,7 @@
     
 
     DLog(@"process");
+    DLog(@"%@", self.containerView);
 
     
     UIViewController *fromViewController = self.selectedViewController;
@@ -174,6 +178,8 @@
         [fromViewController.view removeFromSuperview];
     else if (fromViewController == nil) { // don't animate
         toViewController.view.frame = self.containerView.bounds;
+        DLog(@"%@", toViewController.view);
+
         [self.containerView addSubview:toViewController.view];
     } else if (animated) {
         CGRect rect = self.containerView.bounds;
@@ -181,6 +187,8 @@
             rect.origin.x = rect.size.width;
         else
             rect.origin.x = -rect.size.width;
+        
+        DLog(@"%@", NSStringFromCGRect(rect));
         
         toViewController.view.frame = rect;
         self.segmentLeftButton.userInteractionEnabled = NO;

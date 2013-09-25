@@ -19,6 +19,7 @@
 #import "BPMenstruationPicker.h"
 
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 @interface BPValuePicker ()
 
@@ -212,8 +213,8 @@
 {
     [super layoutSubviews];
     
-    self.toolBar.frame = CGRectMake(0, 0, self.frame.size.width, BPSettingsToolbarHeight);
-    _pickerView.frame = CGRectMake(0, _toolBar.frame.size.height, self.frame.size.width, self.frame.size.height - _toolBar.frame.size.height);
+    self.toolBar.frame = CGRectMake(0, 0, self.width, BPSettingsToolbarHeight);
+    _pickerView.frame = CGRectMake(0, _toolBar.height, self.width, self.height - _toolBar.height);
 }
 
 - (void)cancelPressed:(id)sender;

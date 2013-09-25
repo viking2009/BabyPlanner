@@ -8,6 +8,7 @@
 
 #import "BPLabel.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 @implementation BPLabel
 

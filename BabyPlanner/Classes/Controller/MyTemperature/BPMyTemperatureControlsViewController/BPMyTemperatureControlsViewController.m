@@ -25,6 +25,7 @@
 #import "ObjectiveRecord.h"
 #import "BPCyclesManager.h"
 #import "BPCycle+Additions.h"
+#import "UIView+Sizes.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
@@ -64,7 +65,7 @@
     topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
     [self.view insertSubview:topView belowSubview:self.statusBarView];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.bounds.size.width - 2*68.f, 34.f)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.width - 2*68.f, 34.f)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -74,7 +75,7 @@
     UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
     self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
-    self.doneButton.frame = CGRectMake(self.view.bounds.size.width - 10.f - greenImage.size.width, 24.f, greenImage.size.width, greenImage.size.height);
+    self.doneButton.frame = CGRectMake(self.view.width - 10.f - greenImage.size.width, 24.f, greenImage.size.width, greenImage.size.height);
     [self.doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
     self.doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
     self.doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -109,7 +110,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;
@@ -422,7 +423,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return (section == 2 ? CGSizeMake(collectionView.frame.size.width, 32.f) : CGSizeZero);
+    return (section == 2 ? CGSizeMake(collectionView.width, 32.f) : CGSizeZero);
 }
 
 #pragma mark - BPSwitchCellDelegate

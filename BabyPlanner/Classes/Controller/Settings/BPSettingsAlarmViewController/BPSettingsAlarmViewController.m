@@ -14,6 +14,7 @@
 #import "BPValuePicker.h"
 #import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
+#import "UIView+Sizes.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsViewCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -58,7 +59,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.view.bounds.size.height - 64.f - self.tabBarController.tabBar.frame.size.height);
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;
@@ -70,12 +71,12 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsViewCellIdentifier];
     [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.pickerView];
     
     self.alarmView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"settings_alarm_clock"]];
-    self.alarmView.frame = CGRectMake(floorf(self.view.bounds.size.width/2 - self.alarmView.image.size.width/2), self.pickerView.frame.origin.y - self.alarmView.image.size.height + 5.f, self.alarmView.image.size.width, self.alarmView.image.size.height);
+    self.alarmView.frame = CGRectMake(floorf(self.view.width/2 - self.alarmView.image.size.width/2), self.pickerView.top - self.alarmView.image.size.height + 5.f, self.alarmView.image.size.width, self.alarmView.image.size.height);
     [self.view insertSubview:self.alarmView belowSubview:self.pickerView];
     
     NSDate *now = [NSDate date];

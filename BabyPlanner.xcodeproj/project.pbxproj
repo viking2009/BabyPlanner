@@ -43,7 +43,6 @@
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
 		905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F31787EDD300C367E3 /* BPTimePicker.m */; };
 		905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F61788033300C367E3 /* BPSoundPicker.m */; };
-		907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9511779A3A4005944D6 /* DSTPickerView.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
 		908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62417E6F3D500AC0AFD /* KeyHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -199,8 +198,6 @@
 		905D99F31787EDD300C367E3 /* BPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTimePicker.m; sourceTree = "<group>"; };
 		905D99F51788033300C367E3 /* BPSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSoundPicker.h; sourceTree = "<group>"; };
 		905D99F61788033300C367E3 /* BPSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSoundPicker.m; sourceTree = "<group>"; };
-		907BA9501779A3A4005944D6 /* DSTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTPickerView.h; sourceTree = "<group>"; };
-		907BA9511779A3A4005944D6 /* DSTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTPickerView.m; sourceTree = "<group>"; };
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
@@ -529,15 +526,6 @@
 				90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */,
 			);
 			path = BPValuePicker;
-			sourceTree = "<group>";
-		};
-		907BA94F1779A3A4005944D6 /* DSTPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				907BA9501779A3A4005944D6 /* DSTPickerView.h */,
-				907BA9511779A3A4005944D6 /* DSTPickerView.m */,
-			);
-			path = DSTPickerView;
 			sourceTree = "<group>";
 		};
 		907BA9551779AC97005944D6 /* NSDate-Utilities */ = {
@@ -1197,7 +1185,6 @@
 				90FCA82217B9EB9B00686048 /* ObjectiveRecord */,
 				90F3562517A20B7C00E0261B /* SVSegmentedControl */,
 				907BA9551779AC97005944D6 /* NSDate-Utilities */,
-				907BA94F1779A3A4005944D6 /* DSTPickerView */,
 				90E881CF1778BA2600682BB3 /* TTSwitch */,
 				90E6755617B7EF880045C30E /* DCRoundSwitch */,
 				90EB9E951707A66A008457A3 /* EKKeyboardAvoidingScrollView */,
@@ -1410,7 +1397,6 @@
 				90FCA81F17B9EB8800686048 /* NSNumber+ObjectiveSugar.m in Sources */,
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */,
-				907BA9521779A3A4005944D6 /* DSTPickerView.m in Sources */,
 				9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */,
 				90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,

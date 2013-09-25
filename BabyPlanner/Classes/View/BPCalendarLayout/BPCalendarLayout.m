@@ -7,6 +7,7 @@
 //
 
 #import "BPCalendarLayout.h"
+#import "UIView+Sizes.h"
 
 @implementation BPCalendarLayout
 

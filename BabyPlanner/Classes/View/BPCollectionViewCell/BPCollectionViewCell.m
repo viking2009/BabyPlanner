@@ -9,6 +9,7 @@
 #import "BPCollectionViewCell.h"
 #import "BPUtils.h"
 #import "UIImage+Additions.h"
+#import "UIView+Sizes.h"
 
 @interface BPCollectionViewCell()
 
@@ -42,24 +43,24 @@
     [super layoutSubviews];
     
     CGFloat left = BPDefaultCellInset;
-    CGFloat maxWidth = self.contentView.frame.size.width - (self.accessoryView.image.size.width + 3*BPDefaultCellInset);
+    CGFloat maxWidth = self.contentView.width - (self.accessoryView.image.size.width + 3*BPDefaultCellInset);
     
     if (self.imageView.image) {
-        self.imageView.frame = CGRectMake(left, floorf(self.contentView.frame.size.height/2 - self.imageView.image.size.height/2), self.imageView.image.size.width, self.imageView.image.size.height);
-        left += self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
-        maxWidth -= self.imageView.frame.size.width + BPDefaultCellInset - 2.f;
+        self.imageView.frame = CGRectMake(left, floorf(self.contentView.height/2 - self.imageView.image.size.height/2), self.imageView.image.size.width, self.imageView.image.size.height);
+        left += self.imageView.width + BPDefaultCellInset - 2.f;
+        maxWidth -= self.imageView.width + BPDefaultCellInset - 2.f;
     } else {
         self.imageView.frame = CGRectZero;
     }
     
     if (self.titleLabel.text.length) {
-        self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.frame.size.height);
-        left += self.titleLabel.frame.size.width + BPDefaultCellInset;
+        self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.height);
+        left += self.titleLabel.width + BPDefaultCellInset;
     } else {
         self.titleLabel.frame = CGRectZero;
     }
     
-    self.accessoryView.frame = CGRectMake(left, floorf(self.contentView.frame.size.height/2 - self.accessoryView.image.size.height/2),
+    self.accessoryView.frame = CGRectMake(left, floorf(self.contentView.height/2 - self.accessoryView.image.size.height/2),
                                           self.accessoryView.image.size.width, self.accessoryView.image.size.height);
 }
 

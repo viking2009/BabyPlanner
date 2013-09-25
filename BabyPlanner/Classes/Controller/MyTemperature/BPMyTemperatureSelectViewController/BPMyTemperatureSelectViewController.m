@@ -17,6 +17,7 @@
 #import "BPSettingsCell.h"
 #import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
+#import "UIView+Sizes.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
@@ -46,7 +47,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.bounds.size.height - BPPickerViewHeight - self.tabBarController.tabBar.frame.size.height), self.view.bounds.size.width, BPPickerViewHeight)];
+    self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];
     [self.pickerView addTarget:self action:@selector(pickerViewValueChanged) forControlEvents:UIControlEventValueChanged];
     [self.view insertSubview:self.pickerView belowSubview:self.navigationImageView];
 
@@ -59,7 +60,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.bounds.size.width, self.pickerView.frame.origin.y - 64.f + 44.f); // invisible toolbar for self.pickerView
+    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.pickerView.top - 64.f + 44.f); // invisible toolbar for self.pickerView
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;

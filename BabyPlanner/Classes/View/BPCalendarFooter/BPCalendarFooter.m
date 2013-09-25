@@ -179,7 +179,6 @@
             imageName = [imageName stringByAppendingString:@"_active"];
         self.girlView.image = [BPUtils imageNamed:imageName];
 
-    DLog(@"_date: %@", _date);
         self.notesLabel.text = _date.notations;
     
         [self updateUI];

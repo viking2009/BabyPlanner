@@ -7,6 +7,7 @@
 //
 
 #import "BPCircleLayout.h"
+#import "UIView+Sizes.h"
 
 @interface BPCircleLayout()
 
@@ -24,7 +25,7 @@
 {
     [super prepareLayout];
     
-    CGSize size = self.collectionView.frame.size;
+    CGSize size = self.collectionView.size;
     _cellCount = [[self collectionView] numberOfItemsInSection:0];
     _center = CGPointMake(size.width / 2.0, size.height / 2.0);
     _radius = MIN(_radius, MIN(size.width, size.height) - MAX(_itemSize.width, _itemSize.height) - 20.f);
@@ -35,7 +36,7 @@
 
 -(CGSize)collectionViewContentSize
 {
-    return [self collectionView].frame.size;
+    return [self collectionView].size;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath

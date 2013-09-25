@@ -9,6 +9,7 @@
 #import "BPFlagView.h"
 #import "BPUtils.h"
 #import "BPLanguageManager.h"
+#import "UIView+Sizes.h"
 
 @interface BPFlagView()
 
@@ -50,15 +51,13 @@
 {
     [super layoutSubviews];
     
-    CGRect bounds = self.bounds;
-    
-    self.imageView.frame = bounds;
+    self.imageView.frame = self.bounds;
     
     CGFloat top = 3.f;
-    self.dayLabel.frame = CGRectMake(0, top, bounds.size.width, 22.f);
-    top += self.dayLabel.frame.size.height;
+    self.dayLabel.frame = CGRectMake(0, top, self.width, 22.f);
+    top += self.dayLabel.height;
     
-    self.monthLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.monthLabel.font.lineHeight));
+    self.monthLabel.frame = CGRectMake(0, top, self.width, ceilf(self.monthLabel.font.lineHeight));
 }
 
 - (void)setDate:(NSDate *)date

@@ -45,6 +45,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor clearColor];
     self.statusBarView.backgroundColor = [UIColor clearColor];
 
     BPCalendarLayout *calendarLayout = [[BPCalendarLayout alloc] init];
@@ -87,6 +88,12 @@
     self.collectionView.delegate = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    DLog(@"self.view: %@", self.view);
+}
+
 - (void)loadData
 {
     self.datesManager = [[BPDatesManager alloc] initWithCycle:self.cycle];
@@ -104,7 +111,7 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    
+    DLog();
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -140,7 +147,7 @@
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
     
-    cell.childBirth = @([cell.date.date isEqualToDateIgnoringTime:birthday]);
+    cell.childBirth = @(birthday && [cell.date.date isEqualToDateIgnoringTime:birthday]);
     
     return cell;
 }
@@ -168,7 +175,7 @@
         NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
     
         calendarFooter.date = self.selectedDate;
-        calendarFooter.childBirth = @([self.selectedDate.date isEqualToDateIgnoringTime:birthday]);
+        calendarFooter.childBirth = @(birthday && [self.selectedDate.date isEqualToDateIgnoringTime:birthday]);
         
         [calendarFooter updateUI];
         

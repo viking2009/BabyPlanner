@@ -10,6 +10,7 @@
 #import "BPMyTemperatureMainViewController.h"
 #import "BPMyTemperatureControlsViewController.h"
 #import "BPUtils.h"
+#import "UIView+Sizes.h"
 
 @interface BPMyTemperatureViewController ()
 
@@ -91,7 +92,7 @@
     if (!_controlsController) {
         _controlsController = [[BPMyTemperatureControlsViewController alloc] init];
         [self addChildViewController:_controlsController];
-        _controlsController.view.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height);
+        _controlsController.view.frame = CGRectOffset(self.view.bounds, 0, self.view.height);
         
         UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swapViewControllers)];
         swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
@@ -117,7 +118,7 @@
     
 //    UIViewController* fromVc = self.visibleViewController;
     UIViewController* toVc = (self.visibleViewController == self.mainController ? self.controlsController : self.mainController);
-    CGRect rect = (self.visibleViewController == self.mainController ? self.view.bounds : CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height));
+    CGRect rect = (self.visibleViewController == self.mainController ? self.view.bounds : CGRectOffset(self.view.bounds, 0, self.view.height));
 //    DLog(@"rect: %@", NSStringFromCGRect(rect));
 //    DLog(@"from: %@", fromVc);
 //    DLog(@"toVc: %@", toVc);

@@ -10,6 +10,7 @@
 #import "BPLanguageManager.h"
 #import "BPUtils.h"
 #import "BPDate+Additions.h"
+#import "UIView+Sizes.h"
 
 #define BPDateIndicatorsViewDayTop              50.f
 #define BPDateIndicatorsViewFirstLine           110.f
@@ -87,18 +88,17 @@
 {
     [super layoutSubviews];
     
-    CGRect bounds = self.bounds;
-    CGFloat centerX = floorf(bounds.size.width/2);
+    CGFloat centerX = floorf(self.width/2);
     CGFloat top = BPDateIndicatorsViewDayTop;
     
-    self.dayLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.dayLabel.font.lineHeight));
+    self.dayLabel.frame = CGRectMake(0, top, self.width, ceilf(self.dayLabel.font.lineHeight));
     
     top = BPDateIndicatorsViewFirstLine;
     self.pregnantView.frame = CGRectMake(centerX - BPDateIndicatorsViewFirstLinePadding - self.pregnantView.image.size.width, top - self.pregnantView.image.size.height, self.pregnantView.image.size.width, self.pregnantView.image.size.height);
     self.menstruationView.frame = CGRectMake(centerX + BPDateIndicatorsViewFirstLinePadding, top - self.menstruationView.image.size.height, self.menstruationView.image.size.width, self.menstruationView.image.size.height);
     
     top = BPDateIndicatorsViewTemperatureTop;
-    self.temperatureLabel.frame = CGRectMake(0, top, bounds.size.width, ceilf(self.temperatureLabel.font.lineHeight));
+    self.temperatureLabel.frame = CGRectMake(0, top, self.width, ceilf(self.temperatureLabel.font.lineHeight));
     
     top = BPDateIndicatorsViewSecondLine;
     self.girlView.frame = CGRectMake(centerX - BPDateIndicatorsViewSecondLinePadding - self.boyView.image.size.width, top, self.boyView.image.size.width, self.boyView.image.size.height);
@@ -106,7 +106,7 @@
 
     self.sexualIntercourseView.frame = CGRectMake(centerX - floorf(self.sexualIntercourseView.image.size.width/2), top - 5.f, self.sexualIntercourseView.image.size.width, self.sexualIntercourseView.image.size.height);
     
-    top += self.sexualIntercourseView.frame.size.height + BPDateIndicatorsViewPadding;
+    top += self.sexualIntercourseView.height + BPDateIndicatorsViewPadding;
     self.ovulationView.frame = CGRectMake(centerX - floorf(self.ovulationView.image.size.width/2) + 10.f, top, self.ovulationView.image.size.width, self.ovulationView.image.size.height);
 }
 

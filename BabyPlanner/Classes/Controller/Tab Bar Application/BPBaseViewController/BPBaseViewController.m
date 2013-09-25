@@ -13,6 +13,8 @@
 #import "BPSettings+Additions.h"
 #import "BPThemeManager.h"
 
+#import "UIView+Sizes.h"
+
 @interface BPBaseViewController ()
 
 @property (nonatomic, strong) UIView *statusBarView;
@@ -55,7 +57,7 @@
     [self.view sendSubviewToBack:self.backgroundImageView];
     
     // fix iOS7 status bar appearance
-    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20.f)];
+    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20.f)];
     self.statusBarView.backgroundColor = RGB(0, 0, 0);
     self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.statusBarView];

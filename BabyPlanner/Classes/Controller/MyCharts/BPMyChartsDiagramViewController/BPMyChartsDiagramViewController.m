@@ -30,6 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor clearColor];
     self.statusBarView.backgroundColor = [UIColor clearColor];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -37,6 +38,7 @@
     [self.view addSubview:self.scrollView];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.numberOfLines = 0;
@@ -54,7 +56,7 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    
+
 }
 
 @end
