@@ -8,11 +8,14 @@
 
 #import "BPMyChartsCalendarViewController.h"
 #import "BPCalendarCell.h"
+#import "BPCalendarHeader.h"
 #import "BPUtils.h"
+#import "NSDate-Utilities.h"
 
 #define BPCalendarCellIdentifier @"BPCalendarCellIdentifier"
+#define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
 
-@interface BPMyChartsCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BPMyChartsCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPCalendarHeaderDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -38,7 +41,7 @@
 
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[collectionViewFlowLayout setItemSize:CGSizeMake(46.f, 46.f)];
-	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
+	[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320.f, 88.f)];
 	//[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320, 50)];
 	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
 	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
@@ -46,7 +49,6 @@
 //	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     CGRect collectionViewRect = CGRectInset(self.view.bounds, -1, 0);
-    
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
 //    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
@@ -54,10 +56,13 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.delaysContentTouches = NO;
     [self.view addSubview:self.collectionView];
 
     [self.collectionView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
-
+    [self.collectionView registerClass:[BPCalendarHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCalendarHeaderIdentifier];
+    
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +75,13 @@
 {
     self.collectionView.dataSource = nil;
     self.collectionView.delegate = nil;
+}
+
+- (void)updateUI
+{
+    [super updateUI];
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -124,6 +136,22 @@
         cell.childBirth = @YES;
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"indexPath: %@", indexPath);
+    BPCalendarHeader *calendarHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarHeaderIdentifier forIndexPath:indexPath];
+    calendarHeader.delegate = self;
+    
+    NSDateFormatter *dateFormatter = [BPUtils dateFormatter];
+    NSDate *now = [NSDate date];
+    calendarHeader.monthLabel.text = [dateFormatter standaloneMonthSymbols][now.month-1];
+    calendarHeader.yearLabel.text = [NSString stringWithFormat:@"%i", now.year];
+    
+    [calendarHeader updateDayOfWeekLabels];
+    
+    return calendarHeader;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -185,5 +213,17 @@
 //    
 //    return edgeInsets;
 //}
+
+#pragma mark - BPCalendarHeaderDelegate
+
+- (void)calendarHeaderDidTapPrevButton:(BPCalendarHeader *)calendarHeader
+{
+    DLog();
+}
+
+- (void)calendarHeaderDidTapNextButton:(BPCalendarHeader *)calendarHeader
+{
+    DLog();
+}
 
 @end

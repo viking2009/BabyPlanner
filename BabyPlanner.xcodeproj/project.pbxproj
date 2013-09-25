@@ -20,6 +20,7 @@
 		9005C55F17944415001338BA /* BPPeriodPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C55E17944415001338BA /* BPPeriodPicker.m */; };
 		9005C56217944882001338BA /* BPUnitPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9005C56117944882001338BA /* BPUnitPicker.m */; };
 		9008D5A617F2DE9800367B90 /* BPCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5A517F2DE9800367B90 /* BPCalendarCell.m */; };
+		9008D5AA17F303DF00367B90 /* BPCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008D5A917F303DF00367B90 /* BPCalendarHeader.m */; };
 		900CBD0D17E8A1E600E230EE /* BPDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 900CBD0C17E8A1E600E230EE /* BPDate.m */; };
 		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
 		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
@@ -153,6 +154,8 @@
 		9005C56117944882001338BA /* BPUnitPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUnitPicker.m; sourceTree = "<group>"; };
 		9008D5A417F2DE9800367B90 /* BPCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCalendarCell.h; sourceTree = "<group>"; };
 		9008D5A517F2DE9800367B90 /* BPCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarCell.m; sourceTree = "<group>"; };
+		9008D5A817F303DF00367B90 /* BPCalendarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCalendarHeader.h; sourceTree = "<group>"; };
+		9008D5A917F303DF00367B90 /* BPCalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarHeader.m; sourceTree = "<group>"; };
 		900CBD0B17E8A1E600E230EE /* BPDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDate.h; sourceTree = "<group>"; };
 		900CBD0C17E8A1E600E230EE /* BPDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDate.m; sourceTree = "<group>"; };
 		9011DF7D17C1D64A00EAA9CE /* BPSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSymptom.h; sourceTree = "<group>"; };
@@ -414,6 +417,15 @@
 				9008D5A517F2DE9800367B90 /* BPCalendarCell.m */,
 			);
 			path = BPCalendarCell;
+			sourceTree = "<group>";
+		};
+		9008D5A717F303C500367B90 /* BPCalendarHeader */ = {
+			isa = PBXGroup;
+			children = (
+				9008D5A817F303DF00367B90 /* BPCalendarHeader.h */,
+				9008D5A917F303DF00367B90 /* BPCalendarHeader.m */,
+			);
+			path = BPCalendarHeader;
 			sourceTree = "<group>";
 		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
@@ -965,6 +977,7 @@
 				90AD89C817DE3BEF0085A015 /* BPStatsCollectionViewHeader */,
 				90AD89CC17DE3E5D0085A015 /* BPCycleInfoCell */,
 				9008D5A317F2DE3C00367B90 /* BPCalendarCell */,
+				9008D5A717F303C500367B90 /* BPCalendarHeader */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1382,6 +1395,7 @@
 				90EAD01D17B34BC40022BD34 /* BPCircleLayout.m in Sources */,
 				90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */,
 				909C957E17BC0AB200EEC795 /* BabyPlanner.xcdatamodeld in Sources */,
+				9008D5AA17F303DF00367B90 /* BPCalendarHeader.m in Sources */,
 				909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */,
 				909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */,
 				909C95AA17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m in Sources */,

@@ -78,7 +78,7 @@
 
 - (void)setPregnant:(NSNumber *)pregnant
 {
-    if (_pregnant != pregnant) {
+//    if (_pregnant != pregnant) {
         _pregnant = pregnant;
         
         self.bottomLeftImageView.image = [_pregnant boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"] : nil;
@@ -87,22 +87,23 @@
             self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
         
         [self setNeedsLayout];
-    }
+//    }
 }
 
 - (void)setMenstruation:(NSNumber *)menstruation
 {
-    if (_menstruation != menstruation) {
+//    if (_menstruation != menstruation) {
         _menstruation = menstruation;
         
         self.topRightImageView.image = [_menstruation boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_menstruation"] : nil;
+    
         [self setNeedsLayout];
-    }
+//    }
 }
 
 - (void)setSexualIntercourse:(NSNumber *)sexualIntercourse
 {
-    if (_sexualIntercourse != sexualIntercourse) {
+//    if (_sexualIntercourse != sexualIntercourse) {
         _sexualIntercourse = sexualIntercourse;
         
         if ([self.pregnant boolValue])
@@ -111,27 +112,29 @@
             self.bottomLeftImageView.image = [_sexualIntercourse boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"] : nil;
         
         [self setNeedsLayout];
-    }
+//    }
 }
 
 - (void)setOvulation:(NSNumber *)ovulation
 {
-    if (_ovulation != ovulation) {
+//    if (_ovulation != ovulation) {
         _ovulation = ovulation;
         
         self.topRightImageView.image = [_ovulation boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_ovulation"] : nil;
+    
         [self setNeedsLayout];
-    }
+//    }
 }
 
 - (void)setChildBirth:(NSNumber *)childBirth
 {
-    if (_childBirth != childBirth) {
+//    if (_childBirth != childBirth) {
         _childBirth = childBirth;
         
         self.bottomLeftImageView.image = [_childBirth boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_childbirth"] : nil;
+        
         [self setNeedsLayout];
-    }
+//    }
 }
 
 @end
