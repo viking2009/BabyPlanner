@@ -9,6 +9,9 @@
 #import "BPCycle+Additions.h"
 #import "NSDate-Utilities.h"
 #import "BPLanguageManager.h"
+#import "ObjectiveRecord.h"
+#import "ObjectiveSugar.h"
+#import "BPSettings+Additions.h"
 
 @implementation BPCycle (Additions)
 
@@ -32,5 +35,19 @@
     // MARK: reverse order
     return [cycle.index compare:self.index];
 }
+
++ (BPCycle *)cycleWithIndex:(NSNumber *)index
+{
+    BPSettings *sharedSettings = [BPSettings sharedSettings];
+
+    BPCycle *cycle = [self where:[NSPredicate predicateWithFormat:@"index == %@ AND profile == %@", index, sharedSettings.profile]].first;
+    if (!cycle) {
+        cycle = [self create:@{@"index": index}];
+        cycle.profile = sharedSettings.profile;
+    }
+    
+    return cycle;
+}
+
 
 @end

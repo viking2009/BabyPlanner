@@ -7,7 +7,7 @@
 //
 
 #import "BPCyclesManager.h"
-#import "BPCycle.h"
+#import "BPCycle+Additions.h"
 #import "BPProfile.h"
 #import "ObjectiveRecord.h"
 #import "ObjectiveSugar.h"
@@ -43,7 +43,7 @@
     
     NSArray *cycles = [[sharedSettings.profile.cycles allObjects] sort];
     if (![cycles count]) {
-        BPCycle *cycle = [BPCycle create:@{@"index": @1}];
+        BPCycle *cycle = [BPCycle cycleWithIndex:@1];
         
         NSDate *startDate = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
         cycle.startDate = [startDate dateAtStartOfDay];
@@ -51,7 +51,7 @@
         NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
         cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
         
-        cycle.profile = sharedSettings.profile;
+//        cycle.profile = sharedSettings.profile;
         [cycle save];
         
         return @[cycle];

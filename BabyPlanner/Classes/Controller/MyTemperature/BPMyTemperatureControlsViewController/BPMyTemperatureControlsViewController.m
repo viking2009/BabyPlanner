@@ -23,6 +23,8 @@
 #import "BPDate.h"
 #import "NSDate-Utilities.h"
 #import "ObjectiveRecord.h"
+#import "BPCyclesManager.h"
+#import "BPCycle+Additions.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
@@ -440,6 +442,21 @@
             // change cycle
             if ([self.date.menstruation boolValue] && [self.date.day integerValue] > 20) {
                 BPSettings *sharedSettings = [BPSettings sharedSettings];
+                BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
+                BPCycle *currentCycle = sharedManager.currentCycle;
+                
+                BPCycle *cycle = [BPCycle cycleWithIndex:@([currentCycle.index integerValue] + 1)];
+                
+                NSDate *startDate = self.date.date;
+                cycle.startDate = [startDate dateAtStartOfDay];
+                
+                NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
+                cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
+                
+                self.date.cycle = cycle;
+                
+                [cycle save];
+
                 sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.date.date;
             }
         }

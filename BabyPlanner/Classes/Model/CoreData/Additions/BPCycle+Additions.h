@@ -13,4 +13,6 @@
 @property (nonatomic, readonly) NSUInteger length;
 @property (nonatomic, readonly) NSString *title;
 
++ (BPCycle *)cycleWithIndex:(NSNumber *)index;
+
 @end

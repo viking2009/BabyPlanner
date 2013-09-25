@@ -129,6 +129,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 
     if (!item) {
         item = [BPDate dateWithDate:dateForItem];
+        // MARK: add to cycle
+        item.cycle = self.cycle;
         _dates[dateForItem] = item;
     }
     
