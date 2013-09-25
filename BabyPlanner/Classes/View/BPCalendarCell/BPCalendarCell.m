@@ -9,6 +9,8 @@
 #import "BPCalendarCell.h"
 #import "UIView+Sizes.h"
 #import "BPUtils.h"
+#import "BPDate+Additions.h"
+#import "NSDate-Utilities.h"
 
 #define BPCalendarCellPadding 1.f
 
@@ -56,7 +58,7 @@
         self.topRightImageView.frame = CGRectZero;
     
     if (self.bottomLeftImageView.image)
-        self.bottomLeftImageView.frame = CGRectMake([self.pregnant boolValue] ? - 1.f : BPCalendarCellPadding, self.contentView.bottom - (([self.pregnant boolValue] ? 0 : BPCalendarCellPadding) + self.bottomLeftImageView.image.size.height), self.bottomLeftImageView.image.size.width, self.bottomLeftImageView.image.size.height);
+        self.bottomLeftImageView.frame = CGRectMake([self.date.pregnant boolValue] ? - 1.f : BPCalendarCellPadding, self.contentView.bottom - (([self.date.pregnant boolValue] ? 0 : BPCalendarCellPadding) + self.bottomLeftImageView.image.size.height), self.bottomLeftImageView.image.size.width, self.bottomLeftImageView.image.size.height);
     else
         self.bottomLeftImageView.frame = CGRectZero;
 
@@ -76,51 +78,28 @@
 
 #pragma mark - Public
 
-- (void)setPregnant:(NSNumber *)pregnant
+- (void)setDate:(BPDate *)date
 {
-//    if (_pregnant != pregnant) {
-        _pregnant = pregnant;
-        
-        self.bottomLeftImageView.image = [_pregnant boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"] : nil;
-        
-        if ([self.sexualIntercourse boolValue])
-            self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
-        
-        [self setNeedsLayout];
-//    }
-}
-
-- (void)setMenstruation:(NSNumber *)menstruation
-{
-//    if (_menstruation != menstruation) {
-        _menstruation = menstruation;
-        
-        self.topRightImageView.image = [_menstruation boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_menstruation"] : nil;
+//    if (_date != date) {
+        _date = date;
     
-        [self setNeedsLayout];
-//    }
-}
+        if ([_date.menstruation boolValue])
+            self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_menstruation"];
+        
+        if ([_date.pregnant boolValue])
+            self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"];
+        
+        if ([_date.sexualIntercourse boolValue]) {
+            if ([_date.pregnant boolValue])
+                self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
+            else
+                self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
+        }
+        
+        if ([_date.ovulation boolValue])
+            self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_ovulation"];
 
-- (void)setSexualIntercourse:(NSNumber *)sexualIntercourse
-{
-//    if (_sexualIntercourse != sexualIntercourse) {
-        _sexualIntercourse = sexualIntercourse;
-        
-        if ([self.pregnant boolValue])
-            self.topRightImageView.image = [_sexualIntercourse boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"] : nil;
-        else
-            self.bottomLeftImageView.image = [_sexualIntercourse boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"] : nil;
-        
-        [self setNeedsLayout];
-//    }
-}
-
-- (void)setOvulation:(NSNumber *)ovulation
-{
-//    if (_ovulation != ovulation) {
-        _ovulation = ovulation;
-        
-        self.topRightImageView.image = [_ovulation boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_ovulation"] : nil;
+        self.dayLabel.text = [NSString stringWithFormat:@"%i", _date.date.day];
     
         [self setNeedsLayout];
 //    }

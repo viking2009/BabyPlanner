@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class BPDate;
+
 @interface BPCalendarCell : UICollectionViewCell
 
 @property (nonatomic, strong) UILabel *dayLabel;
 
-@property (nonatomic, strong) NSNumber *pregnant;
-@property (nonatomic, strong) NSNumber *menstruation;
-@property (nonatomic, strong) NSNumber *sexualIntercourse;
-@property (nonatomic, strong) NSNumber *ovulation;
+@property (nonatomic, strong) BPDate *date;
 @property (nonatomic, strong) NSNumber *childBirth;
 
 @end
