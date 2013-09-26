@@ -15,5 +15,7 @@ Task #59: My Charts: Cycle Details
 
 h3. Fixes
 
+Task #57 My Charts: Calendar
+* no sexual intercourse icons
 Task #59: My Charts: Cycle Details
 * fix iOS6 layout
