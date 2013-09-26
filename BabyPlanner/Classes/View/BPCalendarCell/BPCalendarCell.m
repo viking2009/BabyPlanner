@@ -141,8 +141,9 @@
 {
 //    if (_childBirth != childBirth) {
         _childBirth = childBirth;
-        
-        self.bottomLeftImageView.image = [_childBirth boolValue] ? [BPUtils imageNamed:@"mycharts_calendar_icon_childbirth"] : nil;
+    
+        if ([_childBirth boolValue])
+            self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_childbirth"];
         
         [self setNeedsLayout];
 //    }
