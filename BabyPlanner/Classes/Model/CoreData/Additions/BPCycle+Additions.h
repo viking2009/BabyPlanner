@@ -11,6 +11,7 @@
 @interface BPCycle (Additions)
 
 @property (nonatomic, readonly) NSUInteger length;
+@property (nonatomic, readonly) NSInteger ovulationIndex;
 @property (nonatomic, readonly) NSString *title;
 
 + (BPCycle *)cycleWithIndex:(NSNumber *)index;

@@ -105,7 +105,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             [self calculateOvulationIndex];
             [self calculateConceivingIndex];
             [self calculateBoyGirl];
-        }
+        } else
+            self.ovulationIndex = cycle.ovulationIndex;
         
         self.dates = [[NSMutableDictionary alloc] init];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
@@ -194,15 +195,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 //        if (idx == self.ovulationCandidateIndex)
 //            imageName = @"point_ovulation";
     } else {
-        if ((idx >= self.ovulationCandidateIndex - kBPDatesManagerFertileBefore) && (idx <= MAX(self.ovulationCandidateIndex, self.ovulationIndex) + kBPDatesManagerFertileAfter))
+        if ((idx >= self.ovulationIndex - kBPDatesManagerFertileBefore) && (idx <= self.ovulationIndex + kBPDatesManagerFertileAfter))
             imageName = @"point_red";
-        
-        if ((idx > self.ovulationCandidateIndex + kBPDatesManagerFertileAfter) && idx < self.ovulationIndex)
-            imageName = @"point_yellow";
         
         if (idx == self.ovulationIndex)
             imageName = @"point_ovulation";
-        
     }
     
     if ([self.cycle isEqual:currentCycle]) {
@@ -243,29 +240,24 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     NSInteger currentIndex = [[BPCyclesManager sharedManager].cycles indexOfObject:self.cycle];
     BPCycle *firstCycle = [BPCyclesManager sharedManager].cycles.last;
     if (currentIndex != NSNotFound && ![self.cycle isEqual:firstCycle]) {
-        NSPredicate *ovulationPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"ovulation", @YES];
-
         if (currentIndex < kBPDatesManagerNumberOfCyclesForAverageCandidateIndex) {
             BPCycle *previousCycle = [BPCyclesManager sharedManager].cycles[currentIndex + 1];
-            
-            NSArray *ovulations = [[previousCycle.dates filteredSetUsingPredicate:ovulationPredicate] allObjects];
-            if ([ovulations count] == 1) {
-                BPDate *ovulationDate = ovulations.first;
-                self.ovulationCandidateIndex = [ovulationDate.day integerValue] - 1;
-            }
+
+            NSUInteger ovulationIndex = previousCycle.ovulationIndex;
+            if (ovulationIndex != NSNotFound)
+                self.ovulationCandidateIndex = ovulationIndex;
         } else {
             NSInteger sum = 0;
             NSUInteger days = 0;
             for (NSInteger i = 1; i < numberOfCycles; i++) {
                 BPCycle *previousCycle = [BPCyclesManager sharedManager].cycles[currentIndex + 1];
                 
-                NSArray *ovulations = [[previousCycle.dates filteredSetUsingPredicate:ovulationPredicate] allObjects];
-                if ([ovulations count] == 1) {
-                    BPDate *ovulationDate = ovulations.first;
-                    sum += [ovulationDate.day integerValue] - 1;
+                NSUInteger ovulationIndex = previousCycle.ovulationIndex;
+                if (ovulationIndex != NSNotFound) {
+                    sum += ovulationIndex;
                     days++;
                 }
-            }
+             }
             
             if (sum && days)
                 self.ovulationCandidateIndex = sum / days;

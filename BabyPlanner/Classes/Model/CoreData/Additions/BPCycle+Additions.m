@@ -12,11 +12,23 @@
 #import "ObjectiveRecord.h"
 #import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
+#import "BPDate+Additions.h"
 
 @implementation BPCycle (Additions)
 
 - (NSUInteger)length {
     return [self.endDate daysAfterDate:self.startDate] + 1;
+}
+
+- (NSInteger)ovulationIndex {
+    NSPredicate *ovulationPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"ovulation", @YES];
+    NSArray *ovulations = [[self.dates filteredSetUsingPredicate:ovulationPredicate] allObjects];
+    if ([ovulations count] == 1) {
+        BPDate *ovulationDate = ovulations.first;
+        return [ovulationDate.day integerValue] - 1;
+    }
+    
+    return NSNotFound;
 }
 
 - (NSString *)title {
