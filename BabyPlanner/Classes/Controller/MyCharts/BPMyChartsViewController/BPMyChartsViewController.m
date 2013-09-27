@@ -164,8 +164,8 @@
         cycleInfoCell.titleLabel.text = cycle.title;
         cycleInfoCell.subtitleLabel.text = [NSString stringWithFormat:@"%u", cycle.length];
         
-        if (indexPath.item == 1 || indexPath.item == 2)
-            cycleInfoCell.imageView.image = [BPUtils imageNamed:@"mycharts_icon_ovulation"];
+        if (cycle.ovulationIndex != NSNotFound)
+            cycleInfoCell.imageView.image = [BPUtils imageNamed:@"mycharts_calendar_notes_icon_ovulation_active"];
         else
             cycleInfoCell.imageView.image = nil;
     }

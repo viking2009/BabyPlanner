@@ -1,4 +1,4 @@
-h2. 2013092.
+h2. 20130928
 
 h3. New:
 
@@ -7,7 +7,7 @@ Task #58: My Charts: Diagram
 h3. Improvements:
 
 Task #56: My Charts: All
-* 
+* check for ovulation in cycle, change ovulation icon
 Task #57 My Charts: Calendar
 * calendar cell with background images
 Task #59: My Charts: Cycle Details
@@ -15,6 +15,8 @@ Task #59: My Charts: Cycle Details
 
 h3. Fixes
 
+Task #41 My Temperature: Cycle logic
+* ovulation index for previous cycles, display real fertile period when ovulation found
 Task #57 My Charts: Calendar
 * no sexual intercourse icons
 Task #59: My Charts: Cycle Details
