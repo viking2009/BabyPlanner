@@ -190,8 +190,9 @@
         if ([self.selectedDate.boy boolValue] || [self.selectedDate.girl boolValue]) {
             [tip appendString:@" "];
             [tip appendString:BPLocalizedString(@"You can have ")];
-            if ([self.selectedDate.boy boolValue])
-                [tip appendString:BPLocalizedString(@"boy")];
+            
+            if ([self.selectedDate.girl boolValue])
+                [tip appendString:BPLocalizedString(@"girl")];
 
             if ([self.selectedDate.boy boolValue] && [self.selectedDate.girl boolValue]) {
                 [tip appendString:@" "];
@@ -199,8 +200,8 @@
                 [tip appendString:@" "];
             }
             
-            if ([self.selectedDate.girl boolValue])
-                [tip appendString:BPLocalizedString(@"girl")];
+            if ([self.selectedDate.boy boolValue])
+                [tip appendString:BPLocalizedString(@"boy")];
 
             [tip appendString:@"!"];
         }

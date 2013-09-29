@@ -105,6 +105,12 @@
     
     [self loadData];
     [self.collectionView reloadData];
+    
+    if (!self.selectedDate) {
+        if (self.datesManager.todayIndex != NSNotFound)
+            self.selectedDate = self.datesManager[self.datesManager.todayIndex];
+    }
+    
 }
 
 #pragma mark - BPBaseViewController
@@ -132,24 +138,19 @@
 
     BPDate *date = self.datesManager[indexPath.item];
     cell.date = date;
-    BOOL inCycle = ([self.datesManager indexForDate:date.date] != NSNotFound);
+    BOOL inCycle = ([date.cycle isEqual:self.cycle]);
     cell.dayLabel.textColor = (inCycle ? RGB(255, 255, 255) : RGB(42, 192, 169));
     
-    NSString *imageName = nil;
-    if ([date.imageName isEqualToString:@"point_yellow"])
-//        cell.backgroundView.backgroundColor = RGBA(231, 231, 141, 0.9);
-        imageName = @"mycharts_calendar_cell_background_yellow";
-    else if ([date.imageName isEqualToString:@"point_red"])
-//        cell.backgroundView.backgroundColor = RGBA(235, 72, 0, 0.85);
-        imageName = @"mycharts_calendar_cell_background_red";
-    else if ([date.imageName isEqualToString:@"point_ovulation"])
-//        cell.backgroundView.backgroundColor = RGBA(230, 11, 5, 0.85);
-        imageName = @"mycharts_calendar_cell_background_ovulation";
-    else
-//        cell.backgroundView.backgroundColor = RGBA(138, 220, 208, 0.85);
-        imageName = @"mycharts_calendar_cell_background_green";
+    NSString *imageName = @"mycharts_calendar_cell_background_green";
+    if (inCycle) {
+        if ([date.imageName isEqualToString:@"point_yellow"])
+            imageName = @"mycharts_calendar_cell_background_yellow";
+        else if ([date.imageName isEqualToString:@"point_red"])
+            imageName = @"mycharts_calendar_cell_background_red";
+        else if ([date.imageName isEqualToString:@"point_ovulation"])
+            imageName = @"mycharts_calendar_cell_background_ovulation";
+    }
     
-//    NSString *imageName = [date.imageName stringByReplacingOccurrencesOfString:@"point_" withString:@"mycharts_calendar_cell_background_"];
     cell.imageView.image = [BPUtils imageNamed:imageName];
     cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
     
