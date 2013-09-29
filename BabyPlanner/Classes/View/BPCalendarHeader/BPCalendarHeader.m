@@ -13,7 +13,7 @@
 
 #define BPCalendarHeaderBackgroundImageHeight 53.f
 #define BPCalendarHeaderButtonSize 40.f
-#define BPCalendarHeaderMonthLabelHeight 23.f
+#define BPCalendarHeaderMonthLabelHeight 26.f
 #define BPCalendarHeaderYearLabelHeight 18.f
 #define BPCalendarHeaderDayOfWeekLabelWidth 46.f
 

@@ -1,4 +1,4 @@
-h2. 20130930
+h2. 20130929
 
 h3. Improvements:
 
@@ -10,6 +10,7 @@ Task #57 My Charts: Calendar
 * calendar cell with background images
 Task #59: My Charts: Cycle Details
 * fix calendar cell title color and cell backgrounds
+* calendar logic
 
 h3. Fixes
 
