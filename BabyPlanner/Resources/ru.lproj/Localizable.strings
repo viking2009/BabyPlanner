@@ -53,6 +53,12 @@
 
 /* BPMyChartsCalendarViewController */
 "%@ day of cycle" = "%@ день цикла";
+"Today you are fertile!" = "Сегодня Вы фертильны!";
+"fertile" = "фертильны";
+"You can have " = "У Вас может быть ";
+"boy" = "мальчик";
+"or" = "или";
+"girl" = "девочка";
 
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "Моя Беременность";

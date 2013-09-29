@@ -36,9 +36,12 @@
 @property (nonatomic, strong) UIButton *myControlsButton;
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
+@property (nonatomic, strong) UIImageView *bubbleView;
 
 @property (nonatomic, strong) BPDatesManager *datesManager;
 @property (nonatomic, strong) BPDate *selectedDate;
+
+- (void)updateBubbleView;
 
 @end
 
@@ -95,21 +98,23 @@
 
     CGFloat offset = MAX(330.f, self.view.height - self.girlView.image.size.height);
     
-    UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_bubble"]];
-    bubbleView.frame = CGRectMake(3, offset, bubbleView.image.size.width, bubbleView.image.size.height);
-    [self.view addSubview:bubbleView];
+    self.bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_bubble"]];
+    self.bubbleView.frame = CGRectMake(3, offset, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
+    [self.view addSubview:self.bubbleView];
     
-    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectOffset(bubbleView.frame, 0, -10.f)];
+    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 0.f, self.bubbleView.width - 16.f, self.bubbleView.height - 22.f)];
     self.selectLabel.backgroundColor = [UIColor clearColor];
-    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
-    self.selectLabel.textColor = RGB(76, 86, 108);
+    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    self.selectLabel.textColor = RGB(0, 0, 0);
     self.selectLabel.textAlignment = NSTextAlignmentCenter;
+//    self.selectLabel.layer.borderWidth = 1.0f;
+//    self.selectLabel.layer.borderColor = [UIColor redColor].CGColor;
     //    self.selectLabel.shadowColor = RGB(255, 255, 255);
     //    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
-    self.selectLabel.numberOfLines = 2;
-    [self.view addSubview:self.selectLabel];
+    self.selectLabel.numberOfLines = 5;
+    [self.bubbleView addSubview:self.selectLabel];
     
-    self.girlView.frame = CGRectMake(97, offset, self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(117, offset, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
     BPCircleLayout *collectionViewCircleLayout = [[BPCircleLayout alloc] init];
@@ -176,6 +181,50 @@
     self.selectedDate = date;
 }
 
+- (void)updateBubbleView
+{
+    // TODO: show only for TODAY
+    if (([self.selectedDate.imageName isEqualToString:@"point_red"] || [self.selectedDate.imageName isEqualToString:@"point_ovulation"]) && ![self.selectedDate.pregnant boolValue]) {
+        self.bubbleView.hidden = NO;
+        NSMutableString *tip = [[NSMutableString alloc] initWithString:BPLocalizedString(@"Today you are fertile!")];
+        if ([self.selectedDate.boy boolValue] || [self.selectedDate.girl boolValue]) {
+            [tip appendString:@" "];
+            [tip appendString:BPLocalizedString(@"You can have ")];
+            if ([self.selectedDate.boy boolValue])
+                [tip appendString:BPLocalizedString(@"boy")];
+
+            if ([self.selectedDate.boy boolValue] && [self.selectedDate.girl boolValue]) {
+                [tip appendString:@" "];
+                [tip appendString:BPLocalizedString(@"or")];
+                [tip appendString:@" "];
+            }
+            
+            if ([self.selectedDate.girl boolValue])
+                [tip appendString:BPLocalizedString(@"girl")];
+
+            [tip appendString:@"!"];
+        }
+        
+        NSMutableAttributedString *tipString = [[NSMutableAttributedString alloc] initWithString:tip attributes:nil];
+        
+        NSRange fertileRange = [tip rangeOfString:BPLocalizedString(@"fertile")];
+        if (fertileRange.location != NSNotFound)
+            [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:fertileRange];
+        
+        NSRange boyRange = [tip rangeOfString:BPLocalizedString(@"boy")];
+        if (boyRange.location != NSNotFound)
+            [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:boyRange];
+        
+        NSRange girlRange = [tip rangeOfString:BPLocalizedString(@"girl")];
+        if (girlRange.location != NSNotFound)
+            [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:girlRange];
+        
+        self.selectLabel.attributedText = tipString;
+    } else {
+        self.bubbleView.hidden = YES;
+    }
+}
+
 - (void)updateUI
 {
     [super updateUI];
@@ -190,8 +239,6 @@
         [self.rightFlagView updateUI];
         [self.indicatorsView updateUI];
         
-        self.selectLabel.text = BPLocalizedString(@"!Ta-da!");
-        
         //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
         self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
         
@@ -199,6 +246,8 @@
         [self.collectionView reloadData];
         
         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedDate.day intValue] - 1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    
+        [self updateBubbleView];
     }
 }
 
@@ -264,6 +313,8 @@
     self.leftFlagView.date = date.date;
     
     self.selectedDate = date;
+    
+    [self updateBubbleView];
 }
 
 #pragma mark - Private

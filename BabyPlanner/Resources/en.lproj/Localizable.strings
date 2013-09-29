@@ -19,6 +19,12 @@
 
 /* BPMyTemperatureMainViewController */
 "Day %@" = "Day %@";
+"Today you are fertile!" = "Today you are fertile!";
+"fertile" = "fertile";
+"You can have " = "You can have ";
+"boy" = "boy";
+"or" = "or";
+"girl" = "girl";
 
 /* BPMyTemperatureControlsViewController */
 "My controls" = "My controls";
