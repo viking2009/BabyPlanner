@@ -1,23 +1,9 @@
-h2. 20130929
+h2. 20130930
 
 h3. Improvements:
 
-Task #28 My Temperature: Main page
-* show tips for fertile period
-Task #56: My Charts: All
-* check for ovulation in cycle, change ovulation icon
 Task #57 My Charts: Calendar
-* calendar cell with background images
-Task #59: My Charts: Cycle Details
-* fix calendar cell title color and cell backgrounds
-* calendar logic
+* don't reload data, only update collection view
 
 h3. Fixes
 
-Task #41 My Temperature: Cycle logic
-* ovulation index for previous cycles, display real fertile period when ovulation found
-* fix cycle for date
-Task #57 My Charts: Calendar
-* no sexual intercourse icons
-Task #59: My Charts: Cycle Details
-* fix iOS6 layout

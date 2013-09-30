@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSDate *firstDate;
 
 - (void)updateFirstDate;
+- (void)updateCollectionView;
 
 @end
 
@@ -129,9 +130,7 @@
         self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
     }
     
-    [self updateFirstDate];
-    
-    [self.collectionView reloadData];
+    [self updateCollectionView];
     
     if (self.selectedDate) {
         NSInteger dayIndex = [self.selectedDate.date daysAfterDate:self.firstDate];
@@ -262,8 +261,7 @@
     else
         self.selectedDate = nil;
 
-//    [self.collectionView reloadData];
-    [self updateUI];
+    [self updateCollectionView];
 }
 
 #pragma mark - BPCalendarHeaderDelegate
@@ -276,10 +274,7 @@
     self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
     self.selectedDate = nil;
     
-//    [self updateFirstDate];
-//
-//    [self.collectionView reloadData];
-    [self updateUI];
+    [self updateCollectionView];
 }
 
 - (void)calendarHeaderDidTapNextButton:(BPCalendarHeader *)calendarHeader
@@ -290,10 +285,7 @@
     self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
     self.selectedDate = nil;
 
-//    [self updateFirstDate];
-//    
-//    [self.collectionView reloadData];
-    [self updateUI];
+    [self updateCollectionView];
 }
 
 - (void)updateFirstDate
@@ -308,6 +300,13 @@
     NSInteger daysOffset = (compsFirstDayInMonth.weekday - 1 - weekDayOffset + 8) % 7;
 
     self.firstDate = [self.firstDate dateBySubtractingDays:daysOffset];
+}
+
+- (void)updateCollectionView
+{
+    [self updateFirstDate];
+    
+    [self.collectionView reloadData];
 }
 
 @end
