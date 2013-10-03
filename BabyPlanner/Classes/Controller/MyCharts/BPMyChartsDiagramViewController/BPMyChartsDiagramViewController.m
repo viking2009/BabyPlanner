@@ -7,10 +7,13 @@
 //
 
 #import "BPMyChartsDiagramViewController.h"
+#import "SVSegmentedControl.h"
+#import "UIView+Sizes.h"
 
 @interface BPMyChartsDiagramViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) SVSegmentedControl *segmentedControl;
 
 @end
 
@@ -44,6 +47,26 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = [NSString stringWithFormat:@"TODO:\n%@", [self class]];
     [self.scrollView addSubview:titleLabel];
+    
+    NSMutableArray *titles = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < 40; i++) {
+        [titles addObject:[NSString stringWithFormat:@"%i", i + 1]];
+    }
+    
+    self.segmentedControl = [[SVSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, 30.f*titles.count, 20.f)];
+    self.segmentedControl.backgroundTintColor = nil;
+    self.segmentedControl.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    self.segmentedControl.textColor = RGB(4, 139, 106);
+    self.segmentedControl.textShadowOffset = CGSizeZero;
+    
+//    self.segmentedControl.thumb.tintColor = nil;
+//    self.segmentedControl.thumb.textColor = RGB(4, 139, 106);
+//    self.segmentedControl.thumb.textShadowOffset = CGSizeZero;
+//    self.segmentedControl.thumb.shouldCastShadow = NO;
+    
+    self.segmentedControl.sectionTitles = titles;
+    [self.scrollView addSubview:self.segmentedControl];
+    self.scrollView.contentSize = CGSizeMake(self.segmentedControl.width, 0);
 }
 
 - (void)didReceiveMemoryWarning
