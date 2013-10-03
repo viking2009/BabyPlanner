@@ -24,8 +24,6 @@
 #define BPProfileTextFieldSmallWidth 100.f
 #define BPProfileMenstruationTextFieldWidth 153.f
 
-#define BPPregnancyPeriod 280
-
 @interface BPSettingsProfileViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) BPLabel *nameLabel;
@@ -394,11 +392,11 @@
             break;
         case BPValuePickerModeLastMenstruationDate:
             sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.pickerView.value;
-            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
+//            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
             break;
         case BPValuePickerModeLastOvulationDate:
             sharedSettings[BPSettingsProfileLastOvulationDateKey] = self.pickerView.value;
-//            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
+            sharedSettings[BPSettingsProfileChildBirthdayKey] = [self.pickerView.value dateByAddingDays:BPPregnancyPeriod];
             break;
         case BPValuePickerModeChildBirthday:
             sharedSettings[BPSettingsProfileChildBirthdayKey] = self.pickerView.value;
@@ -436,16 +434,16 @@
         self.pickerView.value = sharedSettings[BPSettingsProfileLengthOfCycleKey] ? : @0;
     } else if (sender == self.lastMenstruationButton) {
         self.pickerView.valuePickerMode = BPValuePickerModeLastMenstruationDate;
-        self.pickerView.value = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
+        self.pickerView.value = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [[NSDate date] dateAtStartOfDay];
     } else if (sender == self.lastOvulationButton) {
         self.pickerView.valuePickerMode = BPValuePickerModeLastOvulationDate;
-        self.pickerView.value = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [NSDate date];
+        self.pickerView.value = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [[NSDate date] dateAtStartOfDay];
     } else if (sender == self.childBirthButton) {
         self.pickerView.valuePickerMode = BPValuePickerModeChildBirthday;
-//        NSDate *lastOvulation = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [NSDate date];
-//        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulation dateByAddingDays:BPPregnancyPeriod];
-        NSDate *lastMenstruation = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
-        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastMenstruation dateByAddingDays:BPPregnancyPeriod];
+        NSDate *lastOvulation = sharedSettings[BPSettingsProfileLastOvulationDateKey] ? : [[NSDate date] dateAtStartOfDay];
+        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulation dateByAddingDays:BPPregnancyPeriod];
+//        NSDate *lastMenstruation = sharedSettings[BPSettingsProfileLastMenstruationDateKey] ? : [NSDate date];
+//        self.pickerView.value = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastMenstruation dateByAddingDays:BPPregnancyPeriod];
     }
 }
 

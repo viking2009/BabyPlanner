@@ -423,6 +423,12 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             }
         }
     }
+    
+    if (self.conceivingIndex != NSNotFound && self.ovulationIndex != NSNotFound) {
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        BPDate *date = self[self.ovulationIndex];
+        sharedSettings[BPSettingsProfileChildBirthdayKey] = [date.date dateByAddingDays:BPPregnancyPeriod];
+    }
 }
 
 - (void)calculateBoyGirl {

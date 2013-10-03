@@ -50,6 +50,8 @@
 #define BPSettingsProfileLastOvulationDateKey       @"profile.lastOvulation"
 #define BPSettingsProfileChildBirthdayKey           @"profile.childBirthday"
 
+#define BPPregnancyPeriod                   (7*38)
+
 // TESTS
 
 #define TEST_NORMAL_CYCLE1      0

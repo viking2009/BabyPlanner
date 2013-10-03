@@ -1,9 +1,12 @@
-h2. 20130930
+h2. 20131003
 
 h3. Improvements:
 
-Task #57 My Charts: Calendar
+Task #57: My Charts: Calendar
 * don't reload data, only update collection view
+* update calendar header design
 
 h3. Fixes
 
+Task #61: My Temperature: Cycle logic (pregnancy)
+* child birthday dependence on last ovulation
