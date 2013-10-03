@@ -13,9 +13,8 @@
 
 #define BPCalendarHeaderBackgroundImageHeight 53.f
 #define BPCalendarHeaderButtonSize 40.f
-#define BPCalendarHeaderMonthLabelHeight 26.f
-#define BPCalendarHeaderYearLabelHeight 18.f
 #define BPCalendarHeaderDayOfWeekLabelWidth 46.f
+#define BPCalendarHeaderDayOfWeekLabelHeight 23.f
 
 @interface BPCalendarHeader ()
 
@@ -39,19 +38,12 @@
         self.backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
         [self addSubview:self.backgroundImageView];
         
-        self.monthLabel = [[UILabel alloc] init];
-        self.monthLabel.backgroundColor = [UIColor clearColor];
-        self.monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:23];
-        self.monthLabel.textAlignment = NSTextAlignmentCenter;
-        self.monthLabel.textColor = RGB(255, 255, 255);
-        [self addSubview:self.monthLabel];
-        
-        self.yearLabel = [[UILabel alloc] init];
-        self.yearLabel.backgroundColor = [UIColor clearColor];
-        self.yearLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-        self.yearLabel.textAlignment = NSTextAlignmentCenter;
-        self.yearLabel.textColor = RGB(255, 255, 255);
-        [self addSubview:self.yearLabel];
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:23];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.textColor = RGB(255, 255, 255);
+        [self addSubview:self.titleLabel];
         
         self.prevButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.prevButton setImage:[BPUtils imageNamed:@"mycharts_calendar_button_prev"] forState:UIControlStateNormal];
@@ -69,7 +61,7 @@
         for (NSInteger i = 0; i < numberOfLabels; ++i) {
             UILabel *dayOfWeekLabel = [[UILabel alloc] init];
             dayOfWeekLabel.backgroundColor = [UIColor clearColor];
-            dayOfWeekLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
+            dayOfWeekLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:11];
             dayOfWeekLabel.textAlignment = NSTextAlignmentCenter;
             dayOfWeekLabel.textColor = RGB(255, 255, 255);
             [labels addObject:dayOfWeekLabel];
@@ -92,22 +84,17 @@
     CGFloat left = 0.f;
     CGFloat buttonSize = MIN(BPCalendarHeaderButtonSize, BPCalendarHeaderBackgroundImageHeight);
     CGFloat maxWidth = self.width - 2 * buttonSize;
-    CGFloat top = floorf(BPCalendarHeaderBackgroundImageHeight/2 - (BPCalendarHeaderMonthLabelHeight + BPCalendarHeaderYearLabelHeight)/2);
     
     self.prevButton.frame = CGRectMake(left, floorf(BPCalendarHeaderBackgroundImageHeight/2 - buttonSize/2), buttonSize, buttonSize);
     left += self.prevButton.width;
 
-    self.monthLabel.frame = CGRectMake(left, top, maxWidth, BPCalendarHeaderMonthLabelHeight);
-    top += self.monthLabel.height;
-    
-    self.yearLabel.frame = CGRectMake(left, top, maxWidth, BPCalendarHeaderYearLabelHeight);
-    left += self.yearLabel.width;
+    self.titleLabel.frame = CGRectMake(left, 0, maxWidth, BPCalendarHeaderBackgroundImageHeight - 8.f);
+    left += self.titleLabel.width;
     
     self.nextButton.frame = CGRectMake(left, floorf(BPCalendarHeaderBackgroundImageHeight/2 - buttonSize/2), buttonSize, buttonSize);
     
-    CGFloat dayOfWeekLabelHeight = self.height - BPCalendarHeaderBackgroundImageHeight;
     [self.dayOfWeekLabels enumerateObjectsUsingBlock:^(UILabel *dayOfWeekLabel, NSUInteger idx, BOOL *stop) {
-        dayOfWeekLabel.frame = CGRectMake(-1 + idx*BPCalendarHeaderDayOfWeekLabelWidth, BPCalendarHeaderBackgroundImageHeight, BPCalendarHeaderDayOfWeekLabelWidth, dayOfWeekLabelHeight);
+        dayOfWeekLabel.frame = CGRectMake(-1 + idx*BPCalendarHeaderDayOfWeekLabelWidth, BPCalendarHeaderBackgroundImageHeight - BPCalendarHeaderDayOfWeekLabelHeight, BPCalendarHeaderDayOfWeekLabelWidth, BPCalendarHeaderDayOfWeekLabelHeight);
     }];
 }
 
@@ -117,8 +104,7 @@
 {
     [super prepareForReuse];
     
-    self.monthLabel.text = nil;
-    self.yearLabel.text = nil;
+    self.titleLabel.text = nil;
 }
 
 #pragma mark - Private

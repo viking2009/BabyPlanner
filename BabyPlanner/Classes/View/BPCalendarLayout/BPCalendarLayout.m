@@ -9,6 +9,8 @@
 #import "BPCalendarLayout.h"
 #import "UIView+Sizes.h"
 
+#define BPCalendarLayoutZIndexOffset 800
+
 @implementation BPCalendarLayout
 
 - (NSArray *) layoutAttributesForElementsInRect:(CGRect)rect {
@@ -28,7 +30,6 @@
     }
     
     [missingSections enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:idx];
         
         UICollectionViewLayoutAttributes *layoutAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
@@ -70,6 +71,14 @@
     
     return answer;
 }
+
+//- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionViewLayoutAttributes *layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+//    layoutAttributes.zIndex = BPCalendarLayoutZIndexOffset + indexPath.item;
+//    
+//    return layoutAttributes;
+//}
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
     return YES;

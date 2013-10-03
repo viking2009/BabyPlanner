@@ -59,6 +59,17 @@ static NSNumberFormatter *_numberFormatter = nil;
     return [dateFormatter stringFromDate:date];
 }
 
++ (NSString *)monthStringFromDate:(NSDate *)date
+{
+    if (!date)
+        return nil;
+    
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"LLLL yyyy"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSString *)weightFromNumber:(NSNumber *)number
 {
     if (!number || ![number integerValue])

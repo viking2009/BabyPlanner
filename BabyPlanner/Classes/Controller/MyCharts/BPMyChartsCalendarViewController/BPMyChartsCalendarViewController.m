@@ -58,7 +58,7 @@
 
     BPCalendarLayout *calendarLayout = [[BPCalendarLayout alloc] init];
 	[calendarLayout setItemSize:CGSizeMake(46.f, 46.f)];
-	[calendarLayout setHeaderReferenceSize:CGSizeMake(320.f, 88.f)];
+	[calendarLayout setHeaderReferenceSize:CGSizeMake(320.f, 53.f)];
 	[calendarLayout setFooterReferenceSize:CGSizeMake(320.f, 150.f)];
 	//[calendarLayout setMinimumInteritemSpacing:20];
 	[calendarLayout setMinimumInteritemSpacing:0];
@@ -216,9 +216,7 @@
         BPCalendarHeader *calendarHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarHeaderIdentifier forIndexPath:indexPath];
         calendarHeader.delegate = self;
         
-        NSDateFormatter *dateFormatter = [BPUtils dateFormatter];
-        calendarHeader.monthLabel.text = [dateFormatter standaloneMonthSymbols][self.selectedMonth.month-1];
-        calendarHeader.yearLabel.text = [NSString stringWithFormat:@"%i", self.selectedMonth.year];
+        calendarHeader.titleLabel.text = [BPUtils monthStringFromDate:self.selectedMonth];
         calendarHeader.prevButton.enabled = (self.selectedMonth.month > self.cycle.startDate.month);
         calendarHeader.nextButton.enabled = (self.selectedMonth.month < self.cycle.endDate.month);
         
