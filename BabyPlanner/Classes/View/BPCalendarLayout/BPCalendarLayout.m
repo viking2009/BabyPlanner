@@ -10,10 +10,37 @@
 #import "UIView+Sizes.h"
 
 #define BPCalendarLayoutZIndexOffset 800
+#define BPCalendarLayoutItemSize 46.f
 
 @implementation BPCalendarLayout
 
-- (NSArray *) layoutAttributesForElementsInRect:(CGRect)rect {
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.itemSize = CGSizeMake(BPCalendarLayoutItemSize, BPCalendarLayoutItemSize);
+        self.headerReferenceSize = CGSizeMake(320.f, 53.f);
+        self.footerReferenceSize = CGSizeMake(320.f, 150.f);
+        self.minimumInteritemSpacing = 0;
+        self.minimumLineSpacing = 0;
+        self.sectionInset = UIEdgeInsetsMake(0, -1, 0, -1);
+    }
+    
+    return self;
+}
+
+#pragma mark - UICollectionViewLayout (SubclassingHooks)
+
+- (void)prepareLayout
+{
+//    CGFloat inset = floorf(self.collectionView.width - 322.f);
+//    self.sectionInset = UIEdgeInsetsMake(0, inset, 0, inset);
+    
+    [super prepareLayout];
+}
+
+- (NSArray *) layoutAttributesForElementsInRect:(CGRect)rect
+{
     NSMutableArray *answer = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     UICollectionView * const cv = self.collectionView;
     CGPoint const contentOffset = cv.contentOffset;
@@ -80,11 +107,13 @@
 //    return layoutAttributes;
 //}
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound
+{
     return YES;
 }
 
-- (UICollectionViewLayoutInvalidationContext *)invalidationContextForBoundsChange:(CGRect)newBounds {
+- (UICollectionViewLayoutInvalidationContext *)invalidationContextForBoundsChange:(CGRect)newBounds
+{
     return nil;
 }
 

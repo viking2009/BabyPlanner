@@ -13,5 +13,7 @@ Task #57: My Charts: Calendar
 
 h3. Fixes
 
+Task #57: My Charts: Calendar
+* don't select date out of cycle
 Task #61: My Temperature: Cycle logic (pregnancy)
 * child birthday dependence on last ovulation

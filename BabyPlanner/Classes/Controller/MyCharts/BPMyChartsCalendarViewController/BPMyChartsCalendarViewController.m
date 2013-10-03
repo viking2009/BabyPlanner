@@ -57,17 +57,8 @@
     self.statusBarView.backgroundColor = [UIColor clearColor];
 
     BPCalendarLayout *calendarLayout = [[BPCalendarLayout alloc] init];
-	[calendarLayout setItemSize:CGSizeMake(46.f, 46.f)];
-	[calendarLayout setHeaderReferenceSize:CGSizeMake(320.f, 53.f)];
-	[calendarLayout setFooterReferenceSize:CGSizeMake(320.f, 150.f)];
-	//[calendarLayout setMinimumInteritemSpacing:20];
-	[calendarLayout setMinimumInteritemSpacing:0];
-	[calendarLayout setMinimumLineSpacing:0];
-//	[calendarLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectInset(self.view.bounds, -1, 0);
-
-    self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:calendarLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:calendarLayout];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
     self.collectionView.backgroundView = nil;
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -177,23 +168,19 @@
 
     NSString *imageName = @"mycharts_calendar_cell_background_green";
 
-    BOOL inCycle = NO;
-    cell.date = [BPDate dateWithDate:[self.firstDate dateByAddingDays:indexPath.item]];
-
-    NSUInteger indexOfDate = [self.datesManager indexForDate:cell.date.date];
-    if (indexOfDate != NSNotFound) {
-        BPDate *date = self.datesManager[indexOfDate];
-//        inCycle = ([date.cycle isEqual:self.cycle]);
-        inCycle = (!([date.date isEarlierThanDate:self.cycle.startDate] || [date.date isLaterThanDate:self.cycle.endDate]));
-        if (inCycle) {
-            if ([date.imageName isEqualToString:@"point_yellow"])
-                imageName = @"mycharts_calendar_cell_background_yellow";
-            else if ([date.imageName isEqualToString:@"point_red"])
-                imageName = @"mycharts_calendar_cell_background_red";
-            else if ([date.imageName isEqualToString:@"point_ovulation"])
-                imageName = @"mycharts_calendar_cell_background_ovulation";
-        }
+    BPDate *date = [BPDate dateWithDate:[self.firstDate dateByAddingDays:indexPath.item]];
+    cell.date = date;
+    
+    BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
+    if (inCycle) {
+        if ([date.imageName isEqualToString:@"point_yellow"])
+            imageName = @"mycharts_calendar_cell_background_yellow";
+        else if ([date.imageName isEqualToString:@"point_red"])
+            imageName = @"mycharts_calendar_cell_background_red";
+        else if ([date.imageName isEqualToString:@"point_ovulation"])
+            imageName = @"mycharts_calendar_cell_background_ovulation";
     }
+    
     cell.enabled = inCycle;
     
     cell.imageView.image = [BPUtils imageNamed:imageName];
