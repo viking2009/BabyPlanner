@@ -194,8 +194,7 @@
                 imageName = @"mycharts_calendar_cell_background_ovulation";
         }
     }
-    cell.dayLabel.textColor = (inCycle ? RGB(255, 255, 255) : RGB(42, 192, 169));
-    
+    cell.enabled = inCycle;
     
     cell.imageView.image = [BPUtils imageNamed:imageName];
     cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
@@ -242,11 +241,15 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    BPCalendarCell *cell = (BPCalendarCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
+
+    return cell.enabled;
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    BPCalendarCell *cell = (BPCalendarCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    return cell.enabled;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

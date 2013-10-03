@@ -18,6 +18,10 @@
 
 @interface BPCalendarHeader ()
 
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
+@property (nonatomic, strong, readwrite) UIButton *prevButton;
+@property (nonatomic, strong, readwrite) UIButton *nextButton;
+
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) NSArray *dayOfWeekLabels;
 

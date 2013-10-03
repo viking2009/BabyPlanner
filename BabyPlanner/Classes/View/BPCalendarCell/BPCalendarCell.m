@@ -16,6 +16,9 @@
 
 @interface BPCalendarCell ()
 
+@property (nonatomic, strong, readwrite) UIImageView *imageView;
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
+
 @property (nonatomic, strong) UIImageView *topRightImageView;
 @property (nonatomic, strong) UIImageView *bottomLeftImageView;
 @property (nonatomic, assign) NSUInteger position;
@@ -40,11 +43,11 @@
         self.bottomLeftImageView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.bottomLeftImageView];
 
-        self.dayLabel = [[UILabel alloc] init];
-        self.dayLabel.backgroundColor = [UIColor clearColor];
-        self.dayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-        self.dayLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:self.dayLabel];
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:self.titleLabel];
         
         self.backgroundView = [[UIView alloc] init];
     }
@@ -68,7 +71,7 @@
     else
         self.bottomLeftImageView.frame = CGRectZero;
 
-    self.dayLabel.frame = self.contentView.bounds;
+    self.titleLabel.frame = self.contentView.bounds;
 }
 
 #pragma mark - UICollectionReusableView
@@ -77,7 +80,7 @@
 {
     [super prepareForReuse];
     
-    self.dayLabel.text = nil;
+    self.titleLabel.text = nil;
     self.topRightImageView.image = nil;
     self.bottomLeftImageView.image = nil;
 }
@@ -131,7 +134,7 @@
         if ([_date.ovulation boolValue])
             self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_ovulation"];
 
-        self.dayLabel.text = [NSString stringWithFormat:@"%i", _date.date.day];
+        self.titleLabel.text = [NSString stringWithFormat:@"%i", _date.date.day];
     
         [self setNeedsLayout];
 //    }
@@ -146,6 +149,18 @@
             self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_childbirth"];
         
         [self setNeedsLayout];
+//    }
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+//    if (_enabled != enabled) {
+        _enabled = enabled;
+        
+        self.titleLabel.textColor = (enabled ? RGB(255, 255, 255) : RGB(42, 192, 169));
+
+//        self.backgroundColor =
+//        self.enabled ? UIColor.whiteColor : [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
 //    }
 }
 

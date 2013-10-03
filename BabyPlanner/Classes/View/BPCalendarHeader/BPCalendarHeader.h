@@ -12,9 +12,9 @@
 
 @interface BPCalendarHeader : UICollectionReusableView
 
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *prevButton;
-@property (nonatomic, strong) UIButton *nextButton;
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
+@property (nonatomic, strong, readonly) UIButton *prevButton;
+@property (nonatomic, strong, readonly) UIButton *nextButton;
 
 @property (nonatomic, weak) id delegate;
 

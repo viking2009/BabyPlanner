@@ -51,6 +51,7 @@
 		908DF62D17E6F3E900AC0AFD /* ListenerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */; };
 		908DF62F17E6F4D600AC0AFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908DF62E17E6F4D600AC0AFD /* AVFoundation.framework */; };
 		908DF63117E6F4F500AC0AFD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908DF63017E6F4F500AC0AFD /* Accelerate.framework */; };
+		9091D0CC17FD55E90071A202 /* BPCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9091D0CB17FD55E90071A202 /* BPCalendarView.m */; };
 		9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC5617E23C1800B01132 /* BPCyclesManager.m */; };
 		9094EC6F17E240B800B01132 /* BPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC6E17E240B800B01132 /* BPProfile.m */; };
 		9094EC7217E240B900B01132 /* BPCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9094EC7117E240B900B01132 /* BPCycle.m */; };
@@ -210,6 +211,8 @@
 		908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListenerViewController.xib; sourceTree = "<group>"; };
 		908DF62E17E6F4D600AC0AFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		908DF63017E6F4F500AC0AFD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		9091D0CA17FD55E90071A202 /* BPCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCalendarView.h; sourceTree = "<group>"; };
+		9091D0CB17FD55E90071A202 /* BPCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCalendarView.m; sourceTree = "<group>"; };
 		9094EC5517E23C1800B01132 /* BPCyclesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCyclesManager.h; sourceTree = "<group>"; };
 		9094EC5617E23C1800B01132 /* BPCyclesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCyclesManager.m; sourceTree = "<group>"; };
 		9094EC6D17E240B800B01132 /* BPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPProfile.h; sourceTree = "<group>"; };
@@ -549,6 +552,15 @@
 				908DF62B17E6F3E900AC0AFD /* ListenerViewController.xib */,
 			);
 			path = Trash;
+			sourceTree = "<group>";
+		};
+		9091D0C917FD55D30071A202 /* BPCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				9091D0CA17FD55E90071A202 /* BPCalendarView.h */,
+				9091D0CB17FD55E90071A202 /* BPCalendarView.m */,
+			);
+			path = BPCalendarView;
 			sourceTree = "<group>";
 		};
 		909C957B17BC0A9100EEC795 /* CoreData */ = {
@@ -988,6 +1000,7 @@
 				90F082D417DE345F00EBD957 /* BPStatsCollectionViewCell */,
 				90AD89C817DE3BEF0085A015 /* BPStatsCollectionViewHeader */,
 				90AD89CC17DE3E5D0085A015 /* BPCycleInfoCell */,
+				9091D0C917FD55D30071A202 /* BPCalendarView */,
 				9008D5AF17F34CD100367B90 /* BPCalendarLayout */,
 				9008D5A317F2DE3C00367B90 /* BPCalendarCell */,
 				9008D5A717F303C500367B90 /* BPCalendarHeader */,
@@ -1383,6 +1396,7 @@
 				905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */,
 				90E881BB1778739B00682BB3 /* BPUtils.m in Sources */,
 				90AD89CF17DE3E730085A015 /* BPCycleInfoCell.m in Sources */,
+				9091D0CC17FD55E90071A202 /* BPCalendarView.m in Sources */,
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				9094EC7217E240B900B01132 /* BPCycle.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
