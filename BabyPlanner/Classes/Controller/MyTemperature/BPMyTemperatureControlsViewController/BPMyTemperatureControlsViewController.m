@@ -461,6 +461,7 @@
                 
                 [cycle save];
 
+                sharedSettings[BPSettingsProfileIsPregnantKey] = @NO;
                 sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.date.date;
             }
         }
