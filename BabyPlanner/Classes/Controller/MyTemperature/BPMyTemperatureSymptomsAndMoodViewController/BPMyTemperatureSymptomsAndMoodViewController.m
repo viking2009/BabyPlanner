@@ -82,6 +82,30 @@
 - (void)loadData
 {
     self.symptoms = [BPSymptom all];
+    DLog(@"%@", self.symptoms);
+    
+    if (!self.symptoms) {
+        NSArray *symptoms = @[@"Good mood", @"Irritability", @"Hunger",
+                              @"Tearfulness", @"Fatigue", @"Party",
+                              @"Pressure", @"Migraine", @"Colds",
+                              @"Temperature", @"Nausea", @"Heartburn"];
+        
+        for (int i = 0; i < [symptoms count]; i++) {
+            DLog(@"i: %i", i);
+            BPSymptom *symptom = [BPSymptom create];
+            symptom.position = @(i);
+            symptom.name = symptoms[i];
+            NSString *underscored = [[symptom.name lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+            symptom.imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
+        }
+        
+        NSError *error;
+        [[NSManagedObjectContext defaultContext] save:&error];
+        if (error)
+            DLog(@"error: %@", error);
+        else
+            self.symptoms = [BPSymptom all];
+    }
     
     int i = 0;
     for (BPSymptom *symptom in self.symptoms) {

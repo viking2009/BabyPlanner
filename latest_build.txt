@@ -8,6 +8,8 @@ Task #57: My Charts: Calendar
 
 h3. Fixes
 
+Task #31 My Temperature: Symptoms And Mood
+* fix no symptoms
 Task #57: My Charts: Calendar
 * 5 weeks in month
 * don't select date out of cycle

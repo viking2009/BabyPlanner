@@ -126,22 +126,22 @@
     BPNavigationController *myChartsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyChartsViewController new]];
     BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
-    BPNavigationController *testViewController = [[BPNavigationController alloc] initWithRootViewController:[ListenerViewController new]];
+//    BPNavigationController *testViewController = [[BPNavigationController alloc] initWithRootViewController:[ListenerViewController new]];
 
 #if TEST_NORMAL_CYCLE1 || TEST_NORMAL_CYCLE2  || TEST_ANOVUL_CYCLE || TEST_PREGNANCY_CYCLE
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     sharedSettings[BPSettingsProfileLastMenstruationDateKey] = [[NSDate date] dateBySubtractingDays:32];
 #endif
     
-    /**RIO session setup */
-	RIOInterface *rioRef = [RIOInterface sharedInstance];
-	[rioRef setSampleRate:44100];
-	[rioRef setFrequency:294];
-	[rioRef initializeAudioSession];
-
+//    /**RIO session setup */
+//	RIOInterface *rioRef = [RIOInterface sharedInstance];
+//	[rioRef setSampleRate:44100];
+//	[rioRef setFrequency:294];
+//	[rioRef initializeAudioSession];
     
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
-    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController, testViewController];
+//    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController, testViewController];
+    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
