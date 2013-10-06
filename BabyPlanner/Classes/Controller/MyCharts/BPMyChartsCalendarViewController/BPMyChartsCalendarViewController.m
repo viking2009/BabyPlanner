@@ -22,9 +22,6 @@
 #define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
 #define BPCalendarFooterIdentifier @"BPCalendarFooterIdentifier"
 
-#define CURRENT_CALENDAR [NSCalendar currentCalendar]
-#define DATE_COMPONENTS (NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit)
-
 @interface BPMyChartsCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPCalendarHeaderDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;

@@ -19,7 +19,6 @@
 #import "ObjectiveRecord.h"
 #import <BugSense-iOS/BugSenseController.h>
 
-//#define BPCreateSeedDataBase
 #import "BPSymptom.h"
 #import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
@@ -55,49 +54,27 @@
 
 - (void)importDatabaseIfNeeded
 {
-#ifdef BPCreateSeedDataBase
-    NSArray *symptoms = @[@"Good mood", @"Irritability", @"Hunger",
-                          @"Tearfulness", @"Fatigue", @"Party",
-                          @"Pressure", @"Migraine", @"Colds",
-                          @"Temperature", @"Nausea", @"Heartburn"];
-
-    for (int i = 0; i < [symptoms count]; i++) {
-        DLog(@"i: %i", i);
-        BPSymptom *symptom = [BPSymptom create];
-        symptom.position = @(i);
-        symptom.name = symptoms[i];
-        NSString *underscored = [[symptom.name lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        symptom.imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
+    NSArray *symptoms = [BPSymptom all];
+    if (!symptoms) {
+        NSArray *symptoms = @[@"Good mood", @"Irritability", @"Hunger",
+                              @"Tearfulness", @"Fatigue", @"Party",
+                              @"Pressure", @"Migraine", @"Colds",
+                              @"Temperature", @"Nausea", @"Heartburn"];
+        
+        for (int i = 0; i < [symptoms count]; i++) {
+            DLog(@"i: %i", i);
+            BPSymptom *symptom = [BPSymptom create];
+            symptom.position = @(i);
+            symptom.name = symptoms[i];
+            NSString *underscored = [[symptom.name lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+            symptom.imageName = [NSString stringWithFormat:@"symptoms_icon_%@", underscored];
+        }
+        
+        NSError *error;
+        [[NSManagedObjectContext defaultContext] save:&error];
+        if (error)
+            DLog(@"error: %@", error);
     }
-    
-    NSError *error;
-    [[NSManagedObjectContext defaultContext] save:&error];
-    if (error)
-        DLog(@"error: %@", error);
-#else
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    NSURL *directory = [[CoreDataManager sharedManager] applicationDocumentsDirectory];
-    NSURL *databaseURL = [directory URLByAppendingPathComponent:[CoreDataManager sharedManager].databaseName];
-
-    DLog(@"databaseURL: %@", databaseURL);
-
-    if (![fm fileExistsAtPath:[databaseURL absoluteString]]) {
-        NSURL *seedURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:[CoreDataManager sharedManager].databaseName];
-        DLog(@"seedURL: %@", seedURL);
-//        if ([fm fileExistsAtPath:[seedURL absoluteString]]) {
-            NSError *error;
-            
-            [fm copyItemAtURL:seedURL toURL:databaseURL error:&error];
-            if (error)
-                DLog(@"error: %@", error);
-            else {
-                DLog(@"imported");
-                DLog(@"%@", [BPSymptom all]);
-            }
-//        }
-    }
-#endif
 }
 
 - (void)customizeAppearance

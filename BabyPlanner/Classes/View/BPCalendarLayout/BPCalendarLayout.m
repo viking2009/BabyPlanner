@@ -20,7 +20,7 @@
     if (self) {
 //        self.itemSize = CGSizeMake(BPCalendarLayoutItemSize, BPCalendarLayoutItemSize);
         self.headerReferenceSize = CGSizeMake(320.f, 53.f);
-        self.footerReferenceSize = CGSizeMake(320.f, 150.f);
+        self.footerReferenceSize = CGSizeMake(320.f, 176.f);
         self.minimumInteritemSpacing = 0;
         self.minimumLineSpacing = 0;
         self.sectionInset = UIEdgeInsetsMake(0, -1, 0, -1);

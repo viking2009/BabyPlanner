@@ -10,17 +10,24 @@
 #import "BPLanguageManager.h"
 #import "BPUtils.h"
 #import "UIView+Sizes.h"
+#import "BPLabel.h"
 #import "BPDate+Additions.h"
+#import "BPSymptom+Additions.h"
+#import "UIView+Sizes.h"
+#import "ObjectiveSugar.h"
 
 #define BPCalendarFooterDayTop      38.f
 #define BPCalendarFooterFirstLine   30.f
-#define BPCalendarFooterSecondLine  58.f
+#define BPCalendarFooterSecondLine  56.f
 #define BPCalendarFooterPadding     12.f
 #define BPCalendarFooterDayLabelHeight 20.f
-#define BPCalendarFooterNotesLabelHeight 30.f
+#define BPCalendarFooterNotesLabelHeight 32.f
 #define BPCalendarFooterLinesHorizontalPadding 15.f
 #define BPCalendarFooterLinesTopPadding 28.f
 #define BPCalendarFooterLinesBottomPadding 5.f
+#define BPCalendarFooterSymptomTop  120.f
+#define BPCalendarFooterSymptomSize 28.f
+#define BPCalendarFooterSymptomPadding 2.f
 
 @interface BPCalendarFooter ()
 
@@ -36,6 +43,8 @@
 @property (nonatomic, strong) UIImageView *girlView;
 @property (nonatomic, strong) UILabel *notesLabel;
 
+@property (nonatomic, strong) NSMutableArray *symptoms;
+
 @end
 
 @implementation BPCalendarFooter
@@ -47,7 +56,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         UIImage *backgroundImage = [BPUtils imageNamed:@"mycharts_calendar_notes_background"];
-        self.backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+        self.backgroundImageView = [[UIImageView alloc] initWithImage:[backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(25.f, 0, 0, 0) resizingMode:UIImageResizingModeStretch]];
         [self addSubview:self.backgroundImageView];
 
         UIImage *linesImage = [BPUtils imageNamed:@"mycharts_calendar_notes_lines"];
@@ -88,6 +97,8 @@
         self.notesLabel.textColor = RGB(132, 219, 205);
         self.notesLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.notesLabel];
+        
+        self.symptoms = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -97,7 +108,7 @@
 {
     [super layoutSubviews];
     
-    self.backgroundImageView.center = CGPointMake(floorf(self.width/2), floorf(self.height/2));
+    self.backgroundImageView.frame = CGRectInset(self.bounds, floorf(self.width/2 - self.backgroundImageView.image.size.width/2), 4.f);
     
     self.linesImageView.frame = CGRectMake(self.backgroundImageView.left + BPCalendarFooterLinesHorizontalPadding, self.backgroundImageView.top + BPCalendarFooterLinesTopPadding, self.backgroundImageView.width - 2*BPCalendarFooterLinesHorizontalPadding, self.backgroundImageView.height - (BPCalendarFooterLinesTopPadding + BPCalendarFooterLinesBottomPadding));
     
@@ -125,12 +136,22 @@
 
     left = BPCalendarFooterPadding;
     CGFloat maxWidth = self.width - 2*left;
-    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.f : 5.f);
-    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
+    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.f : 4.f);
+    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + 30.f + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
     
     maxWidth -= (MAX(self.boyView.width, self.girlView.width) + 2*BPCalendarFooterPadding);
     left = floorf(self.width/2 - maxWidth/2);
     self.dayLabel.frame = CGRectMake(left, BPCalendarFooterDayTop, maxWidth, BPCalendarFooterDayLabelHeight);
+    
+    for (UIImageView *imageView in [self.symptoms copy]) {
+        left += BPCalendarFooterSymptomPadding;
+        imageView.frame = CGRectMake(left, self.boyView.bottom - 3.f, imageView.image.size.width, BPCalendarFooterSymptomSize);
+        left += imageView.width;
+        if (left > self.width - BPCalendarFooterPadding) {
+            [imageView removeFromSuperview];
+            [self.symptoms removeObject:imageView];
+        }
+    }
 }
 
 #pragma mark - UICollectionReusableView
@@ -181,6 +202,20 @@
         self.girlView.image = [BPUtils imageNamed:imageName];
 
         self.notesLabel.text = _date.notations;
+    
+        [self.symptoms makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.symptoms removeAllObjects];
+    
+    if ([date.symptoms count]) {
+        NSArray *symptoms = [[date.symptoms allObjects] sortBy:@"position"];
+        for (BPSymptom *symptom in symptoms) {
+            NSString *imageName = [NSString stringWithFormat:@"mycharts_%@", symptom.imageName];
+            UIImageView *symptomImageView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:imageName]];
+            symptomImageView.contentMode = ([symptom.position integerValue] == 5 ? UIViewContentModeBottom : UIViewContentModeTop);
+            [self.symptoms addObject:symptomImageView];
+            [self addSubview:symptomImageView];
+        }
+    }
     
         [self updateUI];
 //    }

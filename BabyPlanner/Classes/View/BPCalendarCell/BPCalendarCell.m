@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UIImageView *topRightImageView;
 @property (nonatomic, strong) UIImageView *bottomLeftImageView;
-@property (nonatomic, assign) NSUInteger position;
+//@property (nonatomic, assign) NSUInteger position;
 
 @end
 
