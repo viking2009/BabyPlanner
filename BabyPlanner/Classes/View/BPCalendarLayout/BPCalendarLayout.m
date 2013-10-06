@@ -10,7 +10,7 @@
 #import "UIView+Sizes.h"
 
 #define BPCalendarLayoutZIndexOffset 800
-#define BPCalendarLayoutItemSize 46.f
+//#define BPCalendarLayoutItemSize 46.f
 
 @implementation BPCalendarLayout
 
@@ -18,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        self.itemSize = CGSizeMake(BPCalendarLayoutItemSize, BPCalendarLayoutItemSize);
+//        self.itemSize = CGSizeMake(BPCalendarLayoutItemSize, BPCalendarLayoutItemSize);
         self.headerReferenceSize = CGSizeMake(320.f, 53.f);
         self.footerReferenceSize = CGSizeMake(320.f, 150.f);
         self.minimumInteritemSpacing = 0;
@@ -40,7 +40,7 @@
 }
 
 - (NSArray *) layoutAttributesForElementsInRect:(CGRect)rect
-{
+{    
     NSMutableArray *answer = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     UICollectionView * const cv = self.collectionView;
     CGPoint const contentOffset = cv.contentOffset;
@@ -98,14 +98,6 @@
     
     return answer;
 }
-
-//- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionViewLayoutAttributes *layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-//    layoutAttributes.zIndex = BPCalendarLayoutZIndexOffset + indexPath.item;
-//    
-//    return layoutAttributes;
-//}
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound
 {

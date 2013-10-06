@@ -34,7 +34,7 @@
         self.contentView.clipsToBounds = NO;
         
         self.imageView = [[UIImageView alloc] init];
-        self.imageView.contentMode = UIViewContentModeCenter;
+//        self.imageView.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:self.imageView];
         
         self.topRightImageView = [[UIImageView alloc] init];
@@ -49,7 +49,7 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.titleLabel];
         
-        self.backgroundView = [[UIView alloc] init];
+//        self.backgroundView = [[UIView alloc] init];
     }
 
     return self;
@@ -85,31 +85,31 @@
     self.bottomLeftImageView.image = nil;
 }
 
-#pragma mark - UICollectionViewCell
-
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
-    
-    if (selected) {
-        self.position = [self.superview.subviews indexOfObject:self];
-        [self.superview bringSubviewToFront:self];
-    }
-    else
-        [self.superview insertSubview:self atIndex:self.position];
-}
-
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
-    
-    if (highlighted) {
-        self.position = [self.superview.subviews indexOfObject:self];
-        [self.superview bringSubviewToFront:self];
-    }
-    else
-        [self.superview insertSubview:self atIndex:self.position];
-}
+//#pragma mark - UICollectionViewCell
+//
+//- (void)setSelected:(BOOL)selected
+//{
+//    [super setSelected:selected];
+//    
+//    if (selected) {
+//        self.position = [self.superview.subviews indexOfObject:self];
+//        [self.superview bringSubviewToFront:self];
+//    }
+//    else
+//        [self.superview insertSubview:self atIndex:self.position];
+//}
+//
+//- (void)setHighlighted:(BOOL)highlighted
+//{
+//    [super setHighlighted:highlighted];
+//    
+//    if (highlighted) {
+//        self.position = [self.superview.subviews indexOfObject:self];
+//        [self.superview bringSubviewToFront:self];
+//    }
+//    else
+//        [self.superview insertSubview:self atIndex:self.position];
+//}
 
 #pragma mark - Public
 

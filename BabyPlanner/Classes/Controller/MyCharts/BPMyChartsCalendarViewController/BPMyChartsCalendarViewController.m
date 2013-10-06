@@ -16,6 +16,7 @@
 #import "BPDatesManager.h"
 #import "BPDate+Additions.h"
 #import "BPSettings+Additions.h"
+#import "UIImage+Additions.h"
 
 #define BPCalendarCellIdentifier @"BPCalendarCellIdentifier"
 #define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) NSDate *selectedMonth;
 @property (nonatomic, strong) NSDate *firstDate;
 
+- (BOOL)canSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)updateFirstDate;
 - (void)updateCollectionView;
 
@@ -64,7 +66,7 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.delaysContentTouches = NO;
+//    self.collectionView.delaysContentTouches = NO;
 //    self.collectionView.bounces = NO;
     [self.view addSubview:self.collectionView];
     
@@ -122,12 +124,6 @@
     }
     
     [self updateCollectionView];
-    
-    if (self.selectedDate) {
-        NSInteger dayIndex = [self.selectedDate.date daysAfterDate:self.firstDate];
-        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:dayIndex inSection:0];
-        [self.collectionView selectItemAtIndexPath:selectedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-    }
 }
 
 #pragma mark - BPBaseViewController
@@ -149,6 +145,8 @@
     [CURRENT_CALENDAR setLocale:[BPLanguageManager sharedManager].currentLocale];
     NSInteger numberOfWeaks = [CURRENT_CALENDAR rangeOfUnit:NSWeekCalendarUnit inUnit:NSMonthCalendarUnit forDate:self.selectedMonth].length;
     
+    DLog(@"numberOfWeaks: %i", numberOfWeaks);
+    
     NSInteger numberOfDays = 7 * numberOfWeaks;
     NSDate *lastDate = [self.firstDate dateByAddingDays:numberOfDays];
     
@@ -159,33 +157,58 @@
     if ([lastDate isEarlierThanDate:nextMonth])
         numberOfDays += 7;
     
+    return 35;
+    
     return numberOfDays;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    DLog(@"%@", indexPath);
     BPCalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCalendarCellIdentifier forIndexPath:indexPath];
 
-    NSString *imageName = @"mycharts_calendar_cell_background_green";
+    // бага для дня, когда переводят часы
+//    BPDate *date = [BPDate dateWithDate:[self.firstDate dateByAddingDays:indexPath.item]];
+    NSDateComponents *comps = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.firstDate];
+    comps.day += indexPath.item;
+    BPDate *date = [BPDate dateWithDate:[CURRENT_CALENDAR dateFromComponents:comps]];
 
-    BPDate *date = [BPDate dateWithDate:[self.firstDate dateByAddingDays:indexPath.item]];
     cell.date = date;
     
+    NSString *imageName = @"mycharts_calendar_cell_background_green";
+    UIColor *backgroundColor = RGBA(136, 219, 207, 0.85);
     BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
     if (inCycle) {
-        if ([date.imageName isEqualToString:@"point_yellow"])
-            imageName = @"mycharts_calendar_cell_background_yellow";
-        else if ([date.imageName isEqualToString:@"point_red"])
-            imageName = @"mycharts_calendar_cell_background_red";
-        else if ([date.imageName isEqualToString:@"point_ovulation"])
-            imageName = @"mycharts_calendar_cell_background_ovulation";
+        if ([date.imageName isEqualToString:@"point_yellow"]) {
+//            imageName = @"mycharts_calendar_cell_background_yellow";
+            backgroundColor = RGBA(243, 233, 134, 0.85);
+        }
+        else if ([date.imageName isEqualToString:@"point_red"]) {
+//            imageName = @"mycharts_calendar_cell_background_red";
+            backgroundColor = RGBA(230, 11, 5, 0.85);
+        }
+        else if ([date.imageName isEqualToString:@"point_ovulation"]) {
+//            imageName = @"mycharts_calendar_cell_background_ovulation";
+            backgroundColor = RGBA(230, 11, 5, 0.85);
+        }
     }
+    cell.backgroundColor = backgroundColor;
     
     cell.enabled = inCycle;
     
+    if (indexPath.item < 7)
+        imageName = @"mycharts_calendar_cell_background_clear_top";
+    else
+        imageName = @"mycharts_calendar_cell_background_clear";
+
+    UIImage *activeImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
     cell.imageView.image = [BPUtils imageNamed:imageName];
-    cell.imageView.highlightedImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
+    cell.imageView.highlightedImage = [cell.imageView.image imageAddingImage:activeImage offset:CGPointZero];
+//    cell.imageView.highlightedImage = activeImage;
     
+    if (self.selectedDate && cell.enabled)
+        [cell setSelected:[cell.date isEqual:self.selectedDate]];
+
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
     
@@ -228,28 +251,36 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPCalendarCell *cell = (BPCalendarCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
-
-    return cell.enabled;
+    return [self canSelectItemAtIndexPath:indexPath];
 }
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPCalendarCell *cell = (BPCalendarCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
-    
-    return cell.enabled;
+    return [self canSelectItemAtIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{    
-    BPDate *selectedDate = [BPDate dateWithDate:[self.firstDate dateByAddingDays:indexPath.item]];
-    
-    BOOL inCycle = (!([selectedDate.date isEarlierThanDate:self.cycle.startDate] || [selectedDate.date isLaterThanDate:self.cycle.endDate]));
-    if (inCycle)
-        self.selectedDate = selectedDate;
-    else
-        self.selectedDate = nil;
+{
+    DLog(@"%@", indexPath);
+    BPCalendarCell *cell = (BPCalendarCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
 
-    [self updateCollectionView];
+    if (cell.isEnabled) {
+        self.selectedDate = cell.date;
+        [self updateCollectionView];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"%@", indexPath);
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(46.f, 46.f);
+    return CGSizeMake(46.f, indexPath.item < 7 ? 47.f : 46.f);
 }
 
 #pragma mark - BPCalendarHeaderDelegate
@@ -288,6 +319,16 @@
     NSInteger daysOffset = (compsFirstDayInMonth.weekday - 1 - weekDayOffset + 8) % 7;
 
     self.firstDate = [self.firstDate dateBySubtractingDays:daysOffset];
+}
+
+- (BOOL)canSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"%@", indexPath);
+    BPCalendarCell *cell = (BPCalendarCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+    DLog(@"%i", cell.isEnabled);
+    
+    return cell.isEnabled;
 }
 
 - (void)updateCollectionView
