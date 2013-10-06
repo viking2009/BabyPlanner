@@ -1,16 +1,20 @@
-h2. 20131003
+h2. 20131006
 
 h3. Improvements:
 
 Task #57: My Charts: Calendar
 * don't reload data, only update collection view
 * update calendar header design
+* show symptoms
 
 h3. Fixes
 
-Task #31 My Temperature: Symptoms And Mood
-* fix no symptoms
+Task #31: My Temperature: Symptoms And Mood
+* create symptoms in DB if needed
+Task #41: My Temperature: Cycle logic
+* wrong date in range of day when "clock jumps"
 Task #57: My Charts: Calendar
+* BUG: when "clock jumps" there are two same dates (autumn) or missed day (spring)
 * 5 weeks in month
 * don't select date out of cycle
 * fix notation text position for iOS6

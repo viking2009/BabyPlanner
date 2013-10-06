@@ -124,7 +124,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
 
-    NSDate *dateForItem = [self.startDate dateByAddingDays:idx];
+    NSDateComponents *comps = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.startDate];
+    comps.day += idx;
+    NSDate *dateForItem = [CURRENT_CALENDAR dateFromComponents:comps];
 
     BPDate *item = _dates[dateForItem];
 
