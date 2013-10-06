@@ -142,29 +142,28 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [CURRENT_CALENDAR setLocale:[BPLanguageManager sharedManager].currentLocale];
-    NSInteger numberOfWeaks = [CURRENT_CALENDAR rangeOfUnit:NSWeekCalendarUnit inUnit:NSMonthCalendarUnit forDate:self.selectedMonth].length;
-    
-    DLog(@"numberOfWeaks: %i", numberOfWeaks);
-    
-    NSInteger numberOfDays = 7 * numberOfWeaks;
-    NSDate *lastDate = [self.firstDate dateByAddingDays:numberOfDays];
-    
-    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.selectedMonth];
-    components.month++;
-    NSDate *nextMonth = [CURRENT_CALENDAR dateFromComponents:components];
+//    [CURRENT_CALENDAR setLocale:[BPLanguageManager sharedManager].currentLocale];
+//    NSInteger numberOfWeaks = [CURRENT_CALENDAR rangeOfUnit:NSWeekCalendarUnit inUnit:NSMonthCalendarUnit forDate:self.selectedMonth].length;
+//    
+//    DLog(@"numberOfWeaks: %i", numberOfWeaks);
+//    
+//    NSInteger numberOfDays = 7 * numberOfWeaks;
+//    NSDate *lastDate = [self.firstDate dateByAddingDays:numberOfDays];
+//    
+//    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.selectedMonth];
+//    components.month++;
+//    NSDate *nextMonth = [CURRENT_CALENDAR dateFromComponents:components];
+//
+//    if ([lastDate isEarlierThanDate:nextMonth])
+//        numberOfDays += 7;
 
-    if ([lastDate isEarlierThanDate:nextMonth])
-        numberOfDays += 7;
+//    return numberOfDays;
     
     return 35;
-    
-    return numberOfDays;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"%@", indexPath);
     BPCalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCalendarCellIdentifier forIndexPath:indexPath];
 
     // бага для дня, когда переводят часы
@@ -172,13 +171,14 @@
     NSDateComponents *comps = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.firstDate];
     comps.day += indexPath.item;
     BPDate *date = [BPDate dateWithDate:[CURRENT_CALENDAR dateFromComponents:comps]];
-
-    cell.date = date;
     
     NSString *imageName = @"mycharts_calendar_cell_background_green";
     UIColor *backgroundColor = RGBA(136, 219, 207, 0.85);
-    BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
+//    BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
+    NSUInteger dateIndex = [self.datesManager indexForDate:date.date];
+    BOOL inCycle = (dateIndex != NSNotFound && dateIndex < self.cycle.length);
     if (inCycle) {
+        cell.date = self.datesManager[dateIndex];
         if ([date.imageName isEqualToString:@"point_yellow"]) {
 //            imageName = @"mycharts_calendar_cell_background_yellow";
             backgroundColor = RGBA(243, 233, 134, 0.85);
@@ -191,7 +191,10 @@
 //            imageName = @"mycharts_calendar_cell_background_ovulation";
             backgroundColor = RGBA(230, 11, 5, 0.85);
         }
+    } else {
+        cell.date = date;
     }
+    
     cell.backgroundColor = backgroundColor;
     
     cell.enabled = inCycle;
@@ -219,8 +222,6 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"indexPath: %@", indexPath);
-    
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         BPCalendarHeader *calendarHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCalendarHeaderIdentifier forIndexPath:indexPath];
         calendarHeader.delegate = self;
@@ -270,16 +271,10 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    DLog(@"%@", indexPath);
-}
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(46.f, 46.f);
     return CGSizeMake(46.f, indexPath.item < 7 ? 47.f : 46.f);
 }
 

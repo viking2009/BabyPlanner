@@ -125,7 +125,8 @@
 
     left = BPCalendarFooterPadding;
     CGFloat maxWidth = self.width - 2*left;
-    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom, maxWidth, BPCalendarFooterNotesLabelHeight);
+    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.f : 5.f);
+    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
     
     maxWidth -= (MAX(self.boyView.width, self.girlView.width) + 2*BPCalendarFooterPadding);
     left = floorf(self.width/2 - maxWidth/2);

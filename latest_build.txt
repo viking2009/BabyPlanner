@@ -1,10 +1,5 @@
 h2. 20131003
 
-h3. New:
-
-Task #58: My Charts: Diagram
-* demo data
-
 h3. Improvements:
 
 Task #57: My Charts: Calendar
@@ -14,6 +9,9 @@ Task #57: My Charts: Calendar
 h3. Fixes
 
 Task #57: My Charts: Calendar
+* 5 weeks in month
 * don't select date out of cycle
+* fix notation text position for iOS6
 Task #61: My Temperature: Cycle logic (pregnancy)
 * child birthday dependence on last ovulation
+* set pregnancy to NO if menstruation in end of cycle 
