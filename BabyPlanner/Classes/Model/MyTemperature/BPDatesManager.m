@@ -34,6 +34,8 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
 #define kBPDatesManagerGirlStart -2
 #define kBPDatesManagerGirlEnd 0
 
+#define kBPDatesManagerPregnantDays 4
+
 #define kBPDatesManagerNumberOfCyclesForAverageCandidateIndex 4
 
 #define BP_EPSILON  0.001f
@@ -153,7 +155,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
         
         //    item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-        item.ovulation = @(idx == self.ovulationIndex);
+        if (self.ovulationIndex != NSNotFound)
+            item.ovulation = @(idx == self.ovulationIndex);
+        else
+            item.ovulation = @(idx == self.ovulationCandidateIndex);
     }
  
 #if TEST_NORMAL_CYCLE1
@@ -222,7 +227,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             item.girl = @((idx >= ovulationIndex + kBPDatesManagerGirlStart) && (idx <= ovulationIndex + kBPDatesManagerGirlEnd));
         }
         
-        item.pregnant = @(isPregnant);
+        item.pregnant = @(isPregnant && self.ovulationIndex != NSNotFound && idx > self.ovulationIndex + kBPDatesManagerPregnantDays);
     }
     
     if ([item.menstruation boolValue])
