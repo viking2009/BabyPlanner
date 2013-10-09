@@ -25,6 +25,4 @@
     [super selectItemAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
 }
 
-
-
 @end

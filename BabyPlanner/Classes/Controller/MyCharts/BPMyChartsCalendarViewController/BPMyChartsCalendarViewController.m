@@ -17,6 +17,7 @@
 #import "BPDate+Additions.h"
 #import "BPSettings+Additions.h"
 #import "UIImage+Additions.h"
+#import "BPCalendarView.h"
 
 #define BPCalendarCellIdentifier @"BPCalendarCellIdentifier"
 #define BPCalendarHeaderIdentifier @"BPCalendarHeaderIdentifier"
@@ -24,7 +25,7 @@
 
 @interface BPMyChartsCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPCalendarHeaderDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) BPCalendarView *calendarView;
 @property (nonatomic, strong) BPDatesManager *datesManager;
 @property (nonatomic, strong) BPDate *selectedDate;
 @property (nonatomic, strong) NSDate *selectedMonth;
@@ -57,19 +58,19 @@
 
     BPCalendarLayout *calendarLayout = [[BPCalendarLayout alloc] init];
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:calendarLayout];
-    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
-    self.collectionView.backgroundView = nil;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
+    self.calendarView = [[BPCalendarView alloc] initWithFrame:self.view.bounds collectionViewLayout:calendarLayout];
+    self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
+    self.calendarView.backgroundView = nil;
+    self.calendarView.backgroundColor = [UIColor clearColor];
+    self.calendarView.dataSource = self;
+    self.calendarView.delegate = self;
 //    self.collectionView.delaysContentTouches = NO;
 //    self.collectionView.bounces = NO;
-    [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.calendarView];
     
-    [self.collectionView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
-    [self.collectionView registerClass:[BPCalendarHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCalendarHeaderIdentifier];
-    [self.collectionView registerClass:[BPCalendarFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BPCalendarFooterIdentifier];
+    [self.calendarView registerClass:[BPCalendarCell class] forCellWithReuseIdentifier:BPCalendarCellIdentifier];
+    [self.calendarView registerClass:[BPCalendarHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCalendarHeaderIdentifier];
+    [self.calendarView registerClass:[BPCalendarFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BPCalendarFooterIdentifier];
     
     [self updateUI];
 }
@@ -82,8 +83,8 @@
 
 - (void)dealloc
 {
-    self.collectionView.dataSource = nil;
-    self.collectionView.delegate = nil;
+    self.calendarView.dataSource = nil;
+    self.calendarView.delegate = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -260,7 +261,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"%@", indexPath);
-    BPCalendarCell *cell = (BPCalendarCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    BPCalendarCell *cell = (BPCalendarCell *)[self.calendarView cellForItemAtIndexPath:indexPath];
 
     if (cell.isEnabled) {
         self.selectedDate = cell.date;
@@ -316,7 +317,7 @@
 - (BOOL)canSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"%@", indexPath);
-    BPCalendarCell *cell = (BPCalendarCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    BPCalendarCell *cell = (BPCalendarCell *)[self.calendarView cellForItemAtIndexPath:indexPath];
 
     DLog(@"%i", cell.isEnabled);
     
@@ -327,7 +328,7 @@
 {
     [self updateFirstDate];
     
-    [self.collectionView reloadData];
+    [self.calendarView reloadData];
 }
 
 @end
