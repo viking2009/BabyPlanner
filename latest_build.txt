@@ -1,21 +1,6 @@
-h2. 20131014
-
-h3. New:
-
-Task #58: My Charts: Diagram
-* demo data
+h2. 20131014#2
 
 h3. Improvements:
 
-Task #57: My Charts: Calendar
-* apply new design
-
-h3. Fixes
-
-Task #28 My Temperature: Main page
-* tips for ovulation and pregnancy
-* flag for childbirth
 Task #41: My Temperature: Cycle logic
-* display ovulation indicator
-* display pregnant icon after 4 days from ovulation
-* shift ovulationIndex one day
+* improve performance

@@ -141,7 +141,7 @@
         self.sexualIntercourseView.image = [BPUtils imageNamed:imageName];
 
         imageName = @"mytemperature_main_icon_ovulation";
-        if ([_date.ovulation boolValue])
+        if ([_date.ovulation boolValue] || [_date.imageName isEqualToString:@"point_ovulation"])
             imageName = [imageName stringByAppendingString:@"_active"];
         self.ovulationView.image = [BPUtils imageNamed:imageName];
 

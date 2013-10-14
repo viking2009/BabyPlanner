@@ -145,6 +145,9 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
         }
         
         _dates[dateForItem] = item;
+    } else {
+        // MARK: use cached result
+        return item;
     }
     
     BPCycle *currentCycle = [BPCyclesManager sharedManager].currentCycle;
@@ -155,10 +158,10 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             item.menstruation = @(idx < [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue]);
         
         //    item.pregnant = @([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-        if (self.ovulationIndex != NSNotFound)
+//        if (self.ovulationIndex != NSNotFound)
             item.ovulation = @(idx == self.ovulationIndex);
-        else
-            item.ovulation = @(idx == self.ovulationCandidateIndex);
+//        else
+//            item.ovulation = @(idx == self.ovulationCandidateIndex);
     }
  
 #if TEST_NORMAL_CYCLE1
