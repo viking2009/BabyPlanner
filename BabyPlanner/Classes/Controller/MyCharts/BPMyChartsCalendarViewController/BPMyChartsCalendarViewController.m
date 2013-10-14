@@ -172,28 +172,34 @@
     
     NSString *imageName = @"mycharts_calendar_cell_background_green";
     UIColor *backgroundColor = RGBA(136, 219, 207, 0.85);
+    UIColor *textColor = RGB(43, 192, 170);
 //    BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
     NSUInteger dateIndex = [self.datesManager indexForDate:date.date];
     BOOL inCycle = (dateIndex != NSNotFound && dateIndex < self.cycle.length);
     if (inCycle) {
         cell.date = self.datesManager[dateIndex];
+        if (dateIndex == self.datesManager.todayIndex)
+            backgroundColor = RGBA(43, 192, 170, 0.85);
+        
         if ([date.imageName isEqualToString:@"point_yellow"]) {
 //            imageName = @"mycharts_calendar_cell_background_yellow";
-            backgroundColor = RGBA(243, 233, 134, 0.85);
+            textColor = RGB(243, 233, 134);
         }
         else if ([date.imageName isEqualToString:@"point_red"]) {
 //            imageName = @"mycharts_calendar_cell_background_red";
-            backgroundColor = RGBA(230, 11, 5, 0.85);
+            textColor = RGB(230, 11, 5);
         }
         else if ([date.imageName isEqualToString:@"point_ovulation"]) {
 //            imageName = @"mycharts_calendar_cell_background_ovulation";
-            backgroundColor = RGBA(230, 11, 5, 0.85);
-        }
+            textColor = RGB(230, 11, 5);
+        } else
+            textColor = RGB(255, 255, 255);
     } else {
         cell.date = date;
     }
     
     cell.backgroundColor = backgroundColor;
+    cell.titleLabel.textColor = textColor;
     
     cell.enabled = inCycle;
     

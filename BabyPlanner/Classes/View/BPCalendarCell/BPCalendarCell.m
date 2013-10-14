@@ -157,7 +157,7 @@
 //    if (_enabled != enabled) {
         _enabled = enabled;
         
-        self.titleLabel.textColor = (enabled ? RGB(255, 255, 255) : RGB(42, 192, 169));
+//        self.titleLabel.textColor = (enabled ? RGB(255, 255, 255) : RGB(42, 192, 169));
 
 //        self.backgroundColor =
 //        self.enabled ? UIColor.whiteColor : [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
