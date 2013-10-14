@@ -281,14 +281,14 @@
 
     if (cell.isEnabled && indexPath.section == 0) {
         self.selectedDate = cell.date;
-//        [self updateCollectionView];
+        [self updateCollectionView];
         
-        [CATransaction begin];
-        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-
-        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
-        
-        [CATransaction commit];
+//        [CATransaction begin];
+//        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+//
+//        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
+//        
+//        [CATransaction commit];
 
     }
 }
