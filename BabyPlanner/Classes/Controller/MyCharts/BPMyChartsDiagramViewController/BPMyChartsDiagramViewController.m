@@ -153,7 +153,7 @@
     
 //    cell.textLabel.text = [NSString stringWithFormat:@"Test Row %d-%d (%d-%d)", rowPath.section+1, rowPath.row+1, columnPath.section+1, columnPath.row+1];
     
-    NSString *backgroundImageName = ((rowPath.row + columnPath.column) % 2 ? @"mycharts_diagram_cell_background_2" : @"mycharts_diagram_cell_background_1");
+    NSString *backgroundImageName = ((rowPath.row + columnPath.column + rowPath.section) % 2 ? @"mycharts_diagram_cell_background_2" : @"mycharts_diagram_cell_background_1");
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:backgroundImageName]];
     cell.backgroundView = backgroundView;
     
@@ -202,10 +202,16 @@
     }
 
     BPDate *date = self.datesManager[columnPath.column];
-    if (section == 0)
+    if (section == 0) {
         cell.textLabel.text = [NSString stringWithFormat:@"%i", date.date.day];
-    else
+        cell.backgroundView = nil;
+    } else {
         cell.textLabel.text = nil;// [NSString stringWithFormat:@"%@", date.day];
+        
+        NSString *backgroundImageName = (columnPath.column % 2 ? @"mycharts_diagram_cell_background_2" : @"mycharts_diagram_cell_background_1");
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:backgroundImageName]];
+        cell.backgroundView = backgroundView;
+    }
 
     return cell;
 }
