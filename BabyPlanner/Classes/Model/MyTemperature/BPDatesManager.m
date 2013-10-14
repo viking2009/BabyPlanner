@@ -378,7 +378,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
                 //if (count1 > 2 || (count1 == 2 && count2 == 1) || count2 > 2) {
 //                if (count1 > 1 || (count1 == 1 && count2 == 1) || count2 > 1) {
                 if (count1 + count2 >= 3) {
-                    self.ovulationIndex = ovulationIndex;
+                    self.ovulationIndex = ovulationIndex + 1;
                     self.midTemperature = midTemperature;
                 } else {
                     self.ovulationIndex = NSNotFound;
