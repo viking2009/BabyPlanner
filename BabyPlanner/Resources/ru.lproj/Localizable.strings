@@ -54,7 +54,11 @@
 /* BPMyChartsCalendarViewController */
 "%@ day of cycle" = "%@ день цикла";
 "Today you are fertile!" = "Сегодня Вы фертильны!";
+"Today you ovulate!" = "Сегодня у Вас овуляция!";
+"Your probably are pregnant!" = "Вы, возможно, беременны!";
+"Your are pregnant!" = "Вы беременны!";
 "fertile" = "фертильны";
+"ovulate" = "овуляция";
 "You can have " = "У Вас может быть ";
 "boy" = "мальчик";
 "or" = "или";

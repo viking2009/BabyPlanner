@@ -22,6 +22,7 @@
 #import "ObjectiveSugar.h"
 #import "UINavigationController+Transition.h"
 #import "UIView+Sizes.h"
+#import "NSDate-Utilities.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -183,10 +184,52 @@
 
 - (void)updateBubbleView
 {
+    self.rightFlagView.hidden = YES;
     // TODO: show only for TODAY
-    if (([self.selectedDate.imageName isEqualToString:@"point_red"] || [self.selectedDate.imageName isEqualToString:@"point_ovulation"]) && ![self.selectedDate.pregnant boolValue]) {
+    if ([self.selectedDate.imageName isEqualToString:@"point_red"] || [self.selectedDate.imageName isEqualToString:@"point_ovulation"]) {
         self.bubbleView.hidden = NO;
-        NSMutableString *tip = [[NSMutableString alloc] initWithString:BPLocalizedString(@"Today you are fertile!")];
+        
+        NSString *firstString = BPLocalizedString(@"Today you are fertile!");
+        if ([self.selectedDate.imageName isEqualToString:@"point_ovulation"])
+            firstString = BPLocalizedString(@"Today you ovulate!");
+        else if ([self.selectedDate.pregnant boolValue]) {
+            BPSettings *sharedSettings = [BPSettings sharedSettings];
+            
+            NSDate *conceiving = sharedSettings[BPSettingsProfileConceivingKey];
+            if (!conceiving)
+                firstString = BPLocalizedString(@"Your probably are pregnant!");
+            else
+                firstString = BPLocalizedString(@"Your are pregnant!");
+            
+            if ([self.selectedDate.girl boolValue]) {
+                UIImage *pinkFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_pink"];
+                self.rightFlagView.imageView.image = pinkFlagImage;
+            } else if ([self.selectedDate.boy boolValue]) {
+                UIImage *blueFlagImage = [BPUtils imageNamed:@"mytemperature_main_flag_blue"];
+                self.rightFlagView.imageView.image = blueFlagImage;
+            }
+            
+            if (sharedSettings[BPSettingsProfileBirthdayKey])
+                self.rightFlagView.date = sharedSettings[BPSettingsProfileBirthdayKey];
+            else {
+                if (self.datesManager.ovulationIndex != NSNotFound) {
+                    BPDate *ovulationDate = self.datesManager[self.datesManager.ovulationIndex];
+                    self.rightFlagView.date = [ovulationDate.date dateByAddingDays:BPPregnancyPeriod];
+                }
+            }
+            
+            self.rightFlagView.hidden = NO;
+        }
+        
+        if (self.datesManager.ovulationIndex != NSNotFound) {
+            BPDate *ovulationDate = self.datesManager[self.datesManager.ovulationIndex];
+            if ([self.selectedDate.date isLaterThanDate:ovulationDate.date] && ![self.selectedDate.pregnant boolValue]) {
+                self.bubbleView.hidden = YES;
+                return ;
+            }
+        }
+        
+        NSMutableString *tip = [[NSMutableString alloc] initWithString:firstString];
         if ([self.selectedDate.boy boolValue] || [self.selectedDate.girl boolValue]) {
             [tip appendString:@" "];
             [tip appendString:BPLocalizedString(@"You can have ")];
@@ -211,7 +254,11 @@
         NSRange fertileRange = [tip rangeOfString:BPLocalizedString(@"fertile")];
         if (fertileRange.location != NSNotFound)
             [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:fertileRange];
-        
+
+        NSRange ovulationRange = [tip rangeOfString:BPLocalizedString(@"ovulate")];
+        if (ovulationRange.location != NSNotFound)
+            [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:ovulationRange];
+
         NSRange boyRange = [tip rangeOfString:BPLocalizedString(@"boy")];
         if (boyRange.location != NSNotFound)
             [tipString setAttributes:@{NSForegroundColorAttributeName: RGB(235, 73, 1)} range:boyRange];

@@ -20,7 +20,11 @@
 /* BPMyTemperatureMainViewController */
 "Day %@" = "Day %@";
 "Today you are fertile!" = "Today you are fertile!";
+"Today you ovulate!" = "Today you ovulate!";
+"Your probably are pregnant!" = "Your probably are pregnant!";
+"Your are pregnant!" = "Your are pregnant!";
 "fertile" = "fertile";
+"ovulate" = "ovulate";
 "You can have " = "You can have ";
 "boy" = "boy";
 "or" = "or";
