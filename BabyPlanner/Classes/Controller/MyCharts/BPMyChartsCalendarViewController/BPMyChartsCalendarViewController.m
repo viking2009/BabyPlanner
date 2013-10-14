@@ -171,16 +171,12 @@
     BPDate *date = [BPDate dateWithDate:[CURRENT_CALENDAR dateFromComponents:comps]];
     
     NSString *imageName = @"mycharts_calendar_cell_background_green";
-    UIColor *backgroundColor = RGBA(136, 219, 207, 0.85);
     UIColor *textColor = RGB(43, 192, 170);
 //    BOOL inCycle = [cell.date.cycle isEqual:self.cycle];
     NSUInteger dateIndex = [self.datesManager indexForDate:date.date];
     BOOL inCycle = (dateIndex != NSNotFound && dateIndex < self.cycle.length);
     if (inCycle) {
         cell.date = self.datesManager[dateIndex];
-        if (dateIndex == self.datesManager.todayIndex)
-            backgroundColor = RGBA(43, 192, 170, 0.85);
-        
         if ([date.imageName isEqualToString:@"point_yellow"]) {
 //            imageName = @"mycharts_calendar_cell_background_yellow";
             textColor = RGB(243, 233, 134);
@@ -198,7 +194,7 @@
         cell.date = date;
     }
     
-    cell.backgroundColor = backgroundColor;
+    cell.backgroundColor = ([cell.date.date isToday] ? RGBA(43, 192, 170, 0.85) : RGBA(136, 219, 207, 0.85));
     cell.titleLabel.textColor = textColor;
     
     cell.enabled = inCycle;
