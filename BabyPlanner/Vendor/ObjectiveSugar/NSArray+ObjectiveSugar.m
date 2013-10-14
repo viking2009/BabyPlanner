@@ -24,7 +24,9 @@
 }
 
 - (id) sample {
-    NSUInteger index = arc4random() % self.count;
+    if (self.count == 0) return nil;
+
+    NSUInteger index = arc4random_uniform(self.count);
     return self[index];
 }
 
@@ -97,7 +99,9 @@
     
     for (id object in self) {
         id newObject = block(object);
-        [array addObject:newObject];
+        if (newObject) {
+          [array addObject:newObject];
+        }
     }
     
     return array;

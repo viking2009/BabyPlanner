@@ -31,9 +31,10 @@
 {
     aDate = [aDate dateAtStartOfDay];
     
-    BPDate *date = [self where:[NSPredicate predicateWithFormat:@"date == %@", aDate]].first;
+    NSDictionary *where = @{@"date": aDate};
+    BPDate *date = [self where:where].first;
     if (!date)
-        date = [self create:@{@"date": aDate}];
+        date = [self create:where];
     
     return date;
 }

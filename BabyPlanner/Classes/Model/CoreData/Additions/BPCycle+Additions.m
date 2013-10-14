@@ -52,11 +52,10 @@
 {
     BPSettings *sharedSettings = [BPSettings sharedSettings];
 
-    BPCycle *cycle = [self where:[NSPredicate predicateWithFormat:@"index == %@ AND profile == %@", index, sharedSettings.profile]].first;
-    if (!cycle) {
-        cycle = [self create:@{@"index": index}];
-        cycle.profile = sharedSettings.profile;
-    }
+    NSDictionary *where = @{@"index": index, @"profile": sharedSettings.profile};
+    BPCycle *cycle = [self where:where].first;
+    if (!cycle)
+        cycle = [self create:where];
     
     return cycle;
 }

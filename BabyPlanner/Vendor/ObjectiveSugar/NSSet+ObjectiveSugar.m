@@ -7,6 +7,7 @@
 //
 
 #import "NSSet+ObjectiveSugar.h"
+#import "NSArray+ObjectiveSugar.h"
 
 @implementation NSSet (ObjectiveSugar)
 
@@ -23,8 +24,7 @@
 }
 
 - (id)sample {
-    NSUInteger index = arc4random() % self.count;
-    return self.allObjects[index];
+    return [self.allObjects sample];
 }
 
 - (void)each:(void (^)(id))block {
