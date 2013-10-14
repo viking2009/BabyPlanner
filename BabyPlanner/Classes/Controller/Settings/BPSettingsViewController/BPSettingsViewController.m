@@ -75,6 +75,7 @@
     [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
 
     [self loadData];
+    [self updateUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,16 +87,13 @@
 
 - (void)loadData
 {
-    NSString *language = [BPLanguageManager sharedManager].currentLanguage;
-    DLog(@"language: %@", language);
-    
     self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Thermometer"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Measurement"), @"subtitle" : @""}],
-                  @[ @{@"title": BPLocalizedString(@"Language"), @"subtitle" : BPLocalizedString(language)},
-                     @{@"title": BPLocalizedString(@"Theme"), @"subtitle" : @""},
-                     @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : @"Off"},
-                     @{@"title": BPLocalizedString(@"My Profile"), @"subtitle" : @""}],
+                  @[ @{@"title": @"Thermometer", @"subtitle" : @""},
+                     @{@"title": @"Measurement", @"subtitle" : @""}],
+                  @[ @{@"title": @"Language", @"subtitle" : @""},
+                     @{@"title": @"Theme", @"subtitle" : @""},
+                     @{@"title": @"Alarm", @"subtitle" : @"Off"},
+                     @{@"title": @"My Profile", @"subtitle" : @""}],
                   ];
 }
 
@@ -103,7 +101,20 @@
 {
     [super updateUI];
 
-    [self loadData];
+    [self.collectionView reloadData];
+}
+
+- (void)localize
+{
+    [super localize];
+    
+    [self.collectionView reloadData];
+}
+
+- (void)customize
+{
+    [super customize];
+    
     [self.collectionView reloadData];
 }
 
@@ -142,12 +153,15 @@
     
     DLog(@"cell = %@", cell);
     NSDictionary *item = self.data[indexPath.section][indexPath.row];
-    cell.textLabel.text = item[@"title"];
+    cell.textLabel.text = BPLocalizedString(item[@"title"]);
     cell.detailTextLabel.text = item[@"subtitle"];
     
     if (indexPath.section == 0 && indexPath.row == 0) {
         UISwitch *accessorySwitch = [[UISwitch alloc] init];
         cell.accessoryView = accessorySwitch;
+    } if (indexPath.section == 2 && indexPath.row == 0) {
+        NSString *language = [BPLanguageManager sharedManager].currentLanguage;
+        cell.detailTextLabel.text = BPLocalizedString(language);
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -225,14 +239,14 @@
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
     if (indexPath.section == 0 && indexPath.item == 0) {
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
-        switchCell.titleLabel.text = dataItem[@"title"];
+        switchCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         switchCell.delegate = self;
         switchCell.toggleView.onText = BPLocalizedString(@"ON");
         switchCell.toggleView.offText = BPLocalizedString(@"OFF");
         switchCell.toggleView.on = [sharedSettings[BPSettingsThermometrKey] boolValue];
     } else if (indexPath.section == 0 && indexPath.item == 1) {
         BPSegmentCell *segmentCell = (BPSegmentCell *)cell;
-        segmentCell.titleLabel.text = dataItem[@"title"];
+        segmentCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         segmentCell.segmentView = [[SVSegmentedControl alloc] initWithSectionTitles:[[BPLanguageManager sharedManager] supportedMetrics]];
         [segmentCell.segmentView setSelectedSegmentIndex:[[BPLanguageManager sharedManager] currentMetric] animated:NO];
         segmentCell.segmentView.changeHandler = ^(NSUInteger newIndex) {
@@ -240,10 +254,13 @@
         };
     } else{
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
-        settingsCell.titleLabel.text = dataItem[@"title"];
+        settingsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
         
-        if (indexPath.section == 1 && indexPath.item == 2) {
+        if (indexPath.section == 2 && indexPath.row == 0) {
+            NSString *language = [BPLanguageManager sharedManager].currentLanguage;
+            settingsCell.subtitleLabel.text = BPLocalizedString(language);
+        } else if (indexPath.section == 1 && indexPath.item == 2) {
             // TODO: alarm 
             NSArray *alarms = [[UIApplication sharedApplication] scheduledLocalNotifications];
             BOOL alarmFound = NO;

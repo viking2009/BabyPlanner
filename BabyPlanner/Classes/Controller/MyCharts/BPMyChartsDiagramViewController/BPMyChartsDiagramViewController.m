@@ -55,6 +55,7 @@
     [self.view addSubview:self.spreadView];
     
     [self updateUI];
+//    [self localize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +80,13 @@
     [super updateUI];
     
     [self loadData];
+    [self.spreadView reloadData];
+}
+
+- (void)localize
+{
+    [super localize];
+    
     [self.spreadView reloadData];
 }
 

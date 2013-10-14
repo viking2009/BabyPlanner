@@ -66,6 +66,7 @@
     self.pickerView.value = [BPLanguageManager sharedManager].currentLanguage;
     
     [self updateUI];
+    [self localize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +78,11 @@
 - (void)updateUI
 {
     [super updateUI];
+}
+
+- (void)localize
+{
+    [super localize];
     
     self.selectLabel.text = BPLocalizedString(@"Please, select the language!");
 }

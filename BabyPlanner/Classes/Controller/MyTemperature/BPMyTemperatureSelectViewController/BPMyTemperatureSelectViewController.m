@@ -119,6 +119,13 @@
     }
 }
 
+- (void)localize
+{
+    [super localize];
+    
+    [self updateUI];
+}
+
 - (void)pickerViewValueChanged
 {
     switch (self.pickerView.valuePickerMode) {

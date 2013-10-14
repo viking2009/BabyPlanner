@@ -104,7 +104,8 @@
         self.pickerView.value = self.fireDate;
     }
 
-    [self updateUI];
+    [self loadData];
+    [self.collectionView reloadData];
 }
 
 - (void)loadData
@@ -115,17 +116,30 @@
     DLog(@"soundName = %@", soundName);
     
     self.data = @[
-                  @[ @{@"title": BPLocalizedString(@"Alarm"), @"subtitle" : timeString},
-                     @{@"title": BPLocalizedString(@"Sound"), @"subtitle" : (soundName ? : @"")}]
+                  @[ @{@"title": @"Alarm", @"subtitle" : timeString},
+                     @{@"title": @"Sound", @"subtitle" : (soundName ? : @"")}]
                   ];
 }
 
 - (void)updateUI
 {
-    [super updateUI];
     DLog();
+   [super updateUI];
     
-    [self loadData];
+}
+
+- (void)localize
+{
+    DLog();
+    [super localize];
+    
+    [self.collectionView reloadData];
+}
+
+- (void)customize
+{
+    [super customize];
+    
     [self.collectionView reloadData];
 }
 
@@ -179,16 +193,16 @@
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
     if (indexPath.section == 0 && indexPath.item == 0) {
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
-        switchCell.titleLabel.text = dataItem[@"title"];
-        switchCell.subtitleLabel.text = dataItem[@"subtitle"];
+        switchCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
+        switchCell.subtitleLabel.text = BPLocalizedString(dataItem[@"subtitle"]);
         switchCell.delegate = self;
         switchCell.toggleView.onText = BPLocalizedString(@"ON");
         switchCell.toggleView.offText = BPLocalizedString(@"OFF");
         switchCell.toggleView.on = self.canScheduleAlarm;
     } else {
         BPSettingsCell *settingsCell = (BPSettingsCell *)cell;
-        settingsCell.titleLabel.text = dataItem[@"title"];
-        settingsCell.subtitleLabel.text = dataItem[@"subtitle"];
+        settingsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
+        settingsCell.subtitleLabel.text = BPLocalizedString(dataItem[@"subtitle"]);
     }
     
     return cell;

@@ -63,6 +63,8 @@
     [self.view addSubview:self.titleLabel];
     
     [self updateUI];
+    [self localize];
+    [self customize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,10 +83,20 @@
 - (void)updateUI
 {
     [super updateUI];
+}
+
+- (void)localize
+{
+    [super localize];
     
     // localization
     [self.backButton setTitle:BPLocalizedString(@"Back") forState:UIControlStateNormal];
     self.titleLabel.text = BPLocalizedString(self.title);
+}
+
+- (void)customize
+{
+    [super customize];
     
     // theming
     self.navigationImageView.image = [[BPThemeManager sharedManager] navigationBarBackgroundImage];

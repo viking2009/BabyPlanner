@@ -241,6 +241,7 @@
     [self.view addSubview:self.childBirthButton];
     
     [self updateUI];
+    [self localize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -251,29 +252,10 @@
 
 - (void)updateUI
 {
+    DLog();
+
     [super updateUI];
     
-    self.selectLabel.text = BPLocalizedString(@"Hello!");
-
-    self.nameLabel.text = BPLocalizedString(@"Name");
-    self.birthdayLabel.text = BPLocalizedString(@"Birthday");
-    self.weightLabel.text = BPLocalizedString(@"Weight");
-    self.heightLabel.text = BPLocalizedString(@"Height");
-    self.kgLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"lb") : BPLocalizedString(@"kg"));
-    self.cmLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"ft") : BPLocalizedString(@"cm"));
-   
-    self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
-    self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");
-
-    self.menstruationLabel.text = BPLocalizedString(@"Menstruation");
-    self.daysLabel.text = BPLocalizedString(@"days");
-    
-    self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
-
-    self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
-    self.childBirthButton.subtitleLabel.text = BPLocalizedString(@"Childbirth");
-
-    DLog();
     // TODO: fill with data
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     
@@ -302,10 +284,32 @@
     [self.childBirthButton setTitle:[BPUtils shortStringFromDate:childBirthday] forState:UIControlStateNormal];
 }
 
-//- (void)settingsDidChange
-//{
-//    [self updateUI];
-//}
+- (void)localize
+{
+    [super localize];
+    
+    self.selectLabel.text = BPLocalizedString(@"Hello!");
+    
+    self.nameLabel.text = BPLocalizedString(@"Name");
+    self.birthdayLabel.text = BPLocalizedString(@"Birthday");
+    self.weightLabel.text = BPLocalizedString(@"Weight");
+    self.heightLabel.text = BPLocalizedString(@"Height");
+    self.kgLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"lb") : BPLocalizedString(@"kg"));
+    self.cmLabel.text = ([BPLanguageManager sharedManager].currentMetric == 0 ? BPLocalizedString(@"ft") : BPLocalizedString(@"cm"));
+    
+    self.lengthOfCycleButton.subtitleLabel.text = BPLocalizedString(@"Length of my cycle");
+    self.lastMenstruationButton.subtitleLabel.text = BPLocalizedString(@"Last menstruation");
+    
+    self.menstruationLabel.text = BPLocalizedString(@"Menstruation");
+    self.daysLabel.text = BPLocalizedString(@"days");
+    
+    self.pregnancyLabel.text = BPLocalizedString(@"Pregnancy");
+    
+    self.lastOvulationButton.subtitleLabel.text = BPLocalizedString(@"Ovulation");
+    self.childBirthButton.subtitleLabel.text = BPLocalizedString(@"Childbirth");
+    
+    [self updateUI];
+}
 
 #pragma mark - UITextFieldDelegate
 

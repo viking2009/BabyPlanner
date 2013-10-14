@@ -147,9 +147,10 @@
     UITapGestureRecognizer *tapLeftFlagView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftFlagViewTapped)];
     [self.leftFlagView addGestureRecognizer:tapLeftFlagView];
     
+//    [self loadData];
     [self updateUI];
-    
-    [self loadData];
+    [self localize];
+    [self customize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -287,8 +288,6 @@
         [self.rightFlagView updateUI];
         [self.indicatorsView updateUI];
         
-        //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
-        self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
         
         [self loadData];
         [self.collectionView reloadData];
@@ -298,6 +297,27 @@
         [self updateBubbleView];
     }
 }
+
+- (void)localize
+{
+    [super localize];
+    
+    [self.leftFlagView updateUI];
+    [self.rightFlagView updateUI];
+    [self.indicatorsView updateUI];
+
+    [self updateBubbleView];
+}
+
+- (void)customize
+{
+    [super customize];
+    
+    //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
+    self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
+    [self.collectionView reloadData];
+}
+
 
 #pragma mark - BPBaseViewController
 

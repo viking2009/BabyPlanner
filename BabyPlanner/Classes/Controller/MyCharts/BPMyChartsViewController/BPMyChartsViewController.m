@@ -91,11 +91,11 @@
 {
     BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
     // TODO: set data
-    self.data = @[ @[@{@"title": BPLocalizedString(@"Number of all your cycles"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.numberOfCycles]},
-                     @{@"title": BPLocalizedString(@"Your cycle length on average"), @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.averageCycleLength]},
-                     @{@"title": BPLocalizedString(@"Your length of high level on average"), @"subtitle": @"12"},
-                     @{@"title": BPLocalizedString(@"Your mono-phases\n(of the last 20 cycles)"), @"subtitle": @"1%"},
-                     @{@"title": BPLocalizedString(@"Corpus luteum insufficiency"), @"subtitle": @"1%"}]];
+    self.data = @[ @[@{@"title": @"Number of all your cycles", @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.numberOfCycles]},
+                     @{@"title": @"Your cycle length on average", @"subtitle": [NSString stringWithFormat:@"%u", sharedManager.averageCycleLength]},
+                     @{@"title": @"Your length of high level on average", @"subtitle": @"12"},
+                     @{@"title": @"Your mono-phases\n(of the last 20 cycles)", @"subtitle": @"1%"},
+                     @{@"title": @"Corpus luteum insufficiency", @"subtitle": @"1%"}]];
 }
 
 - (void)updateUI
@@ -103,6 +103,13 @@
     [super updateUI];
     
     [self loadData];
+    [self.collectionView reloadData];
+}
+
+- (void)localize
+{
+    [super localize];
+    
     [self.collectionView reloadData];
 }
 
@@ -153,7 +160,7 @@
     if (indexPath.section == 0) {
         NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
         BPStatsCollectionViewCell *statsCell = (BPStatsCollectionViewCell *)cell;
-        statsCell.titleLabel.text = dataItem[@"title"];
+        statsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         statsCell.subtitleLabel.text = dataItem[@"subtitle"];
     } else {
         BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];

@@ -53,14 +53,16 @@
     self.backgroundImageView.clipsToBounds = YES;
     self.backgroundImageView.contentMode = UIViewContentModeTop;
     self.backgroundImageView.image = self.backgroundImage;
-    [self.view addSubview:self.backgroundImageView];
-    [self.view sendSubviewToBack:self.backgroundImageView];
+    [self.view insertSubview:self.backgroundImageView atIndex:0];
     
     // fix iOS7 status bar appearance
     self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20.f)];
     self.statusBarView.backgroundColor = RGB(0, 0, 0);
     self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.statusBarView];
+    
+    [self localize];
+    [self customize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,21 +85,29 @@
 {
     [super setTitle:title];
     
-    [self updateUI];
+    [self localize];
 }
 
 - (void)updateUI
 {
+    
+}
+
+- (void)localize
+{
     // localization
     self.tabBarItem.title = BPLocalizedString(self.title);
-    
+}
+
+- (void)customize
+{
     // theming
     self.backgroundImage = [BPThemeManager sharedManager].backgroundImage;
 }
 
 - (void)languageDidChanged:(NSNotification *)notification
 {
-    [self updateUI];
+    [self localize];
 }
 
 - (void)settingsDidChanged:(NSNotification *)notification
@@ -107,7 +117,7 @@
 
 - (void)themeDidChanged:(NSNotification *)notification
 {
-    [self updateUI];
+    [self customize];
 }
 
 @end

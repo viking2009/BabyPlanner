@@ -58,7 +58,16 @@
     
     [self.collectionView registerClass:[BPThemeCell class] forCellWithReuseIdentifier:BPThemeCellIdentifier];
 
-    [self updateUI];
+//    [self updateUI];
+    self.themes = [BPThemeManager sharedManager].supportedThemes;
+    [self.collectionView reloadData];
+    
+    NSUInteger selectedThemeIndex = [self.themes indexOfObject:[BPThemeManager sharedManager].currentTheme];
+    if (selectedThemeIndex != NSNotFound) {
+        NSIndexPath *selectedPath = [NSIndexPath indexPathForItem:selectedThemeIndex inSection:0];
+        [self.collectionView selectItemAtIndexPath:selectedPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,15 +79,6 @@
 - (void)updateUI
 {
     [super updateUI];
-
-    self.themes = [BPThemeManager sharedManager].supportedThemes;
-    [self.collectionView reloadData];
-    
-    NSUInteger selectedThemeIndex = [self.themes indexOfObject:[BPThemeManager sharedManager].currentTheme];
-    if (selectedThemeIndex != NSNotFound) {
-        NSIndexPath *selectedPath = [NSIndexPath indexPathForItem:selectedThemeIndex inSection:0];
-        [self.collectionView selectItemAtIndexPath:selectedPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    }
 }
 
 

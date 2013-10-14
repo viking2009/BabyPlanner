@@ -73,6 +73,7 @@
     [self.calendarView registerClass:[BPCalendarFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BPCalendarFooterIdentifier];
     
     [self updateUI];
+//    [self localize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,6 +121,13 @@
         components.day = 1;
         self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
     }
+    
+    [self updateCollectionView];
+}
+
+- (void)localize
+{
+    [super localize];
     
     [self updateCollectionView];
 }

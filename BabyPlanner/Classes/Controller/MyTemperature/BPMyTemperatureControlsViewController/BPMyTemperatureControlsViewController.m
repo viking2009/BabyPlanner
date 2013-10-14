@@ -127,8 +127,9 @@
     swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:swipeDown];
 
+    [self loadData];
     [self updateUI];
-//    [self loadData];
+    [self localize];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,16 +141,13 @@
 
 - (void)loadData
 {
-    NSString *language = [BPLanguageManager sharedManager].currentLanguage;
-    DLog(@"language: %@", language);
-    
     // TODO: set data for self.date;
-    self.data = @[ @[@{@"title": BPLocalizedString(@"Temperature"), @"image": @"mytemperature_icon_temperature"}],
-                   @[@{@"title": BPLocalizedString(@"Menstruation"), @"image": @"mytemperature_icon_menstruation"},
-                     @{@"title": BPLocalizedString(@"Sexual intercourse"), @"image": @"mytemperature_icon_sexual_intercourse"},
-                     @{@"title": BPLocalizedString(@"Symptoms and mood"), @"image": @"mytemperature_icon_symptoms_and_mood"},
-                     @{@"title": BPLocalizedString(@"Notations"), @"image": @"mytemperature_icon_notations"}],
-                   @[@{@"title": BPLocalizedString(@"Pregnancy"), @"image": @"mytemperature_icon_pregnancy"}]
+    self.data = @[ @[@{@"title": @"Temperature", @"image": @"mytemperature_icon_temperature"}],
+                   @[@{@"title": @"Menstruation", @"image": @"mytemperature_icon_menstruation"},
+                     @{@"title": @"Sexual intercourse", @"image": @"mytemperature_icon_sexual_intercourse"},
+                     @{@"title": @"Symptoms and mood", @"image": @"mytemperature_icon_symptoms_and_mood"},
+                     @{@"title": @"Notations", @"image": @"mytemperature_icon_notations"}],
+                   @[@{@"title": @"Pregnancy", @"image": @"mytemperature_icon_pregnancy"}]
                   ];
 }
 
@@ -159,11 +157,24 @@
     
     DLog(@"self.date:%@", self.date);
     
+    [self.collectionView reloadData];
+}
+
+- (void)localize
+{
+    [super localize];
+    
     self.titleLabel.text = BPLocalizedString(@"My controls");
     self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
     [self.doneButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
     
-    [self loadData];
+    [self.collectionView reloadData];
+}
+
+- (void)customize
+{
+    [super customize];
+    
     [self.collectionView reloadData];
 }
 
@@ -202,7 +213,7 @@
     
     DLog(@"cell = %@", cell);
     NSDictionary *item = self.data[indexPath.section][indexPath.row];
-    cell.textLabel.text = item[@"title"];
+    cell.textLabel.text = BPLocalizedString(item[@"title"]);
     cell.detailTextLabel.text = item[@"subtitle"];
     
     if (indexPath.section == 0 && indexPath.row == 0) {
@@ -306,7 +317,7 @@
     if (indexPath.section == 1 && indexPath.item < 2) {
         BPSwitchCell *switchCell = (BPSwitchCell *)cell;
         switchCell.imageView.image =  [BPUtils imageNamed:dataItem[@"image"]];
-        switchCell.titleLabel.text = dataItem[@"title"];
+        switchCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         switchCell.toggleView.onText = BPLocalizedString(@"Yes");
         switchCell.toggleView.offText = BPLocalizedString(@"No");
         if (indexPath.item == 0)
@@ -318,7 +329,7 @@
     } else {
         BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
         settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
-        settingsCell.titleLabel.text = dataItem[@"title"];
+        settingsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
         
         if (indexPath.section == 2) {
             BPSettings *sharedSettings = [BPSettings sharedSettings];

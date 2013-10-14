@@ -125,6 +125,13 @@
     [self.collectionView reloadData];
 }
 
+- (void)localize
+{
+    [super localize];
+    
+    [self.collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
