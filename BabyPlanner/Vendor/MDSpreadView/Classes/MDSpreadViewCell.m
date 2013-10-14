@@ -283,7 +283,8 @@
 {
     backgroundView.frame = self.bounds;
     highlightedBackgroundView.frame = self.bounds;
-    textLabel.frame = CGRectMake(10, 2, self.bounds.size.width-20, self.bounds.size.height-3);
+//    textLabel.frame = CGRectMake(10, 2, self.bounds.size.width-20, self.bounds.size.height-3);
+    textLabel.frame = CGRectMake(0, 0, self.bounds.size.width-2, self.bounds.size.height-2);
 }
 
 - (void)setHighlighted:(BOOL)isHighlighted

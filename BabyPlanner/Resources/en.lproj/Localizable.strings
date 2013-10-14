@@ -64,6 +64,12 @@
 /* BPMyChartsCalendarViewController */
 "%@ day of cycle" = "%@ day of cycle";
 
+/* BPMyChartsDiagramViewController */
+"Day" = "Day";
+"M" = "M";
+"SI" = "SI";
+"S&M" = "S&M";
+
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "My Pregnancy";
 

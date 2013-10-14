@@ -64,6 +64,12 @@
 "or" = "или";
 "girl" = "девочка";
 
+/* BPMyChartsDiagramViewController */
+"Day" = "День";
+"M" = "М";
+"SI" = "ПС";
+"S&M" = "СиН";
+
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "Моя Беременность";
 

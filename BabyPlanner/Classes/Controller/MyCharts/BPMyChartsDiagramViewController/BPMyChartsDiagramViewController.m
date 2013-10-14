@@ -10,10 +10,15 @@
 #import "UIView+Sizes.h"
 #import "BPUtils.h"
 #import "MDSpreadView.h"
+#import "MDSpreadViewHeaderCell.h"
+#import "BPDatesManager.h"
+#import "NSDate-Utilities.h"
+#import "BPDate+Additions.h"
 
 @interface BPMyChartsDiagramViewController () <MDSpreadViewDataSource, MDSpreadViewDelegate>
 
 @property (nonatomic, strong) MDSpreadView *spreadView;
+@property (nonatomic, strong) BPDatesManager *datesManager;
 
 @end
 
@@ -65,10 +70,15 @@
 
 }
 
+- (void)loadData {
+    self.datesManager = [[BPDatesManager alloc] initWithCycle:self.cycle];
+}
+
 - (void)updateUI
 {
     [super updateUI];
     
+    [self loadData];
     [self.spreadView reloadData];
 }
 
@@ -76,7 +86,7 @@
 
 - (NSInteger)spreadView:(MDSpreadView *)aSpreadView numberOfColumnsInSection:(NSInteger)section
 {
-    return 50;
+    return self.datesManager.count;
 }
 
 - (NSInteger)spreadView:(MDSpreadView *)aSpreadView numberOfRowsInSection:(NSInteger)section
@@ -114,7 +124,7 @@
 - (CGFloat)spreadView:(MDSpreadView *)aSpreadView widthForColumnHeaderInSection:(NSInteger)columnSection
 {
     //    if (columnSection == 2) return 0; // uncomment to hide this header!
-    return 38.f;
+    return 52.f;
 }
 
 - (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForRowAtIndexPath:(MDIndexPath *)rowPath forColumnAtIndexPath:(MDIndexPath *)columnPath
@@ -127,61 +137,130 @@
     if (cell == nil) {
         cell = [[MDSpreadViewCell alloc] initWithStyle:MDSpreadViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+        cell.textLabel.textColor = RGB(2, 106, 80);
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Test Row %d-%d (%d-%d)", rowPath.section+1, rowPath.row+1, columnPath.section+1, columnPath.row+1];
-    cell.textLabel.textColor = [UIColor colorWithRed:(arc4random()%100)/200. green:(arc4random()%100)/200. blue:(arc4random()%100)/200. alpha:1];
-    cell.textLabel.backgroundColor = [UIColor clearColor];
+//    cell.textLabel.text = [NSString stringWithFormat:@"Test Row %d-%d (%d-%d)", rowPath.section+1, rowPath.row+1, columnPath.section+1, columnPath.row+1];
     
     NSString *backgroundImageName = ((rowPath.row + columnPath.column) % 2 ? @"mycharts_diagram_cell_background_2" : @"mycharts_diagram_cell_background_1");
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:backgroundImageName]];
     cell.backgroundView = backgroundView;
     
+    BPDate *date = self.datesManager[columnPath.column];
+    if (rowPath.section == 1 && rowPath.row == 0)
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", date.day];
+    else
+        cell.textLabel.text = nil;
+
     return cell;
 }
 
-//
-//- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInRowSection:(NSInteger)rowSection forColumnSection:(NSInteger)columnSection
-//{
-//    static NSString *cellIdentifier = @"CornerHeaderCell";
-//
-//    MDSpreadViewHeaderCell *cell = (MDSpreadViewHeaderCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[MDSpreadViewHeaderCell alloc] initWithStyle:MDSpreadViewHeaderCellStyleCorner reuseIdentifier:cellIdentifier] autorelease];
-//    }
-//
+
+- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInRowSection:(NSInteger)rowSection forColumnSection:(NSInteger)columnSection
+{
+    static NSString *cellIdentifier = @"CornerHeaderCell";
+
+    MDSpreadViewCell *cell = (MDSpreadViewCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[MDSpreadViewCell alloc] initWithStyle:MDSpreadViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.backgroundView = nil;
+        cell.highlightedBackgroundView = nil;
+    }
+
 //    cell.textLabel.text = [NSString stringWithFormat:@"Cor %d-%d", columnSection+1, rowSection+1];
-//
-//    return cell;
-//}
-//
-//- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInRowSection:(NSInteger)section forColumnAtIndexPath:(MDIndexPath *)columnPath
-//{
-//    static NSString *cellIdentifier = @"RowHeaderCell";
-//
-//    MDSpreadViewHeaderCell *cell = (MDSpreadViewHeaderCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[MDSpreadViewHeaderCell alloc] initWithStyle:MDSpreadViewHeaderCellStyleRow reuseIdentifier:cellIdentifier] autorelease];
-//    }
-//
-//    cell.textLabel.text = [NSString stringWithFormat:@"Row Header %d (%d-%d)", section+1, columnPath.section+1, columnPath.row+1];
-//
-//    return cell;
-//}
-//
-//- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInColumnSection:(NSInteger)section forRowAtIndexPath:(MDIndexPath *)rowPath
-//{
-//    static NSString *cellIdentifier = @"ColumnHeaderCell";
-//
-//    MDSpreadViewHeaderCell *cell = (MDSpreadViewHeaderCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[MDSpreadViewHeaderCell alloc] initWithStyle:MDSpreadViewHeaderCellStyleColumn reuseIdentifier:cellIdentifier] autorelease];
-//    }
-//
-//    cell.textLabel.text = [NSString stringWithFormat:@"%d (%d-%d)", section+1, rowPath.section+1, rowPath.row+1];
-//
-//    return cell;
-//}
+
+    return cell;
+}
+
+- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInRowSection:(NSInteger)section forColumnAtIndexPath:(MDIndexPath *)columnPath
+{
+    static NSString *cellIdentifier = @"RowHeaderCell";
+
+    MDSpreadViewCell *cell = (MDSpreadViewCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[MDSpreadViewCell alloc] initWithStyle:MDSpreadViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+        cell.textLabel.textColor = RGB(2, 106, 80);
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.backgroundView = nil;
+        cell.highlightedBackgroundView = nil;
+    }
+
+    BPDate *date = self.datesManager[columnPath.column];
+    if (section == 0)
+        cell.textLabel.text = [NSString stringWithFormat:@"%i", date.date.day];
+    else
+        cell.textLabel.text = nil;// [NSString stringWithFormat:@"%@", date.day];
+
+    return cell;
+}
+
+- (MDSpreadViewCell *)spreadView:(MDSpreadView *)aSpreadView cellForHeaderInColumnSection:(NSInteger)section forRowAtIndexPath:(MDIndexPath *)rowPath
+{
+    static NSString *cellIdentifier = @"ColumnHeaderCell";
+
+    DLog(@"%i", section);
+    DLog(@"%@", rowPath);
+    
+    MDSpreadViewCell *cell = (MDSpreadViewCell *)[aSpreadView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[MDSpreadViewCell alloc] initWithStyle:MDSpreadViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+        cell.textLabel.textColor = RGB(2, 106, 80);
+        cell.backgroundView = nil;
+        cell.highlightedBackgroundView = nil;
+    }
+
+    if (rowPath.section == 0) {
+        switch (rowPath.row) {
+            case 0:
+                cell.textLabel.text = [BPUtils temperatureFromNumber:@38];
+                break;
+            case 2:
+                cell.textLabel.text = [BPUtils temperatureFromNumber:@37];
+                break;
+            case 4:
+                cell.textLabel.text = [BPUtils temperatureFromNumber:@36];
+                break;
+            case 5:
+                cell.textLabel.text = [BPUtils temperatureFromNumber:@35];
+                break;
+                
+            default:
+                cell.textLabel.text = nil;
+                break;
+        }
+    } else if (rowPath.section == 1) {
+        switch (rowPath.row) {
+            case 0:
+                cell.textLabel.text = BPLocalizedString(@"Day");
+                break;
+            case 1:
+                cell.textLabel.text = BPLocalizedString(@"M");
+                break;
+            case 2:
+                cell.textLabel.text = BPLocalizedString(@"SI");
+                break;
+            case 3:
+                cell.textLabel.text = BPLocalizedString(@"S&M");
+                break;
+                
+            default:
+                cell.textLabel.text = nil;
+                break;
+        }
+    }
+    return cell;
+}
 
 // either do that ^^ for advanced customization, or this vv and let the cell take care of all the details
 // both can be combined if you wanted, by returning nil to the above methods
@@ -205,6 +284,7 @@
 
 - (id)spreadView:(MDSpreadView *)aSpreadView objectValueForRowAtIndexPath:(MDIndexPath *)rowPath forColumnAtIndexPath:(MDIndexPath *)columnPath
 {
+    return nil;
     return [NSString stringWithFormat:@"A Test Row %d-%d (%d-%d)", rowPath.section+1, rowPath.row+1, columnPath.section+1, columnPath.row+1];
 }
 
