@@ -1,6 +1,9 @@
 h2. 20131014#2
 
 h3. Improvements:
-
+Task #19: Settings: Dynamic language
+* optimize dynamic language and theme changing
 Task #41: My Temperature: Cycle logic
 * improve performance
+Task #57 My Charts: Calendar
+* improve performance (update only footer on select date)

@@ -16,22 +16,21 @@
 #import "UIView+Sizes.h"
 #import "ObjectiveSugar.h"
 
-#define BPCalendarFooterDayTop      38.f
-#define BPCalendarFooterFirstLine   30.f
-#define BPCalendarFooterSecondLine  56.f
-#define BPCalendarFooterPadding     12.f
+#define BPCalendarFooterDayTop      30.f
+#define BPCalendarFooterFirstLine   24.f
+#define BPCalendarFooterSecondLine  52.f
+#define BPCalendarFooterPadding     4.f
 #define BPCalendarFooterDayLabelHeight 20.f
 #define BPCalendarFooterNotesLabelHeight 32.f
-#define BPCalendarFooterLinesHorizontalPadding 15.f
+#define BPCalendarFooterLinesHorizontalPadding 7.f
 #define BPCalendarFooterLinesTopPadding 28.f
 #define BPCalendarFooterLinesBottomPadding 5.f
-#define BPCalendarFooterSymptomTop  120.f
+#define BPCalendarFooterSymptomTop  86.f
 #define BPCalendarFooterSymptomSize 28.f
 #define BPCalendarFooterSymptomPadding 2.f
 
 @interface BPCalendarFooter ()
 
-@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *linesImageView;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UIImageView *boyView;
@@ -56,47 +55,46 @@
         self.backgroundColor = [UIColor clearColor];
         
         UIImage *backgroundImage = [BPUtils imageNamed:@"mycharts_calendar_notes_background"];
-        self.backgroundImageView = [[UIImageView alloc] initWithImage:[backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(25.f, 0, 0, 0) resizingMode:UIImageResizingModeStretch]];
-        [self addSubview:self.backgroundImageView];
+        self.backgroundView = [[UIImageView alloc] initWithImage:[backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(25.f, 0, 0, 0) resizingMode:UIImageResizingModeStretch]];
 
         UIImage *linesImage = [BPUtils imageNamed:@"mycharts_calendar_notes_lines"];
         self.linesImageView = [[UIImageView alloc] initWithImage:[linesImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30.f, 0, 0)]];
-        [self addSubview:self.linesImageView];
+        [self.contentView addSubview:self.linesImageView];
 
         self.dayLabel = [[UILabel alloc] init];
         self.dayLabel.backgroundColor = [UIColor clearColor];
         self.dayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         self.dayLabel.textColor = RGB(1, 81, 61);
         self.dayLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.dayLabel];
+        [self.contentView addSubview:self.dayLabel];
 
         self.boyView = [[UIImageView alloc] init];
-        [self addSubview:self.boyView];
+        [self.contentView addSubview:self.boyView];
         
         self.menstruationView = [[UIImageView alloc] init];
-        [self addSubview:self.menstruationView];
+        [self.contentView addSubview:self.menstruationView];
         
         self.ovulationView = [[UIImageView alloc] init];
-        [self addSubview:self.ovulationView];
+        [self.contentView addSubview:self.ovulationView];
 
         self.sexualIntercourseView = [[UIImageView alloc] init];
-        [self addSubview:self.sexualIntercourseView];
+        [self.contentView addSubview:self.sexualIntercourseView];
 
         self.pregnantView = [[UIImageView alloc] init];
-        [self addSubview:self.pregnantView];
+        [self.contentView addSubview:self.pregnantView];
         
         self.childBirthView = [[UIImageView alloc] init];
-        [self addSubview:self.childBirthView];
+        [self.contentView addSubview:self.childBirthView];
 
         self.girlView = [[UIImageView alloc] init];
-        [self addSubview:self.girlView];
+        [self.contentView addSubview:self.girlView];
         
         self.notesLabel = [[UILabel alloc] init];
         self.notesLabel.backgroundColor = [UIColor clearColor];
         self.notesLabel.font = [UIFont fontWithName:@"Gabriola" size:23];
         self.notesLabel.textColor = RGB(132, 219, 205);
         self.notesLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.notesLabel];
+        [self.contentView addSubview:self.notesLabel];
         
         self.symptoms = [[NSMutableArray alloc] init];
     }
@@ -108,9 +106,7 @@
 {
     [super layoutSubviews];
     
-    self.backgroundImageView.frame = CGRectInset(self.bounds, floorf(self.width/2 - self.backgroundImageView.image.size.width/2), 4.f);
-    
-    self.linesImageView.frame = CGRectMake(self.backgroundImageView.left + BPCalendarFooterLinesHorizontalPadding, self.backgroundImageView.top + BPCalendarFooterLinesTopPadding, self.backgroundImageView.width - 2*BPCalendarFooterLinesHorizontalPadding, self.backgroundImageView.height - (BPCalendarFooterLinesTopPadding + BPCalendarFooterLinesBottomPadding));
+    self.linesImageView.frame = CGRectMake(BPCalendarFooterLinesHorizontalPadding, BPCalendarFooterLinesTopPadding, self.contentView.width - 2*BPCalendarFooterLinesHorizontalPadding, self.contentView.height - (BPCalendarFooterLinesTopPadding + BPCalendarFooterLinesBottomPadding));
     
     CGFloat left = BPCalendarFooterPadding;
     CGFloat top = BPCalendarFooterFirstLine;
@@ -145,7 +141,7 @@
     
     for (UIImageView *imageView in [self.symptoms copy]) {
         left += BPCalendarFooterSymptomPadding;
-        imageView.frame = CGRectMake(left, self.boyView.bottom - 3.f, imageView.image.size.width, BPCalendarFooterSymptomSize);
+        imageView.frame = CGRectMake(left, BPCalendarFooterSymptomTop, imageView.image.size.width, BPCalendarFooterSymptomSize);
         left += imageView.width;
         if (left > self.width - BPCalendarFooterPadding) {
             [imageView removeFromSuperview];
@@ -182,7 +178,7 @@
         self.menstruationView.image = [BPUtils imageNamed:imageName];
         
         imageName = @"mycharts_calendar_notes_icon_ovulation";
-        if ([_date.ovulation boolValue])
+        if ([_date.ovulation boolValue] || [_date.imageName isEqualToString:@"point_ovulation"])
             imageName = [imageName stringByAppendingString:@"_active"];
         self.ovulationView.image = [BPUtils imageNamed:imageName];
         
@@ -206,16 +202,17 @@
         [self.symptoms makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self.symptoms removeAllObjects];
     
-    if ([date.symptoms count]) {
-        NSArray *symptoms = [[date.symptoms allObjects] sortBy:@"position"];
-        for (BPSymptom *symptom in symptoms) {
-            NSString *imageName = [NSString stringWithFormat:@"mycharts_%@", symptom.imageName];
-            UIImageView *symptomImageView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:imageName]];
-            symptomImageView.contentMode = ([symptom.position integerValue] == 5 ? UIViewContentModeBottom : UIViewContentModeTop);
-            [self.symptoms addObject:symptomImageView];
-            [self addSubview:symptomImageView];
+        if ([date.symptoms count]) {
+            NSArray *symptoms = [[date.symptoms allObjects] sortBy:@"position"];
+            for (BPSymptom *symptom in symptoms) {
+                NSString *imageName = [NSString stringWithFormat:@"mycharts_%@", symptom.imageName];
+                UIImageView *symptomImageView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:imageName]];
+                symptomImageView.contentMode = ([symptom.position integerValue] == 5 ? UIViewContentModeBottom : UIViewContentModeTop);
+                [self.symptoms addObject:symptomImageView];
+                [self.contentView addSubview:symptomImageView];
+                [self setNeedsLayout];
+            }
         }
-    }
     
         [self updateUI];
 //    }

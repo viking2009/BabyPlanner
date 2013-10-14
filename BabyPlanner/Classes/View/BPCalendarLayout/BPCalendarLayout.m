@@ -19,11 +19,8 @@
     self = [super init];
     if (self) {
 //        self.itemSize = CGSizeMake(BPCalendarLayoutItemSize, BPCalendarLayoutItemSize);
-        self.headerReferenceSize = CGSizeMake(320.f, 53.f);
-        self.footerReferenceSize = CGSizeMake(320.f, 176.f);
         self.minimumInteritemSpacing = 0;
         self.minimumLineSpacing = 0;
-        self.sectionInset = UIEdgeInsetsMake(0, -1, 0, -1);
     }
     
     return self;
@@ -87,6 +84,9 @@
             
             if (contentOffset.y < 0)
                 origin.y = contentOffset.y;
+            
+            if (section > 0)
+                layoutAttributes.alpha = 0;
             
             layoutAttributes.zIndex = 1024;
             layoutAttributes.frame = (CGRect){

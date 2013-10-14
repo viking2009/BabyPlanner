@@ -10,7 +10,7 @@
 
 @class BPDate;
 
-@interface BPCalendarFooter : UICollectionReusableView
+@interface BPCalendarFooter : UICollectionViewCell
 
 @property (nonatomic, strong) BPDate *date;
 @property (nonatomic, strong) NSNumber *childBirth;
