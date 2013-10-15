@@ -21,11 +21,11 @@
 #define BPCalendarFooterSecondLine  52.f
 #define BPCalendarFooterPadding     4.f
 #define BPCalendarFooterDayLabelHeight 20.f
-#define BPCalendarFooterNotesLabelHeight 32.f
+#define BPCalendarFooterNotesLabelHeight 30.f
 #define BPCalendarFooterLinesHorizontalPadding 7.f
 #define BPCalendarFooterLinesTopPadding 28.f
 #define BPCalendarFooterLinesBottomPadding 5.f
-#define BPCalendarFooterSymptomTop  86.f
+#define BPCalendarFooterSymptomTop  115.f
 #define BPCalendarFooterSymptomSize 28.f
 #define BPCalendarFooterSymptomPadding 2.f
 
@@ -112,7 +112,7 @@
     CGFloat top = BPCalendarFooterFirstLine;
     
     self.boyView.frame = CGRectMake(BPCalendarFooterPadding, top, self.boyView.image.size.width, self.boyView.image.size.height);
-    left += self.boyView.width + 20.f;
+    left += self.boyView.width + 6.f;
     self.girlView.frame = CGRectMake(self.width - (self.girlView.image.size.width + BPCalendarFooterPadding), top, self.girlView.image.size.width, self.girlView.image.size.height);
 
     top = BPCalendarFooterSecondLine;
@@ -133,7 +133,7 @@
     left = BPCalendarFooterPadding;
     CGFloat maxWidth = self.width - 2*left;
     CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.f : 4.f);
-    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + 30.f + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
+    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
     
     maxWidth -= (MAX(self.boyView.width, self.girlView.width) + 2*BPCalendarFooterPadding);
     left = floorf(self.width/2 - maxWidth/2);

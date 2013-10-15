@@ -214,13 +214,17 @@
         else
             imageName = @"mycharts_calendar_cell_background_clear";
         
+        UIImage *normalImage = [BPUtils imageNamed:imageName];
         UIImage *activeImage = [BPUtils imageNamed:[NSString stringWithFormat:@"%@_active", imageName]];
-        cell.imageView.image = [BPUtils imageNamed:imageName];
-        cell.imageView.highlightedImage = [cell.imageView.image imageAddingImage:activeImage offset:CGPointZero];
-        //    cell.imageView.highlightedImage = activeImage;
+        activeImage = [normalImage imageAddingImage:activeImage offset:CGPointZero];
         
-        if (self.selectedDate && cell.enabled)
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:imageName]];
+        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:activeImage];
+        
+        if (self.selectedDate && cell.enabled && [cell.date isEqual:self.selectedDate]) {
             [cell setSelected:[cell.date isEqual:self.selectedDate]];
+            [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        }
         
         BPSettings *sharedSettings = [BPSettings sharedSettings];
         NSDate *birthday = sharedSettings[BPSettingsProfileChildBirthdayKey];
@@ -266,12 +270,14 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self canSelectItemAtIndexPath:indexPath];
+    return YES;
+//    return [self canSelectItemAtIndexPath:indexPath];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self canSelectItemAtIndexPath:indexPath];
+    return YES;
+//    return [self canSelectItemAtIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -279,17 +285,16 @@
     DLog(@"%@", indexPath);
     BPCalendarCell *cell = (BPCalendarCell *)[self.calendarView cellForItemAtIndexPath:indexPath];
 
-    if (cell.isEnabled && indexPath.section == 0) {
+    if (/*cell.isEnabled && */indexPath.section == 0) {
         self.selectedDate = cell.date;
-        [self updateCollectionView];
+//        [self updateCollectionView];
         
-//        [CATransaction begin];
-//        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-//
-//        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
-//        
-//        [CATransaction commit];
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
+        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
+        
+        [CATransaction commit];
     }
 }
 

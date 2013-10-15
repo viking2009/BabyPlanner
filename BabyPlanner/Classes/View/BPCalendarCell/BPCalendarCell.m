@@ -33,10 +33,6 @@
     if (self) {
         self.contentView.clipsToBounds = NO;
         
-        self.imageView = [[UIImageView alloc] init];
-//        self.imageView.contentMode = UIViewContentModeCenter;
-        [self.contentView addSubview:self.imageView];
-        
         self.topRightImageView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.topRightImageView];
 
@@ -58,9 +54,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    self.imageView.frame = self.contentView.bounds;
-    
+        
     if (self.topRightImageView.image)
         self.topRightImageView.frame = CGRectMake(self.contentView.right - (BPCalendarCellPadding + self.topRightImageView.image.size.width), BPCalendarCellPadding, self.topRightImageView.image.size.width, self.topRightImageView.image.size.height);
     else
