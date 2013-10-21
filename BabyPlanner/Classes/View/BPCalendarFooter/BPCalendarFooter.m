@@ -93,16 +93,12 @@
         self.girlView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.girlView];
         
-        self.notesLabel = [[BPLabel alloc] init];
+        self.notesLabel = [[UILabel alloc] init];
         self.notesLabel.backgroundColor = [UIColor clearColor];
-        self.notesLabel.contentMode = UIViewContentModeTop;
         self.notesLabel.font = [UIFont fontWithName:@"Gabriola" size:23];
         self.notesLabel.textColor = RGB(132, 219, 205);
         self.notesLabel.numberOfLines = BPCalendarFooterNotesMaxNumberOfLines;
 //        self.notesLabel.textAlignment = NSTextAlignmentCenter;
-        self.notesLabel.shadowColor = nil;
-        self.notesLabel.layer.borderColor = [UIColor redColor].CGColor;
-        self.notesLabel.layer.borderWidth = 1.0f;
         [self.contentView addSubview:self.notesLabel];
         
         self.symptoms = [[NSMutableArray alloc] init];
@@ -141,8 +137,7 @@
 
     left = BPCalendarFooterPadding + BPCalendarFooterNotesLabelLeftPadding;
     CGFloat maxWidth = self.width - (left + BPCalendarFooterPadding + BPCalendarFooterNotesLabelRightPadding);
-    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? -4.f : 4.f);
-    CGRect notesRect = CGRectMake(left, self.boyView.bottom + offset, maxWidth, self.notesLabel.numberOfLines * BPCalendarFooterNotesLabelHeight);
+    CGRect notesRect = CGRectMake(left, self.boyView.bottom - 4.0f, maxWidth, self.notesLabel.numberOfLines * BPCalendarFooterNotesLabelHeight);
     CGRect notesLabelRect = [self.notesLabel textRectForBounds:notesRect limitedToNumberOfLines:self.notesLabel.numberOfLines];
     notesRect.size.height = notesLabelRect.size.height;
     self.notesLabel.frame = notesRect;

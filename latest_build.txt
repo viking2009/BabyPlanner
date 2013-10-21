@@ -1,8 +1,7 @@
-h2. 20131021
+h2. 20131021#2
 
-h3. Improvements:
+h3. Fixes:
 
 Task #57: My Charts: Calendar
-* flexible footer (limited to 10 lines)
-Task #59: My Charts: Cycle Details
-* add edit support for selected date of calendar or diagram
+* remove notes label red border
+* fix iOS6 vertical offset for notes label

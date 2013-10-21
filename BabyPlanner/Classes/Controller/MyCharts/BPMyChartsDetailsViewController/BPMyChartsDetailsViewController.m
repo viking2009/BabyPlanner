@@ -118,10 +118,7 @@
 //    self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleTopMargin;
     [self.view insertSubview:self.containerView belowSubview:self.navigationImageView];
     
-    
-    DLog(@"containerView: %@", self.containerView);
     [self showCalendar];
-    
     [self localize];
 }
 
