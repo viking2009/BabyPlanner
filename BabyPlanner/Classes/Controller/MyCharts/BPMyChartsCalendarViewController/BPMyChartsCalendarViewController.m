@@ -309,8 +309,10 @@
 {
     if (indexPath.section == 0)
         return CGSizeMake(46.f, indexPath.item < 7 ? 47.f : 46.f);
-    else
-        return CGSizeMake(collectionView.width - 16.f, 160.f);
+    else {
+        CGFloat height = [BPCalendarFooter heightForDate:self.selectedDate limitedToWidth:collectionView.width - 16.f];
+        return CGSizeMake(collectionView.width - 16.f, height);
+    }
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

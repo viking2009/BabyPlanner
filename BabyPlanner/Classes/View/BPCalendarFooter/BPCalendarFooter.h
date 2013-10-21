@@ -17,4 +17,6 @@
 
 - (void)updateUI;
 
++ (CGFloat)heightForDate:(BPDate *)date limitedToWidth:(CGFloat)width;
+
 @end

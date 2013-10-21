@@ -18,14 +18,16 @@
 
 #define BPCalendarFooterDayTop      30.f
 #define BPCalendarFooterFirstLine   24.f
-#define BPCalendarFooterSecondLine  52.f
+#define BPCalendarFooterSecondLine  51.f
 #define BPCalendarFooterPadding     4.f
 #define BPCalendarFooterDayLabelHeight 20.f
 #define BPCalendarFooterNotesLabelHeight 30.f
+#define BPCalendarFooterNotesLabelLeftPadding 35.f
+#define BPCalendarFooterNotesLabelRightPadding 5.f
+#define BPCalendarFooterNotesMaxNumberOfLines 10
 #define BPCalendarFooterLinesHorizontalPadding 7.f
 #define BPCalendarFooterLinesTopPadding 28.f
 #define BPCalendarFooterLinesBottomPadding 5.f
-#define BPCalendarFooterSymptomTop  115.f
 #define BPCalendarFooterSymptomSize 28.f
 #define BPCalendarFooterSymptomPadding 2.f
 
@@ -44,6 +46,8 @@
 
 @property (nonatomic, strong) NSMutableArray *symptoms;
 
++ (NSParagraphStyle *)defaultParagraphStyle;
+
 @end
 
 @implementation BPCalendarFooter
@@ -55,7 +59,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         UIImage *backgroundImage = [BPUtils imageNamed:@"mycharts_calendar_notes_background"];
-        self.backgroundView = [[UIImageView alloc] initWithImage:[backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(25.f, 0, 0, 0) resizingMode:UIImageResizingModeStretch]];
+        self.backgroundView = [[UIImageView alloc] initWithImage:[backgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(25.0f, 20.0f, 25.0f, 20.0f) resizingMode:UIImageResizingModeStretch]];
 
         UIImage *linesImage = [BPUtils imageNamed:@"mycharts_calendar_notes_lines"];
         self.linesImageView = [[UIImageView alloc] initWithImage:[linesImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30.f, 0, 0)]];
@@ -89,11 +93,16 @@
         self.girlView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.girlView];
         
-        self.notesLabel = [[UILabel alloc] init];
+        self.notesLabel = [[BPLabel alloc] init];
         self.notesLabel.backgroundColor = [UIColor clearColor];
+        self.notesLabel.contentMode = UIViewContentModeTop;
         self.notesLabel.font = [UIFont fontWithName:@"Gabriola" size:23];
         self.notesLabel.textColor = RGB(132, 219, 205);
-        self.notesLabel.textAlignment = NSTextAlignmentCenter;
+        self.notesLabel.numberOfLines = BPCalendarFooterNotesMaxNumberOfLines;
+//        self.notesLabel.textAlignment = NSTextAlignmentCenter;
+        self.notesLabel.shadowColor = nil;
+        self.notesLabel.layer.borderColor = [UIColor redColor].CGColor;
+        self.notesLabel.layer.borderWidth = 1.0f;
         [self.contentView addSubview:self.notesLabel];
         
         self.symptoms = [[NSMutableArray alloc] init];
@@ -130,18 +139,23 @@
     
     self.childBirthView.frame = CGRectMake(left, top, self.childBirthView.image.size.width, self.childBirthView.image.size.height);
 
-    left = BPCalendarFooterPadding;
-    CGFloat maxWidth = self.width - 2*left;
-    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.f : 4.f);
-    self.notesLabel.frame = CGRectMake(left, self.boyView.bottom + offset, maxWidth, BPCalendarFooterNotesLabelHeight + offset);
+    left = BPCalendarFooterPadding + BPCalendarFooterNotesLabelLeftPadding;
+    CGFloat maxWidth = self.width - (left + BPCalendarFooterPadding + BPCalendarFooterNotesLabelRightPadding);
+    CGFloat offset = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? -4.f : 4.f);
+    CGRect notesRect = CGRectMake(left, self.boyView.bottom + offset, maxWidth, self.notesLabel.numberOfLines * BPCalendarFooterNotesLabelHeight);
+    CGRect notesLabelRect = [self.notesLabel textRectForBounds:notesRect limitedToNumberOfLines:self.notesLabel.numberOfLines];
+    notesRect.size.height = notesLabelRect.size.height;
+    self.notesLabel.frame = notesRect;
     
     maxWidth -= (MAX(self.boyView.width, self.girlView.width) + 2*BPCalendarFooterPadding);
     left = floorf(self.width/2 - maxWidth/2);
     self.dayLabel.frame = CGRectMake(left, BPCalendarFooterDayTop, maxWidth, BPCalendarFooterDayLabelHeight);
     
+    left = BPCalendarFooterNotesLabelLeftPadding;
+    top = self.notesLabel.bottom + BPCalendarFooterNotesLabelHeight + 1.f;
     for (UIImageView *imageView in [self.symptoms copy]) {
         left += BPCalendarFooterSymptomPadding;
-        imageView.frame = CGRectMake(left, BPCalendarFooterSymptomTop, imageView.image.size.width, BPCalendarFooterSymptomSize);
+        imageView.frame = CGRectMake(left, top, imageView.image.size.width, BPCalendarFooterSymptomSize);
         left += imageView.width;
         if (left > self.width - BPCalendarFooterPadding) {
             [imageView removeFromSuperview];
@@ -166,7 +180,7 @@
 {
 //    if (_date != date) {
         _date = date;
-        
+    
         NSString *imageName = @"mycharts_calendar_notes_icon_boy";
         if ([_date.boy boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
@@ -197,7 +211,17 @@
             imageName = [imageName stringByAppendingString:@"_active"];
         self.girlView.image = [BPUtils imageNamed:imageName];
 
-        self.notesLabel.text = _date.notations;
+        if (_date.notations) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.minimumLineHeight = BPCalendarFooterNotesLabelHeight;
+            paragraphStyle.maximumLineHeight = BPCalendarFooterNotesLabelHeight;
+            paragraphStyle.alignment = self.notesLabel.textAlignment;
+            paragraphStyle.lineBreakMode = self.notesLabel.lineBreakMode;
+            self.notesLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:_date.notations
+                                                                                    attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
+
+        } else
+            self.notesLabel.text = nil;
     
         [self.symptoms makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self.symptoms removeAllObjects];
@@ -234,6 +258,37 @@
 {
     if ([self.date.day integerValue])
         self.dayLabel.text = [NSString stringWithFormat:BPLocalizedString(@"%@ day of cycle"), [BPUtils ordinalStringFromNumber:self.date.day]];
+}
+
++ (NSParagraphStyle *)defaultParagraphStyle {
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.minimumLineHeight = BPCalendarFooterNotesLabelHeight;
+    paragraphStyle.maximumLineHeight = BPCalendarFooterNotesLabelHeight;
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+
+    return paragraphStyle;
+}
+
++ (CGFloat)heightForDate:(BPDate *)date limitedToWidth:(CGFloat)width {
+    CGFloat height = 190.0f;
+    
+    if (date.notations) {
+        NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Gabriola" size:23],
+                                     NSParagraphStyleAttributeName: [self defaultParagraphStyle]};
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:date.notations
+                                                                                attributes:attributes];
+        CGFloat maxWidth = width - (2 * BPCalendarFooterPadding + + BPCalendarFooterNotesLabelLeftPadding + BPCalendarFooterNotesLabelRightPadding);
+        CGSize limitedSize = CGSizeMake(maxWidth, BPCalendarFooterNotesLabelHeight * BPCalendarFooterNotesMaxNumberOfLines);
+        CGRect rect = [attributedText boundingRectWithSize:limitedSize
+                                                   options:(NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
+                                                   context:nil];
+        NSInteger numberOfLines = rect.size.height/BPCalendarFooterNotesLabelHeight;
+        if (numberOfLines > 1)
+            height += (numberOfLines - 1) * BPCalendarFooterNotesLabelHeight;
+    }
+    
+    return height;
 }
 
 @end
