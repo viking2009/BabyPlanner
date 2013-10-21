@@ -61,6 +61,9 @@
 "Your mono-phases\n(of the last 20 cycles)" = "Your mono-phases\n(of the last 20 cycles)";
 "Corpus luteum insufficiency" = "Corpus luteum insufficiency";
 
+/* BPMyChartsDetailsViewController */
+"Edit" = "Edit";
+
 /* BPMyChartsCalendarViewController */
 "%@ day of cycle" = "%@ day of cycle";
 

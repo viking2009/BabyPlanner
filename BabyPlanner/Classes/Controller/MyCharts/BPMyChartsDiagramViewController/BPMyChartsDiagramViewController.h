@@ -12,5 +12,6 @@
 @interface BPMyChartsDiagramViewController : BPBaseViewController
 
 @property (nonatomic, strong) BPCycle *cycle;
+@property (nonatomic, strong, readonly) BPDate *selectedDate;
 
 @end

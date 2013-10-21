@@ -51,6 +51,9 @@
 "Your mono-phases\n(of the last 20 cycles)" = "Ваши моно-фазы\n(за последние 20 циклов)";
 "Corpus luteum insufficiency" = "Недостаточность желтого тела";
 
+/* BPMyChartsDetailsViewController */
+"Edit" = "Правка";
+
 /* BPMyChartsCalendarViewController */
 "%@ day of cycle" = "%@ день цикла";
 "Today you are fertile!" = "Сегодня Вы фертильны!";

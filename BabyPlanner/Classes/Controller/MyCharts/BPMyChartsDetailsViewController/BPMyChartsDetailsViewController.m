@@ -9,6 +9,8 @@
 #import "BPMyChartsDetailsViewController.h"
 #import "BPUtils.h"
 #import "UIView+Sizes.h"
+#import "UINavigationController+Transition.h"
+#import "BPMyTemperatureControlsViewController.h"
 
 #define kBPSegmentButtonWidth   65.f
 #define kBPSegmentButtonHeight  30.f
@@ -17,8 +19,9 @@
 
 @property (nonatomic, strong) UIButton *segmentLeftButton;
 @property (nonatomic, strong) UIButton *segmentRightButton;
+@property (nonatomic, strong) UIButton *editButton;
 
-@property (nonatomic, weak) UIViewController *selectedViewController;
+@property (nonatomic, weak) BPViewController *selectedViewController;
 @property (nonatomic, strong) UIView *containerView;
 
 - (void)showCalendar;
@@ -99,19 +102,39 @@
 
     [self.view addSubview:self.segmentRightButton];
     
+    UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.editButton.enabled = NO;
+    [self.editButton setBackgroundImage:greenImage forState:UIControlStateNormal];
+    self.editButton.frame = CGRectMake(self.view.width - 10.f - greenImage.size.width, self.navigationImageView.top + floorf(navigationImageViewHeight/2 - greenImage.size.height/2), greenImage.size.width, greenImage.size.height);
+    [self.editButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+    self.editButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+    self.editButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.editButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    [self.editButton addTarget:self action:@selector(editButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.editButton];
+    
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationImageView.top + navigationImageViewHeight, self.view.width, self.view.height - (self.navigationImageView.top + navigationImageViewHeight) - self.tabBarController.tabBar.height)];
 //    self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleTopMargin;
     [self.view insertSubview:self.containerView belowSubview:self.navigationImageView];
     
-    DLog(@"containerView: %@", self.containerView);
     
+    DLog(@"containerView: %@", self.containerView);
     [self showCalendar];
+    
+    [self localize];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)localize {
+    [super localize];
+    
+    [self.editButton setTitle:BPLocalizedString(@"Edit") forState:UIControlStateNormal];
 }
 
 #pragma marl - Public
@@ -218,6 +241,43 @@
         toViewController.view.frame = self.containerView.bounds;
         [self.containerView addSubview:toViewController.view];
     }
+}
+
+- (void)editButtonTapped
+{
+    BPDate *selectedDate = ([self.selectedViewController isEqual:self.calendarViewController] ? self.calendarViewController.selectedDate :
+                            self.diagramViewController.selectedDate);
+    
+    if (!selectedDate)
+        return ;
+    
+    BPMyTemperatureControlsViewController *controlsController = [[BPMyTemperatureControlsViewController alloc] init];
+    controlsController.date = selectedDate;
+    
+    __weak __typeof(&*self) weakSelf = self;
+    controlsController.handler = ^{
+        [weakSelf.navigationController popViewControllerWithDuration:0.3f
+                                                          prelayouts:^(UIView *fromView, UIView *toView) {
+                                                              [weakSelf.selectedViewController updateUI];
+                                                          }
+                                                          animations:^(UIView *fromView, UIView *toView) {
+                                                              fromView.frame = CGRectOffset(toView.bounds, 0, toView.height);
+                                                          }
+                                                          completion:^(UIView *fromView, UIView *toView) {
+                                                              //
+                                                          }];
+    };
+    
+    [self.navigationController pushViewController:controlsController duration:0.3f
+                                       prelayouts:^(UIView *fromView, UIView *toView) {
+                                           toView.frame = CGRectOffset(fromView.bounds, 0, fromView.height);
+                                       }
+                                       animations:^(UIView *fromView, UIView *toView) {
+                                           toView.frame = fromView.frame;
+                                       }
+                                       completion:^(UIView *fromView, UIView *toView) {
+                                           //
+                                       }];
 }
 
 @end

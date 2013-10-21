@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) MDSpreadView *spreadView;
 @property (nonatomic, strong) BPDatesManager *datesManager;
+@property (nonatomic, strong, readwrite) BPDate *selectedDate;
 
 @end
 

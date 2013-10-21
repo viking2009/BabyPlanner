@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) BPCalendarView *calendarView;
 @property (nonatomic, strong) BPDatesManager *datesManager;
-@property (nonatomic, strong) BPDate *selectedDate;
+@property (nonatomic, strong, readwrite) BPDate *selectedDate;
 @property (nonatomic, strong) NSDate *selectedMonth;
 @property (nonatomic, strong) NSDate *firstDate;
 
