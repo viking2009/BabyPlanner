@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIButton *segmentRightButton;
 @property (nonatomic, strong) UIButton *editButton;
 
-@property (nonatomic, weak) BPViewController *selectedViewController;
+@property (nonatomic, weak) UIViewController *selectedViewController;
 @property (nonatomic, strong) UIView *containerView;
 
 - (void)showCalendar;
@@ -245,7 +245,7 @@
 
 - (void)editButtonTapped
 {
-    BPDate *selectedDate = ([self.selectedViewController isEqual:self.calendarViewController] ? self.calendarViewController.selectedDate :
+    BPDate *selectedDate = (self.selectedViewController == self.calendarViewController ? self.calendarViewController.selectedDate :
                             self.diagramViewController.selectedDate);
     
     if (!selectedDate)
@@ -258,7 +258,8 @@
     controlsController.handler = ^{
         [weakSelf.navigationController popViewControllerWithDuration:0.3f
                                                           prelayouts:^(UIView *fromView, UIView *toView) {
-                                                              [weakSelf.selectedViewController updateUI];
+                                                              BPViewController *vc = (BPViewController *)weakSelf.selectedViewController;
+                                                              [vc updateUI];
                                                           }
                                                           animations:^(UIView *fromView, UIView *toView) {
                                                               fromView.frame = CGRectOffset(toView.bounds, 0, toView.height);
