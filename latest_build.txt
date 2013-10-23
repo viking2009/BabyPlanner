@@ -5,3 +5,4 @@ h3. Fixes:
 Task #57: My Charts: Calendar
 * change symptom icons size
 * show symptom icons under notation, fix notation frame
+* show ovulation icon for planned ovulation in calendar
