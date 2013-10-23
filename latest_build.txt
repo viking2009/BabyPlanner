@@ -1,7 +1,7 @@
-h2. 20131021#2
+h2. 20131023
 
 h3. Fixes:
 
 Task #57: My Charts: Calendar
-* remove notes label red border
-* fix iOS6 vertical offset for notes label
+* change symptom icons size
+* show symptom icons under notation, fix notation frame

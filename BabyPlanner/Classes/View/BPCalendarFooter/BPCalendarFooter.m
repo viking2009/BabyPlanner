@@ -13,7 +13,6 @@
 #import "BPLabel.h"
 #import "BPDate+Additions.h"
 #import "BPSymptom+Additions.h"
-#import "UIView+Sizes.h"
 #import "ObjectiveSugar.h"
 
 #define BPCalendarFooterDayTop      30.f
@@ -28,8 +27,8 @@
 #define BPCalendarFooterLinesHorizontalPadding 7.f
 #define BPCalendarFooterLinesTopPadding 28.f
 #define BPCalendarFooterLinesBottomPadding 5.f
-#define BPCalendarFooterSymptomSize 28.f
-#define BPCalendarFooterSymptomPadding 2.f
+#define BPCalendarFooterSymptomSize 20.f
+#define BPCalendarFooterSymptomPadding 1.f
 
 @interface BPCalendarFooter ()
 
@@ -137,7 +136,7 @@
 
     left = BPCalendarFooterPadding + BPCalendarFooterNotesLabelLeftPadding;
     CGFloat maxWidth = self.width - (left + BPCalendarFooterPadding + BPCalendarFooterNotesLabelRightPadding);
-    CGRect notesRect = CGRectMake(left, self.boyView.bottom - 4.0f, maxWidth, self.notesLabel.numberOfLines * BPCalendarFooterNotesLabelHeight);
+    CGRect notesRect = CGRectMake(left, self.boyView.bottom - 4.0f + BPCalendarFooterNotesLabelHeight, maxWidth, self.notesLabel.numberOfLines * BPCalendarFooterNotesLabelHeight);
     CGRect notesLabelRect = [self.notesLabel textRectForBounds:notesRect limitedToNumberOfLines:self.notesLabel.numberOfLines];
     notesRect.size.height = notesLabelRect.size.height;
     self.notesLabel.frame = notesRect;
@@ -146,8 +145,8 @@
     left = floorf(self.width/2 - maxWidth/2);
     self.dayLabel.frame = CGRectMake(left, BPCalendarFooterDayTop, maxWidth, BPCalendarFooterDayLabelHeight);
     
-    left = BPCalendarFooterNotesLabelLeftPadding;
-    top = self.notesLabel.bottom + BPCalendarFooterNotesLabelHeight + 1.f;
+    left = BPCalendarFooterNotesLabelLeftPadding - 3.f;
+    top = self.notesLabel.top - BPCalendarFooterSymptomSize;
     for (UIImageView *imageView in [self.symptoms copy]) {
         left += BPCalendarFooterSymptomPadding;
         imageView.frame = CGRectMake(left, top, imageView.image.size.width, BPCalendarFooterSymptomSize);
@@ -206,7 +205,7 @@
             imageName = [imageName stringByAppendingString:@"_active"];
         self.girlView.image = [BPUtils imageNamed:imageName];
 
-        if (_date.notations) {
+        if (_date.notations.length) {
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.minimumLineHeight = BPCalendarFooterNotesLabelHeight;
             paragraphStyle.maximumLineHeight = BPCalendarFooterNotesLabelHeight;
@@ -226,7 +225,8 @@
             for (BPSymptom *symptom in symptoms) {
                 NSString *imageName = [NSString stringWithFormat:@"mycharts_%@", symptom.imageName];
                 UIImageView *symptomImageView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:imageName]];
-                symptomImageView.contentMode = ([symptom.position integerValue] == 5 ? UIViewContentModeBottom : UIViewContentModeTop);
+                NSInteger symptomPosition = [symptom.position integerValue];
+                symptomImageView.contentMode = ((symptomPosition == 5 || symptomPosition == 11) ? UIViewContentModeBottom : UIViewContentModeTop);
                 [self.symptoms addObject:symptomImageView];
                 [self.contentView addSubview:symptomImageView];
                 [self setNeedsLayout];
@@ -266,9 +266,9 @@
 }
 
 + (CGFloat)heightForDate:(BPDate *)date limitedToWidth:(CGFloat)width {
-    CGFloat height = 190.0f;
+    CGFloat height = 160.0f;
     
-    if (date.notations) {
+    if (date.notations.length) {
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Gabriola" size:23],
                                      NSParagraphStyleAttributeName: [self defaultParagraphStyle]};
         NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:date.notations
