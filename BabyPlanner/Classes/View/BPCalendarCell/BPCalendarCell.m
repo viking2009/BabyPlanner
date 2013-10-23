@@ -125,7 +125,7 @@
                 self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
         }
         
-        if ([_date.ovulation boolValue])
+        if ([_date.ovulation boolValue] || [_date.imageName isEqualToString:@"point_ovulation"])
             self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_ovulation"];
 
         self.titleLabel.text = [NSString stringWithFormat:@"%i", _date.date.day];
