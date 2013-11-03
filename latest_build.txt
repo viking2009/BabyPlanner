@@ -1,4 +1,7 @@
-h2. 20131103
+h2. 20131023
+
+h3. Note:
+* diagram disabled
 
 h3. Fixes:
 

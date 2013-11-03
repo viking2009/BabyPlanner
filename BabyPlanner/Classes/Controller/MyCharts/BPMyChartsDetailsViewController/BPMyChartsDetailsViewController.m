@@ -173,7 +173,7 @@
 {
     self.segmentLeftButton.selected = NO;
     self.segmentRightButton.selected = YES;
-    [self setSelectedViewController:self.diagramViewController animated:YES];
+//    [self setSelectedViewController:self.diagramViewController animated:YES];
 }
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController animated:(BOOL)animated
