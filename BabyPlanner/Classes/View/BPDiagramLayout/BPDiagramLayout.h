@@ -8,6 +8,16 @@
 
 #import "MSCollectionViewCalendarLayout.h"
 
-@interface BPDiagramLayout : MSCollectionViewCalendarLayout
+extern NSString *const BPDiagramElementKindColumnHeader;
+extern NSString *const BPDiagramElementKindRowHeader;
+extern NSString *const BPDiagramElementKindChart;
+extern NSString *const BPDiagramElementKindLegend;
+
+//@interface BPDiagramLayout : MSCollectionViewCalendarLayout
+@interface BPDiagramLayout : UICollectionViewLayout
+
+@property (nonatomic, assign) CGSize itemSize;
+@property (nonatomic, assign) CGFloat columnHeaderWidth;
+@property (nonatomic, assign) CGFloat rowHeaderHeight;
 
 @end

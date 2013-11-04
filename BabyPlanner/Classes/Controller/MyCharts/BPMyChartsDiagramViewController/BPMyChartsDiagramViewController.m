@@ -15,7 +15,7 @@
 #import "BPDate+Additions.h"
 #import "BPDiagramCell.h"
 #import "BPDiagramLegend.h"
-#import "BPDiagramHeaderCell.h"
+#import "BPDiagramColumnHeaderCell.h"
 #import "MSCollectionViewCalendarLayout.h"
 
 #define BPDiagramCellIdentifier @"BPDiagramCellIdentifier"
@@ -56,7 +56,7 @@
     self.statusBarView.backgroundColor = [UIColor clearColor];
     
     BPDiagramLayout *diagramLayout = [[BPDiagramLayout alloc] init];
-    diagramLayout.delegate = self;
+//    diagramLayout.delegate = self;
     
     self.diagramView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:diagramLayout];
     self.diagramView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
@@ -67,8 +67,8 @@
     [self.view addSubview:self.diagramView];
     
     [self.diagramView registerClass:[BPDiagramCell class] forCellWithReuseIdentifier:BPDiagramCellIdentifier];
-    [self.diagramView registerClass:[BPDiagramHeaderCell class] forSupplementaryViewOfKind:MSCollectionElementKindDayColumnHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
-    [self.diagramView registerClass:[BPDiagramHeaderCell class] forSupplementaryViewOfKind:MSCollectionElementKindTimeRowHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
+    [self.diagramView registerClass:[BPDiagramColumnHeaderCell class] forSupplementaryViewOfKind:BPDiagramElementKindColumnHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
+    [self.diagramView registerClass:[BPDiagramColumnHeaderCell class] forSupplementaryViewOfKind:MSCollectionElementKindTimeRowHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
     [self.diagramView.collectionViewLayout registerClass:[BPDiagramLegend class] forDecorationViewOfKind:MSCollectionElementKindCurrentTimeHorizontalGridline];
 
     [self updateUI];
@@ -137,12 +137,12 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *view = nil;
-    if (kind == MSCollectionElementKindDayColumnHeader) {
-        BPDiagramHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
+    if (kind == BPDiagramElementKindColumnHeader) {
+        BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];
         view = dayColumnHeader;
     } else if (kind == MSCollectionElementKindTimeRowHeader) {
-        BPDiagramHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
+        BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];
         view = dayColumnHeader;
     }

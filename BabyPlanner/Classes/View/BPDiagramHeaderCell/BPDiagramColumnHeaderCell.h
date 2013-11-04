@@ -10,7 +10,7 @@
 
 @class BPDate;
 
-@interface BPDiagramHeaderCell : UICollectionReusableView
+@interface BPDiagramColumnHeaderCell : UICollectionReusableView
 
 @property (nonatomic, strong) BPDate *date;
 

@@ -173,21 +173,13 @@
 {
     self.segmentLeftButton.selected = NO;
     self.segmentRightButton.selected = YES;
-//    [self setSelectedViewController:self.diagramViewController animated:YES];
+    [self setSelectedViewController:self.diagramViewController animated:YES];
 }
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController animated:(BOOL)animated
 {
-    DLog(@"%@", selectedViewController);
-    DLog(@"%@", self.selectedViewController);
-    
     if (selectedViewController == self.selectedViewController)
         return ;
-    
-
-    DLog(@"process");
-    DLog(@"%@", self.containerView);
-
     
     UIViewController *fromViewController = self.selectedViewController;
     UIViewController *toViewController = selectedViewController;
@@ -198,7 +190,6 @@
         [fromViewController.view removeFromSuperview];
     else if (fromViewController == nil) { // don't animate
         toViewController.view.frame = self.containerView.bounds;
-        DLog(@"%@", toViewController.view);
 
         [self.containerView addSubview:toViewController.view];
     } else if (animated) {

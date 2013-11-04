@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Mykola Vyshynskyi. All rights reserved.
 //
 
-#import "BPDiagramHeaderCell.h"
+#import "BPDiagramColumnHeaderCell.h"
 #import "BPDate+Additions.h"
 #import "NSDate-Utilities.h"
 
-@interface BPDiagramHeaderCell ()
+@interface BPDiagramColumnHeaderCell ()
 
 @property (nonatomic, strong) UILabel *dayLabel;
 
 @end
 
 
-@implementation BPDiagramHeaderCell
+@implementation BPDiagramColumnHeaderCell
 
 - (id)initWithFrame:(CGRect)frame
 {
