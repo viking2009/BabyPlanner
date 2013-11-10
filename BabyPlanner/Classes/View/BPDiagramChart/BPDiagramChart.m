@@ -11,7 +11,7 @@
 
 #define BPDiagramChartItemSize 30.0f
 #define BPDiagramChartItemVShift 1.0f
-#define BPDiagramChartItemHShift 15.0f
+#define BPDiagramChartItemHShift 1.0f
 #define BPDiagramChartInternalSize 28.0f
 #define BPDiagramChartMaxTemperature 38
 #define BPDiagramChartMinTemperature 35

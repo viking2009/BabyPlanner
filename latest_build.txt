@@ -1,11 +1,6 @@
-h2. 20131023
+h2. 20131110
 
-h3. Note:
-* diagram disabled
+h3. Improvements:
 
-h3. Fixes:
-
-Task #57: My Charts: Calendar
-* change symptom icons size
-* show symptom icons under notation, fix notation frame
-* show ovulation icon for planned ovulation in calendar
+Task #58: My Charts: Diagram
+* legend, chart, headers
