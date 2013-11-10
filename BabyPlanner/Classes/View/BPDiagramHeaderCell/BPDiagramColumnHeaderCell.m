@@ -9,6 +9,9 @@
 #import "BPDiagramColumnHeaderCell.h"
 #import "BPDate+Additions.h"
 #import "NSDate-Utilities.h"
+#import "UIView+Sizes.h"
+
+#define BPDiagramColumnHeaderCellTop 36.0f
 
 @interface BPDiagramColumnHeaderCell ()
 
@@ -38,7 +41,7 @@
 {
     [super layoutSubviews];
     
-    self.dayLabel.frame = self.bounds;// CGRectMake(0, 7*BPDiagramCellItemSize + 8.0f, BPDiagramCellItemInternalSize, BPDiagramCellItemInternalSize - 8.0f);
+    self.dayLabel.frame = CGRectMake(0, BPDiagramColumnHeaderCellTop, self.width - 2.0f, self.height - BPDiagramColumnHeaderCellTop);
 }
 
 #pragma mark - Public

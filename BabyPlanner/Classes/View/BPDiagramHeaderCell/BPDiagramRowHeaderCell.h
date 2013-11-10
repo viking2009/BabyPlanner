@@ -10,4 +10,6 @@
 
 @interface BPDiagramRowHeaderCell : UICollectionReusableView
 
+- (void)updateUI;
+
 @end

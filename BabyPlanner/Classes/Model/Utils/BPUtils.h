@@ -21,6 +21,7 @@
 + (NSString *)weightFromNumber:(NSNumber *)number;
 + (NSString *)heightFromNumber:(NSNumber *)number;
 + (NSString *)temperatureFromNumber:(NSNumber *)number;
++ (NSString *)shortTemperatureFromNumber:(NSNumber *)number;
 
 + (NSNumber *)weightFromString:(NSString *)string;
 + (NSNumber *)heightFromString:(NSString *)string;

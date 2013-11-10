@@ -68,6 +68,7 @@
 "%@ day of cycle" = "%@ day of cycle";
 
 /* BPMyChartsDiagramViewController */
+"Cycle %@" = "Cycle %@";
 "Day" = "Day";
 "M" = "M";
 "SI" = "SI";

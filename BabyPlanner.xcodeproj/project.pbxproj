@@ -38,6 +38,8 @@
 		903452F4179461AB001B397B /* Marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EF179461AB001B397B /* Marimba.caf */; };
 		903452F5179461AB001B397B /* Old Phone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F0179461AB001B397B /* Old Phone.caf */; };
 		903452F6179461AB001B397B /* Piano Riff.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F1179461AB001B397B /* Piano Riff.caf */; };
+		90453FBC182FDE7C0069368B /* BPDiagramHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */; };
+		90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBF182FFFAF0069368B /* BPDiagramChart.m */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -194,6 +196,10 @@
 		903452EF179461AB001B397B /* Marimba.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marimba.caf; sourceTree = "<group>"; };
 		903452F0179461AB001B397B /* Old Phone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Old Phone.caf"; sourceTree = "<group>"; };
 		903452F1179461AB001B397B /* Piano Riff.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Piano Riff.caf"; sourceTree = "<group>"; };
+		90453FBA182FDE7B0069368B /* BPDiagramHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramHeaderView.h; sourceTree = "<group>"; };
+		90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramHeaderView.m; sourceTree = "<group>"; };
+		90453FBE182FFFAF0069368B /* BPDiagramChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramChart.h; sourceTree = "<group>"; };
+		90453FBF182FFFAF0069368B /* BPDiagramChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramChart.m; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -510,6 +516,15 @@
 				903452F1179461AB001B397B /* Piano Riff.caf */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		90453FBD182FFF9F0069368B /* BPDiagramChart */ = {
+			isa = PBXGroup;
+			children = (
+				90453FBE182FFFAF0069368B /* BPDiagramChart.h */,
+				90453FBF182FFFAF0069368B /* BPDiagramChart.m */,
+			);
+			path = BPDiagramChart;
 			sourceTree = "<group>";
 		};
 		905D99E01787E89B00C367E3 /* BPPickerView */ = {
@@ -1026,6 +1041,7 @@
 				90EBD1BA1826AD2100F8D6E8 /* BPDiagramLayout */,
 				90EBD1C51826B95800F8D6E8 /* BPDiagramCell */,
 				90EBD1C91826BD3800F8D6E8 /* BPDiagramLegend */,
+				90453FBD182FFF9F0069368B /* BPDiagramChart */,
 				90EBD1CD1826C89C00F8D6E8 /* BPDiagramHeaderCell */,
 			);
 			path = View;
@@ -1281,6 +1297,8 @@
 				90EBD1CF1826C8C500F8D6E8 /* BPDiagramColumnHeaderCell.m */,
 				90EA6F3A18276ECB005C95E2 /* BPDiagramRowHeaderCell.h */,
 				90EA6F3B18276ECB005C95E2 /* BPDiagramRowHeaderCell.m */,
+				90453FBA182FDE7B0069368B /* BPDiagramHeaderView.h */,
+				90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */,
 			);
 			path = BPDiagramHeaderCell;
 			sourceTree = "<group>";
@@ -1450,6 +1468,7 @@
 				90EB9E0A17078C45008457A3 /* main.m in Sources */,
 				90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */,
 				902E86CE179F275700186731 /* BPLanguageManager.m in Sources */,
+				90453FBC182FDE7C0069368B /* BPDiagramHeaderView.m in Sources */,
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
 				9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */,
 				902E86DB179F461900186731 /* BPThemeManager.m in Sources */,
@@ -1476,6 +1495,7 @@
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
 				908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */,
 				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
+				90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */,
 				90EB9E981707A66A008457A3 /* EKKeyboardAvoidingScrollViewManager.m in Sources */,
 				90FCA82117B9EB8800686048 /* NSString+ObjectiveSugar.m in Sources */,
 				90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */,

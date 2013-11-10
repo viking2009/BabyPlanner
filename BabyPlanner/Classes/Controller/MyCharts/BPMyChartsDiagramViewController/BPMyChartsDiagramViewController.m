@@ -16,11 +16,17 @@
 #import "BPDiagramCell.h"
 #import "BPDiagramLegend.h"
 #import "BPDiagramColumnHeaderCell.h"
+#import "BPDiagramHeaderView.h"
+#import "BPDiagramRowHeaderCell.h"
+#import "BPDiagramChart.h"
 #import "MSCollectionViewCalendarLayout.h"
 
 #define BPDiagramCellIdentifier @"BPDiagramCellIdentifier"
 #define BPDiagramLegendIdentifier @"BPDiagramLegendIdentifier"
 #define BPDiagramHeaderCellIdentifier @"BPDiagramHeaderCellIdentifier"
+#define BPDiagramHeaderViewIdentifier @"BPDiagramHeaderViewIdentifier"
+#define BPDiagramRowHeaderIdentifier @"BPDiagramRowHeaderIdentifier"
+#define BPDiagramChartIdentifier @"BPDiagramChartIdentifier"
 
 @interface BPMyChartsDiagramViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MSCollectionViewDelegateCalendarLayout>
 
@@ -68,8 +74,12 @@
     
     [self.diagramView registerClass:[BPDiagramCell class] forCellWithReuseIdentifier:BPDiagramCellIdentifier];
     [self.diagramView registerClass:[BPDiagramColumnHeaderCell class] forSupplementaryViewOfKind:BPDiagramElementKindColumnHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
+    [self.diagramView registerClass:[BPDiagramRowHeaderCell class] forSupplementaryViewOfKind:BPDiagramElementKindRowHeader withReuseIdentifier:BPDiagramRowHeaderIdentifier];
     [self.diagramView registerClass:[BPDiagramColumnHeaderCell class] forSupplementaryViewOfKind:MSCollectionElementKindTimeRowHeader withReuseIdentifier:BPDiagramHeaderCellIdentifier];
-    [self.diagramView.collectionViewLayout registerClass:[BPDiagramLegend class] forDecorationViewOfKind:MSCollectionElementKindCurrentTimeHorizontalGridline];
+    [self.diagramView registerClass:[BPDiagramHeaderView class] forSupplementaryViewOfKind:BPDiagramElementKindColumnHeaderBackground withReuseIdentifier:BPDiagramHeaderViewIdentifier];
+    [self.diagramView registerClass:[BPDiagramLegend class] forSupplementaryViewOfKind:BPDiagramElementKindLegend withReuseIdentifier:BPDiagramLegendIdentifier];
+    [self.diagramView registerClass:[BPDiagramChart class] forSupplementaryViewOfKind:BPDiagramElementKindChart withReuseIdentifier:BPDiagramChartIdentifier];
+//    [self.diagramView.collectionViewLayout registerClass:[BPDiagramLegend class] forDecorationViewOfKind:MSCollectionElementKindCurrentTimeHorizontalGridline];
 
     [self updateUI];
 //    [self localize];
@@ -137,14 +147,38 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *view = nil;
-    if (kind == BPDiagramElementKindColumnHeader) {
+    if (kind == BPDiagramElementKindColumnHeaderBackground && indexPath.section == 0 && indexPath.item == 0) {
+        BPDiagramHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderViewIdentifier forIndexPath:indexPath];
+        headerView.titleLabel.text = [NSString stringWithFormat:BPLocalizedString(@"Cycle %@"), self.cycle.index];
+        view = headerView;
+    } else if (kind == BPDiagramElementKindRowHeader && indexPath.section == 0 && indexPath.item == 0) {
+        BPDiagramRowHeaderCell *rowView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramRowHeaderIdentifier forIndexPath:indexPath];
+        rowView.backgroundColor = RGB(64, 187, 166);
+        [rowView updateUI];
+        view = rowView;
+    } else if (kind == BPDiagramElementKindColumnHeader) {
         BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];
         view = dayColumnHeader;
+    } else if (kind == BPDiagramElementKindChart && indexPath.section == 0 && indexPath.item == 0) {
+        BPDiagramChart *chart = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramChartIdentifier forIndexPath:indexPath];
+        NSMutableArray *temperatures = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.datesManager.count; i ++) {
+            BPDate *date = self.datesManager[i];
+            if ([date.temperature integerValue])
+                [temperatures addObject:@{@"day": date.day, @"temperature": date.temperature}];
+        }
+        
+        chart.temperatures = temperatures;
+        view = chart;
     } else if (kind == MSCollectionElementKindTimeRowHeader) {
         BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];
         view = dayColumnHeader;
+    } else if (kind == BPDiagramElementKindLegend && indexPath.section == 0 && indexPath.item == 0) {
+        BPDiagramLegend *legend = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramLegendIdentifier forIndexPath:indexPath];
+//        legend.backgroundColor = RGB(64, 187, 113);
+        view = legend;
     }
     return view;
 }

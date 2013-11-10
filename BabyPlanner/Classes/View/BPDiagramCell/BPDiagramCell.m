@@ -60,12 +60,12 @@
     self.dayLabel.text = [_date.day description];
     
     if ([_date.menstruation boolValue])
-        self.menstruationView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_menstruation"];
+        self.menstruationView.image = [BPUtils imageNamed:@"mycharts_diagram_icon_menstruation"];
     else
         self.menstruationView.image = nil;
     
     if ([_date.sexualIntercourse boolValue])
-        self.sexualIntercourseView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
+        self.sexualIntercourseView.image = [BPUtils imageNamed:@"mycharts_diagram_icon_sexualintercourse"];
     else
         self.sexualIntercourseView.image = nil;
     

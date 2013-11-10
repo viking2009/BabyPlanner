@@ -8,6 +8,7 @@
 
 #import "MSCollectionViewCalendarLayout.h"
 
+extern NSString *const BPDiagramElementKindColumnHeaderBackground;
 extern NSString *const BPDiagramElementKindColumnHeader;
 extern NSString *const BPDiagramElementKindRowHeader;
 extern NSString *const BPDiagramElementKindChart;

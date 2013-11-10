@@ -115,6 +115,23 @@ static NSNumberFormatter *_numberFormatter = nil;
     return [numberFormatter stringFromNumber:number];
 }
 
++ (NSString *)shortTemperatureFromNumber:(NSNumber *)number
+{
+    if (!number || ![number integerValue])
+        return nil;
+    
+    NSNumberFormatter *numberFormatter = [self numberFormatter];
+    [numberFormatter setMinimumFractionDigits:0];
+    [numberFormatter setMaximumFractionDigits:0];
+    if ([BPLanguageManager sharedManager].currentMetric == 0) {
+        number = @([self celsiusToFahrenheit:[number floatValue]]);
+        [numberFormatter setPositiveSuffix:@" °F"];
+    } else
+        [numberFormatter setPositiveSuffix:@" °C"];
+    
+    return [numberFormatter stringFromNumber:number];
+}
+
 + (NSNumber *)weightFromString:(NSString *)string
 {
     if (!string)
