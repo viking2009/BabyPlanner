@@ -30,8 +30,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
-//    if (self.temperatures.count == 0)
-//        return;
+    if (self.temperatures.count == 0)
+        return;
     
     // Drawing code
     UIBezierPath *bezierPath = [UIBezierPath bezierPath];

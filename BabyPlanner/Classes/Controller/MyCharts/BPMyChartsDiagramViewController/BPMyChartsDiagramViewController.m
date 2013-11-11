@@ -166,7 +166,7 @@
         for (NSInteger i = 0; i < self.datesManager.count; i ++) {
             BPDate *date = self.datesManager[i];
             if ([date.temperature integerValue])
-                [temperatures addObject:@{@"day": date.day, @"temperature": date.temperature}];
+                [temperatures addObject:@{@"day": @(i + 1), @"temperature": date.temperature}];
         }
         
         chart.temperatures = temperatures;

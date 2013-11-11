@@ -1,6 +1,7 @@
-h2. 20131110
+h2. 20131111
 
-h3. Improvements:
+h3. Fixes:
 
 Task #58: My Charts: Diagram
-* legend, chart, headers
+* BUG: crash if no temperatures
+* BUG: multiple temperatures for day

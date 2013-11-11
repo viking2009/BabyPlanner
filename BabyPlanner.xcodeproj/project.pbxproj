@@ -1607,6 +1607,7 @@
 		905F03601788265F00D5E86D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1681,6 +1682,7 @@
 		90EB9E2917078C45008457A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/BabyPlanner/Vendor",
@@ -1697,6 +1699,7 @@
 		90EB9E2A17078C45008457A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
