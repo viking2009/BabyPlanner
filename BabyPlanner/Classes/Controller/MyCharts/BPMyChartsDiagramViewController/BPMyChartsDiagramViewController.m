@@ -134,8 +134,7 @@
 {
     BPDiagramCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPDiagramCellIdentifier forIndexPath:indexPath];
     
-    NSString *backgroundImageName = (indexPath.item % 2 == 1 ? @"mycharts_diagram_cell_background_2" : @"mycharts_diagram_cell_background_1");
-    UIImage *backgroundImage = [[BPUtils imageNamed:backgroundImageName] resizableImageWithCapInsets:UIEdgeInsetsZero];
+    UIImage *backgroundImage = [[BPUtils imageNamed:@"mycharts_diagram_cell_background"] resizableImageWithCapInsets:UIEdgeInsetsZero];
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
     cell.backgroundView = backgroundView;
     

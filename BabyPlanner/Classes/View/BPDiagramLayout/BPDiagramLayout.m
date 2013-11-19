@@ -10,8 +10,8 @@
 #import "ObjectiveSugar.h"
 #import "UIView+Sizes.h"
 
-#define BPDiagramLayoutLegendHeight 37.0f
-#define BPDiagramLayoutChartHeight 180.0f
+#define BPDiagramLayoutLegendHeight (BPDiagramLayoutItemSize + 7.f)
+#define BPDiagramLayoutChartHeight (6*BPDiagramLayoutItemSize)
 
 NSString *const BPDiagramElementKindColumnHeaderBackground = @"BPDiagramElementKindColumnHeaderBackground";
 NSString *const BPDiagramElementKindColumnHeader = @"BPDiagramElementKindColumnHeader";
@@ -37,8 +37,7 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 {
     self = [super init];
     if (self) {
-        self.itemSize = CGSizeMake(30.f, 330.f);
-        self.columnHeaderWidth = 320.f - 9*self.itemSize.width;
+        self.itemSize = CGSizeMake(BPDiagramLayoutItemSize, 11*BPDiagramLayoutItemSize);
         self.rowHeaderHeight = 60.0f;
     }
     
@@ -51,6 +50,8 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 {
     [super prepareLayout];
     
+    self.columnHeaderWidth = self.collectionView.width - 10*self.itemSize.width;
+
     self.cellAttributes = [[NSMutableArray alloc] init];
     for (NSInteger section = 0; section < self.collectionView.numberOfSections; section ++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
@@ -219,14 +220,14 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
         UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
         
         layoutAttributes.frame = CGRectMake(0, self.rowHeaderHeight - 1.0f, self.columnHeaderWidth, self.itemSize.height);
-        layoutAttributes.zIndex = 803;
+        layoutAttributes.zIndex = 804;
         
         return layoutAttributes;
     } else if ([kind isEqualToString:BPDiagramElementKindLegend]) {
         UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
         
-        layoutAttributes.frame = CGRectMake(self.columnHeaderWidth, self.rowHeaderHeight - 3.0f + 3*self.rowHeaderHeight, self.collectionView.numberOfSections*self.itemSize.width, BPDiagramLayoutLegendHeight);
-        layoutAttributes.zIndex = 804;
+        layoutAttributes.frame = CGRectMake(self.columnHeaderWidth, self.rowHeaderHeight - 3.0f + BPDiagramLayoutChartHeight, self.collectionView.numberOfSections*self.itemSize.width, BPDiagramLayoutLegendHeight);
+        layoutAttributes.zIndex = 803;
         
         return layoutAttributes;
     } else if ([kind isEqualToString:BPDiagramElementKindChart]) {
@@ -280,8 +281,8 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 //    NSInteger section = proposedContentOffset.x/self.sectionWidth;
 //    return CGPointMake(section*self.sectionWidth, self.dayColumnHeaderHeight + item*self.hourHeight);
     NSInteger section = (proposedContentOffset.x)/self.itemSize.width;
-    NSInteger item = (proposedContentOffset.y - self.rowHeaderHeight)/30.0f;
-    return CGPointMake(section * self.itemSize.width, self.rowHeaderHeight + item*30.f);
+    NSInteger item = proposedContentOffset.y/BPDiagramLayoutItemSize;
+    return CGPointMake(section * self.itemSize.width, self.rowHeaderHeight + item*BPDiagramLayoutItemSize);
 }
 
 - (CGSize)collectionViewContentSize

@@ -9,9 +9,8 @@
 #import "BPDiagramRowHeaderCell.h"
 #import "BPUtils.h"
 #import "UIView+Sizes.h"
+#import "BPDiagramLayout.h"
 
-#define BPDiagramRowHeaderCellItemSize 30.0f
-#define BPDiagramRowHeaderCellItemInternalSize 28.0f
 #define BPDiagramRowHeaderCellPadding 4.0f
 #define BPDiagramMaxTemperature 38
 
@@ -54,26 +53,29 @@
     
     self.backgroundImageView.frame = self.bounds;
     
+    CGFloat width = self.width - BPDiagramLayoutPadding;
+    CGFloat internalSize = BPDiagramLayoutItemSize - BPDiagramLayoutPadding;
+    
     NSInteger i = 0;
     for (UILabel *label in self.labels) {
         switch (i) {
             case 0:
-                label.frame = CGRectMake(0, 0, self.width, BPDiagramRowHeaderCellItemInternalSize - 8.0f);
+                label.frame = CGRectMake(0, 0, width, internalSize - 8.0f);
                 break;
             case 1:
-                label.frame = CGRectMake(0, floorf(1.5*BPDiagramRowHeaderCellItemSize), self.width, BPDiagramRowHeaderCellItemInternalSize);
+                label.frame = CGRectMake(0, floorf(1.5*BPDiagramLayoutItemSize), width, internalSize);
                 break;
             case 2:
-                label.frame = CGRectMake(0, floorf(3.5*BPDiagramRowHeaderCellItemSize), self.width, BPDiagramRowHeaderCellItemInternalSize);
+                label.frame = CGRectMake(0, floorf(3.5*BPDiagramLayoutItemSize), width, internalSize);
                 break;
             case 3:
-                label.frame = CGRectMake(0, 5*BPDiagramRowHeaderCellItemSize + 8.0f, self.width, BPDiagramRowHeaderCellItemInternalSize - 8.0f);
+                label.frame = CGRectMake(0, 5*BPDiagramLayoutItemSize + 8.0f, width, internalSize - 8.0f);
                 break;
             case 4:
-                label.frame = CGRectMake(BPDiagramRowHeaderCellPadding, 7*BPDiagramRowHeaderCellItemSize + 8.0f, self.width - BPDiagramRowHeaderCellPadding, BPDiagramRowHeaderCellItemInternalSize - 8.0f);
+                label.frame = CGRectMake(BPDiagramRowHeaderCellPadding, 7*BPDiagramLayoutItemSize + 8.0f, width - BPDiagramRowHeaderCellPadding, internalSize - 8.0f);
                 break;
             default:
-                label.frame = CGRectMake(BPDiagramRowHeaderCellPadding, (3 + i)*BPDiagramRowHeaderCellItemSize, self.width - BPDiagramRowHeaderCellPadding, BPDiagramRowHeaderCellItemInternalSize);
+                label.frame = CGRectMake(BPDiagramRowHeaderCellPadding, (3 + i)*BPDiagramLayoutItemSize, width - BPDiagramRowHeaderCellPadding, internalSize);
                 break;
         }
         

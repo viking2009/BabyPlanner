@@ -10,9 +10,7 @@
 #import "BPUtils.h"
 #import "BPDate+Additions.h"
 #import "BPSymptom+Additions.h"
-
-#define BPDiagramCellItemSize 30.0f
-#define BPDiagramCellItemInternalSize 28.0f
+#import "BPDiagramLayout.h"
 
 @interface BPDiagramCell ()
 
@@ -44,10 +42,12 @@
 {
     [super layoutSubviews];
     
-    self.dayLabel.frame = CGRectMake(0, 7*BPDiagramCellItemSize + 8.0f, BPDiagramCellItemInternalSize, BPDiagramCellItemInternalSize - 8.0f);
-    self.menstruationView.frame = CGRectMake(0, 8*BPDiagramCellItemSize, BPDiagramCellItemInternalSize, BPDiagramCellItemInternalSize);
-    self.sexualIntercourseView.frame = CGRectMake(0, 9*BPDiagramCellItemSize, BPDiagramCellItemInternalSize, BPDiagramCellItemInternalSize);
-    self.symptomsView.frame = CGRectMake(0, 10*BPDiagramCellItemSize, BPDiagramCellItemInternalSize, BPDiagramCellItemInternalSize);
+    CGFloat internalSize = BPDiagramLayoutItemSize - BPDiagramLayoutPadding;
+    
+    self.dayLabel.frame = CGRectMake(0, 7*BPDiagramLayoutItemSize + 7.0f, internalSize, internalSize  - 7.0f);
+    self.menstruationView.frame = CGRectMake(0, 8*BPDiagramLayoutItemSize, internalSize, internalSize);
+    self.sexualIntercourseView.frame = CGRectMake(0, 9*BPDiagramLayoutItemSize, internalSize, internalSize);
+    self.symptomsView.frame = CGRectMake(0, 10*BPDiagramLayoutItemSize, internalSize, internalSize);
 }
 
 #pragma mark - Public
@@ -73,6 +73,8 @@
         BPSymptom *symptom = [_date.symptoms anyObject];
         NSString *imageName = [NSString stringWithFormat:@"mycharts_%@", symptom.imageName];
         self.symptomsView.image = [BPUtils imageNamed:imageName];
+        NSInteger symptomPosition = [symptom.position integerValue];
+        self.symptomsView.contentMode = ((symptomPosition == 5 || symptomPosition == 11) ? UIViewContentModeBottom : UIViewContentModeTop);
     } else
         self.symptomsView.image = nil;
     

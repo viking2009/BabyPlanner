@@ -8,11 +8,9 @@
 
 #import "BPDiagramChart.h"
 #import "UIView+Sizes.h"
+#import "BPDiagramLayout.h"
 
-#define BPDiagramChartItemSize 30.0f
-#define BPDiagramChartItemVShift 1.0f
-#define BPDiagramChartItemHShift 1.0f
-#define BPDiagramChartInternalSize 28.0f
+#define BPDiagramChartLineWidth 3.0f
 #define BPDiagramChartMaxTemperature 38
 #define BPDiagramChartMinTemperature 35
 
@@ -35,23 +33,24 @@
     
     // Drawing code
     UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-    bezierPath.lineWidth = 3.0f;
+    bezierPath.lineWidth = BPDiagramChartLineWidth;
     bezierPath.lineCapStyle = kCGLineCapRound;
     
     CGFloat scale = self.height/(BPDiagramChartMaxTemperature - BPDiagramChartMinTemperature);
-    DLog(@"scale = %f", scale);
     
+    CGFloat hShift = floorf(BPDiagramLayoutItemSize/2 + BPDiagramLayoutPadding/2 + BPDiagramChartLineWidth/2);
+
     NSDictionary *firstTemperatureDict = _temperatures[0];
     NSInteger lastDay = [firstTemperatureDict[@"day"] integerValue];
     CGPoint startPoint = CGPointZero;
-    startPoint.x = lastDay * BPDiagramChartItemSize - BPDiagramChartItemHShift;
+    startPoint.x = lastDay * BPDiagramLayoutItemSize - hShift;
     startPoint.y = self.height - floorf(scale * ([firstTemperatureDict[@"temperature"] floatValue] - BPDiagramChartMinTemperature));
     
     [bezierPath moveToPoint:startPoint];
     for (NSDictionary *temperatureDict in self.temperatures) {
         lastDay = [temperatureDict[@"day"] integerValue];
         CGPoint point = CGPointZero;
-        point.x = lastDay * BPDiagramChartItemSize - BPDiagramChartItemHShift;
+        point.x = lastDay * BPDiagramLayoutItemSize - hShift;
         point.y = self.height - floorf(scale * ([temperatureDict[@"temperature"] floatValue] - BPDiagramChartMinTemperature));
         [bezierPath addLineToPoint:point];
     }

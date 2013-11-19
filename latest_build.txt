@@ -1,7 +1,7 @@
-h2. 20131111
+h2. 20131118
 
-h3. Fixes:
+h3. Improvements:
 
 Task #58: My Charts: Diagram
-* BUG: crash if no temperatures
-* BUG: multiple temperatures for day
+* change size of cells
+* shift chart points to center
