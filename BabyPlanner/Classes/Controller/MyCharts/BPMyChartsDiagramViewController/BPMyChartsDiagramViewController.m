@@ -20,6 +20,7 @@
 #import "BPDiagramRowHeaderCell.h"
 #import "BPDiagramChart.h"
 #import "MSCollectionViewCalendarLayout.h"
+#import "BPSettings+Additions.h"
 
 #define BPDiagramCellIdentifier @"BPDiagramCellIdentifier"
 #define BPDiagramLegendIdentifier @"BPDiagramLegendIdentifier"
@@ -177,6 +178,24 @@
     } else if (kind == BPDiagramElementKindLegend && indexPath.section == 0 && indexPath.item == 0) {
         BPDiagramLegend *legend = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramLegendIdentifier forIndexPath:indexPath];
 //        legend.backgroundColor = RGB(64, 187, 113);
+        NSMutableArray *icons = [[NSMutableArray alloc] init];
+        NSMutableArray *firstIcons = [[NSMutableArray alloc] init];
+        NSMutableArray *secondIcons = [[NSMutableArray alloc] init];
+        NSMutableArray *thirdIcons = [[NSMutableArray alloc] init];
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        for (NSInteger i = 0; i < self.datesManager.count; i ++) {
+            BPDate *date = self.datesManager[i];
+            if ([date.day integerValue] == [sharedSettings[BPSettingsProfileMenstruationPeriodKey] integerValue])
+                [firstIcons addObject:@(i)];
+            else if ([date.ovulation boolValue])
+                [secondIcons addObject:@(i)];
+            // TODO: conceiving indexes
+        }
+
+        [icons addObject:firstIcons];
+        [icons addObject:secondIcons];
+        [icons addObject:thirdIcons];
+        legend.icons = icons;
         view = legend;
     }
     return view;

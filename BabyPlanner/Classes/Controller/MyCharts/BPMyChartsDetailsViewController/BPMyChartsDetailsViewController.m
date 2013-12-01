@@ -200,9 +200,7 @@
             rect.origin.x = rect.size.width;
         else
             rect.origin.x = -rect.size.width;
-        
-        DLog(@"%@", NSStringFromCGRect(rect));
-        
+                
         toViewController.view.frame = rect;
         self.segmentLeftButton.userInteractionEnabled = NO;
         self.segmentRightButton.userInteractionEnabled = NO;

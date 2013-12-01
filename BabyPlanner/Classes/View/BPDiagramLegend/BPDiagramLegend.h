@@ -10,4 +10,6 @@
 
 @interface BPDiagramLegend : UICollectionReusableView
 
+@property (nonatomic, copy) NSArray *icons;
+
 @end

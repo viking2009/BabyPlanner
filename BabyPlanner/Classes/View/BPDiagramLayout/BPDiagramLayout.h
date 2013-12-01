@@ -10,6 +10,7 @@
 
 #define BPDiagramLayoutItemSize 26.f
 #define BPDiagramLayoutPadding 2.f
+#define BPDiagramLayoutLegendHeight (BPDiagramLayoutItemSize + 7.f)
 
 extern NSString *const BPDiagramElementKindColumnHeaderBackground;
 extern NSString *const BPDiagramElementKindColumnHeader;

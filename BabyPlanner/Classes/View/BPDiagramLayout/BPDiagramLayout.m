@@ -10,7 +10,6 @@
 #import "ObjectiveSugar.h"
 #import "UIView+Sizes.h"
 
-#define BPDiagramLayoutLegendHeight (BPDiagramLayoutItemSize + 7.f)
 #define BPDiagramLayoutChartHeight (6*BPDiagramLayoutItemSize)
 
 NSString *const BPDiagramElementKindColumnHeaderBackground = @"BPDiagramElementKindColumnHeaderBackground";
