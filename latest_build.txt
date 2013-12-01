@@ -1,11 +1,12 @@
-h2. 20131118
+h2. 20131201
 
 h3. Improvements:
 
 Task #58: My Charts: Diagram
 * change size of cells
 * shift chart points to center
-
+* legend icons
+* show months for cycle
 
 h3. Fixes:
 

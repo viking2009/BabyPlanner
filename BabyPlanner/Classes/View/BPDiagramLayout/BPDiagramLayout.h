@@ -17,6 +17,7 @@ extern NSString *const BPDiagramElementKindColumnHeader;
 extern NSString *const BPDiagramElementKindRowHeader;
 extern NSString *const BPDiagramElementKindChart;
 extern NSString *const BPDiagramElementKindLegend;
+extern NSString *const BPDiagramElementKindMonth;
 
 //@interface BPDiagramLayout : MSCollectionViewCalendarLayout
 @interface BPDiagramLayout : UICollectionViewLayout

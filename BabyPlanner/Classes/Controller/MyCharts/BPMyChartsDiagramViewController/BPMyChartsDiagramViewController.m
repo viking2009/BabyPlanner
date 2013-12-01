@@ -19,6 +19,7 @@
 #import "BPDiagramHeaderView.h"
 #import "BPDiagramRowHeaderCell.h"
 #import "BPDiagramChart.h"
+#import "BPDiagramMonthView.h"
 #import "MSCollectionViewCalendarLayout.h"
 #import "BPSettings+Additions.h"
 
@@ -28,6 +29,7 @@
 #define BPDiagramHeaderViewIdentifier @"BPDiagramHeaderViewIdentifier"
 #define BPDiagramRowHeaderIdentifier @"BPDiagramRowHeaderIdentifier"
 #define BPDiagramChartIdentifier @"BPDiagramChartIdentifier"
+#define BPDiagramMonthIdentifier @"BPDiagramMonthIdentifier"
 
 @interface BPMyChartsDiagramViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MSCollectionViewDelegateCalendarLayout>
 
@@ -80,6 +82,7 @@
     [self.diagramView registerClass:[BPDiagramHeaderView class] forSupplementaryViewOfKind:BPDiagramElementKindColumnHeaderBackground withReuseIdentifier:BPDiagramHeaderViewIdentifier];
     [self.diagramView registerClass:[BPDiagramLegend class] forSupplementaryViewOfKind:BPDiagramElementKindLegend withReuseIdentifier:BPDiagramLegendIdentifier];
     [self.diagramView registerClass:[BPDiagramChart class] forSupplementaryViewOfKind:BPDiagramElementKindChart withReuseIdentifier:BPDiagramChartIdentifier];
+    [self.diagramView registerClass:[BPDiagramMonthView class] forSupplementaryViewOfKind:BPDiagramElementKindMonth withReuseIdentifier:BPDiagramMonthIdentifier];
 //    [self.diagramView.collectionViewLayout registerClass:[BPDiagramLegend class] forDecorationViewOfKind:MSCollectionElementKindCurrentTimeHorizontalGridline];
 
     [self updateUI];
@@ -156,6 +159,13 @@
         rowView.backgroundColor = RGB(64, 187, 166);
         [rowView updateUI];
         view = rowView;
+    } else if (kind == BPDiagramElementKindMonth && indexPath.section == 0 && indexPath.item == 0) {
+        BPDiagramMonthView *monthView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramMonthIdentifier forIndexPath:indexPath];
+        BPDate *firstDate = self.datesManager[0];
+        BPDate *lastDate = self.datesManager[self.datesManager.count - 1];
+        monthView.firstMonthLabel.text = [BPUtils monthOnlyStringFromDate:firstDate.date];
+        monthView.secondMonthLabel.text = [BPUtils monthOnlyStringFromDate:lastDate.date];
+        view = monthView;
     } else if (kind == BPDiagramElementKindColumnHeader) {
         BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];

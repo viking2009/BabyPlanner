@@ -17,6 +17,7 @@
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSString *)timeFromDate:(NSDate *)date;
 + (NSString *)monthStringFromDate:(NSDate *)date;
++ (NSString *)monthOnlyStringFromDate:(NSDate *)date;
 
 + (NSString *)weightFromNumber:(NSNumber *)number;
 + (NSString *)heightFromNumber:(NSNumber *)number;

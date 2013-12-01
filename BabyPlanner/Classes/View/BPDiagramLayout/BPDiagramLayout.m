@@ -17,6 +17,7 @@ NSString *const BPDiagramElementKindColumnHeader = @"BPDiagramElementKindColumnH
 NSString *const BPDiagramElementKindRowHeader = @"BPDiagramElementKindRowHeader";
 NSString *const BPDiagramElementKindChart = @"BPDiagramElementKindChart";
 NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
+NSString *const BPDiagramElementKindMonth = @"BPDiagramElementKindMonth";
 
 @interface BPDiagramLayout ()
 
@@ -27,6 +28,7 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 @property (strong, nonatomic) UICollectionViewLayoutAttributes *rowHeaderAttributes;
 @property (strong, nonatomic) UICollectionViewLayoutAttributes *legendAttributes;
 @property (strong, nonatomic) UICollectionViewLayoutAttributes *chartAttributes;
+@property (strong, nonatomic) UICollectionViewLayoutAttributes *monthAttributes;
 
 @end
 
@@ -71,6 +73,7 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
     self.rowHeaderAttributes = [self layoutAttributesForSupplementaryViewOfKind:BPDiagramElementKindRowHeader atIndexPath:zeroPath];
     self.legendAttributes = [self layoutAttributesForSupplementaryViewOfKind:BPDiagramElementKindLegend atIndexPath:zeroPath];    
     self.chartAttributes = [self layoutAttributesForSupplementaryViewOfKind:BPDiagramElementKindChart atIndexPath:zeroPath];
+    self.monthAttributes = [self layoutAttributesForSupplementaryViewOfKind:BPDiagramElementKindMonth atIndexPath:zeroPath];
     
     self.allAttributes = [[NSMutableArray alloc] init];
     [self.allAttributes addObjectsFromArray:self.headerAttributes];
@@ -79,6 +82,7 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
     [self.allAttributes addObject:self.rowHeaderAttributes];
     [self.allAttributes addObject:self.legendAttributes];
     [self.allAttributes addObject:self.chartAttributes];
+    [self.allAttributes addObject:self.monthAttributes];
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
@@ -92,6 +96,9 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 
     if (![answer containsObject:self.rowHeaderAttributes])
         [answer addObject:self.rowHeaderAttributes];
+
+    if (![answer containsObject:self.monthAttributes])
+        [answer addObject:self.monthAttributes];
 
     UICollectionView * const cv = self.collectionView;
     CGPoint const contentOffset = cv.contentOffset;
@@ -142,6 +149,34 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
 //            layoutAttributes.zIndex = 1024;
             layoutAttributes.frame = (CGRect){
                 .origin = contentOffset,
+                .size = layoutAttributes.frame.size
+            };
+        } else if ([layoutAttributes.representedElementKind isEqualToString:BPDiagramElementKindMonth]) {
+            //            NSInteger section = layoutAttributes.indexPath.section;
+            //            NSInteger numberOfItemsInSection = [cv numberOfItemsInSection:section];
+            //
+            //            NSIndexPath *firstCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:section];
+            //            NSIndexPath *lastCellIndexPath = [NSIndexPath indexPathForItem:MAX(0, (numberOfItemsInSection - 1)) inSection:section];
+            //
+            //            UICollectionViewLayoutAttributes *firstCellAttrs = [self layoutAttributesForItemAtIndexPath:firstCellIndexPath];
+            //            UICollectionViewLayoutAttributes *lastCellAttrs = [self layoutAttributesForItemAtIndexPath:lastCellIndexPath];
+            //
+            //            CGFloat headerHeight = CGRectGetHeight(layoutAttributes.frame);
+            CGPoint origin = layoutAttributes.frame.origin;
+            //            origin.y = MIN(
+            //                           MAX(
+            //                               contentOffset.y,
+            //                               (CGRectGetMinY(firstCellAttrs.frame) - headerHeight)
+            //                               ),
+            //                           (CGRectGetMaxY(lastCellAttrs.frame) - headerHeight)
+            //                           );
+            
+//            if (contentOffset.x < 0)
+                origin.x = contentOffset.x;
+            
+            //            layoutAttributes.zIndex = 1024;
+            layoutAttributes.frame = (CGRect){
+                .origin = origin,
                 .size = layoutAttributes.frame.size
             };
         } else if ([layoutAttributes.representedElementKind isEqualToString:BPDiagramElementKindRowHeader]) {
@@ -220,6 +255,14 @@ NSString *const BPDiagramElementKindLegend = @"BPDiagramElementKindLegend";
         
         layoutAttributes.frame = CGRectMake(0, self.rowHeaderHeight - 1.0f, self.columnHeaderWidth, self.itemSize.height);
         layoutAttributes.zIndex = 804;
+        
+        return layoutAttributes;
+    } else if ([kind isEqualToString:BPDiagramElementKindMonth]) {
+        UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
+        
+//        layoutAttributes.frame = CGRectMake(self.columnHeaderWidth, 0, self.collectionView.width - self.columnHeaderWidth, self.rowHeaderHeight);
+        layoutAttributes.frame = CGRectMake(0, 0, self.collectionView.width, self.rowHeaderHeight);
+        layoutAttributes.zIndex = 814;
         
         return layoutAttributes;
     } else if ([kind isEqualToString:BPDiagramElementKindLegend]) {

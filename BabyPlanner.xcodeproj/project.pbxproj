@@ -40,6 +40,7 @@
 		903452F6179461AB001B397B /* Piano Riff.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F1179461AB001B397B /* Piano Riff.caf */; };
 		90453FBC182FDE7C0069368B /* BPDiagramHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */; };
 		90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBF182FFFAF0069368B /* BPDiagramChart.m */; };
+		904692B8184BAF94004E1A18 /* BPDiagramMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -200,6 +201,8 @@
 		90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramHeaderView.m; sourceTree = "<group>"; };
 		90453FBE182FFFAF0069368B /* BPDiagramChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramChart.h; sourceTree = "<group>"; };
 		90453FBF182FFFAF0069368B /* BPDiagramChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramChart.m; sourceTree = "<group>"; };
+		904692B6184BAF94004E1A18 /* BPDiagramMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramMonthView.h; sourceTree = "<group>"; };
+		904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramMonthView.m; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -1299,6 +1302,8 @@
 				90EA6F3B18276ECB005C95E2 /* BPDiagramRowHeaderCell.m */,
 				90453FBA182FDE7B0069368B /* BPDiagramHeaderView.h */,
 				90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */,
+				904692B6184BAF94004E1A18 /* BPDiagramMonthView.h */,
+				904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */,
 			);
 			path = BPDiagramHeaderCell;
 			sourceTree = "<group>";
@@ -1480,6 +1485,7 @@
 				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EBD1C41826B50B00F8D6E8 /* BPDiagramLayout.m in Sources */,
 				90E6755517B7E1190045C30E /* BPCollectionViewCell.m in Sources */,
+				904692B8184BAF94004E1A18 /* BPDiagramMonthView.m in Sources */,
 				90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */,
 				90E881CE1778B21100682BB3 /* BPSymptomsAndMoodCollectionViewCell.m in Sources */,
 				90E881DB1778C1C400682BB3 /* BPSettingsCell.m in Sources */,
