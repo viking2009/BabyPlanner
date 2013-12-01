@@ -5,3 +5,9 @@ h3. Improvements:
 Task #58: My Charts: Diagram
 * change size of cells
 * shift chart points to center
+
+
+h3. Fixes:
+
+Task #59: My Charts: Cycle Details
+* hide edit button for charts page

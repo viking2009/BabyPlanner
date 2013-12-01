@@ -186,6 +186,8 @@
     
     self.selectedViewController = selectedViewController;
     
+    self.editButton.hidden = (selectedViewController == self.diagramViewController);
+    
     if (toViewController == nil) // don't animate
         [fromViewController.view removeFromSuperview];
     else if (fromViewController == nil) { // don't animate
