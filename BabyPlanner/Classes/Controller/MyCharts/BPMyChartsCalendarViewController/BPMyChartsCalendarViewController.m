@@ -255,8 +255,8 @@
         calendarHeader.delegate = self;
         
         calendarHeader.titleLabel.text = [BPUtils monthStringFromDate:self.selectedMonth];
-        calendarHeader.prevButton.enabled = (self.selectedMonth.month > self.cycle.startDate.month);
-        calendarHeader.nextButton.enabled = (self.selectedMonth.month < self.cycle.endDate.month);
+//        calendarHeader.prevButton.enabled = (self.selectedMonth.month > self.cycle.startDate.month);
+//        calendarHeader.nextButton.enabled = (self.selectedMonth.month < self.cycle.endDate.month);
         
         [calendarHeader updateDayOfWeekLabels];
         
