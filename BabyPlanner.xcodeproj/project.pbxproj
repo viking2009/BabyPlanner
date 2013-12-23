@@ -1624,7 +1624,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F7BFB362-142F-411E-B25B-1C25F75A8155";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF7A799F-EBB9-4796-B7BC-701DF1EA6EA6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;
@@ -1716,7 +1716,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F7BFB362-142F-411E-B25B-1C25F75A8155";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF7A799F-EBB9-4796-B7BC-701DF1EA6EA6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
