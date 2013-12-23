@@ -193,7 +193,7 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
     //    if (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx < MAX(lengthOfCycle, self.todayIndex + 1))
     BOOL isPregnant = NO;
     if ([self.cycle isEqual:currentCycle])
-        isPregnant = (self.conceivingIndex != NSNotFound && idx > self.conceivingIndex && idx <= self.todayIndex);
+        isPregnant = (self.conceivingIndex != NSNotFound && idx >= self.conceivingIndex && idx <= self.todayIndex);
     else
         isPregnant = [item.pregnant boolValue];
     
@@ -230,7 +230,11 @@ NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDid
             item.girl = @((idx >= ovulationIndex + kBPDatesManagerGirlStart) && (idx <= ovulationIndex + kBPDatesManagerGirlEnd));
         }
         
-        item.pregnant = @(isPregnant && self.ovulationIndex != NSNotFound && idx > self.ovulationIndex + kBPDatesManagerPregnantDays);
+        NSDate *conceiving = sharedSettings[BPSettingsProfileConceivingKey];
+        if (conceiving && [sharedSettings[BPSettingsProfileIsPregnantKey] boolValue])
+            item.pregnant = @(idx >= self.conceivingIndex);
+        else
+            item.pregnant = @(isPregnant && self.ovulationIndex != NSNotFound && idx > self.ovulationIndex + kBPDatesManagerPregnantDays);
     }
     
     if ([item.menstruation boolValue])

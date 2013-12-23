@@ -1,14 +1,11 @@
-h2. 20131201
+h2. 20131223
 
 h3. Improvements:
 
-Task #58: My Charts: Diagram
-* change size of cells
-* shift chart points to center
-* legend icons
-* show months for cycle
+Task #57: My Charts: Calendar
+* don’t limit calendar
 
 h3. Fixes:
 
-Task #59: My Charts: Cycle Details
-* hide edit button for charts page
+Task #61: My Temperature: Cycle logic (pregnancy)
+* fix setting pregnancy by user
