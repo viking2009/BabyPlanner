@@ -1,9 +1,10 @@
-h2. 20131223
+h2. 20131225
 
 h3. Improvements:
 
 Task #57: My Charts: Calendar
 * don’t limit calendar
+* display pregnancy icon for all pregnancy period
 
 h3. Fixes:
 
