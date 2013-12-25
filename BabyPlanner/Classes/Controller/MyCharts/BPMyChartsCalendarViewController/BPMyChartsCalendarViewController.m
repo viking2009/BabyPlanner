@@ -89,12 +89,6 @@
     self.calendarView.delegate = nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    DLog(@"self.view: %@", self.view);
-}
-
 - (void)loadData
 {
     self.datesManager = [[BPDatesManager alloc] initWithCycle:self.cycle];
@@ -335,7 +329,6 @@
 
 - (void)calendarHeaderDidTapPrevButton:(BPCalendarHeader *)calendarHeader
 {
-    DLog();
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.selectedMonth];
     components.month--;
     self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
@@ -346,7 +339,6 @@
 
 - (void)calendarHeaderDidTapNextButton:(BPCalendarHeader *)calendarHeader
 {
-    DLog();
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.selectedMonth];
     components.month++;
     self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
@@ -357,28 +349,23 @@
 
 - (void)updateFirstDate
 {
-    DLog(@"self.selectedMonth: %@", self.selectedMonth);
     self.firstDate = self.selectedMonth;
-    
-    DLog(@"self.selectedMonth.weekday: %i", self.selectedMonth.weekday);
     
     NSDateComponents *compsFirstDayInMonth = [CURRENT_CALENDAR components:NSWeekdayCalendarUnit fromDate:self.selectedMonth];
     NSInteger weekDayOffset = ([[BPLanguageManager sharedManager].currentLanguage isEqualToString:@"en"] ? 1 : 2);
     NSInteger daysOffset = (compsFirstDayInMonth.weekday - 1 - weekDayOffset + 8) % 7;
 
-    self.firstDate = [self.firstDate dateBySubtractingDays:daysOffset];
+    NSDateComponents *comps = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.firstDate];
+    comps.day -= daysOffset;
+    self.firstDate = [CURRENT_CALENDAR dateFromComponents:comps];
 }
 
 - (BOOL)canSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"%@", indexPath);
-
     if (indexPath.section == 1)
         return NO;
     
     BPCalendarCell *cell = (BPCalendarCell *)[self.calendarView cellForItemAtIndexPath:indexPath];
-
-    DLog(@"%i", cell.isEnabled);
     
     return cell.isEnabled;
 }
