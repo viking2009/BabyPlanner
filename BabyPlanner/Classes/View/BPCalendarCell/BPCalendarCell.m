@@ -10,7 +10,10 @@
 #import "UIView+Sizes.h"
 #import "BPUtils.h"
 #import "BPDate+Additions.h"
+#import "BPSettings+Additions.h"
 #import "NSDate-Utilities.h"
+#import "BPCyclesManager.h"
+#import "BPCycle+Additions.h"
 
 #define BPCalendarCellPadding 1.f
 
@@ -114,10 +117,27 @@
     
         if ([_date.menstruation boolValue])
             self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_menstruation"];
-        
-        if ([_date.pregnant boolValue])
-            self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"];
-        
+    
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+    
+        NSDate *lastOvulationDate = sharedSettings[BPSettingsProfileLastOvulationDateKey];
+        if (!lastOvulationDate) {
+            BPCycle *current = [BPCyclesManager sharedManager].currentCycle;
+            NSInteger ovulationIndex = current.ovulationIndex;
+            if (ovulationIndex != NSNotFound)
+                lastOvulationDate = [current.startDate dateByAddingDays:ovulationIndex];
+        }
+    
+        if ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && lastOvulationDate) {
+            NSDate *childBirthday = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulationDate dateByAddingDays:BPPregnancyPeriod];
+
+            if (/*_date.date.weekday == lastOvulationDate.weekday &&*/ [_date.date isLaterThanDate:lastOvulationDate] && [_date.date isEarlierThanDate:childBirthday])
+                        self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"];
+        } else {
+            if ([_date.pregnant boolValue])
+                self.bottomLeftImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_pregnant"];
+        }
+    
         if ([_date.sexualIntercourse boolValue]) {
             if ([_date.pregnant boolValue])
                 self.topRightImageView.image = [BPUtils imageNamed:@"mycharts_calendar_icon_sexualintercourse"];
