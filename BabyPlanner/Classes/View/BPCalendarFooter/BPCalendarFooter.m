@@ -14,6 +14,10 @@
 #import "BPDate+Additions.h"
 #import "BPSymptom+Additions.h"
 #import "ObjectiveSugar.h"
+#import "BPSettings+Additions.h"
+#import "BPCyclesManager.h"
+#import "BPCycle+Additions.h"
+#import "NSDate-Utilities.h"
 
 #define BPCalendarFooterDayTop      30.f
 #define BPCalendarFooterFirstLine   24.f
@@ -194,12 +198,28 @@
         if ([_date.sexualIntercourse boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];
         self.sexualIntercourseView.image = [BPUtils imageNamed:imageName];
-        
+    
         imageName = @"mycharts_calendar_notes_icon_pregnant";
-        if ([_date.pregnant boolValue])
-            imageName = [imageName stringByAppendingString:@"_active"];
-        self.pregnantView.image = [BPUtils imageNamed:imageName];
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        NSDate *lastOvulationDate = sharedSettings[BPSettingsProfileLastOvulationDateKey];
+        if (!lastOvulationDate) {
+            BPCycle *current = [BPCyclesManager sharedManager].currentCycle;
+            NSInteger ovulationIndex = current.ovulationIndex;
+            if (ovulationIndex != NSNotFound)
+                lastOvulationDate = [current.startDate dateByAddingDays:ovulationIndex];
+        }
         
+        if ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && lastOvulationDate) {
+            NSDate *childBirthday = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulationDate dateByAddingDays:BPPregnancyPeriod];
+            
+            if (/*_date.date.weekday == lastOvulationDate.weekday &&*/ [_date.date isLaterThanDate:lastOvulationDate] && [_date.date isEarlierThanDate:childBirthday])
+                imageName = [imageName stringByAppendingString:@"_active"];
+        } else {
+            if ([_date.pregnant boolValue])
+                imageName = [imageName stringByAppendingString:@"_active"];
+        }
+        self.pregnantView.image = [BPUtils imageNamed:imageName];
+    
         imageName = @"mycharts_calendar_notes_icon_girl";
         if ([_date.girl boolValue])
             imageName = [imageName stringByAppendingString:@"_active"];

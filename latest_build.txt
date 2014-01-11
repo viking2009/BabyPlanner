@@ -6,6 +6,7 @@ Task #57: My Charts: Calendar
 * don’t limit calendar
 * display pregnancy icon for all pregnancy period
 * fix calendar for DST
+* fix pregnancy icon showing (for pregnancy period)
 
 h3. Fixes:
 
