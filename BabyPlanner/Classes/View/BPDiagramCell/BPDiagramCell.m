@@ -33,6 +33,7 @@
         self.dayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         self.dayLabel.textColor = RGB(2, 106, 80);
         self.dayLabel.textAlignment = NSTextAlignmentCenter;
+        self.dayLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:self.dayLabel];
     }
     return self;

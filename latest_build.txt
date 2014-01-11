@@ -1,14 +1,17 @@
-h2. 20131225
+h2. 20140111
 
 h3. Improvements:
 
 Task #57: My Charts: Calendar
 * don’t limit calendar
-* display pregnancy icon for all pregnancy period
-* fix calendar for DST
-* fix pregnancy icon showing (for pregnancy period)
 
 h3. Fixes:
 
+Task #57: My Charts: Calendar
+* display pregnancy icon for all pregnancy period
+* fix calendar for DST
+* fix pregnancy icon showing (for pregnancy period)
+Task #58 My Charts: Diagram
+* fix displayed number of days
 Task #61: My Temperature: Cycle logic (pregnancy)
 * fix setting pregnancy by user

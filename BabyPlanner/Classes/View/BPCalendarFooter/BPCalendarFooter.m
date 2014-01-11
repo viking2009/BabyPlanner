@@ -212,7 +212,7 @@
         if ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] && lastOvulationDate) {
             NSDate *childBirthday = sharedSettings[BPSettingsProfileChildBirthdayKey] ? : [lastOvulationDate dateByAddingDays:BPPregnancyPeriod];
             
-            if (/*_date.date.weekday == lastOvulationDate.weekday &&*/ [_date.date isLaterThanDate:lastOvulationDate] && [_date.date isEarlierThanDate:childBirthday])
+            if ([_date.date isLaterThanDate:lastOvulationDate] && [_date.date isEarlierThanDate:childBirthday])
                 imageName = [imageName stringByAppendingString:@"_active"];
         } else {
             if ([_date.pregnant boolValue])

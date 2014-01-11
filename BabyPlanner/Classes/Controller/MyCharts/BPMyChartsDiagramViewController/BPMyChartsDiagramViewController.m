@@ -22,6 +22,7 @@
 #import "BPDiagramMonthView.h"
 #import "MSCollectionViewCalendarLayout.h"
 #import "BPSettings+Additions.h"
+#import "BPCyclesManager.h"
 
 #define BPDiagramCellIdentifier @"BPDiagramCellIdentifier"
 #define BPDiagramLegendIdentifier @"BPDiagramLegendIdentifier"
@@ -126,7 +127,19 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.datesManager.count;
+    BPCycle *current = [BPCyclesManager sharedManager].currentCycle;
+
+    if (![self.cycle isEqual:current]) {
+        return self.cycle.length;
+    } else {
+        BPSettings *sharedSettings = [BPSettings sharedSettings];
+        
+        if ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]) {
+            return 320;
+        } else {
+            return self.datesManager.count;
+        }
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
