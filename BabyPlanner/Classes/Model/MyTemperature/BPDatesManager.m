@@ -19,27 +19,6 @@
 
 NSString *const BPDatesManagerDidChangeContentNotification = @"BPDatesManagerDidChangeContentNotification";
 
-#define kBPDatesManagerSkipDays 5
-#define kBPDatesManagerPrevDays 6
-#define kBPDatesManagerNextDays 3
-#define kBPDatesManagerMinOvulationIndex 10
-#define kBPDatesManagerDefaultOvulationIndex 13
-
-#define kBPDatesManagerFertileBefore 5
-#define kBPDatesManagerFertileAfter 1
-
-#define kBPDatesManagerBoyStart -4
-#define kBPDatesManagerBoyEnd -2
-
-#define kBPDatesManagerGirlStart -2
-#define kBPDatesManagerGirlEnd 0
-
-#define kBPDatesManagerPregnantDays 4
-
-#define kBPDatesManagerNumberOfCyclesForAverageCandidateIndex 4
-
-#define BP_EPSILON  0.001f
-
 @interface BPDatesManager()
 
 @property (nonatomic, strong) BPCycle *cycle;

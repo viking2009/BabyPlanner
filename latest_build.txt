@@ -4,6 +4,8 @@ h3. Improvements:
 
 Task #57: My Charts: Calendar
 * don’t limit calendar
+Task #58 My Charts: Diagram
+* show pregnancy weeks
 
 h3. Fixes:
 

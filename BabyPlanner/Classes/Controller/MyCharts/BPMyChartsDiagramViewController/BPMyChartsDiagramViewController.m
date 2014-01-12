@@ -135,7 +135,9 @@
         BPSettings *sharedSettings = [BPSettings sharedSettings];
         
         if ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]) {
-            return 320;
+            // TODO: refactor, can't use drawRect for large frames
+//            return 320;
+            return self.datesManager.count;
         } else {
             return self.datesManager.count;
         }
@@ -191,7 +193,7 @@
             if ([date.temperature integerValue])
                 [temperatures addObject:@{@"day": @(i + 1), @"temperature": date.temperature}];
         }
-        
+                
         chart.temperatures = temperatures;
         view = chart;
     } else if (kind == MSCollectionElementKindTimeRowHeader) {
@@ -212,7 +214,13 @@
                 [firstIcons addObject:@(i)];
             else if ([date.ovulation boolValue])
                 [secondIcons addObject:@(i)];
-            // TODO: conceiving indexes
+            else if ([date.pregnant boolValue]) {
+                if (self.datesManager.ovulationIndex != NSNotFound) {
+                    BPDate *lastOvulationDate = self.datesManager[self.datesManager.ovulationIndex];
+                    if (date.date.weekday == lastOvulationDate.date.weekday)
+                        [thirdIcons addObject:@(i)];
+                }
+            }
         }
 
         [icons addObject:firstIcons];
