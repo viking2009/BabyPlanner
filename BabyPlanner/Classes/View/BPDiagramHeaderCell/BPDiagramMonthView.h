@@ -10,7 +10,6 @@
 
 @interface BPDiagramMonthView : UICollectionReusableView
 
-@property (nonatomic, strong, readonly) UILabel *firstMonthLabel;
-@property (nonatomic, strong, readonly) UILabel *secondMonthLabel;
+@property (nonatomic, strong, readonly) UILabel *monthLabel;
 
 @end

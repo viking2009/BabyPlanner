@@ -13,8 +13,7 @@
 
 @interface BPDiagramMonthView ()
 
-@property (nonatomic, strong, readwrite) UILabel *firstMonthLabel;
-@property (nonatomic, strong, readwrite) UILabel *secondMonthLabel;
+@property (nonatomic, strong, readwrite) UILabel *monthLabel;
 
 @end
 
@@ -24,18 +23,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.firstMonthLabel = [[UILabel alloc] init];
-        self.firstMonthLabel.backgroundColor = [UIColor clearColor];
-        self.firstMonthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
-        self.firstMonthLabel.textColor = RGB(255, 255, 255);
-        [self addSubview:self.firstMonthLabel];
-
-        self.secondMonthLabel = [[UILabel alloc] init];
-        self.secondMonthLabel.backgroundColor = [UIColor clearColor];
-        self.secondMonthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
-        self.secondMonthLabel.textColor = RGB(255, 255, 255);
-        self.secondMonthLabel.textAlignment = NSTextAlignmentRight;
-        [self addSubview:self.secondMonthLabel];
+        self.monthLabel = [[UILabel alloc] init];
+        self.monthLabel.backgroundColor = [UIColor clearColor];
+        self.monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
+        self.monthLabel.textColor = RGB(255, 255, 255);
+        self.monthLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.monthLabel];
     }
 
     return self;
@@ -45,8 +38,7 @@
     [super layoutSubviews];
     
     CGFloat maxWidth = self.width - 2*BPDiagramMonthViewPadding;
-    self.firstMonthLabel.frame = CGRectMake(BPDiagramMonthViewPadding, 0, floorf(maxWidth/2), self.height);
-    self.secondMonthLabel.frame = CGRectMake(self.firstMonthLabel.right, 0, floorf(maxWidth/2), self.height);
+    self.monthLabel.frame = CGRectMake(BPDiagramMonthViewPadding, 0, maxWidth, self.height);
 }
 
 @end

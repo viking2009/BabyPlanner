@@ -23,6 +23,7 @@
 #import "MSCollectionViewCalendarLayout.h"
 #import "BPSettings+Additions.h"
 #import "BPCyclesManager.h"
+#import "ObjectiveSugar.h"
 
 #define BPDiagramCellIdentifier @"BPDiagramCellIdentifier"
 #define BPDiagramLegendIdentifier @"BPDiagramLegendIdentifier"
@@ -37,6 +38,7 @@
 @property (nonatomic, strong) UICollectionView *diagramView;
 @property (nonatomic, strong) BPDatesManager *datesManager;
 @property (nonatomic, strong, readwrite) BPDate *selectedDate;
+@property (nonatomic, strong) BPDiagramMonthView *monthView;
 
 @end
 
@@ -175,12 +177,15 @@
         [rowView updateUI];
         view = rowView;
     } else if (kind == BPDiagramElementKindMonth && indexPath.section == 0 && indexPath.item == 0) {
-        BPDiagramMonthView *monthView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramMonthIdentifier forIndexPath:indexPath];
-        BPDate *firstDate = self.datesManager[0];
-        BPDate *lastDate = self.datesManager[self.datesManager.count - 1];
-        monthView.firstMonthLabel.text = [BPUtils monthOnlyStringFromDate:firstDate.date];
-        monthView.secondMonthLabel.text = [BPUtils monthOnlyStringFromDate:lastDate.date];
-        view = monthView;
+        if (!self.monthView) {
+            BPDiagramMonthView *monthView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramMonthIdentifier forIndexPath:indexPath];
+            if (!monthView.monthLabel.text.length) {
+                BPDate *firstDate = self.datesManager[0];
+                monthView.monthLabel.text = [BPUtils monthOnlyStringFromDate:firstDate.date];
+            }
+            self.monthView = monthView;
+        }
+        view = self.monthView;
     } else if (kind == BPDiagramElementKindColumnHeader) {
         BPDiagramColumnHeaderCell *dayColumnHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPDiagramHeaderCellIdentifier forIndexPath:indexPath];
         dayColumnHeader.date = self.datesManager[indexPath.section];
@@ -273,5 +278,14 @@
 {
     return [NSDate date];
 }
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    BPDiagramCell *firstCell = self.diagramView.visibleCells.first;
+    self.monthView.monthLabel.text = [BPUtils monthOnlyStringFromDate:firstCell.date.date];
+}
+
 
 @end

@@ -6,6 +6,7 @@ Task #57: My Charts: Calendar
 * don’t limit calendar
 Task #58 My Charts: Diagram
 * show pregnancy weeks
+* dynamic month label text
 
 h3. Fixes:
 
