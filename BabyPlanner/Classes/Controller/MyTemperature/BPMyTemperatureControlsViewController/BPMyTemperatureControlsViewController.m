@@ -26,6 +26,7 @@
 #import "BPCyclesManager.h"
 #import "BPCycle+Additions.h"
 #import "UIView+Sizes.h"
+#import "BPControlTipsView.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
@@ -36,8 +37,9 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *doneButton;
-@property (nonatomic, strong) UILabel *selectLabel;
+//@property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
+@property (nonatomic, strong) BPControlTipsView *tipsView;
 
 @property (nonatomic, strong) NSArray *data;
 
@@ -80,9 +82,10 @@
     self.doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
     self.doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
     self.doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
-   [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.doneButton];
     
+/*
     UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_bubble"]];
     bubbleView.frame = CGRectMake(78, 74, bubbleView.image.size.width, bubbleView.image.size.height);
     [self.view addSubview:bubbleView];
@@ -96,6 +99,13 @@
 //    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
     self.selectLabel.numberOfLines = 2;
     [self.view addSubview:self.selectLabel];
+*/
+    
+    UIImage *tipsImage = [BPUtils imageNamed:@"mytemperature_controls_tips_background"];
+    self.tipsView = [[BPControlTipsView alloc] initWithFrame:CGRectMake(0, 75.f, self.view.width, tipsImage.size.height)];
+    self.tipsView.backgroundColor = RGBA(255, 255, 255, 0.5);
+    self.tipsView.imageView.image = tipsImage;
+    [self.view addSubview:self.tipsView];
     
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_girl"]];
     self.girlView.frame = CGRectMake(0, 36, self.girlView.image.size.width, self.girlView.image.size.height);
@@ -165,9 +175,11 @@
     [super localize];
     
     self.titleLabel.text = BPLocalizedString(@"My controls");
-    self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
+//    self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
     [self.doneButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
     
+    [self.tipsView updateUI];
+
     [self.collectionView reloadData];
 }
 
@@ -194,7 +206,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    DLog(@"[self.data count] = %i", [self.data count]);
     return [self.data count];
 }
 
@@ -425,7 +436,7 @@
     }
     
     if (section == 0)
-        edgeInsets.top = 120.f;
+        edgeInsets.top = 130.f;
     else if (section == 2)
         edgeInsets.top = 0.f;
     

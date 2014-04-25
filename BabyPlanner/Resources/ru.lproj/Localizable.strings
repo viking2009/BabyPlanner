@@ -28,6 +28,12 @@
 "No" = "Нет";
 "Please check if you confirm your pregnancy" = "Отметьте, если Вы подтверждаете беременность";
 
+"Menstruation day" = "Менструация";
+"Infertile day" = "Не фертильн.";
+"Fertile day" = "Фертильн.";
+"Ovulation day" = "Овуляция";
+"Not defined day" = "Не определено";
+
 /* BPMyTemperatureSymptomsAndMoodViewController */
 "Good mood" = "Хорошее настроение";
 "Irritability" = "Раздражительность";

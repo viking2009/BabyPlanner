@@ -38,6 +38,12 @@
 "No" = "No";
 "Please check if you confirm your pregnancy" = "Please check if you confirm your pregnancy";
 
+"Menstruation day" = "Menstruation day";
+"Infertile day" = "Infertile day";
+"Fertile day" = "Fertile day";
+"Ovulation day" = "Ovulation day";
+"Not defined day" = "Not defined day";
+
 /* BPMyTemperatureSymptomsAndMoodViewController */
 "Good mood" = "Good mood";
 "Irritability" = "Irritability";

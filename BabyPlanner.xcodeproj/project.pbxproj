@@ -128,6 +128,7 @@
 		90EC01AC17B1EA77009A4692 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01AB17B1EA77009A4692 /* SystemConfiguration.framework */; };
 		90EC01B117B1EFF7009A4692 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC01B017B1EFF7009A4692 /* libz.dylib */; };
 		90F082D717DE349100EBD957 /* BPStatsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F082D617DE349100EBD957 /* BPStatsCollectionViewCell.m */; };
+		90F2BD87190A6D0800FA9C00 /* BPControlTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F2BD86190A6D0800FA9C00 /* BPControlTipsView.m */; };
 		90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562717A20B7C00E0261B /* SVSegmentedControl.m */; };
 		90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562917A20B7C00E0261B /* SVSegmentedThumb.m */; };
 		90F3562F17A20BF400E0261B /* BPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F3562E17A20BF400E0261B /* BPSegmentCell.m */; };
@@ -363,6 +364,8 @@
 		90EC01B017B1EFF7009A4692 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		90F082D517DE349100EBD957 /* BPStatsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPStatsCollectionViewCell.h; sourceTree = "<group>"; };
 		90F082D617DE349100EBD957 /* BPStatsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPStatsCollectionViewCell.m; sourceTree = "<group>"; };
+		90F2BD85190A6D0800FA9C00 /* BPControlTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPControlTipsView.h; sourceTree = "<group>"; };
+		90F2BD86190A6D0800FA9C00 /* BPControlTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPControlTipsView.m; sourceTree = "<group>"; };
 		90F3562617A20B7C00E0261B /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		90F3562717A20B7C00E0261B /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		90F3562817A20B7C00E0261B /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -1017,6 +1020,7 @@
 		90E881CA1778B20500682BB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				90F2BD84190A6CED00FA9C00 /* BPControlTipsView */,
 				90E881D31778BAD500682BB3 /* BPSwitchCell */,
 				90E881D81778C1B400682BB3 /* BPSettingsCell */,
 				9029876917881D4C00067D7A /* BPThemeCell */,
@@ -1317,6 +1321,15 @@
 			path = BPStatsCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		90F2BD84190A6CED00FA9C00 /* BPControlTipsView */ = {
+			isa = PBXGroup;
+			children = (
+				90F2BD85190A6D0800FA9C00 /* BPControlTipsView.h */,
+				90F2BD86190A6D0800FA9C00 /* BPControlTipsView.m */,
+			);
+			path = BPControlTipsView;
+			sourceTree = "<group>";
+		};
 		90F3562517A20B7C00E0261B /* SVSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1548,6 +1561,7 @@
 				909C95D517BC18B800EEC795 /* BPViewController.m in Sources */,
 				900CBD0D17E8A1E600E230EE /* BPDate.m in Sources */,
 				9094EC6F17E240B800B01132 /* BPProfile.m in Sources */,
+				90F2BD87190A6D0800FA9C00 /* BPControlTipsView.m in Sources */,
 				9004DFB817F0CD1A000F72D3 /* BPMyChartsDiagramViewController.m in Sources */,
 				909C95E817BC18EE00EEC795 /* BPMyChartsViewController.m in Sources */,
 				909C95E917BC18EE00EEC795 /* BPMyPregnancyViewController.m in Sources */,
