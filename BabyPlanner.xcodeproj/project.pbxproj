@@ -90,6 +90,8 @@
 		90C85C9917B4ED1B00308A2A /* BPCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9817B4ED1B00308A2A /* BPCircleCell.m */; };
 		90C85C9D17B4F42200308A2A /* BPFlagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85C9C17B4F42200308A2A /* BPFlagView.m */; };
 		90C85CA117B4FC7100308A2A /* BPDateIndicatorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */; };
+		90C8AE1519222A43004D5845 /* BPMyPregnancyControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C8AE1119222A43004D5845 /* BPMyPregnancyControlsViewController.m */; };
+		90C8AE1619222A43004D5845 /* BPMyPregnancyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C8AE1419222A43004D5845 /* BPMyPregnancyMainViewController.m */; };
 		90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */; };
 		90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC8D8417F1798700F2A331 /* UIView+Sizes.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
@@ -298,6 +300,10 @@
 		90C85C9C17B4F42200308A2A /* BPFlagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPFlagView.m; sourceTree = "<group>"; };
 		90C85C9F17B4FC7100308A2A /* BPDateIndicatorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateIndicatorsView.h; sourceTree = "<group>"; };
 		90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateIndicatorsView.m; sourceTree = "<group>"; };
+		90C8AE1019222A43004D5845 /* BPMyPregnancyControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyControlsViewController.h; sourceTree = "<group>"; };
+		90C8AE1119222A43004D5845 /* BPMyPregnancyControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyControlsViewController.m; sourceTree = "<group>"; };
+		90C8AE1319222A43004D5845 /* BPMyPregnancyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyMainViewController.h; sourceTree = "<group>"; };
+		90C8AE1419222A43004D5845 /* BPMyPregnancyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyMainViewController.m; sourceTree = "<group>"; };
 		90CB305417DDCD79009AE3C3 /* BPCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewHeader.h; sourceTree = "<group>"; };
 		90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewHeader.m; sourceTree = "<group>"; };
 		90DC8D8317F1798700F2A331 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
@@ -852,6 +858,8 @@
 			isa = PBXGroup;
 			children = (
 				909C95E517BC18EE00EEC795 /* BPMyPregnancyViewController */,
+				90C8AE1219222A43004D5845 /* BPMyPregnancyMainViewController */,
+				90C8AE0F19222A43004D5845 /* BPMyPregnancyControlsViewController */,
 			);
 			path = MyPregnancy;
 			sourceTree = "<group>";
@@ -953,6 +961,24 @@
 				90C85CA017B4FC7100308A2A /* BPDateIndicatorsView.m */,
 			);
 			path = BPDateIndicatorsView;
+			sourceTree = "<group>";
+		};
+		90C8AE0F19222A43004D5845 /* BPMyPregnancyControlsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90C8AE1019222A43004D5845 /* BPMyPregnancyControlsViewController.h */,
+				90C8AE1119222A43004D5845 /* BPMyPregnancyControlsViewController.m */,
+			);
+			path = BPMyPregnancyControlsViewController;
+			sourceTree = "<group>";
+		};
+		90C8AE1219222A43004D5845 /* BPMyPregnancyMainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90C8AE1319222A43004D5845 /* BPMyPregnancyMainViewController.h */,
+				90C8AE1419222A43004D5845 /* BPMyPregnancyMainViewController.m */,
+			);
+			path = BPMyPregnancyMainViewController;
 			sourceTree = "<group>";
 		};
 		90CB305317DDCD5E009AE3C3 /* BPCollectionViewHeader */ = {
@@ -1490,6 +1516,7 @@
 				90BA0670178D4C6B0045AB24 /* BPLabel.m in Sources */,
 				9004DFB017F0BF13000F72D3 /* BPMyChartsDetailsViewController.m in Sources */,
 				902E86DB179F461900186731 /* BPThemeManager.m in Sources */,
+				90C8AE1519222A43004D5845 /* BPMyPregnancyControlsViewController.m in Sources */,
 				90EBD1C11826B4A600F8D6E8 /* MSCollectionViewCalendarLayout.m in Sources */,
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */,
@@ -1525,6 +1552,7 @@
 				9005C56217944882001338BA /* BPUnitPicker.m in Sources */,
 				90FCA81C17B9EB8800686048 /* NSArray+ObjectiveSugar.m in Sources */,
 				9094EC5717E23C1800B01132 /* BPCyclesManager.m in Sources */,
+				90C8AE1619222A43004D5845 /* BPMyPregnancyMainViewController.m in Sources */,
 				90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */,
 				907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */,
 				9094EC7817E2472A00B01132 /* BPCycle+Additions.m in Sources */,

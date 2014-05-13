@@ -9,10 +9,11 @@
 #import "BPAppDelegate.h"
 #import "BPTabBarController.h"
 #import "BPNavigationController.h"
-#import "BPMyTemperatureViewController.h"
+//#import "BPMyTemperatureViewController.h"
 #import "BPMyTemperatureMainViewController.h"
 #import "BPMyChartsViewController.h"
-#import "BPMyPregnancyViewController.h"
+//#import "BPMyPregnancyViewController.h"
+#import "BPMyPregnancyMainViewController.h"
 #import "BPSettingsViewController.h"
 #import "TTSwitch.h"
 #import "BPUtils.h"
@@ -101,24 +102,29 @@
     
     BPNavigationController *myTemperatureViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyTemperatureMainViewController new]];
     BPNavigationController *myChartsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyChartsViewController new]];
-    BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyViewController new]];
+    BPNavigationController *myPregnancyViewController = [[BPNavigationController alloc] initWithRootViewController:[BPMyPregnancyMainViewController new]];
     BPNavigationController *settingsViewController = [[BPNavigationController alloc] initWithRootViewController:[BPSettingsViewController new]];
-//    BPNavigationController *testViewController = [[BPNavigationController alloc] initWithRootViewController:[ListenerViewController new]];
-
+    
 #if TEST_NORMAL_CYCLE1 || TEST_NORMAL_CYCLE2  || TEST_ANOVUL_CYCLE || TEST_PREGNANCY_CYCLE
     BPSettings *sharedSettings = [BPSettings sharedSettings];
     sharedSettings[BPSettingsProfileLastMenstruationDateKey] = [[NSDate date] dateBySubtractingDays:32];
 #endif
     
-//    /**RIO session setup */
-//	RIOInterface *rioRef = [RIOInterface sharedInstance];
-//	[rioRef setSampleRate:44100];
-//	[rioRef setFrequency:294];
-//	[rioRef initializeAudioSession];
-    
     BPTabBarController *tabBarController = [[BPTabBarController alloc] init];
-//    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController, testViewController];
+
+#if TEST_FFT
+//    /**RIO session setup */
+	RIOInterface *rioRef = [RIOInterface sharedInstance];
+	[rioRef setSampleRate:44100];
+	[rioRef setFrequency:294];
+	[rioRef initializeAudioSession];
+
+    BPNavigationController *testViewController = [[BPNavigationController alloc] initWithRootViewController:[ListenerViewController new]];
+
+    tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController, testViewController];
+#else
     tabBarController.viewControllers = @[myTemperatureViewController, myChartsViewController, myPregnancyViewController, settingsViewController];
+#endif
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];

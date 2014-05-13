@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BPBaseViewController.h"
 
+@class BPMyPregnancyMainViewController;
+@class BPMyPregnancyControlsViewController;
+
 @interface BPMyPregnancyViewController : BPBaseViewController
+
+@property (nonatomic, readonly) BPMyPregnancyMainViewController *mainController;
+@property (nonatomic, readonly) BPMyPregnancyControlsViewController *controlsController;
 
 @end
