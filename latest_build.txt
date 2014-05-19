@@ -1,6 +1,11 @@
-h2. 20140425
+h2. 20140519
 
 h3. Improvements:
 
 Feature #65: My Temperature: Tips for My controls
 * show tips
+
+h3. Fixes:
+
+Task #29: My Temperature: Controls page
+* buggy layout fixed

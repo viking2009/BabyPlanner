@@ -63,28 +63,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIImageView *topView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_button_background"]];
-    topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
-    [self.view insertSubview:topView belowSubview:self.statusBarView];
-    
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.width - 2*68.f, 34.f)];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.textColor = RGB(255, 255, 255);
-    [self.view addSubview:self.titleLabel];
-    
-    UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
-    self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
-    self.doneButton.frame = CGRectMake(self.view.width - 10.f - greenImage.size.width, 24.f, greenImage.size.width, greenImage.size.height);
-    [self.doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
-    self.doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
-    self.doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-    self.doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
-    [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.doneButton];
-    
 /*
     UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_bubble"]];
     bubbleView.frame = CGRectMake(78, 74, bubbleView.image.size.width, bubbleView.image.size.height);
@@ -108,7 +86,7 @@
     [self.view addSubview:self.tipsView];
     
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_girl"]];
-    self.girlView.frame = CGRectMake(0, 36, self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(0, 60, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -120,7 +98,7 @@
 	[collectionViewFlowLayout setMinimumLineSpacing:0];
 	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
+    CGRect collectionViewRect = CGRectMake(0, 57.f, self.view.width, self.view.height - 57.f - self.tabBarController.tabBar.height);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
     self.collectionView.backgroundView = nil;
@@ -136,6 +114,28 @@
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTapped)];
     swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:swipeDown];
+
+    UIImageView *topView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_button_background"]];
+    topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
+    [self.view addSubview:topView];
+    
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.width - 2*68.f, 34.f)];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.textColor = RGB(255, 255, 255);
+    [self.view addSubview:self.titleLabel];
+    
+    UIImage *greenImage = [BPUtils imageNamed:@"green_button"];
+    self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.doneButton setBackgroundImage:greenImage forState:UIControlStateNormal];
+    self.doneButton.frame = CGRectMake(self.view.width - 10.f - greenImage.size.width, 24.f, greenImage.size.width, greenImage.size.height);
+    [self.doneButton setTitleColor:RGB(255, 255, 255) forState:UIControlStateNormal];
+    self.doneButton.titleLabel.shadowColor = RGBA(0, 0, 0, 0.5);
+    self.doneButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.doneButton];
 
     [self loadData];
     [self updateUI];
@@ -436,7 +436,7 @@
     }
     
     if (section == 0)
-        edgeInsets.top = 130.f;
+        edgeInsets.top = 136.f;
     else if (section == 2)
         edgeInsets.top = 0.f;
     
