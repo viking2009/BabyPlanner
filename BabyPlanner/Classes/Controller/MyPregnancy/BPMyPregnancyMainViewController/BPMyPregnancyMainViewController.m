@@ -62,11 +62,6 @@
     
     self.view.clipsToBounds = YES;
     
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 8.f)];
-    topView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    topView.backgroundColor = RGB(13, 134, 116);
-    [self.view addSubview:topView];
-    
     UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
     bottomView.frame = CGRectMake(0.f, self.view.height - 55.f - self.tabBarController.tabBar.height, bottomView.image.size.width, bottomView.image.size.height);
     [self.view addSubview:bottomView];
@@ -78,28 +73,29 @@
     [self.myControlsButton addTarget:self action:@selector(myControlsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.myControlsButton];
     
-    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_girl"]];
+    // TODO: check for condition and show first or second pair of images
+    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_main_girl1"]];
 
-    CGFloat offset = MAX(330.f, self.view.height - self.girlView.image.size.height);
+    CGFloat offset = self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f;
     
-    self.bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_bubble"]];
-    self.bubbleView.frame = CGRectMake(3, offset, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
+    self.girlView.frame = CGRectMake(168, offset, self.girlView.image.size.width, self.girlView.image.size.height);
+    [self.view addSubview:self.girlView];
+
+    self.bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_main_bubble1"]];
+    self.bubbleView.frame = CGRectMake(64, 120.f + offset, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
     [self.view addSubview:self.bubbleView];
     
-    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 0.f, self.bubbleView.width - 16.f, self.bubbleView.height - 22.f)];
+    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectMake(18.f, 15.f, self.bubbleView.width - 36.f, self.bubbleView.height - 20.f)];
     self.selectLabel.backgroundColor = [UIColor clearColor];
-    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
     self.selectLabel.textColor = RGB(0, 0, 0);
     self.selectLabel.textAlignment = NSTextAlignmentCenter;
 //    self.selectLabel.layer.borderWidth = 1.0f;
 //    self.selectLabel.layer.borderColor = [UIColor redColor].CGColor;
     //    self.selectLabel.shadowColor = RGB(255, 255, 255);
     //    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
-    self.selectLabel.numberOfLines = 5;
+    self.selectLabel.numberOfLines = 2;
     [self.bubbleView addSubview:self.selectLabel];
-    
-    self.girlView.frame = CGRectMake(117, offset, self.girlView.image.size.width, self.girlView.image.size.height);
-    [self.view addSubview:self.girlView];
     
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myControlsButtonTapped)];
     swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
@@ -124,7 +120,7 @@
 
 - (void)updateBubbleView
 {
-
+    self.selectLabel.text = BPLocalizedString(@"Your are pregnant!");
 }
 
 - (void)updateUI
