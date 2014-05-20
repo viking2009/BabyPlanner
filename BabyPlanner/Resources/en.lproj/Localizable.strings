@@ -83,6 +83,12 @@
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "My Pregnancy";
 
+/* BPMyMyPregnancyControlsViewController */
+"Pregnancy calendar" = "Pregnancy calendar";
+"Kick history" = "Kick history";
+"Doctor visits" = "Doctor visits";
+"Please check if you have given birth" = "Please check if you have given birth";
+
 /* BPSettingsViewController */
 "Settings" = "Settings";
 

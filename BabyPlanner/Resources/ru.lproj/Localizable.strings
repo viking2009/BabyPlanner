@@ -83,6 +83,12 @@
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "Моя Беременность";
 
+/* BPMyMyPregnancyControlsViewController */
+"Pregnancy calendar" = "Календарь беременности";
+"Kick history" = "История толчков";
+"Doctor visits" = "Визиты врача";
+"Please check if you have given birth" = "Отметьте, если Вы знаете дату родов";
+
 /* BPSettingsViewController */
 "Settings" = "Настройки";
 

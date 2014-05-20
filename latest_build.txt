@@ -1,4 +1,11 @@
-h2. 20140519
+h2. 20140520
+
+h3. New:
+
+Task #68 My Pregnancy: Main page
+* base UI
+Task #69: My Pregnancy: Controls page
+* menu without actions 
 
 h3. Improvements:
 

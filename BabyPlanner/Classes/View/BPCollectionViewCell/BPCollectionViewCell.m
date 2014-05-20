@@ -54,8 +54,8 @@
     }
     
     if (self.titleLabel.text.length) {
-        self.titleLabel.frame = CGRectMake(left, 0, maxWidth, self.contentView.height);
-        left += self.titleLabel.width + BPDefaultCellInset;
+        self.titleLabel.frame = CGRectMake(left, 0, maxWidth + 5, self.contentView.height);
+        left += self.titleLabel.width + BPDefaultCellInset - 5;
     } else {
         self.titleLabel.frame = CGRectZero;
     }

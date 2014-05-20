@@ -26,7 +26,6 @@
 #import "BPCyclesManager.h"
 #import "BPCycle+Additions.h"
 #import "UIView+Sizes.h"
-#import "BPControlTipsView.h"
 
 #define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
@@ -37,9 +36,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *doneButton;
-//@property (nonatomic, strong) UILabel *selectLabel;
+@property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
-@property (nonatomic, strong) BPControlTipsView *tipsView;
 
 @property (nonatomic, strong) NSArray *data;
 
@@ -63,9 +61,53 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_controls_bubble"]];
+    bubbleView.frame = CGRectMake(96, 64, bubbleView.image.size.width, bubbleView.image.size.height);
+    [self.view addSubview:bubbleView];
+    
+    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectOffset(bubbleView.frame, 0, -10.f)];
+    self.selectLabel.backgroundColor = [UIColor clearColor];
+    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    self.selectLabel.textColor = RGB(0, 0, 0);
+    self.selectLabel.textAlignment = NSTextAlignmentCenter;
+//    self.selectLabel.shadowColor = RGB(255, 255, 255);
+//    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
+    self.selectLabel.numberOfLines = 2;
+    [self.view addSubview:self.selectLabel];
+    
+    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_controls_girl"]];
+    self.girlView.frame = CGRectMake(self.view.width - self.girlView.image.size.width, 60.f, self.girlView.image.size.width, self.girlView.image.size.height);
+    [self.view addSubview:self.girlView];
+    
+    UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
+	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
+	//[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320, 50)];
+	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
+	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
+	[collectionViewFlowLayout setMinimumLineSpacing:0];
+	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
+    
+    CGRect collectionViewRect = CGRectMake(0, 57.f, self.view.width, self.view.height - 57.f - self.tabBarController.tabBar.height);
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
+    self.collectionView.backgroundView = nil;
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    [self.view addSubview:self.collectionView];
+    
+    [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
+    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
+    [self.collectionView registerClass:[BPCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCollectionViewHeaderIdentifier];
+    
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTapped)];
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipeDown];
+
     UIImageView *topView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_button_background"]];
     topView.frame = CGRectMake(0, 0, topView.image.size.width, topView.image.size.height);
-    [self.view insertSubview:topView belowSubview:self.statusBarView];
+    [self.view addSubview:topView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68.f, 20.f, self.view.width - 2*68.f, 34.f)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -84,58 +126,6 @@
     self.doneButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
     [self.doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.doneButton];
-    
-/*
-    UIImageView *bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_bubble"]];
-    bubbleView.frame = CGRectMake(78, 74, bubbleView.image.size.width, bubbleView.image.size.height);
-    [self.view addSubview:bubbleView];
-    
-    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectOffset(bubbleView.frame, 0, -10.f)];
-    self.selectLabel.backgroundColor = [UIColor clearColor];
-    self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-    self.selectLabel.textColor = RGB(0, 0, 0);
-    self.selectLabel.textAlignment = NSTextAlignmentCenter;
-//    self.selectLabel.shadowColor = RGB(255, 255, 255);
-//    self.selectLabel.shadowOffset = CGSizeMake(0, -1);
-    self.selectLabel.numberOfLines = 2;
-    [self.view addSubview:self.selectLabel];
-*/
-    
-    UIImage *tipsImage = [BPUtils imageNamed:@"mytemperature_controls_tips_background"];
-    self.tipsView = [[BPControlTipsView alloc] initWithFrame:CGRectMake(0, 75.f, self.view.width, tipsImage.size.height)];
-    self.tipsView.backgroundColor = RGBA(255, 255, 255, 0.5);
-    self.tipsView.imageView.image = tipsImage;
-    [self.view addSubview:self.tipsView];
-    
-    self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_girl"]];
-    self.girlView.frame = CGRectMake(0, 36, self.girlView.image.size.width, self.girlView.image.size.height);
-    [self.view addSubview:self.girlView];
-    
-    UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-	//[collectionViewFlowLayout setItemSize:CGSizeMake(self.view.width - 20, 320.0)];
-	//[collectionViewFlowLayout setHeaderReferenceSize:CGSizeMake(320, 30)];
-	//[collectionViewFlowLayout setFooterReferenceSize:CGSizeMake(320, 50)];
-	//[collectionViewFlowLayout setMinimumInteritemSpacing:20];
-	[collectionViewFlowLayout setMinimumInteritemSpacing:0];
-	[collectionViewFlowLayout setMinimumLineSpacing:0];
-	[collectionViewFlowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
-    
-    CGRect collectionViewRect = CGRectMake(0, 64.f, self.view.width, self.view.height - 64.f - self.tabBarController.tabBar.height);
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:collectionViewFlowLayout];
-    self.collectionView.backgroundView = nil;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    [self.view addSubview:self.collectionView];
-    
-    [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
-    [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
-    [self.collectionView registerClass:[BPCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCollectionViewHeaderIdentifier];
-    
-    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonTapped)];
-    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.view addGestureRecognizer:swipeDown];
 
     [self loadData];
     [self updateUI];
@@ -152,12 +142,13 @@
 - (void)loadData
 {
     // TODO: set data for self.date;
-    self.data = @[ @[@{@"title": @"Temperature", @"image": @"mytemperature_icon_temperature"}],
-                   @[@{@"title": @"Menstruation", @"image": @"mytemperature_icon_menstruation"},
-                     @{@"title": @"Sexual intercourse", @"image": @"mytemperature_icon_sexual_intercourse"},
+    self.data = @[ @[@{@"title": @"Pregnancy calendar", @"image": @"mypregnancy_icon_pregnancycalendar"}],
+                   @[@{@"title": @"Kick history", @"image": @"mypregnancy_icon_kickhistory"},
+                     @{@"title": @"Weight", @"image": @"mypregnancy_icon_weight"},
                      @{@"title": @"Symptoms and mood", @"image": @"mytemperature_icon_symptoms_and_mood"},
-                     @{@"title": @"Notations", @"image": @"mytemperature_icon_notations"}],
-                   @[@{@"title": @"Pregnancy", @"image": @"mytemperature_icon_pregnancy"}]
+                     @{@"title": @"Notations", @"image": @"mytemperature_icon_notations"},
+                     @{@"title": @"Doctor visits", @"image": @"mypregnancy_icon_doctorvisits"}],
+                   @[@{@"title": @"Childbirth", @"image": @"mypregnancy_icon_childbirth"}]
                   ];
 }
 
@@ -175,11 +166,9 @@
     [super localize];
     
     self.titleLabel.text = BPLocalizedString(@"My controls");
-//    self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
+    self.selectLabel.text = BPLocalizedString(@"Please, enter\nyour data!");
     [self.doneButton setTitle:BPLocalizedString(@"Done") forState:UIControlStateNormal];
     
-    [self.tipsView updateUI];
-
     [self.collectionView reloadData];
 }
 
@@ -280,12 +269,12 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    BPSettings *sharedSettings = [BPSettings sharedSettings];
+//    BPSettings *sharedSettings = [BPSettings sharedSettings];
 
     switch (section) {
         case 0:
-            if ([sharedSettings[BPSettingsThermometrKey] boolValue])
-                return 0;
+//            if ([sharedSettings[BPSettingsThermometrKey] boolValue])
+//                return 0;
             break;
         case 2:
             return 1;
@@ -299,12 +288,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell;
-    if (indexPath.section == 1 && indexPath.item < 2) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSwitchCellIdentifier forIndexPath:indexPath];
-    } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCollectionViewCellIdentifier forIndexPath:indexPath];
-    }
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPCollectionViewCellIdentifier forIndexPath:indexPath];
     
     UIImageView *backgroundView = [[UIImageView alloc] init];
     UIImageView *selectedBackgroundView = [[UIImageView alloc] init];
@@ -325,31 +309,17 @@
     cell.selectedBackgroundView = selectedBackgroundView;
     
     NSDictionary *dataItem = _data[indexPath.section][indexPath.item];
-    if (indexPath.section == 1 && indexPath.item < 2) {
-        BPSwitchCell *switchCell = (BPSwitchCell *)cell;
-        switchCell.imageView.image =  [BPUtils imageNamed:dataItem[@"image"]];
-        switchCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
-        switchCell.toggleView.onText = BPLocalizedString(@"Yes");
-        switchCell.toggleView.offText = BPLocalizedString(@"No");
-        if (indexPath.item == 0)
-            switchCell.toggleView.on = [self.date.menstruation boolValue];
-        else if (indexPath.item == 1)
-            switchCell.toggleView.on = [self.date.sexualIntercourse boolValue];
-        switchCell.delegate = self;
-
-    } else {
-        BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
-        settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
-        settingsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
-        
-        if (indexPath.section == 2) {
-            BPSettings *sharedSettings = [BPSettings sharedSettings];
-            settingsCell.accessoryView.image = ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] ? [BPUtils imageNamed:@"cell_checkmark"] : nil);
-        } else {
-            settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
-        }
-        settingsCell.accessoryView.highlightedImage = [settingsCell.accessoryView.image tintedImageWithColor:RGB(255, 255, 255) style:UIImageTintedStyleKeepingAlpha];
-    }
+    BPCollectionViewCell *settingsCell = (BPCollectionViewCell *)cell;
+    settingsCell.imageView.image = [BPUtils imageNamed:dataItem[@"image"]];
+    settingsCell.titleLabel.text = BPLocalizedString(dataItem[@"title"]);
+    
+//    if (indexPath.section == 2) {
+//        BPSettings *sharedSettings = [BPSettings sharedSettings];
+//        settingsCell.accessoryView.image = ([sharedSettings[BPSettingsProfileIsPregnantKey] boolValue] ? [BPUtils imageNamed:@"cell_checkmark"] : nil);
+//    } else {
+        settingsCell.accessoryView.image = [BPUtils imageNamed:@"cell_disclosureIndicator"];
+//    }
+    settingsCell.accessoryView.highlightedImage = [settingsCell.accessoryView.image tintedImageWithColor:RGB(255, 255, 255) style:UIImageTintedStyleKeepingAlpha];
 
     return cell;
 }
@@ -359,7 +329,7 @@
     DLog(@"indexPath: %@", indexPath);
     if (indexPath.section == 2 && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
         BPCollectionViewHeader *collectionViewHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:BPCollectionViewHeaderIdentifier forIndexPath:indexPath];
-        collectionViewHeader.titleLabel.text = BPLocalizedString(@"Please check if you confirm your pregnancy");
+        collectionViewHeader.titleLabel.text = BPLocalizedString(@"Please check if you have given birth");
         return collectionViewHeader;
     }
     
@@ -368,25 +338,25 @@
 
 #pragma mark - UICollectionViewDelegate
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return !(indexPath.section == 1 && indexPath.item < 2);
-}
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return !(indexPath.section == 1 && indexPath.item < 2);
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog();
     if (indexPath.section == 0 && indexPath.row == 0) {
-        BPMyTemperatureSelectViewController *temperatureSelectViewController = [[BPMyTemperatureSelectViewController alloc] init];
-        temperatureSelectViewController.selectedDate = self.date;
-        [self.navigationController pushViewController:temperatureSelectViewController animated:YES];
+        // TODO: show Pregnancy calendar
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
     else if (indexPath.section == 1) {
         switch (indexPath.item) {
+            case 0: {
+                // TODO: show Kick history
+                [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+            }
+                break;
+            case 1: {
+                // TODO: show Weight controller
+                [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+            }
+                break;
             case 2: {
                 BPMyTemperatureSymptomsAndMoodViewController *temperatureSymptomsAndMoodViewController = [[BPMyTemperatureSymptomsAndMoodViewController alloc] init];
                 temperatureSymptomsAndMoodViewController.date = self.date;
@@ -399,14 +369,18 @@
                 [self.navigationController pushViewController:temperatureNotationsViewController animated:YES];
             }
                 break;
+            case 4: {
+                // TODO: show Doctor visits
+                [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+            }
+                break;
                 
             default:
                 break;
         }
     } else if (indexPath.section == 2 &indexPath.row == 0) {
-        BPSettings *sharedSettings = [BPSettings sharedSettings];
-        sharedSettings[BPSettingsProfileIsPregnantKey] = @(![sharedSettings[BPSettingsProfileIsPregnantKey] boolValue]);
-        sharedSettings[BPSettingsProfileConceivingKey] = (sharedSettings[BPSettingsProfileIsPregnantKey] ? self.date.date : nil);
+        // TODO: show datebirth selection?
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     } else {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
@@ -436,7 +410,7 @@
     }
     
     if (section == 0)
-        edgeInsets.top = 130.f;
+        edgeInsets.top = 136.f;
     else if (section == 2)
         edgeInsets.top = 0.f;
     

@@ -86,7 +86,7 @@
     [self.view addSubview:self.tipsView];
     
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_controls_girl"]];
-    self.girlView.frame = CGRectMake(0, 60, self.girlView.image.size.width, self.girlView.image.size.height);
+    self.girlView.frame = CGRectMake(0, 60.f, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
