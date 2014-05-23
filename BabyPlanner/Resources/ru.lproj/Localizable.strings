@@ -82,6 +82,11 @@
 
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "Моя Беременность";
+"1st trimester" = "1й триместр";
+"2nd trimester" = "2й триместр";
+"3rd trimester" = "3й триместр";
+"week" = "неделя";
+"day" = "день";
 
 /* BPMyMyPregnancyControlsViewController */
 "Pregnancy calendar" = "Календарь беременности";

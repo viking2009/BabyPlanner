@@ -14,7 +14,7 @@
 #import "BPDate+Additions.h"
 #import "BPCircleLayout.h"
 #import "BPCircleCell.h"
-#import "BPFlagView.h"
+#import "BPPregnancyInfoView.h"
 #import "BPDateIndicatorsView.h"
 #import "NSDate-Utilities.h"
 #import "BPDatesManager.h"
@@ -30,12 +30,17 @@
 
 @interface BPMyPregnancyMainViewController ()
 
+@property (nonatomic, strong) UILabel *firstTrimesterLabel;
+@property (nonatomic, strong) UILabel *secondTrimesterLabel;
+@property (nonatomic, strong) UILabel *thirdTrimesterLabel;
+@property (nonatomic, strong) BPPregnancyInfoView *infoView;
+@property (nonatomic, strong) UIImageView *babyView;
 @property (nonatomic, strong) UIButton *myControlsButton;
 @property (nonatomic, strong) UILabel *selectLabel;
 @property (nonatomic, strong) UIImageView *girlView;
 @property (nonatomic, strong) UIImageView *bubbleView;
 
-- (void)updateBubbleView;
+@property (nonatomic, assign) NSUInteger day;
 
 @end
 
@@ -62,6 +67,44 @@
     
     self.view.clipsToBounds = YES;
     
+    UIImageView *trimesterView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_main_trimester_background"]];
+    trimesterView.frame = CGRectMake(0.f, self.statusBarView.bottom, trimesterView.image.size.width, trimesterView.image.size.height);
+    [self.view addSubview:trimesterView];
+    
+    CGRect trimesterRect = trimesterView.frame;
+    trimesterRect.size = CGSizeMake(110.f, trimesterRect.size.height - 2.f);
+    self.firstTrimesterLabel = [[UILabel alloc] initWithFrame:trimesterRect];
+    self.firstTrimesterLabel.backgroundColor = [UIColor clearColor];
+    self.firstTrimesterLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:11];
+    self.firstTrimesterLabel.textColor = RGB(72, 72, 72);
+    self.firstTrimesterLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.firstTrimesterLabel];
+
+    trimesterRect = CGRectOffset(trimesterRect, trimesterRect.size.width, 0);
+    trimesterRect.size.width = 105.f;
+    self.secondTrimesterLabel = [[UILabel alloc] initWithFrame:trimesterRect];
+    self.secondTrimesterLabel.backgroundColor = [UIColor clearColor];
+    self.secondTrimesterLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:11];
+    self.secondTrimesterLabel.textColor = RGB(72, 72, 72);
+    self.secondTrimesterLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.secondTrimesterLabel];
+
+    trimesterRect = CGRectOffset(trimesterRect, trimesterRect.size.width, 0);
+    self.thirdTrimesterLabel = [[UILabel alloc] initWithFrame:trimesterRect];
+    self.thirdTrimesterLabel.backgroundColor = [UIColor clearColor];
+    self.thirdTrimesterLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:11];
+    self.thirdTrimesterLabel.textColor = RGB(72, 72, 72);
+    self.thirdTrimesterLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.thirdTrimesterLabel];
+
+    UIImage *redFlagImage = [BPUtils imageNamed:@"mypregnancy_main_flag_red"];
+    self.infoView = [[BPPregnancyInfoView alloc] initWithFrame:CGRectMake(0, trimesterView.bottom - 1.f, redFlagImage.size.width, redFlagImage.size.height)];
+    self.infoView.imageView.image = redFlagImage;
+    [self.view addSubview:self.infoView];
+    
+    self.babyView = [[UIImageView alloc] init];
+    [self.view addSubview:self.babyView];
+    
     UIImageView *bottomView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mytemperature_main_button_background"]];
     bottomView.frame = CGRectMake(0.f, self.view.height - 55.f - self.tabBarController.tabBar.height, bottomView.image.size.width, bottomView.image.size.height);
     [self.view addSubview:bottomView];
@@ -75,17 +118,12 @@
     
     // TODO: check for condition and show first or second pair of images
     self.girlView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_main_girl1"]];
-
-    CGFloat offset = self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f;
-    
-    self.girlView.frame = CGRectMake(168, offset, self.girlView.image.size.width, self.girlView.image.size.height);
     [self.view addSubview:self.girlView];
 
     self.bubbleView = [[UIImageView alloc] initWithImage:[BPUtils imageNamed:@"mypregnancy_main_bubble1"]];
-    self.bubbleView.frame = CGRectMake(64, 120.f + offset, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
     [self.view addSubview:self.bubbleView];
     
-    self.selectLabel = [[UILabel alloc] initWithFrame:CGRectMake(18.f, 15.f, self.bubbleView.width - 36.f, self.bubbleView.height - 20.f)];
+    self.selectLabel = [[UILabel alloc] init];
     self.selectLabel.backgroundColor = [UIColor clearColor];
     self.selectLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
     self.selectLabel.textColor = RGB(0, 0, 0);
@@ -101,10 +139,13 @@
     swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipeUp];
     
+    self.day = 47;
+
 //    [self loadData];
     [self updateUI];
     [self localize];
     [self customize];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,17 +159,38 @@
     DLog();
 }
 
-- (void)updateBubbleView
-{
-    self.selectLabel.text = BPLocalizedString(@"Your are pregnant!");
-}
-
 - (void)updateUI
 {
     [super updateUI];
     
     if (self.isViewLoaded) {
-        [self updateBubbleView];
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *dateComponents = [calendar components:(NSDayCalendarUnit)
+                                                       fromDate:[NSDate date]];
+        dateComponents.day = self.day;
+        self.infoView.date = [calendar dateFromComponents:dateComponents];
+        [self.infoView updateUI];
+        
+        DLog(@"%@", dateComponents);
+        
+        // TODO: check pregnancy week, set frames
+        if (self.day < 90) {
+            self.infoView.left = 10.f;
+            
+            self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby2"];
+            self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 60.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
+
+            CGFloat offset = self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f;
+            
+            self.girlView.frame = CGRectMake(168, offset, self.girlView.image.size.width, self.girlView.image.size.height);
+
+            self.bubbleView.frame = CGRectMake(64, 120.f + offset, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
+
+            self.selectLabel.frame = CGRectMake(18.f, 15.f, self.bubbleView.width - 36.f, self.bubbleView.height - 20.f);
+            
+            
+        }
     }
 }
 
@@ -136,7 +198,11 @@
 {
     [super localize];
     
-    [self updateBubbleView];
+    self.firstTrimesterLabel.text = BPLocalizedString(@"1st trimester");
+    self.secondTrimesterLabel.text = BPLocalizedString(@"2nd trimester");
+    self.thirdTrimesterLabel.text = BPLocalizedString(@"3rd trimester");
+    
+    self.selectLabel.text = BPLocalizedString(@"Your are pregnant!");
 }
 
 #pragma mark - Private

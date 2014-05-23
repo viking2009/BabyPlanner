@@ -82,6 +82,11 @@
 
 /* BPMyPregnancyViewController */
 "My Pregnancy" = "My Pregnancy";
+"1st trimester" = "1st trimester";
+"2nd trimester" = "2nd trimester";
+"3rd trimester" = "3rd trimester";
+"week" = "week";
+"day" = "day";
 
 /* BPMyMyPregnancyControlsViewController */
 "Pregnancy calendar" = "Pregnancy calendar";

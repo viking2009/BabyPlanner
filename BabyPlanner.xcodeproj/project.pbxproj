@@ -27,6 +27,7 @@
 		9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF7E17C1D64A00EAA9CE /* BPSymptom.m */; };
 		9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */; };
 		9011DF8717C1D8FA00EAA9CE /* BabyPlanner.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */; };
+		9012D56B192F574000218149 /* BPPregnancyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9012D56A192F574000218149 /* BPPregnancyInfoView.m */; };
 		902540A117C6B0E1005BFE01 /* BPDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 902540A017C6B0E1005BFE01 /* BPDate+Additions.m */; };
 		9029876417880C3A00067D7A /* BPLanguagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876317880C3A00067D7A /* BPLanguagePicker.m */; };
 		9029876C17881D6600067D7A /* BPThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029876B17881D6600067D7A /* BPThemeCell.m */; };
@@ -181,6 +182,8 @@
 		9011DF8017C1D67100EAA9CE /* BPSymptom+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPSymptom+Additions.h"; sourceTree = "<group>"; };
 		9011DF8117C1D67100EAA9CE /* BPSymptom+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPSymptom+Additions.m"; sourceTree = "<group>"; };
 		9011DF8617C1D8FA00EAA9CE /* BabyPlanner.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BabyPlanner.sqlite; sourceTree = "<group>"; };
+		9012D569192F574000218149 /* BPPregnancyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPregnancyInfoView.h; sourceTree = "<group>"; };
+		9012D56A192F574000218149 /* BPPregnancyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPregnancyInfoView.m; sourceTree = "<group>"; };
 		9025409F17C6B0E1005BFE01 /* BPDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPDate+Additions.h"; sourceTree = "<group>"; };
 		902540A017C6B0E1005BFE01 /* BPDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPDate+Additions.m"; sourceTree = "<group>"; };
 		9029876217880C3A00067D7A /* BPLanguagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLanguagePicker.h; sourceTree = "<group>"; };
@@ -486,6 +489,15 @@
 				9008D5B117F34CF300367B90 /* BPCalendarLayout.m */,
 			);
 			path = BPCalendarLayout;
+			sourceTree = "<group>";
+		};
+		9012D568192F574000218149 /* BPPregnancyInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				9012D569192F574000218149 /* BPPregnancyInfoView.h */,
+				9012D56A192F574000218149 /* BPPregnancyInfoView.m */,
+			);
+			path = BPPregnancyInfoView;
 			sourceTree = "<group>";
 		};
 		9029876917881D4C00067D7A /* BPThemeCell */ = {
@@ -1046,6 +1058,7 @@
 		90E881CA1778B20500682BB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9012D568192F574000218149 /* BPPregnancyInfoView */,
 				90F2BD84190A6CED00FA9C00 /* BPControlTipsView */,
 				90E881D31778BAD500682BB3 /* BPSwitchCell */,
 				90E881D81778C1B400682BB3 /* BPSettingsCell */,
@@ -1521,6 +1534,7 @@
 				90EB9E48170790D9008457A3 /* BPAppDelegate.m in Sources */,
 				90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */,
 				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
+				9012D56B192F574000218149 /* BPPregnancyInfoView.m in Sources */,
 				90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */,
 				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EBD1C41826B50B00F8D6E8 /* BPDiagramLayout.m in Sources */,
