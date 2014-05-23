@@ -139,22 +139,6 @@
     [self updateBubbleView];
 }
 
-- (void)customize
-{
-    [super customize];
-    
-    //    self.view.backgroundColor = [BPThemeManager sharedManager].currentThemeColor;
-    self.view.backgroundColor = [[BPThemeManager sharedManager] themeColorForTheme:@"Classic"];
-}
-
-
-#pragma mark - BPBaseViewController
-
-- (void)setBackgroundImage:(UIImage *)backgroundImage
-{
-
-}
-
 #pragma mark - Private
 
 - (void)myControlsButtonTapped
