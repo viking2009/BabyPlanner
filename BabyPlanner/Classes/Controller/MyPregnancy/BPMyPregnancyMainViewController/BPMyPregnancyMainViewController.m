@@ -234,6 +234,8 @@
     } else if (self.day < 180) {
         self.selectLabel.text = BPLocalizedString(@"Every time you feel kick, click on my tummy!");
     }
+    
+    [self.infoView updateUI];
 }
 
 #pragma mark - Private
