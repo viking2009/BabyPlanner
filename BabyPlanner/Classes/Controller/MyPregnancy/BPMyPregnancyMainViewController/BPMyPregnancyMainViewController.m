@@ -98,7 +98,7 @@
     [self.view addSubview:self.thirdTrimesterLabel];
 
     UIImage *redFlagImage = [BPUtils imageNamed:@"mypregnancy_main_flag_red"];
-    self.infoView = [[BPPregnancyInfoView alloc] initWithFrame:CGRectMake(0, trimesterView.bottom - 1.f, redFlagImage.size.width, redFlagImage.size.height)];
+    self.infoView = [[BPPregnancyInfoView alloc] initWithFrame:CGRectMake(0, trimesterView.bottom - 2.f, redFlagImage.size.width, redFlagImage.size.height)];
     self.infoView.imageView.image = redFlagImage;
     [self.view addSubview:self.infoView];
     
@@ -190,7 +190,6 @@
             self.infoView.left = 10.f;
             
             self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby2"];
-            self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 60.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
 
             self.girlView.image = [BPUtils imageNamed:@"mypregnancy_main_girl1"];
             self.girlView.frame = CGRectMake(168, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f, self.girlView.image.size.width, self.girlView.image.size.height);
@@ -205,7 +204,6 @@
             self.infoView.left = 120.f;
             
             self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby3"];
-            self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 60.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
             
             self.girlView.image = [BPUtils imageNamed:@"mypregnancy_main_girl2"];
             self.girlView.frame = CGRectMake(2, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 2.f, self.girlView.image.size.width, self.girlView.image.size.height);
@@ -217,6 +215,8 @@
             self.selectLabel.frame = CGRectMake(5.f, 0, self.bubbleView.width - 10.f, self.bubbleView.height - 20.f);
             self.selectLabel.text = BPLocalizedString(@"Every time you feel kick, click on my tummy!");
         }
+        
+        self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 58.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
     }
 }
 
