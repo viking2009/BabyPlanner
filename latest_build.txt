@@ -5,7 +5,9 @@ h3. New:
 Task #68 My Pregnancy: Main page
 * base UI
 Task #69: My Pregnancy: Controls page
-* menu without actions 
+* menu with pregnancy calendar support
+Task #70 My Pregnancy: You & your baby
+* change week with buttons, swipe, weeks picker
 
 h3. Improvements:
 

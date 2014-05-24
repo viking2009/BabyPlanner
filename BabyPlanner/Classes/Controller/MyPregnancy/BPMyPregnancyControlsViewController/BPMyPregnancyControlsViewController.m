@@ -7,8 +7,7 @@
 //
 
 #import "BPMyPregnancyControlsViewController.h"
-#import "BPMyPregnancyMainViewController.h"
-#import "BPMyPregnancyViewController.h"
+#import "BPMyPregnancyYouAndYourBabyViewController.h"
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
@@ -342,8 +341,10 @@
 {
     DLog();
     if (indexPath.section == 0 && indexPath.row == 0) {
-        // TODO: show Pregnancy calendar
-        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+        BPMyPregnancyYouAndYourBabyViewController *pregnancyYouAndYourBabyViewController = [[BPMyPregnancyYouAndYourBabyViewController alloc] init];
+        // TODO: calculate current pregnancy week
+        pregnancyYouAndYourBabyViewController.selectedWeek = 5;
+        [self.navigationController pushViewController:pregnancyYouAndYourBabyViewController animated:YES];
     }
     else if (indexPath.section == 1) {
         switch (indexPath.item) {
