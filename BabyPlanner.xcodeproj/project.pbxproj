@@ -47,6 +47,7 @@
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
 		905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F31787EDD300C367E3 /* BPTimePicker.m */; };
 		905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F61788033300C367E3 /* BPSoundPicker.m */; };
+		90697F641930E28E0007782A /* BPWeekPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90697F631930E28E0007782A /* BPWeekPicker.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
 		908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62417E6F3D500AC0AFD /* KeyHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -220,6 +221,8 @@
 		905D99F31787EDD300C367E3 /* BPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTimePicker.m; sourceTree = "<group>"; };
 		905D99F51788033300C367E3 /* BPSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSoundPicker.h; sourceTree = "<group>"; };
 		905D99F61788033300C367E3 /* BPSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSoundPicker.m; sourceTree = "<group>"; };
+		90697F621930E28E0007782A /* BPWeekPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPWeekPicker.h; sourceTree = "<group>"; };
+		90697F631930E28E0007782A /* BPWeekPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPWeekPicker.m; sourceTree = "<group>"; };
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 				9005C56117944882001338BA /* BPUnitPicker.m */,
 				90E1DB9717BAA453000460C7 /* BPTemperaturePicker.h */,
 				90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */,
+				90697F621930E28E0007782A /* BPWeekPicker.h */,
+				90697F631930E28E0007782A /* BPWeekPicker.m */,
 			);
 			path = BPValuePicker;
 			sourceTree = "<group>";
@@ -1553,6 +1558,7 @@
 				905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */,
 				9094EC7217E240B900B01132 /* BPCycle.m in Sources */,
 				90C85C9517B4D88600308A2A /* UIImage+Additions.m in Sources */,
+				90697F641930E28E0007782A /* BPWeekPicker.m in Sources */,
 				908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */,
 				90FCA81D17B9EB8800686048 /* NSDictionary+ObjectiveSugar.m in Sources */,
 				90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */,

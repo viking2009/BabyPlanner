@@ -95,6 +95,8 @@
 "Doctor visits" = "Визиты врача";
 "Please check if you have given birth" = "Отметьте, если Вы знаете дату родов";
 
+"Week" = "Неделя";
+
 /* BPSettingsViewController */
 "Settings" = "Настройки";
 

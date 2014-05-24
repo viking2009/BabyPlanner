@@ -17,6 +17,7 @@
 #import "BPUnitPicker.h"
 #import "BPTemperaturePicker.h"
 #import "BPMenstruationPicker.h"
+#import "BPWeekPicker.h"
 
 #import "BPUtils.h"
 #import "UIView+Sizes.h"
@@ -108,6 +109,10 @@
                 
             case BPValuePickerModeMenstruationPeriod:
                 self.delegate = [[BPMenstruationPicker alloc] init];
+                self.delegate.control = self;
+            
+            case BPValuePickerModeWeek:
+                self.delegate = [[BPWeekPicker alloc] init];
                 self.delegate.control = self;
                 
             default:
