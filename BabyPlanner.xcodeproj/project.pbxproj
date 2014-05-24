@@ -48,6 +48,7 @@
 		905D99F41787EDD300C367E3 /* BPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F31787EDD300C367E3 /* BPTimePicker.m */; };
 		905D99F71788033300C367E3 /* BPSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F61788033300C367E3 /* BPSoundPicker.m */; };
 		90697F641930E28E0007782A /* BPWeekPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90697F631930E28E0007782A /* BPWeekPicker.m */; };
+		906AF26C19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906AF26B19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m */; };
 		907BA9541779A69E005944D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907BA9531779A69E005944D6 /* AudioToolbox.framework */; };
 		907BA9581779AC97005944D6 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 907BA9571779AC97005944D6 /* NSDate-Utilities.m */; };
 		908DF62717E6F3D500AC0AFD /* KeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 908DF62417E6F3D500AC0AFD /* KeyHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -223,6 +224,8 @@
 		905D99F61788033300C367E3 /* BPSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSoundPicker.m; sourceTree = "<group>"; };
 		90697F621930E28E0007782A /* BPWeekPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPWeekPicker.h; sourceTree = "<group>"; };
 		90697F631930E28E0007782A /* BPWeekPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPWeekPicker.m; sourceTree = "<group>"; };
+		906AF26A19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyYouAndYourBabyViewController.h; sourceTree = "<group>"; };
+		906AF26B19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyYouAndYourBabyViewController.m; sourceTree = "<group>"; };
 		907BA9531779A69E005944D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		907BA9561779AC97005944D6 /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
 		907BA9571779AC97005944D6 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
@@ -593,6 +596,15 @@
 			path = BPValuePicker;
 			sourceTree = "<group>";
 		};
+		906AF26919311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				906AF26A19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.h */,
+				906AF26B19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m */,
+			);
+			path = BPMyPregnancyYouAndYourBabyViewController;
+			sourceTree = "<group>";
+		};
 		907BA9551779AC97005944D6 /* NSDate-Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +889,7 @@
 				909C95E517BC18EE00EEC795 /* BPMyPregnancyViewController */,
 				90C8AE1219222A43004D5845 /* BPMyPregnancyMainViewController */,
 				90C8AE0F19222A43004D5845 /* BPMyPregnancyControlsViewController */,
+				906AF26919311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController */,
 			);
 			path = MyPregnancy;
 			sourceTree = "<group>";
@@ -1618,6 +1631,7 @@
 				90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */,
 				909C95FB17BC1C2D00EEC795 /* BPDatesManager.m in Sources */,
 				909C95FF17BC382000EEC795 /* UINavigationController+Transition.m in Sources */,
+				906AF26C19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m in Sources */,
 				9011DF7F17C1D64A00EAA9CE /* BPSymptom.m in Sources */,
 				9011DF8217C1D67100EAA9CE /* BPSymptom+Additions.m in Sources */,
 			);

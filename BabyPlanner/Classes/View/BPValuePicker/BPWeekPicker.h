@@ -8,6 +8,8 @@
 
 #import "BPAbstractPicker.h"
 
+#define BPWeekPickerNumberOfWeeks 40
+
 @interface BPWeekPicker : BPAbstractPicker
 
 @end

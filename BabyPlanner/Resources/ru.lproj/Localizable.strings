@@ -97,6 +97,10 @@
 
 "Week" = "Неделя";
 
+/* BPMyPregnancyYouAndYourBabyViewController */
+"You & your baby" = "Вы и ваш малыш";
+"All weeks" = "Все недели";
+
 /* BPSettingsViewController */
 "Settings" = "Настройки";
 

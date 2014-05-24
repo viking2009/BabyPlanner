@@ -287,5 +287,4 @@
     self.monthView.monthLabel.text = [BPUtils monthOnlyStringFromDate:firstCell.date.date];
 }
 
-
 @end

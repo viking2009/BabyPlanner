@@ -9,8 +9,6 @@
 #import "BPWeekPicker.h"
 #import "BPUtils.h"
 
-#define BPWeekPickerNumberOfWeeks 40
-
 @implementation BPWeekPicker
 
 #pragma mark - BPPickerViewDataSource

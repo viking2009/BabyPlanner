@@ -7,8 +7,6 @@
 //
 
 #import "BPMyTemperatureControlsViewController.h"
-#import "BPMyTemperatureMainViewController.h"
-#import "BPMyTemperatureViewController.h"
 #import "BPUtils.h"
 #import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
