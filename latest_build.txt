@@ -9,6 +9,8 @@ Task #69: My Pregnancy: Controls page
 
 h3. Improvements:
 
+Task #15: Custom picker
+* support for week selection
 Feature #65: My Temperature: Tips for My controls
 * show tips
 
