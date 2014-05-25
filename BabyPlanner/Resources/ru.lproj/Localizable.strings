@@ -100,6 +100,8 @@
 /* BPMyPregnancyYouAndYourBabyViewController */
 "You & your baby" = "Вы и ваш малыш";
 "All weeks" = "Все недели";
+"Your baby" = "Ваш малыш";
+"Your body" = "Ваше тело";
 
 /* BPSettingsViewController */
 "Settings" = "Настройки";

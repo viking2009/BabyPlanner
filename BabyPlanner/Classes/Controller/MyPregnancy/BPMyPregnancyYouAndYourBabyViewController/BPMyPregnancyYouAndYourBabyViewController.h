@@ -12,6 +12,6 @@
 
 @interface BPMyPregnancyYouAndYourBabyViewController : BPViewController
 
-@property (nonatomic, assign) NSUInteger selectedWeek;
+@property (nonatomic, strong) NSNumber *selectedWeek;
 
 @end

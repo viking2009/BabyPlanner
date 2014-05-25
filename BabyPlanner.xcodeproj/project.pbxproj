@@ -42,6 +42,7 @@
 		90453FBC182FDE7C0069368B /* BPDiagramHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */; };
 		90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBF182FFFAF0069368B /* BPDiagramChart.m */; };
 		904692B8184BAF94004E1A18 /* BPDiagramMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */; };
+		905BFB0D1931DF65008E1B3D /* BPPregnancyCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 905BFB0C1931DF65008E1B3D /* BPPregnancyCalendarCell.m */; };
 		905D99E31787E8B400C367E3 /* BPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E21787E8B400C367E3 /* BPPickerView.m */; };
 		905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99E61787E95500C367E3 /* BPValuePicker.m */; };
 		905D99F11787ECBB00C367E3 /* BPAbstractPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D99F01787ECBB00C367E3 /* BPAbstractPicker.m */; };
@@ -211,6 +212,8 @@
 		90453FBF182FFFAF0069368B /* BPDiagramChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramChart.m; sourceTree = "<group>"; };
 		904692B6184BAF94004E1A18 /* BPDiagramMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramMonthView.h; sourceTree = "<group>"; };
 		904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramMonthView.m; sourceTree = "<group>"; };
+		905BFB0B1931DF65008E1B3D /* BPPregnancyCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPregnancyCalendarCell.h; sourceTree = "<group>"; };
+		905BFB0C1931DF65008E1B3D /* BPPregnancyCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPregnancyCalendarCell.m; sourceTree = "<group>"; };
 		905D99E11787E8B400C367E3 /* BPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPickerView.h; sourceTree = "<group>"; };
 		905D99E21787E8B400C367E3 /* BPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPickerView.m; sourceTree = "<group>"; };
 		905D99E51787E95500C367E3 /* BPValuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPValuePicker.h; sourceTree = "<group>"; };
@@ -555,6 +558,15 @@
 				90453FBF182FFFAF0069368B /* BPDiagramChart.m */,
 			);
 			path = BPDiagramChart;
+			sourceTree = "<group>";
+		};
+		905BFB0A1931DF36008E1B3D /* BPPregnancyCalendarCell */ = {
+			isa = PBXGroup;
+			children = (
+				905BFB0B1931DF65008E1B3D /* BPPregnancyCalendarCell.h */,
+				905BFB0C1931DF65008E1B3D /* BPPregnancyCalendarCell.m */,
+			);
+			path = BPPregnancyCalendarCell;
 			sourceTree = "<group>";
 		};
 		905D99E01787E89B00C367E3 /* BPPickerView */ = {
@@ -1076,6 +1088,7 @@
 		90E881CA1778B20500682BB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				905BFB0A1931DF36008E1B3D /* BPPregnancyCalendarCell */,
 				9012D568192F574000218149 /* BPPregnancyInfoView */,
 				90F2BD84190A6CED00FA9C00 /* BPControlTipsView */,
 				90E881D31778BAD500682BB3 /* BPSwitchCell */,
@@ -1553,6 +1566,7 @@
 				90FCA82B17B9EB9B00686048 /* NSManagedObject+ActiveRecord.m in Sources */,
 				905D99E71787E95500C367E3 /* BPValuePicker.m in Sources */,
 				9012D56B192F574000218149 /* BPPregnancyInfoView.m in Sources */,
+				905BFB0D1931DF65008E1B3D /* BPPregnancyCalendarCell.m in Sources */,
 				90E6755F17B7EF880045C30E /* DCRoundSwitch.m in Sources */,
 				90BA0674178D4E890045AB24 /* BPSelectButton.m in Sources */,
 				90EBD1C41826B50B00F8D6E8 /* BPDiagramLayout.m in Sources */,

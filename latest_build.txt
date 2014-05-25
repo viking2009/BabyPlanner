@@ -8,6 +8,7 @@ Task #69: My Pregnancy: Controls page
 * menu with pregnancy calendar support
 Task #70 My Pregnancy: You & your baby
 * change week with buttons, swipe, weeks picker
+* demo data
 
 h3. Improvements:
 

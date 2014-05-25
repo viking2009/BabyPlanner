@@ -343,7 +343,7 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         BPMyPregnancyYouAndYourBabyViewController *pregnancyYouAndYourBabyViewController = [[BPMyPregnancyYouAndYourBabyViewController alloc] init];
         // TODO: calculate current pregnancy week
-        pregnancyYouAndYourBabyViewController.selectedWeek = 5;
+        pregnancyYouAndYourBabyViewController.selectedWeek = @5;
         [self.navigationController pushViewController:pregnancyYouAndYourBabyViewController animated:YES];
     }
     else if (indexPath.section == 1) {

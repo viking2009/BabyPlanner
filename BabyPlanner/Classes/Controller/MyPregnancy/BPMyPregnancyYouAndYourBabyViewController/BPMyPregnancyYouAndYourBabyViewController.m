@@ -15,13 +15,13 @@
 #import "BPThemeManager.h"
 #import "UIImage+Additions.h"
 #import "BPTemperaturesManager.h"
-#import "BPSettingsCell.h"
+#import "BPPregnancyCalendarCell.h"
 #import "ObjectiveSugar.h"
 #import "BPSettings+Additions.h"
 #import "UIView+Sizes.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define BPSettingsCellIdentifier @"BPSettingsViewCellIdentifier"
+#define BPPregnancyCalendarCellIdentifier @"BPPregnancyCalendarCellIdentifier"
 #define BPPageSpacing 20.f
 
 @interface BPMyPregnancyYouAndYourBabyViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -108,7 +108,7 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[BPSettingsCell class] forCellWithReuseIdentifier:BPSettingsCellIdentifier];
+    [self.collectionView registerClass:[BPPregnancyCalendarCell class] forCellWithReuseIdentifier:BPPregnancyCalendarCellIdentifier];
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];
     self.pickerView.hidden = YES;
@@ -142,17 +142,17 @@
     [super updateUI];
     
     if (self.isViewLoaded) {
-        self.leftButton.hidden = (self.selectedWeek == 1);
-        self.rightButton.hidden = (self.selectedWeek == BPWeekPickerNumberOfWeeks);
+        self.leftButton.hidden = ([self.selectedWeek integerValue] == 1);
+        self.rightButton.hidden = ([self.selectedWeek integerValue] == BPWeekPickerNumberOfWeeks);
         
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedWeek - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[self.selectedWeek integerValue] - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         
 //        self.pickerView.value = @(self.selectedWeek);
 
-        NSString *leftButtonTitle = [NSString stringWithFormat:@"%@ %i", BPLocalizedString(@"Week"), self.selectedWeek - 1];
+        NSString *leftButtonTitle = [NSString stringWithFormat:@"%@ %i", BPLocalizedString(@"Week"), [self.selectedWeek integerValue] - 1];
         [self.leftButton setTitle:leftButtonTitle forState:UIControlStateNormal];
         
-        NSString *rightButtonTitle = [NSString stringWithFormat:@"%@ %i", BPLocalizedString(@"Week"), self.selectedWeek + 1];
+        NSString *rightButtonTitle = [NSString stringWithFormat:@"%@ %i", BPLocalizedString(@"Week"), [self.selectedWeek integerValue] + 1];
         [self.rightButton setTitle:rightButtonTitle forState:UIControlStateNormal];
     }
 }
@@ -165,7 +165,7 @@
     
     self.pickerView.valuePickerMode = BPValuePickerModeNone;
     self.pickerView.valuePickerMode = BPValuePickerModeWeek;
-    self.pickerView.value = @(self.selectedWeek);
+    self.pickerView.value = self.selectedWeek;
 
     [self.collectionView reloadData];
 
@@ -177,7 +177,7 @@
     switch (self.pickerView.valuePickerMode) {
         case BPValuePickerModeWeek: {
             DLog(@"%i %@", self.pickerView.valuePickerMode, self.pickerView.value);
-            self.selectedWeek = [self.pickerView.value integerValue];
+            self.selectedWeek = self.pickerView.value;
             [self updateUI];
         }
             break;
@@ -188,7 +188,7 @@
 
 - (void)pickerViewValueDidEndEditing
 {
-    self.selectedWeek = [self.pickerView.value integerValue];
+    self.selectedWeek = self.pickerView.value;
     self.pickerView.hidden = YES;
 
     [self updateUI];
@@ -198,8 +198,8 @@
 
 - (void)showPreviousWeek
 {
-    self.selectedWeek--;
-    self.pickerView.value = @(self.selectedWeek);
+    self.selectedWeek = @([self.selectedWeek integerValue] - 1);
+    self.pickerView.value = self.selectedWeek;
     [self updateUI];
 }
 
@@ -210,8 +210,8 @@
 
 - (void)showNextWeek
 {
-    self.selectedWeek++;
-    self.pickerView.value = @(self.selectedWeek);
+    self.selectedWeek = @([self.selectedWeek integerValue] + 1);
+    self.pickerView.value = self.selectedWeek;
     [self updateUI];
 }
 
@@ -220,8 +220,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSIndexPath *currentPath = self.collectionView.indexPathsForVisibleItems.first;
-    self.selectedWeek = currentPath.item + 1;
-    self.pickerView.value = @(self.selectedWeek);
+    self.selectedWeek = @(currentPath.item + 1);
+    self.pickerView.value = self.selectedWeek;
 
     [self updateUI];
 }
@@ -240,10 +240,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BPSettingsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPSettingsCellIdentifier forIndexPath:indexPath];
+    BPPregnancyCalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BPPregnancyCalendarCellIdentifier forIndexPath:indexPath];
     
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@ %i", BPLocalizedString(@"Week"), indexPath.item + 1];
-    cell.accessoryView.image = nil;
+    cell.weekNumber = @(indexPath.item + 1);
     
     return cell;
 }
