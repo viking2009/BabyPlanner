@@ -37,7 +37,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = BPLocalizedString(@"Temperature");
+        self.title = @"Temperature";
     }
     return self;
 }

@@ -24,12 +24,6 @@
 #define BPPregnancyCalendarCellIdentifier @"BPPregnancyCalendarCellIdentifier"
 #define BPPageSpacing 20.f
 
-@interface BPViewController ()
-
-@property (nonatomic, strong) UIImageView *navigationImageView;
-
-@end
-
 @interface BPMyPregnancyYouAndYourBabyViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -50,7 +44,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = BPLocalizedString(@"You & your baby");
+        self.title = @"You & your baby";
     }
     
     return self;
