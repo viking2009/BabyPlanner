@@ -1,9 +1,12 @@
 h2. 20140531
 
+h3. Note:
+* double tap on My Pregnancy Main Page to switch demo data
+
 h3. New:
 
 Task #68 My Pregnancy: Main page
-* base UI
+* demo
 Task #69: My Pregnancy: Controls page
 * menu with pregnancy calendar support
 Task #70 My Pregnancy: You & your baby
