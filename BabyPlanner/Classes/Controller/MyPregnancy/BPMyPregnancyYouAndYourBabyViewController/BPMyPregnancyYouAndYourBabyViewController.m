@@ -24,6 +24,12 @@
 #define BPPregnancyCalendarCellIdentifier @"BPPregnancyCalendarCellIdentifier"
 #define BPPageSpacing 20.f
 
+@interface BPViewController ()
+
+@property (nonatomic, strong) UIImageView *navigationImageView;
+
+@end
+
 @interface BPMyPregnancyYouAndYourBabyViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -106,7 +112,7 @@
     self.collectionView.delegate = self;
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:self.collectionView];
+    [self.view insertSubview:self.collectionView belowSubview:self.navigationImageView];
     
     [self.collectionView registerClass:[BPPregnancyCalendarCell class] forCellWithReuseIdentifier:BPPregnancyCalendarCellIdentifier];
     
