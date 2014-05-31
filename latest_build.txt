@@ -11,3 +11,7 @@ Task #70: My Pregnancy: You & your baby
 
 h3. Fixes:
 
+Task #70: My Pregnancy: You & your baby
+* fix localization issue
+
+

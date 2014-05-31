@@ -183,7 +183,7 @@
 }
 
 - (void)setWeekNumber:(NSNumber *)weekNumber {
-    if (_weekNumber != weekNumber) {
+//    if (_weekNumber != weekNumber) {
         _weekNumber = weekNumber;
         
         NSInteger weekNumberInteger = [_weekNumber integerValue];
@@ -229,7 +229,7 @@
         self.secondSectionDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:secondSectionDescription attributes:attributes];;
 
         [self setNeedsLayout];
-    }
+//    }
 }
 
 @end
