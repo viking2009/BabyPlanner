@@ -179,6 +179,9 @@
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSDateComponents *dateComponents = [calendar components:(NSDayCalendarUnit)
                                                        fromDate:[NSDate date]];
+        
+//        NSDateComponents *components = [calendar components:unitFlags fromDate:startDate toDate:endDate options:0];
+
         dateComponents.day = self.day;
         self.infoView.date = [calendar dateFromComponents:dateComponents];
         [self.infoView updateUI];

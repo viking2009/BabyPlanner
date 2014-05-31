@@ -223,13 +223,21 @@ void ConvertInt16ToFloat(RIOInterface* THIS, void *buf, float *outputBuf, size_t
 	NSError	*err = nil;
 	AVAudioSession *session = [AVAudioSession sharedInstance];
 	
-	[session setPreferredHardwareSampleRate:sampleRate error:&err];
+	[session setPreferredSampleRate:sampleRate error:&err];
+#if TEST_BLUETOOTH
+	[session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:&err];
+#else
 	[session setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
+#endif
 	[session setActive:YES error:&err];
 	
+//    // set up for bluetooth microphone input
+//    UInt32 allowBluetoothInput = 1;
+//    AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryEnableBluetoothInput, sizeof (allowBluetoothInput), &allowBluetoothInput);
+    
 	// After activation, update our sample rate. We need to update because there
 	// is a possibility the system cannot grant our request. 
-	sampleRate = [session currentHardwareSampleRate];
+	sampleRate = session.sampleRate;
 
 	[self realFFTSetup];
 }
