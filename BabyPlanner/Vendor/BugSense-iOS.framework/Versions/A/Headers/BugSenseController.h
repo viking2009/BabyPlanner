@@ -213,4 +213,33 @@ OBJC_EXPORT @interface BugSenseController : NSObject <UIAlertViewDelegate>
 
 + (BOOL) usesProxy;
 
+/** @name Crash on Last Run functions */
+
+/**
+ Returns the id of the last crash that was sent to the BugSense servers.
+ 
+ @return A long integer identifying the crash.
+  
+ */
++ (long)lastCrashId;
+
+/**
+ Returns the number of crashes that the user has experienced since the last reset.
+ 
+ @return The number of crashes.
+ 
+ */
++ (int)crashCount;
+
+/**
+ Resets the number of crashes that the user has experienced to zero.
+  
+ @return A boolean indicating whether the number of crashes was successfully reset to zero.
+ 
+ */
++ (BOOL)resetCrashCount;
+
+typedef void (^ OperationsCompletionBlock)();
++ (void)setErrorNetworkOperationsCompletionBlock:(OperationsCompletionBlock)block;
+
 @end

@@ -23,3 +23,5 @@ h3. Fixes:
 
 Task #29: My Temperature: Controls page
 * buggy layout fixed
+Bug #75: BugSense: no support for arm64
+* compatibility with arm64 binaries
