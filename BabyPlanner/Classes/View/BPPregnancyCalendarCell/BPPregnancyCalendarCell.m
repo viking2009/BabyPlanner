@@ -212,13 +212,21 @@
         
         self.firstSectionTitleLabel.text = BPLocalizedString(@"Your baby");
         
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = NSTextAlignmentJustified;
+        paragraphStyle.hyphenationFactor = 1.0f;
+        
+        NSDictionary *attributes = @{NSParagraphStyleAttributeName: paragraphStyle};
+        
         // TODO: read from file or DB
-        self.firstSectionDescriptionLabel.text = @"By week 6, your baby’s brain and nervous system are developing at a rapid pace. Optic vesicles, which later form the eyes, begin to develop this week on the sides of the head, as do the passageways that will make up the inner ear.";
+        NSString *firstSectionDescription = @"By week 6, your baby’s brain and nervous system are developing at a rapid pace. Optic vesicles, which later form the eyes, begin to develop this week on the sides of the head, as do the passageways that will make up the inner ear.";
+        self.firstSectionDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:firstSectionDescription attributes:attributes];
         
         self.secondSectionTitleLabel.text = BPLocalizedString(@"Your body");
 
         // TODO: read from file or DB
-        self.secondSectionDescriptionLabel.text = @"Common pregnancy complaints may hit in full force this week. You may feel extreme fatigue as your body adjusts to the demands of pregnancy. And tender, aching breasts and nausea and vomiting (morning sickness) may leave you feeling less than great. Despite its name, morning sickness can occur at any hour or all day, so don't be surprised if your queasy stomach doesn't pass by noon. Nausea isn't the only thing that has you running to the toilet, though — hormonal changes and other factors, such as your kidneys working extra hard to flush wastes out of your body, cause you to urinate more frequently, too.";
+        NSString *secondSectionDescription = @"Common pregnancy complaints may hit in full force this week. You may feel extreme fatigue as your body adjusts to the demands of pregnancy. And tender, aching breasts and nausea and vomiting (morning sickness) may leave you feeling less than great. Despite its name, morning sickness can occur at any hour or all day, so don't be surprised if your queasy stomach doesn't pass by noon. Nausea isn't the only thing that has you running to the toilet, though — hormonal changes and other factors, such as your kidneys working extra hard to flush wastes out of your body, cause you to urinate more frequently, too.";
+        self.secondSectionDescriptionLabel.attributedText = [[NSAttributedString alloc] initWithString:secondSectionDescription attributes:attributes];;
 
         [self setNeedsLayout];
     }

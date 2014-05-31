@@ -1,30 +1,13 @@
-h2. 20140531
+h2. 20140601
 
 h3. Note:
-* double tap on My Pregnancy Main Page to switch demo data
 
 h3. New:
 
-Task #68 My Pregnancy: Main page
-* demo
-Task #69: My Pregnancy: Controls page
-* menu with pregnancy calendar support
-Task #70 My Pregnancy: You & your baby
-* change week with buttons, swipe, weeks picker
-* demo data
-Task #74: Bluetooth sensor
-* use test controller
-
 h3. Improvements:
 
-Task #15: Custom picker
-* support for week selection
-Feature #65: My Temperature: Tips for My controls
-* show tips
+Task #70: My Pregnancy: You & your baby
+* justified text alignment and hyphenation for descriptions 
 
 h3. Fixes:
 
-Task #29: My Temperature: Controls page
-* buggy layout fixed
-Bug #75: BugSense: no support for arm64
-* compatibility with arm64 binaries
