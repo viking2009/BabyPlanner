@@ -1,4 +1,4 @@
-h2. 20140525
+h2. 20140531
 
 h3. New:
 
@@ -9,6 +9,8 @@ Task #69: My Pregnancy: Controls page
 Task #70 My Pregnancy: You & your baby
 * change week with buttons, swipe, weeks picker
 * demo data
+Task #74: Bluetooth sensor
+* use test controller
 
 h3. Improvements:
 
