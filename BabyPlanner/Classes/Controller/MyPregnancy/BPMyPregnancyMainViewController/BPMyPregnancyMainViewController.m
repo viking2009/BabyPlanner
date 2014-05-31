@@ -189,7 +189,7 @@
         if (self.day < 90) {
             self.infoView.left = 10.f;
             
-            self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby2"];
+            self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby_6w"];
 
             self.girlView.image = [BPUtils imageNamed:@"mypregnancy_main_girl1"];
             self.girlView.frame = CGRectMake(168, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f, self.girlView.image.size.width, self.girlView.image.size.height);
@@ -203,7 +203,7 @@
         } else if (self.day < 180) {
             self.infoView.left = 120.f;
             
-            self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby3"];
+            self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby_3m"];
             
             self.girlView.image = [BPUtils imageNamed:@"mypregnancy_main_girl2"];
             self.girlView.frame = CGRectMake(2, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 2.f, self.girlView.image.size.width, self.girlView.image.size.height);
@@ -216,7 +216,7 @@
             self.selectLabel.text = BPLocalizedString(@"Every time you feel kick, click on my tummy!");
         }
         
-        self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 58.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
+        self.babyView.frame = CGRectMake(self.infoView.left - floor(self.babyView.image.size.width/2 - self.infoView.width/2), self.infoView.top + 60.f, self.babyView.image.size.width, self.self.babyView.image.size.height);
     }
 }
 
