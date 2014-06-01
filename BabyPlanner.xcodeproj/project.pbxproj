@@ -39,6 +39,8 @@
 		903452F4179461AB001B397B /* Marimba.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452EF179461AB001B397B /* Marimba.caf */; };
 		903452F5179461AB001B397B /* Old Phone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F0179461AB001B397B /* Old Phone.caf */; };
 		903452F6179461AB001B397B /* Piano Riff.caf in Resources */ = {isa = PBXBuildFile; fileRef = 903452F1179461AB001B397B /* Piano Riff.caf */; };
+		90385264193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90385263193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.m */; };
+		90385268193BA3FD0037F301 /* BPPregnancyKickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90385267193BA3FD0037F301 /* BPPregnancyKickCell.m */; };
 		90453FBC182FDE7C0069368B /* BPDiagramHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */; };
 		90453FC0182FFFAF0069368B /* BPDiagramChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 90453FBF182FFFAF0069368B /* BPDiagramChart.m */; };
 		904692B8184BAF94004E1A18 /* BPDiagramMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904692B7184BAF94004E1A18 /* BPDiagramMonthView.m */; };
@@ -206,6 +208,10 @@
 		903452EF179461AB001B397B /* Marimba.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marimba.caf; sourceTree = "<group>"; };
 		903452F0179461AB001B397B /* Old Phone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Old Phone.caf"; sourceTree = "<group>"; };
 		903452F1179461AB001B397B /* Piano Riff.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Piano Riff.caf"; sourceTree = "<group>"; };
+		90385262193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyKickHistoryListViewController.h; sourceTree = "<group>"; };
+		90385263193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyKickHistoryListViewController.m; sourceTree = "<group>"; };
+		90385266193BA3FD0037F301 /* BPPregnancyKickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPregnancyKickCell.h; sourceTree = "<group>"; };
+		90385267193BA3FD0037F301 /* BPPregnancyKickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPregnancyKickCell.m; sourceTree = "<group>"; };
 		90453FBA182FDE7B0069368B /* BPDiagramHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramHeaderView.h; sourceTree = "<group>"; };
 		90453FBB182FDE7C0069368B /* BPDiagramHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDiagramHeaderView.m; sourceTree = "<group>"; };
 		90453FBE182FFFAF0069368B /* BPDiagramChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDiagramChart.h; sourceTree = "<group>"; };
@@ -549,6 +555,24 @@
 				903452F1179461AB001B397B /* Piano Riff.caf */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		90385261193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90385262193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.h */,
+				90385263193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.m */,
+			);
+			path = BPMyPregnancyKickHistoryListViewController;
+			sourceTree = "<group>";
+		};
+		90385265193BA3D60037F301 /* BPPregnancyKickCell */ = {
+			isa = PBXGroup;
+			children = (
+				90385266193BA3FD0037F301 /* BPPregnancyKickCell.h */,
+				90385267193BA3FD0037F301 /* BPPregnancyKickCell.m */,
+			);
+			path = BPPregnancyKickCell;
 			sourceTree = "<group>";
 		};
 		90453FBD182FFF9F0069368B /* BPDiagramChart */ = {
@@ -902,6 +926,7 @@
 				90C8AE1219222A43004D5845 /* BPMyPregnancyMainViewController */,
 				90C8AE0F19222A43004D5845 /* BPMyPregnancyControlsViewController */,
 				906AF26919311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController */,
+				90385261193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController */,
 			);
 			path = MyPregnancy;
 			sourceTree = "<group>";
@@ -1088,6 +1113,7 @@
 		90E881CA1778B20500682BB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				90385265193BA3D60037F301 /* BPPregnancyKickCell */,
 				905BFB0A1931DF36008E1B3D /* BPPregnancyCalendarCell */,
 				9012D568192F574000218149 /* BPPregnancyInfoView */,
 				90F2BD84190A6CED00FA9C00 /* BPControlTipsView */,
@@ -1615,6 +1641,7 @@
 				9008D5AA17F303DF00367B90 /* BPCalendarHeader.m in Sources */,
 				909C958517BC0CD300EEC795 /* BPSettings+Additions.m in Sources */,
 				909C958F17BC0D2400EEC795 /* BPSettings.m in Sources */,
+				90385268193BA3FD0037F301 /* BPPregnancyKickCell.m in Sources */,
 				909C95AA17BC181F00EEC795 /* BPMyTemperatureControlsViewController.m in Sources */,
 				909C95AB17BC181F00EEC795 /* BPMyTemperatureMainViewController.m in Sources */,
 				909C95AC17BC181F00EEC795 /* BPMyTemperatureNotationsViewController.m in Sources */,
@@ -1622,6 +1649,7 @@
 				909C95AD17BC181F00EEC795 /* BPMyTemperatureSelectViewController.m in Sources */,
 				9008D5A617F2DE9800367B90 /* BPCalendarCell.m in Sources */,
 				908DF62C17E6F3E900AC0AFD /* ListenerViewController.m in Sources */,
+				90385264193BA1570037F301 /* BPMyPregnancyKickHistoryListViewController.m in Sources */,
 				909C95AE17BC181F00EEC795 /* BPMyTemperatureSymptomsAndMoodViewController.m in Sources */,
 				909C95AF17BC181F00EEC795 /* BPMyTemperatureViewController.m in Sources */,
 				909C95C017BC182800EEC795 /* BPSettingsAlarmViewController.m in Sources */,

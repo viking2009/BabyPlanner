@@ -64,7 +64,7 @@
 #define TEST_ANOVUL_CYCLE       0
 #define TEST_PREGNANCY_CYCLE    0
 
-#define TEST_FFT                1
+#define TEST_FFT                0
 #define TEST_BLUETOOTH          1
 
 #endif
