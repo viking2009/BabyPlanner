@@ -8,8 +8,8 @@
 
 #import "BPMyPregnancyControlsViewController.h"
 #import "BPMyPregnancyYouAndYourBabyViewController.h"
+#import "BPMyPregnancyKickHistoryListViewController.h"
 #import "BPUtils.h"
-#import "BPSwitchCell.h"
 #import "BPCollectionViewCell.h"
 #import "BPCollectionViewHeader.h"
 #import "BPMyTemperatureSelectViewController.h"
@@ -26,11 +26,10 @@
 #import "BPCycle+Additions.h"
 #import "UIView+Sizes.h"
 
-#define BPSwitchCellIdentifier @"BPSwitchCellIdentifier"
 #define BPCollectionViewCellIdentifier @"BPCollectionViewCellIdentifier"
 #define BPCollectionViewHeaderIdentifier @"BPCollectionViewHeaderIdentifier"
 
-@interface BPMyPregnancyControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, BPSwitchCellDelegate>
+@interface BPMyPregnancyControlsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -96,7 +95,6 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
     
-    [self.collectionView registerClass:[BPSwitchCell class] forCellWithReuseIdentifier:BPSwitchCellIdentifier];
     [self.collectionView registerClass:[BPCollectionViewCell class] forCellWithReuseIdentifier:BPCollectionViewCellIdentifier];
     [self.collectionView registerClass:[BPCollectionViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:BPCollectionViewHeaderIdentifier];
     
@@ -349,8 +347,8 @@
     else if (indexPath.section == 1) {
         switch (indexPath.item) {
             case 0: {
-                // TODO: show Kick history
-                [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+                BPMyPregnancyKickHistoryListViewController *kickHistoryListViewController = [[BPMyPregnancyKickHistoryListViewController alloc] init];
+                [self.navigationController pushViewController:kickHistoryListViewController animated:YES];
             }
                 break;
             case 1: {
@@ -421,55 +419,6 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     return (section == 2 ? CGSizeMake(collectionView.width, 32.f) : CGSizeZero);
-}
-
-#pragma mark - BPSwitchCellDelegate
-
-- (void)switchCellDidToggle:(BPSwitchCell *)cell
-{
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    DLog(@"indexPath: %@", indexPath);
-
-    if (indexPath.section == 1) {
-        if (indexPath.item == 0) {
-            DLog(@"self.date.menstruation: %@", self.date.menstruation);
-            self.date.menstruation = @(cell.toggleView.on);
-            self.date.mmenstruation = @YES;
-            DLog(@"self.date.menstruation: %@", self.date.menstruation);
-            
-            // change cycle
-            if ([self.date.menstruation boolValue] && [self.date.day integerValue] > 20) {
-                BPSettings *sharedSettings = [BPSettings sharedSettings];
-                BPCyclesManager *sharedManager = [BPCyclesManager sharedManager];
-                BPCycle *currentCycle = sharedManager.currentCycle;
-                
-                currentCycle.endDate = [self.date.date dateBySubtractingDays:1];
-                [currentCycle save];
-                
-                BPCycle *cycle = [BPCycle cycleWithIndex:@([currentCycle.index integerValue] + 1)];
-                
-                NSDate *startDate = self.date.date;
-                cycle.startDate = [startDate dateAtStartOfDay];
-                
-                NSInteger lengthOfCycle = [sharedSettings[BPSettingsProfileLengthOfCycleKey] integerValue];
-                cycle.endDate = [cycle.startDate dateByAddingDays:lengthOfCycle - 1];
-                
-                self.date.cycle = cycle;
-                
-                [cycle save];
-
-                sharedSettings[BPSettingsProfileIsPregnantKey] = @NO;
-                sharedSettings[BPSettingsProfileLastMenstruationDateKey] = self.date.date;
-            }
-        }
-        else if (indexPath.item == 1) {
-            DLog(@"self.date.sexualIntercourse: %@", self.date.sexualIntercourse);
-            self.date.sexualIntercourse = @(cell.toggleView.on);
-            DLog(@"self.date.sexualIntercourse: %@", self.date.sexualIntercourse);
-        }
-        
-        [self.date save];
-    }
 }
 
 #pragma mark - Private

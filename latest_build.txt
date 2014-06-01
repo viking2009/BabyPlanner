@@ -4,8 +4,13 @@ h3. Note:
 
 h3. New:
 
+Task #71: My Pregnancy: Kick history list
+* demo data
+
 h3. Improvements:
 
+Task #68: My Pregnancy: Main page
+* show kick history
 Task #70: My Pregnancy: You & your baby
 * justified text alignment and hyphenation for descriptions 
 
