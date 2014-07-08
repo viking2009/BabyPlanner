@@ -99,6 +99,7 @@
 		90C8AE1519222A43004D5845 /* BPMyPregnancyControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C8AE1119222A43004D5845 /* BPMyPregnancyControlsViewController.m */; };
 		90C8AE1619222A43004D5845 /* BPMyPregnancyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C8AE1419222A43004D5845 /* BPMyPregnancyMainViewController.m */; };
 		90CB305617DDCD79009AE3C3 /* BPCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */; };
+		90CD401D196BD9640073B616 /* BPMyPregnancyWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CD401C196BD9640073B616 /* BPMyPregnancyWeekViewController.m */; };
 		90DC8D8517F1798700F2A331 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC8D8417F1798700F2A331 /* UIView+Sizes.m */; };
 		90E1DB9917BAA454000460C7 /* BPTemperaturePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1DB9817BAA454000460C7 /* BPTemperaturePicker.m */; };
 		90E32AB317C0FF3800E34FC4 /* BPMenstruationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E32AB217C0FF3800E34FC4 /* BPMenstruationPicker.m */; };
@@ -324,6 +325,8 @@
 		90C8AE1419222A43004D5845 /* BPMyPregnancyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyMainViewController.m; sourceTree = "<group>"; };
 		90CB305417DDCD79009AE3C3 /* BPCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCollectionViewHeader.h; sourceTree = "<group>"; };
 		90CB305517DDCD79009AE3C3 /* BPCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCollectionViewHeader.m; sourceTree = "<group>"; };
+		90CD401B196BD9640073B616 /* BPMyPregnancyWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMyPregnancyWeekViewController.h; sourceTree = "<group>"; };
+		90CD401C196BD9640073B616 /* BPMyPregnancyWeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMyPregnancyWeekViewController.m; sourceTree = "<group>"; };
 		90DC8D8317F1798700F2A331 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
 		90DC8D8417F1798700F2A331 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		90E1DB9717BAA453000460C7 /* BPTemperaturePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTemperaturePicker.h; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 		906AF26919311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController */ = {
 			isa = PBXGroup;
 			children = (
+				90CD401B196BD9640073B616 /* BPMyPregnancyWeekViewController.h */,
+				90CD401C196BD9640073B616 /* BPMyPregnancyWeekViewController.m */,
 				906AF26A19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.h */,
 				906AF26B19311C5A00CC7F3A /* BPMyPregnancyYouAndYourBabyViewController.m */,
 			);
@@ -1573,6 +1578,7 @@
 				908DF62817E6F3D500AC0AFD /* RIOInterface.mm in Sources */,
 				90EBD1D01826C8C500F8D6E8 /* BPDiagramColumnHeaderCell.m in Sources */,
 				90E6756117B7EF880045C30E /* DCRoundSwitchOutlineLayer.m in Sources */,
+				90CD401D196BD9640073B616 /* BPMyPregnancyWeekViewController.m in Sources */,
 				90F3562A17A20B7C00E0261B /* SVSegmentedControl.m in Sources */,
 				90F3562B17A20B7C00E0261B /* SVSegmentedThumb.m in Sources */,
 				90FE3D8B17C63C9100B8D9A4 /* BPTemperaturesManager.m in Sources */,
