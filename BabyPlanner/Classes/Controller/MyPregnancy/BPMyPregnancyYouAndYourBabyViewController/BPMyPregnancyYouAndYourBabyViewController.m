@@ -109,6 +109,7 @@
 //    
 //    [self.collectionView registerClass:[BPPregnancyCalendarCell class] forCellWithReuseIdentifier:BPPregnancyCalendarCellIdentifier];
     
+//    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @(BPPageSpacing)}];
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
@@ -119,7 +120,7 @@
     
     [self addChildViewController:self.pageViewController];
     self.pageViewController.view.frame = CGRectMake(0, 64.f, self.view.width, selectWeekPanel.top - 64.f);
-    [self.view addSubview:self.pageViewController.view];
+    [self.view insertSubview:self.pageViewController.view belowSubview:self.navigationImageView];
     [self.pageViewController didMoveToParentViewController:self];
     
     self.pickerView = [[BPValuePicker alloc] initWithFrame:CGRectMake(0, MAX(BPSettingsPickerMinimalOriginY, self.view.height - BPPickerViewHeight - self.tabBarController.tabBar.height), self.view.width, BPPickerViewHeight)];

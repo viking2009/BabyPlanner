@@ -255,11 +255,19 @@
     [self.view setNeedsLayout];
 }
 
+#pragma mark - BPBaseViewController
+
 - (void)localize
 {
     [super localize];
     
     [self updateUI];
 }
+
+// MARK: UIPageViewControllerTransitionStyleScroll
+//- (void)setBackgroundImage:(UIImage *)backgroundImage
+//{
+//    DLog();
+//}
 
 @end
