@@ -1,4 +1,4 @@
-h2. 20140601
+h2. 20140708
 
 h3. Note:
 
@@ -12,7 +12,8 @@ h3. Improvements:
 Task #68: My Pregnancy: Main page
 * show kick history
 Task #70: My Pregnancy: You & your baby
-* justified text alignment and hyphenation for descriptions 
+* justified text alignment and hyphenation for descriptions
+* curled swiping used
 
 h3. Fixes:
 
