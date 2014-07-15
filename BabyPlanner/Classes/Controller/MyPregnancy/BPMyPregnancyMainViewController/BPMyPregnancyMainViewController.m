@@ -8,6 +8,7 @@
 
 #import "BPMyPregnancyMainViewController.h"
 #import "BPMyPregnancyControlsViewController.h"
+#import "BPMyPregnancyYouAndYourBabyViewController.h"
 #import "BPUtils.h"
 #import "BPThemeManager.h"
 #import "BPSettings+Additions.h"
@@ -201,7 +202,7 @@
             self.babyView.image = [BPUtils imageNamed:@"mypregnancy_main_baby_6w"];
 
             self.girlView.image = [BPUtils imageNamed:@"mypregnancy_main_girl1"];
-            self.girlView.frame = CGRectMake(168, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 27.f, self.girlView.image.size.width, self.girlView.image.size.height);
+            self.girlView.frame = CGRectMake(168, self.view.height - self.girlView.image.size.height - self.tabBarController.tabBar.height - 2.f, self.girlView.image.size.width, self.girlView.image.size.height);
 
             self.bubbleView.image = [BPUtils imageNamed:@"mypregnancy_main_bubble1"];
             self.bubbleView.frame = CGRectMake(64, self.girlView.top + 120.f, self.bubbleView.image.size.width, self.bubbleView.image.size.height);
