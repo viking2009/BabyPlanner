@@ -1514,6 +1514,11 @@
 				CLASSPREFIX = BP;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mykola Vyshynskyi";
+				TargetAttributes = {
+					90EB9DF917078C45008457A3 = {
+						DevelopmentTeam = P677KX5869;
+					};
+				};
 			};
 			buildConfigurationList = 90EB9DF517078C45008457A3 /* Build configuration list for PBXProject "BabyPlanner" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1748,7 +1753,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF7A799F-EBB9-4796-B7BC-701DF1EA6EA6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "63621595-7A88-4A3C-906C-40A4E623C5C2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;
@@ -1840,7 +1845,7 @@
 				INFOPLIST_FILE = "BabyPlanner/BabyPlanner-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF7A799F-EBB9-4796-B7BC-701DF1EA6EA6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "63621595-7A88-4A3C-906C-40A4E623C5C2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

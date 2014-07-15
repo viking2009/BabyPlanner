@@ -283,12 +283,20 @@
         self.selectedDate = cell.date;
 //        [self updateCollectionView];
         
-        [CATransaction begin];
-        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-
-        [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
-        
-        [CATransaction commit];
+        if (self.selectedDate.date.month == self.selectedMonth.month) {
+            [CATransaction begin];
+            [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+            
+            [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:1]]];
+            
+            [CATransaction commit];
+        } else {
+            NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self.selectedDate.date];
+            components.day = 1;
+            self.selectedMonth = [CURRENT_CALENDAR dateFromComponents:components];
+            
+            [self updateCollectionView];
+        }
     }
 }
 
