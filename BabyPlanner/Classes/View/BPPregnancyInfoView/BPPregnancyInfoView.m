@@ -70,9 +70,18 @@
     }
 }
 
+- (void)setDay:(NSNumber *)day {
+    if (_day != day) {
+        _day = day;
+        
+        [self refreshDate];
+    }
+}
+
 - (void)refreshDate
 {
     DLog(@"%@", self.date);
+/*
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:(NSDayCalendarUnit)
                                                    fromDate:self.date];
@@ -82,6 +91,10 @@
     self.weekLabel.text = [NSString stringWithFormat:@"%i", dateComponents.day/7];
     
     self.dayLabel.text = [NSString stringWithFormat:@"%@\n%i %@", BPLocalizedString(@"week"), dateComponents.day%7, BPLocalizedString(@"day")];
+ */
+    self.weekLabel.text = [NSString stringWithFormat:@"%i", [self.day integerValue]/7 + 1];
+    
+    self.dayLabel.text = [NSString stringWithFormat:@"%@\n%i %@", BPLocalizedString(@"week"), [self.day integerValue] % 7 + 1, BPLocalizedString(@"day")];
 }
 
 - (void)updateUI

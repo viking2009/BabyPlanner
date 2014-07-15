@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSNumber *day;
 
 - (void)updateUI;
 

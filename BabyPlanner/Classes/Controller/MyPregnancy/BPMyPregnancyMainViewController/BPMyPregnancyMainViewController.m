@@ -42,6 +42,8 @@
 
 @property (nonatomic, assign) NSUInteger day;
 
+- (void)didTapInfoView:(id)sender;
+
 @end
 
 @implementation BPMyPregnancyMainViewController
@@ -101,6 +103,9 @@
     self.infoView = [[BPPregnancyInfoView alloc] initWithFrame:CGRectMake(0, trimesterView.bottom - 2.f, redFlagImage.size.width, redFlagImage.size.height)];
     self.infoView.imageView.image = redFlagImage;
     [self.view addSubview:self.infoView];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapInfoView:)];
+    [self.infoView addGestureRecognizer:tapGesture];
     
     self.babyView = [[UIImageView alloc] init];
     [self.view addSubview:self.babyView];
@@ -176,17 +181,18 @@
     [super updateUI];
     
     if (self.isViewLoaded) {
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *dateComponents = [calendar components:(NSDayCalendarUnit)
-                                                       fromDate:[NSDate date]];
+//        NSCalendar *calendar = [NSCalendar currentCalendar];
+//        NSDateComponents *dateComponents = [calendar components:(NSDayCalendarUnit)
+//                                                       fromDate:[NSDate date]];
         
 //        NSDateComponents *components = [calendar components:unitFlags fromDate:startDate toDate:endDate options:0];
 
-        dateComponents.day = self.day;
-        self.infoView.date = [calendar dateFromComponents:dateComponents];
+//        dateComponents.day = self.day;
+//        self.infoView.date = [calendar dateFromComponents:dateComponents];
+        self.infoView.day = @(self.day);
         [self.infoView updateUI];
         
-        DLog(@"%@", dateComponents);
+//        DLog(@"%@", dateComponents);
         
         // TODO: check pregnancy week, set frames
         if (self.day < 90) {
@@ -275,6 +281,13 @@
                                        completion:^(UIView *fromView, UIView *toView) {
                                            //
                                        }];
+}
+
+- (void)didTapInfoView:(id)sender {
+    BPMyPregnancyYouAndYourBabyViewController *pregnancyYouAndYourBabyViewController = [[BPMyPregnancyYouAndYourBabyViewController alloc] init];
+    // TODO: calculate current pregnancy week
+    pregnancyYouAndYourBabyViewController.selectedWeek = @(self.day/7 + 1);
+    [self.navigationController pushViewController:pregnancyYouAndYourBabyViewController animated:YES];
 }
 
 @end
