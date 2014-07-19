@@ -213,14 +213,21 @@
     NSInteger weekNumberInteger = [_weekNumber integerValue];
     if (weekNumberInteger < 14) {
         self.weekInfoBackground.image = [BPUtils imageNamed:@"mypregnancy_calendar_weekinfo_green"];
-        self.babyView.image = [BPUtils imageNamed:@"mypregnancy_calendar_baby1"];
     } else if (weekNumberInteger < 28) {
         self.weekInfoBackground.image = [BPUtils imageNamed:@"mypregnancy_calendar_weekinfo_yellow"];
-        self.babyView.image = [BPUtils imageNamed:@"mypregnancy_calendar_baby2"];
     } else {
         self.weekInfoBackground.image = [BPUtils imageNamed:@"mypregnancy_calendar_weekinfo_red"];
-        self.babyView.image = [BPUtils imageNamed:@"mypregnancy_calendar_baby3"];
     }
+    
+    NSString *pregnancyImageName;
+    if (weekNumberInteger < 13) {
+        NSInteger weeks = MIN(weekNumberInteger, 8);
+        pregnancyImageName = [NSString stringWithFormat:@"mypregnancy_main_baby_%iw", weeks];
+    } else {
+        NSInteger months = weekNumberInteger*7/30;
+        pregnancyImageName = [NSString stringWithFormat:@"mypregnancy_main_baby_%im", months];
+    }
+    self.babyView.image = [BPUtils imageNamed:pregnancyImageName];
     
     self.weekInfoLabel.text = [NSString stringWithFormat:@"%@\n%@", BPLocalizedString(@"Week"), _weekNumber];
     

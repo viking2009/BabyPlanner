@@ -1,32 +1,13 @@
-h2. 20140715
+h2. 20140719
 
 h3. Note:
 
-* added new device: iPod Touch 5th Gen (Igor Baranov)
-
 h3. New:
-
-Task #71: My Pregnancy: Kick history list
-* demo data
-Feature #76: My Charts: Display month for selected date in Calendar
-* change month selected date for another month
-Feature #77: My Pregnancy: Main page improvements
-* show My Pregnancy calendar if tap on date label
-* move girl down 
 
 h3. Improvements:
 
-Task #69: My Pregnancy: Controls page
-* show kick history
 Task #70: My Pregnancy: You & your baby
-* justified text alignment and hyphenation for descriptions
-* curled swiping used
+* change image on week changed
 
 h3. Fixes:
-
-Task #68: My Pregnancy: Main page
-* fix month and day dispaying
-Task #70: My Pregnancy: You & your baby
-* fix localization issue
-
 
