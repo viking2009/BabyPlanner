@@ -193,6 +193,31 @@
             DLog(@"%i %@", self.pickerView.valuePickerMode, self.pickerView.value);
 //            self.selectedWeek = self.pickerView.value;
 //            [self updateUI];
+            
+            // MARK: dirty hack
+            if (self.pickerView.hidden)
+                return;
+            
+            self.view.userInteractionEnabled = NO;
+//            self.pickerView.hidden = YES;
+            
+            BPMyPregnancyWeekViewController *oneDayViewController = [[BPMyPregnancyWeekViewController alloc] init];
+            oneDayViewController.weekNumber = self.pickerView.value;
+            
+            UIPageViewControllerNavigationDirection direction = ([self.selectedWeek integerValue] < [oneDayViewController.weekNumber integerValue] ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse);
+            
+            __weak __typeof(&*self) weakSelf = self;
+            [self.pageViewController setViewControllers:@[oneDayViewController] direction:direction animated:YES completion:^(BOOL finished) {
+                __strong __typeof(&*weakSelf) strongSelf = weakSelf;
+                if (!strongSelf) {
+                    return ;
+                }
+                
+                strongSelf.selectedWeek = oneDayViewController.weekNumber;
+                [strongSelf updateUI];
+                
+                strongSelf.view.userInteractionEnabled = YES;
+            }];
         }
             break;
         default:
@@ -203,30 +228,9 @@
 - (void)pickerViewValueDidEndEditing
 {
 //    self.selectedWeek = self.pickerView.value;
-//    self.pickerView.hidden = YES;
-//    
-//    [self updateUI];
-//    
-    self.view.userInteractionEnabled = NO;
     self.pickerView.hidden = YES;
-
-    BPMyPregnancyWeekViewController *oneDayViewController = [[BPMyPregnancyWeekViewController alloc] init];
-    oneDayViewController.weekNumber = self.pickerView.value;
-    
-    UIPageViewControllerNavigationDirection direction = ([self.selectedWeek integerValue] < [oneDayViewController.weekNumber integerValue] ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse);
-    
-    __weak __typeof(&*self) weakSelf = self;
-    [self.pageViewController setViewControllers:@[oneDayViewController] direction:direction animated:YES completion:^(BOOL finished) {
-        __strong __typeof(&*weakSelf) strongSelf = weakSelf;
-        if (!strongSelf) {
-            return ;
-        }
-        
-        strongSelf.selectedWeek = oneDayViewController.weekNumber;
-        [strongSelf updateUI];
-        
-        strongSelf.view.userInteractionEnabled = YES;
-    }];
+//
+//    [self updateUI];
 }
 
 #pragma mark - Private
@@ -378,11 +382,10 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    NSArray *viewControllers = pageViewController.viewControllers;
-    BPMyPregnancyWeekViewController *oneDayViewController = viewControllers.lastObject;
+    BPMyPregnancyWeekViewController *oneDayViewController = [pageViewController.viewControllers lastObject];
     
     self.selectedWeek = oneDayViewController.weekNumber;
-//    self.pickerView.value = self.selectedWeek;
+    self.pickerView.value = self.selectedWeek;
     [self updateUI];
 }
 
