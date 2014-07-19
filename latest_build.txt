@@ -8,6 +8,7 @@ h3. Improvements:
 
 Task #70: My Pregnancy: You & your baby
 * change image on week changed
+* change week page on week changed in picker
 
 h3. Fixes:
 
